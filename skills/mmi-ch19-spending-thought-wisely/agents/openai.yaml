@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Spending Thought Wisely"
+  short_description: "Explore and apply Chapter 19 of the book."
+  default_prompt: "Use $mmi-ch19-spending-thought-wisely to help me understand or apply this idea: "

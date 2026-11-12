@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Learning from Consequences"
+  short_description: "Explore and apply Chapter 14 of the book."
+  default_prompt: "Use $mmi-ch14-learning-consequences to help me understand or apply this idea: "

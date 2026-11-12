@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Modeling Yourself"
+  short_description: "Explore and apply Chapter 30 of the book."
+  default_prompt: "Use $mmi-ch30-modeling-yourself to help me understand or apply this idea: "

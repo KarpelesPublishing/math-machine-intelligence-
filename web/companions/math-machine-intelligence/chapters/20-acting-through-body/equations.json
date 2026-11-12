@@ -1,0 +1,541 @@
+{
+  "chapter": 20,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-20.md",
+  "source_sha256": "f04fdc06fde6fb38635dcaf885d3ccd76a5cde84c181413b344714e1bf7bc3d1",
+  "calculation_sha256": "79e1908123c1a7eea35ec1b08eb35c0a113bbf049406e30f7bed89cdd92da9da",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C20-D01",
+      "title": "How does a mind aim the second jump before the first has been seen to land?",
+      "question": "If a second eye jump is planned as the remembered target minus the estimated first jump, how far does it miss when part of the first-jump signal is lost?",
+      "equations": [
+        "m_2=r_2-\\hat s_1,\\qquad \\hat s_1=(1-d)\\,s_1,\\qquad \\text{miss}=d\\,s_1"
+      ],
+      "symbols_list": [
+        {
+          "sym": "m_2",
+          "meaning": "the planned second jump, a pair of numbers (across, up)"
+        },
+        {
+          "sym": "r_2",
+          "meaning": "the remembered second target, measured from where the eye started"
+        },
+        {
+          "sym": "s_1 and its estimate",
+          "meaning": "the first jump actually made, and the brain's estimate of it"
+        },
+        {
+          "sym": "d",
+          "meaning": "the share of the first-jump signal lost, from 0 (none) to 1 (zero is substituted)"
+        },
+        {
+          "sym": "miss",
+          "meaning": "how far the end point is from the target (the companion's step: with d lost, the plan overshoots by d times the first jump)"
+        }
+      ],
+      "source_anchor": "where-a-prediction-could-come-from-a-relay-and-the-cerebellum",
+      "source_section": "Where a prediction could come from: a relay and the cerebellum",
+      "provenance": "The subtraction m2 = r2 - s1-hat is the chapter's equation (notation added by the book). The target (10, 8), the jump sizes and the units are made up. The chapter reports the shortfall as a share: 19 percent in 11 clear cases and about 10 percent across all 22, which the authors measured as the observed shift divided by the largest shift a total loss would cause; here that share is the slider d.",
+      "kind": "formula",
+      "assumptions": "The target stays still and is remembered exactly. The first jump is estimated as a fixed share of itself. The relay in the study was partly inactivated, never shown to be off, and other pathways may carry the signal.",
+      "prediction": "Before moving anything: if the eye jumped 10 units and the signal were totally lost, where would the second jump be aimed, and what is the miss?",
+      "reveal": {
+        "state": {
+          "deficit": 1.0,
+          "amplitude": 10
+        },
+        "text": "With the whole signal lost, the first-jump estimate is zero, so the plan is the full remembered target (10, 8) as if the eye had not moved. The end point lands 10 units too far across. The reported partial shortfalls, 10 and 19 percent, correspond to 1 and 1.9 of those units."
+      },
+      "takeaway": "A missing first-jump estimate shows up as a second jump that misses by exactly the lost share times the first jump.",
+      "why_it_matters": "A controller that plans one move from the last has to know how far the last move went. The subtraction makes the dependence visible, and the shift measures how much of the estimate is being used.",
+      "sides": {
+        "brain": "In two monkeys, a drug in a thalamic relay shifted second jumps, not single ones, in the direction that losing the signal predicts. The subtraction is the book's model of what the signal does, not a recorded calculation.",
+        "machine": "A saccade planner or robot arm can compute the subtraction exactly from its own motor command, a specification and not a model of a monkey."
+      },
+      "explanation": "The eye starts at the origin and makes a first jump. The target for the second jump was seen before the move, so it is remembered relative to the start. The jump still needed is that target minus where the eye now is. If the estimate of the first jump is too small, the subtraction removes too little, and the planned jump is too large by the missing part.",
+      "check": "The first jump is 15 units across and half the signal is lost. What is the planned second jump, and how far does it miss?",
+      "answer": "The estimate is 7.5, so the plan is (10 - 7.5, 8) = (2.5, 8) against the needed (10 - 15, 8) = (-5, 8). The end point misses by 0.5 x 15 = 7.5 units.",
+      "controls": [
+        {
+          "key": "deficit",
+          "label": "Share of the first-jump signal lost",
+          "values": [
+            0,
+            0.1,
+            0.19,
+            0.5,
+            1.0
+          ],
+          "default": 0.19,
+          "widget": "slider"
+        },
+        {
+          "key": "amplitude",
+          "label": "First jump (units across)",
+          "values": [
+            5,
+            10,
+            15
+          ],
+          "default": 10,
+          "widget": "slider"
+        }
+      ],
+      "function": "double_step_picture",
+      "alt": "Arrows for a first jump, the needed second jump and the planned one, and lines of miss against share of signal lost.",
+      "symbols": "m_2: the planned second jump, a pair of numbers (across, up); r_2: the remembered second target, measured from where the eye started; s_1 and its estimate: the first jump actually made, and the brain's estimate of it; d: the share of the first-jump signal lost, from 0 (none) to 1 (zero is substituted); miss: how far the end point is from the target (the companion's step: with d lost, the plan overshoots by d times the first jump)",
+      "application": "A controller that plans one move from the last has to know how far the last move went. The subtraction makes the dependence visible, and the shift measures how much of the estimate is being used.",
+      "default_parameters": "Share of the first-jump signal lost: 0.19 · First jump (units across): 10",
+      "worked_example": {
+        "Planned second jump (across, up)": "(1.9, 8)",
+        "Needed second jump (across, up)": "(0, 8)",
+        "Miss of the end point (units)": "1.9",
+        "Share of the total-loss miss": "0.19"
+      },
+      "worked_interpretation": "A first jump of 10 units with 0.19 of its signal lost makes the planned second jump (1.9, 8) instead of the needed (0, 8). The end point misses by 1.9 units, 0.19 of the 10-unit miss that total loss would cause.",
+      "reader_anchor": "C20-D01"
+    },
+    {
+      "id": "C20-D02",
+      "title": "If sensed feedback differs from the prediction, was it a push or a bad prediction?",
+      "question": "A body sends a command, predicts the feedback, and senses something else. How much of that gap is an outside disturbance?",
+      "equations": [
+        "e=s_{\\mathrm{obs}}-f(c)=w+\\left[\\rho(a)-f(c)\\right]"
+      ],
+      "symbols_list": [
+        {
+          "sym": "e",
+          "meaning": "the residual, sensed feedback minus predicted feedback"
+        },
+        {
+          "sym": "f(c)",
+          "meaning": "the predicted feedback for a copy of the command c"
+        },
+        {
+          "sym": "rho(a)",
+          "meaning": "the sensory effect of the movement a actually made"
+        },
+        {
+          "sym": "w",
+          "meaning": "an outside disturbance added to the feedback"
+        },
+        {
+          "sym": "rho(a) - f(c)",
+          "meaning": "the prediction error, how far the prediction missed the movement's own effect"
+        }
+      ],
+      "source_anchor": "where-a-prediction-could-come-from-a-relay-and-the-cerebellum",
+      "source_section": "Where a prediction could come from: a relay and the cerebellum",
+      "provenance": "The decomposition is the chapter's equation, called there a constructed explanation and not a measured equation for a brain circuit. The values observed 8 and predicted 6 (residual 2) are the chapter's example; the other residuals are chosen to show a zero and a larger gap.",
+      "kind": "formula",
+      "assumptions": "Feedback is the movement's effect plus an additive outside push. Nothing else enters. The predicted feedback is fixed at 6.",
+      "prediction": "Observed 8, predicted 6. A friend says the residual of 2 proves something pushed the arm. Predict whether that is right before moving the sliders.",
+      "reveal": {
+        "state": {
+          "push": 0,
+          "residual": 2
+        },
+        "text": "With no push at all, the residual of 2 is entirely a prediction error: the model expected 6 and the movement's own effect was 8. The point sits at the top left of the line, and moving along the line changes the cause but not the residual."
+      },
+      "takeaway": "One residual fits a whole line of causes, so a gap alone cannot say whether the world or the prediction was off.",
+      "why_it_matters": "A controller that reacts to a residual has to know whether to correct the world or its own model. The residual by itself cannot tell, so extra information is needed.",
+      "sides": {
+        "brain": "The additive split is a constructed explanation, not a measured equation for a circuit; the chapter reports no brain test of it.",
+        "machine": "A robot comparing a command's predicted sensor value with the actual reading faces the same ambiguity. Logging a second sensor or a repeated trial is the extra information."
+      },
+      "explanation": "The residual is a single number, but it is the sum of two unknowns, an outside push and a prediction error. Any pair adding to the residual fits. Even a residual of zero can hide a push exactly cancelled by an opposite prediction error.",
+      "check": "The observed feedback is 10 and the predicted is 6. If the outside push is 1, what is the prediction error?",
+      "answer": "The residual is 10 - 6 = 4, so the prediction error is 4 - 1 = 3.",
+      "controls": [
+        {
+          "key": "push",
+          "label": "Outside push w",
+          "values": [
+            -1,
+            0,
+            1,
+            2,
+            3
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "residual",
+          "label": "Residual (observed minus predicted)",
+          "values": [
+            0,
+            2,
+            4
+          ],
+          "default": 2,
+          "widget": "slider"
+        }
+      ],
+      "function": "residual_picture",
+      "alt": "A stacked bar splitting a residual into an outside push and a prediction error, and a line of all splits that give the same residual.",
+      "symbols": "e: the residual, sensed feedback minus predicted feedback; f(c): the predicted feedback for a copy of the command c; rho(a): the sensory effect of the movement a actually made; w: an outside disturbance added to the feedback; rho(a) - f(c): the prediction error, how far the prediction missed the movement's own effect",
+      "application": "A controller that reacts to a residual has to know whether to correct the world or its own model. The residual by itself cannot tell, so extra information is needed.",
+      "default_parameters": "Outside push w: 2 · Residual (observed minus predicted): 2",
+      "worked_example": {
+        "Observed feedback": "8",
+        "Predicted feedback": "6",
+        "Residual (observed minus predicted)": "2",
+        "Prediction error left over": "0"
+      },
+      "worked_interpretation": "Observed 8 against predicted 6 leaves a residual of 2. With an outside push of 2, the prediction must be off by 0. The same residual comes from an outside push with a perfect prediction, from no push with a prediction error, or any mix.",
+      "reader_anchor": "C20-D02"
+    },
+    {
+      "id": "C20-D03",
+      "title": "Why does strong correction from late news make a controller swing?",
+      "question": "If the report on position arrives 0.2 s late, how strongly can a plain feedback loop correct before it swings, and what does a model of the delay change?",
+      "equations": [
+        "x'(t)=g\\,\\bigl(1-x(t-\\delta)\\bigr)\\ \\text{(plain)},\\qquad g\\,\\delta<\\tfrac{\\pi}{2}\\ \\text{to settle}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x",
+          "meaning": "position of a simple plant whose speed equals the command"
+        },
+        {
+          "sym": "g",
+          "meaning": "correction strength, the gain, per second"
+        },
+        {
+          "sym": "delta",
+          "meaning": "the delay of the report, 0.2 s here"
+        },
+        {
+          "sym": "Smith loop",
+          "meaning": "feedback = late report + x(t) - x(t - modelled delay); the plant model is taken as exact"
+        }
+      ],
+      "source_anchor": "where-a-prediction-could-come-from-a-relay-and-the-cerebellum",
+      "source_section": "Where a prediction could come from: a relay and the cerebellum",
+      "provenance": "The shower story and the Smith predictor idea are the chapter's. The plant, the 0.2 s delay (the low end of the chapter's 200 to 250 ms upper estimate for sight-guided reaches), the gains and the simulation are constructed here and are not the 1993 paper's simulation. Euler steps of 5 ms.",
+      "kind": "simulation",
+      "assumptions": "A pure integrator plant, no noise, an exact plant model, and a delay model that is exactly right or off by 100 ms. The plain loop settles only when gain times delay is below pi/2. Real delays and plants differ.",
+      "prediction": "The plain loop stops settling above a gain of about 7.85 per second. Predict whether the delay-modelling loop will tolerate a gain of 10 when its delay model is exactly right.",
+      "reveal": {
+        "state": {
+          "gain": 10,
+          "model_error_ms": 0
+        },
+        "text": "At gain 10 the plain loop swings out of range, while the loop that models the delay correctly rises to the target without overshoot. Now move the delay-model error to plus 100 ms and the gain to 20: the delay-modelling loop fails too."
+      },
+      "takeaway": "A model of the delay allows strong correction in this constructed plant, but only while the delay model is close to right.",
+      "why_it_matters": "Strong correction from old data is the cause of the swing. A controller that holds a prediction of the present can act on it and use the late report as a check, which is what the cerebellum proposal says might happen.",
+      "sides": {
+        "brain": "The 1993 paper proposed, with a simulation and no experiment, that the cerebellum holds a forward model and a delay model. A 2007 magnetic-pulse experiment fits a hand estimate 138 ms old, but nothing here tests a cerebellum.",
+        "machine": "A Smith predictor is an engineering controller for processes with long delays. It is a specification, not a model of any brain."
+      },
+      "explanation": "The plain loop pushes toward the target with a strength proportional to how far the delayed report says it is. While the report is old, the controller keeps pushing after the target is passed, and a strong push turns the overshoot into a growing swing. The Smith loop adds what the plant has moved since the report: x(t) minus x(t minus the modelled delay). If the model is right, the loop sees the present position.",
+      "check": "The report is 0.2 s late. What is the plain loop's largest gain that still settles?",
+      "answer": "Gain times delay must be below pi/2, so the gain must be below pi/(2 x 0.2) = 7.85 per second.",
+      "controls": [
+        {
+          "key": "gain",
+          "label": "Correction strength (gain per second)",
+          "values": [
+            2,
+            4,
+            8,
+            10,
+            14,
+            20
+          ],
+          "default": 10,
+          "widget": "slider"
+        },
+        {
+          "key": "model_error_ms",
+          "label": "Error in the delay model (ms)",
+          "values": [
+            -100,
+            0,
+            100
+          ],
+          "default": 0,
+          "widget": "slider"
+        }
+      ],
+      "function": "delay_picture",
+      "alt": "Position traces of a plain loop and a Smith predictor loop, and the late wobble against gain for four loop types.",
+      "symbols": "x: position of a simple plant whose speed equals the command; g: correction strength, the gain, per second; delta: the delay of the report, 0.2 s here; Smith loop: feedback = late report + x(t) - x(t - modelled delay); the plant model is taken as exact",
+      "application": "Strong correction from old data is the cause of the swing. A controller that holds a prediction of the present can act on it and use the late report as a check, which is what the cerebellum proposal says might happen.",
+      "default_parameters": "Correction strength (gain per second): 10 · Error in the delay model (ms): 0",
+      "worked_example": {
+        "Plain loop": "does not settle",
+        "Plain overshoot (percent)": "undefined (does not settle)",
+        "Smith loop": "settles",
+        "Smith overshoot (percent)": "0"
+      },
+      "worked_interpretation": "At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the Smith predictor with its delay model 0 ms off settles. The plain loop's limit for this plant is gain pi/(2 x 0.2) = 7.85.",
+      "reader_anchor": "C20-D03"
+    },
+    {
+      "id": "C20-D04",
+      "title": "Why does a skilled hand correct some errors and let others go?",
+      "question": "If a controller pays for effort and for missing the task, how much does it correct a direction that hardly matters?",
+      "equations": [
+        "P=\\frac{q+\\sqrt{q^{2}+4qr}}{2},\\qquad K=\\frac{P}{P+r},\\qquad \\operatorname{Var}=\\frac{\\sigma^{2}}{K(2-K)}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "q",
+          "meaning": "weight on missing the task in one direction"
+        },
+        {
+          "sym": "r",
+          "meaning": "cost of the correcting effort"
+        },
+        {
+          "sym": "P",
+          "meaning": "the steady-state cost-to-go weight of the standard scalar solution"
+        },
+        {
+          "sym": "K",
+          "meaning": "the share of the error corrected each step"
+        },
+        {
+          "sym": "Var",
+          "meaning": "long-run variance, with a push of variance sigma^2 = 1 added each step"
+        }
+      ],
+      "source_anchor": "which-errors-to-fix-and-how-a-body-model-is-repaired",
+      "source_section": "Which errors to fix, and how a body model is repaired",
+      "provenance": "The principle (correct deviations only when they interfere with the task) and the spreads 0.14 and 0.26 square centimeters with five targets, and 0.18 and 0.18 with 21, are quoted from the chapter's account of Todorov and Jordan (2002). The scalar model, its weights and its noise are constructed here; nothing is fitted to the study, and the study's ratio of 1.86 is drawn only as a reference line.",
+      "kind": "model",
+      "assumptions": "A one-number state, a push of fixed size each step, a quadratic cost and a controller that knows the state. Real reaches have many joints, delayed noisy senses and no single weight. In the study, the 21-target comparison no longer detected a significant difference.",
+      "prediction": "If a direction carries no weight at all, how large is its long-run spread? And does giving it the same weight as the other direction equalize the two?",
+      "reveal": {
+        "state": {
+          "irrelevant_weight": 0.1,
+          "effort_cost": 1.0
+        },
+        "text": "At weight 0.1 against 1, the spread in the direction that matters little is about 1.83 times the other, near the reported 1.86 for five targets. That is a coincidence of a tidy number, not a fit. Set the weight to 1 and the two spreads are equal, the analogue of the 21-target condition where every point on the path was a target."
+      },
+      "takeaway": "A controller that charges for effort corrects the direction that matters hard and the other loosely; at equal weights the two are equal.",
+      "why_it_matters": "Perfect correction everywhere is costly. A controller that corrects only what interferes with the task spends effort where it pays, so a looser hand between targets is a prediction, not a defect.",
+      "sides": {
+        "brain": "Todorov and Jordan present this as a theory with simulations and experiments. It names no circuit and does not explain how skill is acquired.",
+        "machine": "An optimal feedback controller is a specification: choose the cost, and the gain follows. A robot arm can be built to correct only what the task needs."
+      },
+      "explanation": "Each step, a push moves the state. The controller can undo a share K of the error at an effort cost. If the error does not affect the task, the weight q is small, K is small, and the error is allowed to drift to a larger long-run spread. With zero weight there is no correction and the spread grows without a long-run limit.",
+      "check": "At effort cost 1 and weight 1, K = 0.618. What long-run variance does that give?",
+      "answer": "Var = 1/(0.618 x (2 - 0.618)) = 1/(0.618 x 1.382) = 1.17.",
+      "controls": [
+        {
+          "key": "irrelevant_weight",
+          "label": "Weight on the direction that matters little",
+          "values": [
+            0,
+            0.01,
+            0.1,
+            0.3,
+            1.0
+          ],
+          "default": 0.1,
+          "widget": "slider"
+        },
+        {
+          "key": "effort_cost",
+          "label": "Effort cost r",
+          "values": [
+            0.5,
+            1.0,
+            4.0
+          ],
+          "default": 1.0,
+          "widget": "slider"
+        }
+      ],
+      "function": "minimal_picture",
+      "alt": "Bars of long-run spread in two directions, and the spread ratio against the weight with the reported 1.86 and 1 as reference lines.",
+      "symbols": "q: weight on missing the task in one direction; r: cost of the correcting effort; P: the steady-state cost-to-go weight of the standard scalar solution; K: the share of the error corrected each step; Var: long-run variance, with a push of variance sigma^2 = 1 added each step",
+      "application": "Perfect correction everywhere is costly. A controller that corrects only what interferes with the task spends effort where it pays, so a looser hand between targets is a prediction, not a defect.",
+      "default_parameters": "Weight on the direction that matters little: 0.1 · Effort cost r: 1.0",
+      "worked_example": {
+        "Gain, direction that matters": "0.618",
+        "Gain, direction that matters little": "0.27",
+        "Spread, direction that matters": "1.17",
+        "Spread ratio (matters little / matters)": "1.83"
+      },
+      "worked_interpretation": "A direction weighted 0.1 gets gain 0.27 and spread 2.14, against gain 0.618 and spread 1.17 for the direction that matters. The ratio is 1.83; at equal weights it is 1. The model is constructed, not fitted to the study.",
+      "reader_anchor": "C20-D04"
+    },
+    {
+      "id": "C20-D05",
+      "title": "Why do reaches bend the other way when a force is switched off?",
+      "question": "If a controller builds a model of a push from its errors, how closely does the aftereffect mirror the first miss, and how does that depend on practice?",
+      "equations": [
+        "b_{n+1}=b_n+\\eta\\,(B-b_n),\\qquad b_n=B\\bigl(1-(1-\\eta)^{n}\\bigr),\\qquad \\text{aftereffect}=-b_N"
+      ],
+      "symbols_list": [
+        {
+          "sym": "B",
+          "meaning": "the strength of the push of the world, taken as 1"
+        },
+        {
+          "sym": "b_n",
+          "meaning": "the controller's estimate of the push after n reaches"
+        },
+        {
+          "sym": "eta",
+          "meaning": "learning rate, the share of the error corrected in the estimate each reach"
+        },
+        {
+          "sym": "N",
+          "meaning": "the number of practice reaches with the field on"
+        }
+      ],
+      "source_anchor": "which-errors-to-fix-and-how-a-body-model-is-repaired",
+      "source_section": "Which errors to fix, and how a body model is repaired",
+      "provenance": "The sequence of events (early distortion, practice back to near free-space paths, aftereffects that were approximately mirror images) is the chapter's account of Shadmehr and Mussa-Ivaldi (1994), which it draws as a schematic. The update rule, the learning rates and the trial counts are constructed here; nothing is a measurement or the paper's model.",
+      "kind": "simulation",
+      "assumptions": "The miss is proportional to the gap between the true push and the estimate, the estimate is updated from the last miss only, and the field is one steady push. Real reaches have trial-to-trial noise and several forces.",
+      "prediction": "After practice with a learning rate of 0.1, what is the first miss when the field is switched off, compared with the very first miss?",
+      "reveal": {
+        "state": {
+          "rate": 0.1,
+          "practice": 40
+        },
+        "text": "After 40 reaches at learning rate 0.1 the estimate has reached 98.5 percent of the push, so the first reach with the field off misses by almost exactly the size of the first miss, on the opposite side. With 5 reaches the mirror is only 41 percent."
+      },
+      "takeaway": "The better the estimate of the push, the more nearly the aftereffect mirrors the first miss; the mirror is a sign of what was learned.",
+      "why_it_matters": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore evidence of the model, read from behavior.",
+      "sides": {
+        "brain": "The authors read the aftereffect as a sign that the controller gradually built a model of the field. That is an inference from behavior, not a recorded model.",
+        "machine": "A robot arm can run the same error-driven update on a force estimate; the update rule is a specification."
+      },
+      "explanation": "Each reach corrects the estimate by a share of the miss. With the field on, the miss shrinks as the estimate approaches the push. When the field is removed, the estimate is still near the old push, so the arm compensates for a push that is no longer there, and the miss has the opposite sign.",
+      "check": "At learning rate 0.2 and 10 practice reaches, how close is the estimate to the push?",
+      "answer": "1 - 0.8^10 = 1 - 0.107 = 0.893, so the aftereffect is 89 percent of the first miss.",
+      "controls": [
+        {
+          "key": "rate",
+          "label": "Learning rate",
+          "values": [
+            0.05,
+            0.1,
+            0.2,
+            0.4
+          ],
+          "default": 0.1,
+          "widget": "slider"
+        },
+        {
+          "key": "practice",
+          "label": "Practice reaches with the field on",
+          "values": [
+            5,
+            10,
+            20,
+            40,
+            80
+          ],
+          "default": 40,
+          "widget": "slider"
+        }
+      ],
+      "function": "adaptation_picture",
+      "alt": "Sideways miss over reaches with a field on and then off, and the aftereffect share against practice for four learning rates.",
+      "symbols": "B: the strength of the push of the world, taken as 1; b_n: the controller's estimate of the push after n reaches; eta: learning rate, the share of the error corrected in the estimate each reach; N: the number of practice reaches with the field on",
+      "application": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore evidence of the model, read from behavior.",
+      "default_parameters": "Learning rate: 0.1 · Practice reaches with the field on: 40",
+      "worked_example": {
+        "First miss (field on)": "1",
+        "First reach after the field goes off": "-0.985",
+        "Aftereffect as a share of the first miss": "0.985",
+        "Miss left on the last practice reach": "0.0164"
+      },
+      "worked_interpretation": "With learning rate 0.1 and 40 practice reaches, the model's field estimate reaches 0.985 of the true field. The first reach after the field is removed misses by 0.985, on the opposite side from the first miss of 1. This is a constructed update rule, not the paper's model.",
+      "reader_anchor": "C20-D05"
+    },
+    {
+      "id": "C20-D06",
+      "title": "What can 2 successes in 10 trials tell us?",
+      "question": "If a robot hand completed a task in 2 of 10 real trials, how well does that pin down its success rate, and what would 0 of 10 tell?",
+      "equations": [
+        "P(X\\le k\\mid p)=\\sum_{i=0}^{k}\\binom{n}{i}p^{i}(1-p)^{n-i}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "n",
+          "meaning": "number of trials, 10"
+        },
+        {
+          "sym": "k",
+          "meaning": "number of successes"
+        },
+        {
+          "sym": "p",
+          "meaning": "the underlying success rate, unknown"
+        },
+        {
+          "sym": "range",
+          "meaning": "the rates not ruled out at 95 percent, found by exact search"
+        }
+      ],
+      "source_anchor": "which-errors-to-fix-and-how-a-body-model-is-repaired",
+      "source_section": "Which errors to fix, and how a body model is repaired",
+      "provenance": "The counts come from the chapter's account of the 2019 Rubik's cube preprint: in 10 real trials starting with a solved cube and one fixed scrambling sequence, the hand completed it in 2 of 10 with a cube carrying its own sensors and in 0 of 10 when the cube's state was estimated from cameras. The preprint's own tests are not reproduced; the exact ranges are computed here from those counts.",
+      "kind": "reported result",
+      "assumptions": "The 10 trials are independent with one success rate each. The ranges describe those trials only; they do not say the trials were representative of other starts or sequences. The chapter's other numbers are likewise from small samples.",
+      "prediction": "With 0 successes in 10 trials, predict whether a true success rate of 25 percent is ruled out.",
+      "reveal": {
+        "state": {
+          "successes": 2
+        },
+        "text": "Two of ten gives a share of 0.2, but rates from about 0.025 to 0.556 remain plausible at 95 percent. Move to 0 of 10: the high end falls to about 0.31, so 25 percent is not ruled out, but 50 percent is."
+      },
+      "takeaway": "Ten trials leave a wide range of rates plausible, so the two reported counts are consistent with a wide range of true rates, including some in common.",
+      "why_it_matters": "A system that is evaluated on a handful of real trials cannot be told apart from many nearby rates. The honest report is the count and its range, not the share alone.",
+      "sides": {
+        "brain": "The chapter's brain-side counts are also small: seven patients, eight men, two monkeys. The same caution applies to their shares.",
+        "machine": "A robot test on 10 trials is a measurement with this much uncertainty. The 2019 preprint's hand-tuned simulation settings are a separate matter."
+      },
+      "explanation": "For each possible true rate, the chance of seeing a given count is a binomial probability. A rate is ruled out when it would make the count of 2 or fewer, or 2 or more, rare. The rates that survive form an interval. The exact interval is wide because ten trials contain little information.",
+      "check": "For 0 successes in 10, the high end of the range is 1 - 0.025^(1/10). What is it?",
+      "answer": "0.025^(0.1) = 0.6915, so the high end is 1 - 0.6915 = 0.308.",
+      "controls": [
+        {
+          "key": "successes",
+          "label": "Successes in 10 trials",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "default": 2,
+          "widget": "slider"
+        }
+      ],
+      "function": "counts_picture",
+      "alt": "Chance of each count for three success rates, and the exact 95 percent range of rates for each count out of 10.",
+      "symbols": "n: number of trials, 10; k: number of successes; p: the underlying success rate, unknown; range: the rates not ruled out at 95 percent, found by exact search",
+      "application": "A system that is evaluated on a handful of real trials cannot be told apart from many nearby rates. The honest report is the count and its range, not the share alone.",
+      "default_parameters": "Successes in 10 trials: 2",
+      "worked_example": {
+        "Share of trials": "0.2",
+        "Low end of the 95 percent range": "0.0252",
+        "High end of the 95 percent range": "0.556",
+        "Width of the range": "0.531"
+      },
+      "worked_interpretation": "2 successes in 10 trials is a share of 0.2, but rates from 0.0252 to 0.556 remain plausible at 95 percent. The range is 0.531 wide, so ten trials cannot separate nearby rates.",
+      "reader_anchor": "C20-D06"
+    }
+  ]
+}

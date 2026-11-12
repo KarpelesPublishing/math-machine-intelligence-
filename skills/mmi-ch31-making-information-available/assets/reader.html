@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="How does one piece of information become usable by memory, speech and action at once, and how would anyone know it had? An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 31 · Making Information Available</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="#main">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="#main">Chapter illustrations</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 31</p><h1>Making Information Available</h1><p class="cmp-lead">How does one piece of information become usable by memory, speech and action at once, and how would anyone know it had?</p><p class="cmp-summary">5 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C31-D01">1. Why does a whole answer jump when each piece improves steadily?</a><a href="#C31-D02">2. How much can a zero among 655 electrodes rule out?</a><a href="#C31-D03">3. What does a Bayes factor of 5 to 9 do to the odds?</a><a href="#C31-D04">4. Did a shared workspace help, and what did the slot count do?</a><a href="#C31-D05">5. What happens to the leap if tokens are not independent?</a></nav>
+<div class="intro"><p>Before reading a zero or a sudden jump, ask what the method could have found and whether a smoother score tells the same story.</p><div class="callout"><span class="small">Try asking the chapter skill</span><p style="margin:8px 0 0">“Use when a reader wants to see how a test&#39;s design and scoring rule limit what its result can show, on the brain side (a zero count) and the machine side (a jump in a score).”</p><p class="small" style="margin:10px 0 0">Use <code>mmi-ch31-making-information-available</code> with the companion's AI skill package. The illustrations below also work on their own.</p></div></div>
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C31-D01" aria-labelledby="title-C31-D01">
+<div class="demo-title"><span class="chapter-number">01 / 05</span><h2 id="title-C31-D01">Why does a whole answer jump when each piece improves steadily?</h2></div>
+<p class="source-line small">From Chapter 31, A sudden jump in a score can come from the scoring rule</p>
+<p class="question">If each token of a ten-token answer is right with the same chance, how does the chance of a whole right answer change as that chance rises?</p><p>A whole answer is right only if every token is. With the same chance p each time, the chances multiply, so the product shrinks as the answer gets longer. When p is near 0.5 the product is almost zero for ten tokens, and when p reaches 0.9 it is large enough to see. Per-token accuracy changed little, and the exact-match score changed a lot.</p>
+<p class="prediction"><strong>Predict first:</strong> Per-token accuracy rises from 0.5 to 0.9. Predict the chance of a whole ten-token answer for each.</p>
+<div class="controls" role="group" aria-label="Controls for Why does a whole answer jump when each piece improves steadily?">
+<div class="control"><label for="C31-D01-p">Per-token chance p: <output class="slider-value" data-for="p">0.9</output></label><input type="range" id="C31-D01-p" data-control="p" min="0" max="5" step="1" value="3" aria-valuetext="0.9"><div class="slider-ends small"><span>0.5</span><span>0.99</span></div></div><div class="control"><label for="C31-D01-length">Tokens in the answer (L)</label><select id="C31-D01-length" data-control="length"><option value="0">5</option><option value="1" selected>10</option><option value="2">20</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C31-D01/10.svg" alt="Bars of per-token and whole-answer chance for a small and larger model, and whole-answer chance against per-token chance for three answer lengths." width="960" height="540"><figcaption><strong class="takeaway">Under all-or-nothing scoring, the chance of a whole answer is a power of the per-token chance, so a steady rise looks like a sudden jump. A smoother score on the same outputs shows steady improvement.</strong><br><span class="selected-parameters">Per-token chance p: 0.9 · Tokens in the answer (L): 10</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> A small model at 0.5 per token gets a whole answer right 0.001 of the time, and 0.9 gives 0.349. Per-token accuracy rose by a factor of 1.8 while exact match rose by about 357 times: a steady improvement looks like a leap.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With each of 10 tokens right with chance 0.9, the whole answer is right with chance 0.349. To get an even chance of a whole answer at length 10, each token must be right 0.933 of the time.</p>
+<dl class="metrics"><div class="metric"><dt>Per-token chance p</dt><dd>0.9</dd></div><div class="metric"><dt>Whole answer right (p^L)</dt><dd>0.349</dd></div><div class="metric"><dt>Share of per-token accuracy kept</dt><dd>0.387</dd></div><div class="metric"><dt>p needed for an even chance</dt><dd>0.933</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A jump in a score can come from the scoring rule and not from a change inside the model. The chapter says a steep rise in a brain measure would likewise need a second observation before anyone calls it a threshold.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Workspace theory expects a fact to enter its shared space all at once, like a switch. The chapter says a sudden jump is easy to see and easy to misread, and no brain study here uses this formula.</p></div><div class="note"><strong>In machines</strong><p>Schaeffer and colleagues argue that many reported jumps in language-model ability come from the researcher&#39;s scoring rule, with GPT-3 family models on two-digit multiplication as an example. This is a specification of one simple model of scoring, not a measurement of any model.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">0.9^10 = 0.349. Even chance: 0.5^(1/10) = 0.933.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">exact match</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>p</mi><mi>L</mi></msup></mrow><annotation encoding="application/x-tex">
+\Pr(\text{exact match})=p^{L}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>p</dt><dd>the chance one token is right, between zero and one</dd><dt>L</dt><dd>the number of tokens in the answer</dd><dt>p^L</dt><dd>the chance all L tokens are right, if tokens are independent</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A simplified fixed-length answer with no extra tokens and independent tokens, which the paper says is untrue of real text. The paper does not claim real jumps never happen.</p></div></div>
+<details><summary>Check your understanding: What per-token chance gives an even chance of a whole ten-token answer?</summary><div class="answer">0.5 to the power one tenth, about 0.933: each token must be right about 93 times in 100.</div></details>
+<p class="source small">Book source: Chapter 31, A sudden jump in a score can come from the scoring rule. <span title="a-sudden-jump-in-a-score-can-come-from-the-scoring-rule">Illustration C31-D01</span>. Formula. Book formula for the model of Schaeffer and colleagues, with the chapter&#39;s round numbers: a small model right half the time per token and a larger one nine times in ten, on ten tokens, giving 0.001 and 0.349. The other values of p and L are the companion&#39;s variations. The chapter says the 0.5 and 0.9 numbers are its own arithmetic, not the paper&#39;s.</p>
+</section>
+<section class="demo" id="C31-D02" aria-labelledby="title-C31-D02">
+<div class="demo-title"><span class="chapter-number">02 / 05</span><h2 id="title-C31-D02">How much can a zero among 655 electrodes rule out?</h2></div>
+<p class="source-line small">From Chapter 31, How much a zero can rule out</p>
+<p class="question">None of 655 front electrodes matched the predicted burst. If each had the same small chance of a detected match, how likely is that?</p><p>If every electrode had the same chance r of showing a detected match, the chance that none does is the chance of one miss multiplied by itself n times. That falls quickly as r or n grows. The rate at which it crosses 5 in 100 depends on n, and n is not known, because neighboring electrodes are related. With fewer independent electrodes the zero rules out less.</p>
+<p class="prediction"><strong>Predict first:</strong> If each of 655 electrodes had a one in a thousand chance of a detected match, predict the chance that all would miss.</p>
+<div class="controls" role="group" aria-label="Controls for How much can a zero among 655 electrodes rule out?">
+<div class="control"><label for="C31-D02-rate">Chance one electrode gives a detected match: <output class="slider-value" data-for="rate">0.001</output></label><input type="range" id="C31-D02-rate" data-control="rate" min="0" max="6" step="1" value="1" aria-valuetext="0.001"><div class="slider-ends small"><span>0.0005</span><span>0.06</span></div></div><div class="control"><label for="C31-D02-electrodes">Electrodes counted as independent</label><select id="C31-D02-electrodes" data-control="electrodes"><option value="0">50</option><option value="1">123</option><option value="2" selected>655</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C31-D02/05.svg" alt="Chance that every electrode misses against the detection rate for three electrode counts, and the rate above which a zero rejects it." width="960" height="540"><figcaption><strong class="takeaway">A zero is evidence against high detected-match rates under a model, not proof the pattern is absent. The fewer electrodes count as independent, the less it rules out.</strong><br><span class="selected-parameters">Chance one electrode gives a detected match: 0.001 · Electrodes counted as independent: 655</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> All 655 miss with chance 0.519, about even, so a zero would be unsurprising at one in a thousand. Switch to a rate of 0.005 and the chance falls below 5 in 100, so the zero counts against rates higher than about half a percent, under independence.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">If each of 655 independent electrodes had a detected-match chance of 0.001, all of them would miss with chance 0.519. A zero rejects rates above about 0.456 percent under this model, and it is evidence against high detected-match rates, not proof.</p>
+<dl class="metrics"><div class="metric"><dt>Chance every electrode misses</dt><dd>0.519</dd></div><div class="metric"><dt>Detected matches expected</dt><dd>0.655</dd></div><div class="metric"><dt>This rate rejected by a zero</dt><dd>no</dd></div><div class="metric"><dt>Rate rejected above (percent)</dt><dd>0.456</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>Finding nothing proves little unless the method could have found something. The paper&#39;s positive control in the back of the brain shows the method can detect the pattern somewhere, and does not say how common it should be in the front.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Of 655 front electrodes only 123 responded to the pictures at all, and none matched the onset and offset pattern in the preregistered analysis. The chapter notes one electrode fit in another signal and one in an exploratory analysis. The paper named no winner.</p></div><div class="note"><strong>In machines</strong><p>Not applicable: this is a counting argument about a recording, not a software system.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">P(all miss) = (1 - 0.001)^655 = 0.519. Cutoff: 1 - 0.05^(1/655) = 0.00456.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">all miss</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>r</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>n</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>r</mi><mtext mathvariant="normal">cutoff</mtext></msub><mo>=</mo><mn>1</mn><mo>−</mo><msup><mn>0.05</mn><mrow><mn>1</mn><mi>/</mi><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+P(\text{all miss})=(1-r)^{n},\qquad r_{\text{cutoff}}=1-0.05^{1/n}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>r</dt><dd>the chance one electrode gives a detected match to the predicted pattern</dd><dt>n</dt><dd>the number of electrodes counted as independent</dd><dt>r_cutoff</dt><dd>the rate above which an all-miss has chance below 5 in 100</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Independent electrodes, which is probably false because neighboring contacts move together, so a zero rules out less. The calculation concerns detected matches, not the pattern&#39;s true prevalence, and limited coverage or sensitivity could hide real responses.</p></div></div>
+<details><summary>Check your understanding: For 123 electrodes, which rate gives all-miss chance 0.05?</summary><div class="answer">1 - 0.05^(1/123) = 0.024, about 2.4 percent.</div></details>
+<p class="source small">Book source: Chapter 31, How much a zero can rule out. <span title="how-much-a-zero-can-rule-out">Illustration C31-D02</span>. Formula. The chapter&#39;s own rough check (not the paper&#39;s): at one electrode in a thousand the all-miss chance is 0.52, a cutoff of about 0.5 percent for 655, 2.4 for 123 and 6 for 50 electrodes. The 655 and 123 electrode counts are the study&#39;s as the chapter gives them; the other rates are the companion&#39;s variations.</p>
+</section>
+<section class="demo" id="C31-D03" aria-labelledby="title-C31-D03">
+<div class="demo-title"><span class="chapter-number">03 / 05</span><h2 id="title-C31-D03">What does a Bayes factor of 5 to 9 do to the odds?</h2></div>
+<p class="source-line small">From Chapter 31, Category was readable in the front, but orientation mostly was not</p>
+<p class="question">The electrodes&#39; Bayes factors, 5.11 to 8.65, favored no orientation signal in the front. How much do they move a belief?</p><p>Before the data the reader holds some odds for &#39;no orientation signal&#39;. The Bayes factor says how much the data favor that explanation over the other. Multiplying gives the new odds, and odds convert to a probability. The same factor gives a lower probability to a reader who began doubtful and a higher one to a reader who began convinced.</p>
+<p class="prediction"><strong>Predict first:</strong> With even prior odds, predict the probability of no orientation signal after a Bayes factor of 5.11 and of 8.65.</p>
+<div class="controls" role="group" aria-label="Controls for What does a Bayes factor of 5 to 9 do to the odds?">
+<div class="control"><label for="C31-D03-bayes_factor">Bayes factor for no orientation signal: <output class="slider-value" data-for="bayes_factor">5.11</output></label><input type="range" id="C31-D03-bayes_factor" data-control="bayes_factor" min="0" max="5" step="1" value="2" aria-valuetext="5.11"><div class="slider-ends small"><span>1</span><span>100</span></div></div><div class="control"><label for="C31-D03-prior_odds">Prior odds for no signal</label><select id="C31-D03-prior_odds" data-control="prior_odds"><option value="0">4 to 1 against</option><option value="1" selected>even</option><option value="2">4 to 1 for</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C31-D03/07.svg" alt="Bars of the probability of no orientation signal before and after the data, and the probability against Bayes factor for three priors." width="960" height="540"><figcaption><strong class="takeaway">A Bayes factor multiplies the odds. A factor of 5 to 9 is moderate evidence and does not settle the question by itself.</strong><br><span class="selected-parameters">Bayes factor for no orientation signal: 5.11 · Prior odds for no signal: 1</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> With even odds, a factor of 5.11 gives a probability of 0.836 for no signal, and 8.65 gives 0.896. Neither is certainty, and a prior of 4 to 1 against moves them to about 0.56 and 0.68. The factor measures the data&#39;s push; the prior is a separate choice.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">A Bayes factor of 5.11 in favor of no orientation signal turns prior odds of 1 into odds of 5.11, moving the probability from 0.5 to 0.836. The probability reading belongs to the companion&#39;s prior and is not in the paper.</p>
+<dl class="metrics"><div class="metric"><dt>Prior odds for no signal</dt><dd>1</dd></div><div class="metric"><dt>Posterior odds</dt><dd>5.11</dd></div><div class="metric"><dt>Probability before</dt><dd>0.5</dd></div><div class="metric"><dt>Probability after</dt><dd>0.836</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>The chapter says a factor of 1 is a tie and larger numbers mean stronger support. How strong depends on where one started, and on whether the method could have found a signal.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The reported factors concern orientation in front-brain electrodes. MEG read orientation weakly (35 percent against 33 by chance), which the paper says may have leaked in from the back of the brain.</p></div><div class="note"><strong>In machines</strong><p>The decoder is standard machine learning used as a tool on brain data, not as a model of the mind.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Posterior odds = Bayes factor x prior odds = 5.11 x 1 = 5.11. Probability = odds/(1 + odds) = 0.836.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">posterior odds</mtext><mo>=</mo><mtext mathvariant="normal">Bayes factor</mtext><mo>×</mo><mtext mathvariant="normal">prior odds</mtext><mo>,</mo><mspace width="2.0em"></mspace><mi>p</mi><mo>=</mo><mfrac><mtext mathvariant="normal">odds</mtext><mrow><mn>1</mn><mo>+</mo><mtext mathvariant="normal">odds</mtext></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{posterior odds}=\text{Bayes factor}\times\text{prior odds},\qquad p=\frac{\text{odds}}{1+\text{odds}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>Bayes factor</dt><dd>how much better one explanation fits the data than the other; 1 is a tie</dd><dt>prior odds</dt><dd>the odds for &#39;no orientation signal&#39; before the data, a choice</dd><dt>p</dt><dd>the probability for &#39;no orientation signal&#39; after the data</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The Bayes factor is taken at face value for two explanations, &#39;no orientation signal&#39; and &#39;an orientation signal&#39;, and a prior odds are chosen by the reader. The chapter says the paper graded the orientation result inconclusive: the evidence leans against the theory but limits of the method could explain it.</p></div></div>
+<details><summary>Check your understanding: With prior odds 1 to 4 against no signal (0.25) and a Bayes factor of 8.65, what are the posterior odds and probability?</summary><div class="answer">8.65 x 0.25 = 2.16 in odds, which is 2.16/3.16 = 0.684.</div></details>
+<p class="source small">Book source: Chapter 31, Category was readable in the front, but orientation mostly was not. <span title="category-was-readable-in-the-front-but-orientation-mostly-was-not">Illustration C31-D03</span>. Formula. The chapter&#39;s reported Bayes factors for the electrodes (5.11 to 8.65, favoring no orientation signal) and its definition that 1 is a tie. The conversion to a probability with chosen prior odds is the companion&#39;s own and is not in the paper; the paper&#39;s factors depend on its own model of the effect.</p>
+</section>
+<section class="demo" id="C31-D04" aria-labelledby="title-C31-D04">
+<div class="demo-title"><span class="chapter-number">04 / 05</span><h2 id="title-C31-D04">Did a shared workspace help, and what did the slot count do?</h2></div>
+<p class="source-line small">From Chapter 31, Five shared slots helped a software workspace, and two hurt it</p>
+<p class="question">In one software design, how did the number of workspace slots change a ball-separation score?</p><p>Modules compete to write into a small number of slots, and whatever wins is read by all modules. With a few slots, little information gets shared. With very many, the limit is loose and the benefit fades. In between the score was highest. The adjusted Rand index compares the model&#39;s grouping of the balls to the true grouping.</p>
+<p class="prediction"><strong>Predict first:</strong> Compared with no workspace, predict whether two slots help or hurt, and whether ten slots do better than five.</p>
+<div class="controls" role="group" aria-label="Controls for Did a shared workspace help, and what did the slot count do?">
+<div class="control"><label for="C31-D04-slots">Workspace slots: <output class="slider-value" data-for="slots">5</output></label><input type="range" id="C31-D04-slots" data-control="slots" min="0" max="5" step="1" value="3" aria-valuetext="5"><div class="slider-ends small"><span>0</span><span>10</span></div></div><div class="control"><label for="C31-D04-versus">Compare with</label><select id="C31-D04-versus" data-control="versus"><option value="0" selected>no workspace</option><option value="1">five slots</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C31-D04/06.svg" alt="Bars of the ball-separation score for no workspace and five slot counts, and the score against slots with the no-workspace level marked." width="960" height="540"><figcaption><strong class="takeaway">A shared space helped on this task, and its capacity decided whether: five slots far above no workspace, two below it, ten far below five.</strong><br><span class="selected-parameters">Workspace slots: 5 · Compare with: no workspace</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Five slots score 0.915 against 0.276 with no workspace, a ratio of 3.32. Choose 2 slots and the score is 0.154, below no workspace. Choose 10 and it falls back to 0.351. The number of slots decided whether the shared space helped.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With 5 slots the score is 0.915, 0.639 above the score with no workspace (0.276), a ratio of 3.32. One task and one design; the chapter says two slots scored below no workspace.</p>
+<dl class="metrics"><div class="metric"><dt>Score</dt><dd>0.915</dd></div><div class="metric"><dt>Difference from no workspace</dt><dd>0.639</dd></div><div class="metric"><dt>Ratio to no workspace</dt><dd>3.32</dd></div><div class="metric"><dt>Above no workspace</dt><dd>yes</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>The brain theory assumes a similar capacity limit on how many items the shared channel holds at once. The software paper notes in passing that human working memory holds fewer than ten items; no study here measures a slot count in a brain.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Workspace theory says the brain has a shared space built to get a fact to every part that needs it. No brain study here counts slots.</p></div><div class="note"><strong>In machines</strong><p>A reported result on one design and one task: the workspace is the team&#39;s own design, built on SCOFF, so the fair comparison is SCOFF with a workspace against SCOFF without one.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Difference = 0.915 - 0.276 = 0.639. Ratio = 0.915/0.276 = 3.32.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">difference</mtext><mo>=</mo><msub><mtext mathvariant="normal">score</mtext><mtext mathvariant="normal">slots</mtext></msub><mo>−</mo><msub><mtext mathvariant="normal">score</mtext><mtext mathvariant="normal">comparison</mtext></msub><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">ratio</mtext><mo>=</mo><mfrac><msub><mtext mathvariant="normal">score</mtext><mtext mathvariant="normal">slots</mtext></msub><msub><mtext mathvariant="normal">score</mtext><mtext mathvariant="normal">comparison</mtext></msub></mfrac></mrow><annotation encoding="application/x-tex">
+\text{difference}=\text{score}_{\text{slots}}-\text{score}_{\text{comparison}},\qquad \text{ratio}=\frac{\text{score}_{\text{slots}}}{\text{score}_{\text{comparison}}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>score</dt><dd>the adjusted Rand index: 1 is a perfect grouping of the balls, near 0 is chance</dd><dt>slots</dt><dd>memory slots in the shared workspace: each a list of numbers that modules compete to write to</dd><dt>no workspace</dt><dd>the same design with modules passing messages in pairs, not zero slots</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>One design and one task. The paper reads the fall after eight slots as the cost of a looser limit, and the chapter&#39;s reading that too few slots starve the modules is the chapter&#39;s, not the paper&#39;s. No spread over runs is given in the chapter.</p></div></div>
+<details><summary>Check your understanding: How much higher is the five-slot score than the no-workspace score, in points and as a ratio?</summary><div class="answer">0.915 - 0.276 = 0.639 points, and 0.915/0.276 = 3.32 times.</div></details>
+<p class="source small">Book source: Chapter 31, Five shared slots helped a software workspace, and two hurt it. <span title="five-shared-slots-helped-a-software-workspace-and-two-hurt-it">Illustration C31-D04</span>. Reported result. Reported results from the chapter and its source note on Goyal and colleagues&#39; bouncing-ball task (Table 2 of the paper): 0.276 with no workspace, and 0.154, 0.487, 0.915, 0.891, 0.351 with 2, 4, 5, 8, 10 slots. The differences and ratios are the companion&#39;s arithmetic.</p>
+</section>
+<section class="demo" id="C31-D05" aria-labelledby="title-C31-D05">
+<div class="demo-title"><span class="chapter-number">05 / 05</span><h2 id="title-C31-D05">What happens to the leap if tokens are not independent?</h2></div>
+<p class="source-line small">From Chapter 31, A sudden jump in a score can come from the scoring rule</p>
+<p class="question">The formula p to the power L treats tokens as independent. What if tokens sometimes go together, all right or all wrong?</p><p>Independent tokens multiply, so a long answer needs every token right and the chance falls with length. Tokens that go together share one outcome, so the whole answer is right with chance p regardless of length. Real tokens are somewhere in between, so the true leap is smaller than p^L when tokens are positively related.</p>
+<p class="prediction"><strong>Predict first:</strong> If the tokens always go together (t = 1), predict the exact-match chance of the small and larger model.</p>
+<div class="controls" role="group" aria-label="Controls for What happens to the leap if tokens are not independent?">
+<div class="control"><label for="C31-D05-together">Share of the time tokens go together (t): <output class="slider-value" data-for="together">0</output></label><input type="range" id="C31-D05-together" data-control="together" min="0" max="4" step="1" value="0" aria-valuetext="0"><div class="slider-ends small"><span>0</span><span>1</span></div></div><div class="control"><label for="C31-D05-length">Tokens in the answer (L)</label><select id="C31-D05-length" data-control="length"><option value="0">5</option><option value="1" selected>10</option><option value="2">20</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C31-D05/01.svg" alt="Bars of whole-answer chance for a small and larger model, and whole-answer chance against per-token chance for five levels of tokens going together." width="960" height="540"><figcaption><strong class="takeaway">The leap from nothing to a third depends on the independence assumption. The more tokens go together, the closer exact match is to per-token accuracy and the smaller the leap.</strong><br><span class="selected-parameters">Share of the time tokens go together (t): 0 · Tokens in the answer (L): 10</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> When tokens always go together the whole answer is right with chance p, so exact match is 0.5 and 0.9: no leap, just the per-token accuracy. At t = 0 it is the chapter&#39;s 0.001 and 0.349.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">If tokens go together in 0 percent of answers and are independent in the rest, a whole 10-token answer is right 0.000977 of the time for the small model and 0.349 for the larger one. The p^L formula is the case where tokens never go together, which the paper says is untrue of real text.</p>
+<dl class="metrics"><div class="metric"><dt>Small model, whole answer</dt><dd>0.000977</dd></div><div class="metric"><dt>Larger model, whole answer</dt><dd>0.349</dd></div><div class="metric"><dt>Gap</dt><dd>0.348</dd></div><div class="metric"><dt>Ratio, larger over small</dt><dd>357</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A formula with a stated, admittedly untrue assumption explains a pattern without proving how large it is in real text. The result is a reason to check the scoring rule, not a prediction.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>None.</p></div><div class="note"><strong>In machines</strong><p>A specification: the arithmetic of a mixture of two simple cases. Schaeffer and colleagues also scored the same outputs by how close each answer came and found smooth improvement.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">P = t x p + (1 - t) x p^10. Small: 0 x 0.5 + 1 x 0.000977 = 0.000977. Larger: 0 x 0.9 + 1 x 0.349 = 0.349.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">exact</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>t</mi><mspace width="0.167em"></mspace><mi>p</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><msup><mi>p</mi><mi>L</mi></msup></mrow><annotation encoding="application/x-tex">
+P(\text{exact})=t\,p+(1-t)\,p^{L}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>t</dt><dd>the share of the time the tokens succeed or fail as one unit</dd><dt>p</dt><dd>the per-token chance of being right</dd><dt>L</dt><dd>the number of tokens</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A mixture: with chance t all tokens share one outcome (right with chance p), otherwise they are independent. Real text has no such clean split. The small and larger models are the chapter&#39;s 0.5 and 0.9 per-token cases.</p></div></div>
+<details><summary>Check your understanding: At t = 0.5 and L = 10, what is the exact-match chance for the larger model (p = 0.9)?</summary><div class="answer">0.5 x 0.9 + 0.5 x 0.349 = 0.45 + 0.174 = 0.624.</div></details>
+<p class="source small">Book source: Chapter 31, A sudden jump in a score can come from the scoring rule. <span title="a-sudden-jump-in-a-score-can-come-from-the-scoring-rule">Illustration C31-D05</span>. Formula. The companion&#39;s own illustration. The chapter says the formula treats tokens as independent, which the paper says is untrue of real text; the mixture here is not from the chapter or the paper and is one simple way to relax independence.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="#main">Chapter illustrations</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":31,"demos":[{"id":"C31-D01","title":"Why does a whole answer jump when each piece improves steadily?","alt":"Bars of per-token and whole-answer chance for a small and larger model, and whole-answer chance against per-token chance for three answer lengths.","controls":[{"key":"p","label":"Per-token chance p","values":[0.5,0.7,0.8,0.9,0.95,0.99],"default":0.9,"widget":"slider"},{"key":"length","label":"Tokens in the answer (L)","values":[5,10,20],"default":10}],"default_key":"[0.9,10]","reveal_key":"[0.9,10]","reveal_text":"A small model at 0.5 per token gets a whole answer right 0.001 of the time, and 0.9 gives 0.349. Per-token accuracy rose by a factor of 1.8 while exact match rose by about 357 times: a steady improvement looks like a leap.","states":{"[0.9,10]":{"image":"states/C31-D01/10.svg","metrics":{"Per-token chance p":"0.9","Whole answer right (p^L)":"0.349","Share of per-token accuracy kept":"0.387","p needed for an even chance":"0.933"},"interpretation":"With each of 10 tokens right with chance 0.9, the whole answer is right with chance 0.349. To get an even chance of a whole answer at length 10, each token must be right 0.933 of the time.","calculation":"0.9^10 = 0.349. Even chance: 0.5^(1/10) = 0.933."}}},{"id":"C31-D02","title":"How much can a zero among 655 electrodes rule out?","alt":"Chance that every electrode misses against the detection rate for three electrode counts, and the rate above which a zero rejects it.","controls":[{"key":"rate","label":"Chance one electrode gives a detected match","values":[0.0005,0.001,0.002,0.005,0.01,0.024,0.06],"default":0.001,"widget":"slider"},{"key":"electrodes","label":"Electrodes counted as independent","values":[50,123,655],"default":655}],"default_key":"[0.001,655]","reveal_key":"[0.001,655]","reveal_text":"All 655 miss with chance 0.519, about even, so a zero would be unsurprising at one in a thousand. Switch to a rate of 0.005 and the chance falls below 5 in 100, so the zero counts against rates higher than about half a percent, under independence.","states":{"[0.001,655]":{"image":"states/C31-D02/05.svg","metrics":{"Chance every electrode misses":"0.519","Detected matches expected":"0.655","This rate rejected by a zero":"no","Rate rejected above (percent)":"0.456"},"interpretation":"If each of 655 independent electrodes had a detected-match chance of 0.001, all of them would miss with chance 0.519. A zero rejects rates above about 0.456 percent under this model, and it is evidence against high detected-match rates, not proof.","calculation":"P(all miss) = (1 - 0.001)^655 = 0.519. Cutoff: 1 - 0.05^(1/655) = 0.00456."}}},{"id":"C31-D03","title":"What does a Bayes factor of 5 to 9 do to the odds?","alt":"Bars of the probability of no orientation signal before and after the data, and the probability against Bayes factor for three priors.","controls":[{"key":"bayes_factor","label":"Bayes factor for no orientation signal","values":[1,3,5.11,8.65,20,100],"default":5.11,"widget":"slider"},{"key":"prior_odds","label":"Prior odds for no signal","values":[0.25,1,4],"value_labels":["4 to 1 against","even","4 to 1 for"],"default":1}],"default_key":"[5.11,1]","reveal_key":"[5.11,1]","reveal_text":"With even odds, a factor of 5.11 gives a probability of 0.836 for no signal, and 8.65 gives 0.896. Neither is certainty, and a prior of 4 to 1 against moves them to about 0.56 and 0.68. The factor measures the data's push; the prior is a separate choice.","states":{"[5.11,1]":{"image":"states/C31-D03/07.svg","metrics":{"Prior odds for no signal":"1","Posterior odds":"5.11","Probability before":"0.5","Probability after":"0.836"},"interpretation":"A Bayes factor of 5.11 in favor of no orientation signal turns prior odds of 1 into odds of 5.11, moving the probability from 0.5 to 0.836. The probability reading belongs to the companion's prior and is not in the paper.","calculation":"Posterior odds = Bayes factor x prior odds = 5.11 x 1 = 5.11. Probability = odds/(1 + odds) = 0.836."}}},{"id":"C31-D04","title":"Did a shared workspace help, and what did the slot count do?","alt":"Bars of the ball-separation score for no workspace and five slot counts, and the score against slots with the no-workspace level marked.","controls":[{"key":"slots","label":"Workspace slots","values":[0,2,4,5,8,10],"value_labels":["none (pairs)","2","4","5","8","10"],"default":5,"widget":"slider"},{"key":"versus","label":"Compare with","values":["no workspace","five slots"],"default":"no workspace"}],"default_key":"[5,\"no workspace\"]","reveal_key":"[5,\"no workspace\"]","reveal_text":"Five slots score 0.915 against 0.276 with no workspace, a ratio of 3.32. Choose 2 slots and the score is 0.154, below no workspace. Choose 10 and it falls back to 0.351. The number of slots decided whether the shared space helped.","states":{"[5,\"no workspace\"]":{"image":"states/C31-D04/06.svg","metrics":{"Score":"0.915","Difference from no workspace":"0.639","Ratio to no workspace":"3.32","Above no workspace":"yes"},"interpretation":"With 5 slots the score is 0.915, 0.639 above the score with no workspace (0.276), a ratio of 3.32. One task and one design; the chapter says two slots scored below no workspace.","calculation":"Difference = 0.915 - 0.276 = 0.639. Ratio = 0.915/0.276 = 3.32."}}},{"id":"C31-D05","title":"What happens to the leap if tokens are not independent?","alt":"Bars of whole-answer chance for a small and larger model, and whole-answer chance against per-token chance for five levels of tokens going together.","controls":[{"key":"together","label":"Share of the time tokens go together (t)","values":[0,0.25,0.5,0.75,1],"default":0,"widget":"slider"},{"key":"length","label":"Tokens in the answer (L)","values":[5,10,20],"default":10}],"default_key":"[0,10]","reveal_key":"[1,10]","reveal_text":"When tokens always go together the whole answer is right with chance p, so exact match is 0.5 and 0.9: no leap, just the per-token accuracy. At t = 0 it is the chapter's 0.001 and 0.349.","states":{"[0,10]":{"image":"states/C31-D05/01.svg","metrics":{"Small model, whole answer":"0.000977","Larger model, whole answer":"0.349","Gap":"0.348","Ratio, larger over small":"357"},"interpretation":"If tokens go together in 0 percent of answers and are independent in the rest, a whole 10-token answer is right 0.000977 of the time for the small model and 0.349 for the larger one. The p^L formula is the case where tokens never go together, which the paper says is untrue of real text.","calculation":"P = t x p + (1 - t) x p^10. Small: 0 x 0.5 + 1 x 0.000977 = 0.000977. Larger: 0 x 0.9 + 1 x 0.349 = 0.349."}}}]}</script><script src="states/C31-D01.js"></script><script src="states/C31-D02.js"></script><script src="states/C31-D03.js"></script><script src="states/C31-D04.js"></script><script src="states/C31-D05.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

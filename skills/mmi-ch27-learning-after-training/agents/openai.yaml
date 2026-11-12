@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Learning After Training"
+  short_description: "Explore and apply Chapter 27 of the book."
+  default_prompt: "Use $mmi-ch27-learning-after-training to help me understand or apply this idea: "

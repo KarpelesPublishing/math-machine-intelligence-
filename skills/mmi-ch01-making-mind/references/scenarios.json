@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A person scores 70, a machine scores 80, and together they score 75. Did the machine help?",
+    "expected_behavior": "The pair beats the person (+5) and loses to the machine (-5); compare with the best real alternative."
+  },
+  {
+    "prompt": "A person and a machine estimate the same quantity, and the person is twice as variable. Is the plain average a good blend?",
+    "expected_behavior": "No. Equal share gives spread sqrt(5)/2, about 1.12 times the machine's, which is worse than the machine alone; reliability weights 0.2 and 0.8 give 0.894."
+  },
+  {
+    "prompt": "A decoder's recording sits midway between 'neither' and 'right hip'. What does it report?",
+    "expected_behavior": "Equal probabilities for those two attempts and a lower one for the left hip; a tie is a legitimate output."
+  }
+]

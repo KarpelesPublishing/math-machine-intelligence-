@@ -1,0 +1,449 @@
+{
+  "chapter": 1,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-01.md",
+  "source_sha256": "1fa3b23c7f05c6e9ce6cfe570a5f96ce93339e5145a16f063a5fece6767664ac",
+  "calculation_sha256": "fd425145fe03f46c7b84e95b205228862bf3f18e9bed7abe53b926aeac017318",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C01-D01",
+      "title": "How does a decoder turn a noisy recording into probabilities?",
+      "question": "A recording lands at one value, and each of three attempts (left hip, neither, right hip) would leave a noisy value near its own center. How likely is each attempt?",
+      "equations": [
+        "p_k=\\frac{\\exp\\!\\bigl(-(x-\\mu_k)^2/(2\\sigma^2)\\bigr)}{\\sum_m \\exp\\!\\bigl(-(x-\\mu_m)^2/(2\\sigma^2)\\bigr)}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x",
+          "meaning": "the recorded value"
+        },
+        {
+          "sym": "mu_k",
+          "meaning": "the typical value for attempt k: minus 1, 0 and 1 here"
+        },
+        {
+          "sym": "sigma",
+          "meaning": "how far a recording typically strays from its center (the noise)"
+        },
+        {
+          "sym": "p_k",
+          "meaning": "the estimated probability of attempt k, assuming the three attempts are equally likely to start"
+        }
+      ],
+      "source_anchor": "a-recording-is-not-a-command",
+      "source_section": "A recording is not a command",
+      "provenance": "A constructed illustration of the chapter's statement that the decoder estimated the probabilities of attempting to flex the left hip, the right hip or neither. The bell-curve model, the centers and the noise are invented here; the study's decoder is built differently and uses several recording sites.",
+      "kind": "formula",
+      "assumptions": "One recorded value, three attempts that start equally likely, and equal noise for each. A real decoder uses many measurements and learned weights.",
+      "prediction": "If the recording lies exactly midway between the centers for 'neither' (0) and 'right hip' (1), predict what the decoder reports for those two attempts.",
+      "reveal": {
+        "state": {
+          "x": 0.5,
+          "sigma": 1
+        },
+        "text": "At x = 0.5 the two attempts get exactly the same probability, 0.422 each, and the left hip gets 0.155. The decoder gives a graded estimate and not a command, and a tie is allowed."
+      },
+      "takeaway": "A recording does not say 'move the left leg'. It supports probabilities, which the system then uses.",
+      "why_it_matters": "This is the first job mathematics does in the book: it turns messy measurements into an estimate that can guide an action.",
+      "sides": {
+        "brain": "The brain recordings were measurements associated with attempted movement; the chapter notes the paper says intention and attempt, not thought.",
+        "machine": "The decoder is a program that maps measurements to estimates; its probabilities helped set the strength of stimulation."
+      },
+      "explanation": "Each attempt would leave a recorded value near its own center, blurred by noise. Given a recording, the closer a center is, the more weight that attempt gets. Dividing each weight by the total makes the three weights probabilities that add to one. When the noise is large, even a recording sitting on a center leaves the other attempts plausible.",
+      "check": "With noise 2 instead of 1, does a recording at 1 (the right-hip center) make the right hip more certain or less certain than with noise 1?",
+      "answer": "Less certain. Greater noise blurs the three bell curves together, so the right hip's probability falls (from about 0.574 to about 0.402 here) and the others rise.",
+      "controls": [
+        {
+          "key": "x",
+          "label": "Recorded value",
+          "values": [
+            -1,
+            0,
+            0.5,
+            0.75,
+            1,
+            1.5
+          ],
+          "default": 0.75,
+          "widget": "slider"
+        },
+        {
+          "key": "sigma",
+          "label": "Noise (sigma)",
+          "values": [
+            0.5,
+            1,
+            1.5,
+            2
+          ],
+          "default": 1
+        }
+      ],
+      "function": "decoder_picture",
+      "alt": "Three bell curves for the three attempts with the recording marked, and bars for the probability of each attempt.",
+      "symbols": "x: the recorded value; mu_k: the typical value for attempt k: minus 1, 0 and 1 here; sigma: how far a recording typically strays from its center (the noise); p_k: the estimated probability of attempt k, assuming the three attempts are equally likely to start",
+      "application": "This is the first job mathematics does in the book: it turns messy measurements into an estimate that can guide an action.",
+      "default_parameters": "Recorded value: 0.75 · Noise (sigma): 1",
+      "worked_example": {
+        "Probability of left hip": "0.111",
+        "Probability of neither": "0.389",
+        "Probability of right hip": "0.5",
+        "Most likely attempt": "right hip"
+      },
+      "worked_interpretation": "At recorded value 0.75 with noise 1, the most likely attempt is right hip at probability 0.5. The decoder gives a probability for each attempt and never a command.",
+      "reader_anchor": "C01-D01"
+    },
+    {
+      "id": "C01-D02",
+      "title": "How much calibration data does a decoder need?",
+      "question": "A decoder learns the typical recording for each attempt from examples. How does its accuracy depend on how many examples it saw, and how noisy the recordings are?",
+      "equations": [
+        "\\text{spread of the learned center}=\\frac{\\sigma}{\\sqrt{n}},\\qquad \\text{ceiling}=\\frac{4\\,\\Phi\\!\\left(\\tfrac{1}{2\\sigma}\\right)-1}{3}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "n",
+          "meaning": "calibration examples per attempt"
+        },
+        {
+          "sym": "sigma",
+          "meaning": "noise in a single recording"
+        },
+        {
+          "sym": "Phi",
+          "meaning": "the standard bell-curve cumulative probability"
+        },
+        {
+          "sym": "ceiling",
+          "meaning": "the best accuracy a nearest-center rule can reach with the three centers known exactly"
+        }
+      ],
+      "source_anchor": "a-recording-is-not-a-command",
+      "source_section": "A recording is not a command",
+      "provenance": "Simulation with disclosed seeds: 400 calibrations per setting, each tested on 300 fresh recordings (100 per attempt), using the invented three-center model of C01-D01. It does not model the study's calibration, whose five-minute standing test and six weeks of preparation the chapter reports.",
+      "kind": "simulation",
+      "assumptions": "A one-number recording, equal noise, centers at -1, 0 and 1, and a nearest-learned-center rule. The study's decoder was calibrated differently and updated over later days. A simulation here is not a measurement of any person or system.",
+      "prediction": "At noise 1, predict whether 5 examples per attempt are enough to get near the ceiling, or whether you need many more.",
+      "reveal": {
+        "state": {
+          "n": 5,
+          "sigma": 1
+        },
+        "text": "At noise 1, five examples per attempt averaged about 56 percent against a ceiling of about 59, and a few calibrations did much worse. One example per attempt averages about 47 percent, so the first few examples close most of the gap and later ones add little."
+      },
+      "takeaway": "Calibration is estimation too: a few noisy examples give a noisy decoder, and the error in each learned center shrinks like one over the square root of the examples.",
+      "why_it_matters": "It shows why the study's time spent calibrating, and recalibrating on later days, is part of the mathematics and not just housekeeping.",
+      "sides": {
+        "brain": "The person supplied the examples by attempting each movement; the chapter says Oskam supplied the examples and the machine found the pattern.",
+        "machine": "The decoder estimates its own parameters from examples, and the examples it saw limit how well it can estimate."
+      },
+      "explanation": "The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but accuracy can never pass the ceiling set by the noise in single recordings.",
+      "check": "Why does halving the noise help more than quadrupling the examples?",
+      "answer": "The ceiling itself depends on the noise, and quadrupling the examples only halves the center error. Halving the noise both halves the center error and lifts the ceiling.",
+      "controls": [
+        {
+          "key": "n",
+          "label": "Examples per attempt",
+          "values": [
+            1,
+            2,
+            5,
+            10,
+            20,
+            50,
+            100
+          ],
+          "default": 10,
+          "widget": "slider"
+        },
+        {
+          "key": "sigma",
+          "label": "Noise (sigma)",
+          "values": [
+            0.5,
+            1.0,
+            1.5
+          ],
+          "default": 1.0
+        }
+      ],
+      "function": "calibration_picture",
+      "alt": "Histogram of simulated decoder accuracies with the ceiling marked, and average accuracy against calibration examples for three noise levels.",
+      "symbols": "n: calibration examples per attempt; sigma: noise in a single recording; Phi: the standard bell-curve cumulative probability; ceiling: the best accuracy a nearest-center rule can reach with the three centers known exactly",
+      "application": "It shows why the study's time spent calibrating, and recalibrating on later days, is part of the mathematics and not just housekeeping.",
+      "default_parameters": "Examples per attempt: 10 · Noise (sigma): 1.0",
+      "worked_example": {
+        "Average accuracy": "57.6 percent",
+        "Accuracy if the means were known": "58.9 percent",
+        "Gap to that ceiling": "1.3 points",
+        "Worst tenth of calibrations": "54 percent or less"
+      },
+      "worked_interpretation": "With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.6 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 54 percent or less.",
+      "reader_anchor": "C01-D02"
+    },
+    {
+      "id": "C01-D03",
+      "title": "Why not give every voice an equal say?",
+      "question": "A person and a machine estimate the same quantity and one is steadier. What does an equal share do to the error spread, and what does a reliability weight do?",
+      "equations": [
+        "w^{*}=\\frac{\\sigma_m^{2}}{\\sigma_p^{2}+\\sigma_m^{2}},\\qquad \\sigma_{\\text{blend}}^{2}=w^{2}\\sigma_p^{2}+(1-w)^{2}\\sigma_m^{2},\\qquad \\sigma_{*}^{2}=\\frac{1}{1/\\sigma_p^{2}+1/\\sigma_m^{2}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "w",
+          "meaning": "the share given to the person; the machine gets 1 minus w"
+        },
+        {
+          "sym": "sigma_p, sigma_m",
+          "meaning": "the error spread of the person's and the machine's estimates"
+        },
+        {
+          "sym": "w*",
+          "meaning": "the share that gives the smallest blend spread"
+        },
+        {
+          "sym": "sigma_*",
+          "meaning": "the smallest achievable spread"
+        }
+      ],
+      "source_anchor": "not-every-voice-deserves-an-equal-say",
+      "source_section": "Not every voice deserves an equal say",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-1-precision-weights-chapter-2"
+      ],
+      "provenance": "Book rule, stated in words in this chapter and worked in Chapter 2. The ratio of spreads is a control; the numbers are illustrative, not from a study. The rule needs the independence and no-bias conditions listed.",
+      "kind": "formula",
+      "assumptions": "Both estimates are unbiased and their errors are independent. Shared errors or a consistent bias can change the answer. Spread means how much an estimate varies from one attempt to the next.",
+      "prediction": "If the person is twice as variable as the machine, predict whether a plain 50-50 average beats the machine alone.",
+      "reveal": {
+        "state": {
+          "ratio": 2,
+          "rule": "equal share"
+        },
+        "text": "No. The equal share gives a spread of about 1.12 against the machine's 1. Reliability weights of 0.2 for the person and 0.8 for the machine give about 0.894, better than either source alone."
+      },
+      "takeaway": "Under no bias and independent errors, a reliability weight beats either source alone, while an equal share can lose to the better one.",
+      "why_it_matters": "It turns the question 'should I trust the tool?' into a sharper one: how much weight does each source deserve, given how reliable it is?",
+      "sides": {
+        "brain": "The same rule was tested on how people combine sight and touch (C01-D05).",
+        "machine": "An engineer can use the rule to combine uncertain measurements, as the chapter says."
+      },
+      "explanation": "The blend's spread depends on how much of each voice goes in. Putting all weight on the steadier source gives its own spread. Moving a small share to the weaker source lowers the spread, because their errors partly cancel, and the best share is the one in inverse proportion to each source's variance. An equal share goes too far when one source is much weaker.",
+      "check": "With equal spreads, what is the best share for the person, and what is the blend's spread?",
+      "answer": "The best share is one half, and the spread is 1/sqrt(2), about 0.71 of either source alone, because with equal reliability the plain average is the reliability-weighted blend.",
+      "controls": [
+        {
+          "key": "ratio",
+          "label": "Person's spread relative to the machine's",
+          "values": [
+            0.5,
+            1,
+            1.5,
+            2,
+            3,
+            4
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "rule",
+          "label": "Rule for the share",
+          "values": [
+            "equal share",
+            "reliability weights"
+          ],
+          "default": "equal share"
+        }
+      ],
+      "function": "weights_picture",
+      "alt": "Blend error spread against the share given to the person, and the blend spread of two rules against the ratio of the sources' spreads.",
+      "symbols": "w: the share given to the person; the machine gets 1 minus w; sigma_p, sigma_m: the error spread of the person's and the machine's estimates; w*: the share that gives the smallest blend spread; sigma_*: the smallest achievable spread",
+      "application": "It turns the question 'should I trust the tool?' into a sharper one: how much weight does each source deserve, given how reliable it is?",
+      "default_parameters": "Person's spread relative to the machine's: 2 · Rule for the share: equal share",
+      "worked_example": {
+        "Blend error spread": "1.12",
+        "Better source alone": "1",
+        "Blend against the better source": "worse",
+        "Share given to the person": "0.5"
+      },
+      "worked_interpretation": "With the person 2 times as variable, an equal share gives a spread of 1.12, above the 1 of the better source alone. Mixing in a much weaker voice at equal weight hurts.",
+      "reader_anchor": "C01-D03"
+    },
+    {
+      "id": "C01-D04",
+      "title": "What did the partnership add?",
+      "question": "A person scores 70 out of 100, a machine scores 80, and together they score 75. Did the machine help?",
+      "equations": [
+        "\\text{added}=S_{\\text{pair}}-\\max\\bigl(S_{\\text{person}},\\,S_{\\text{machine}}\\bigr)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "S_person",
+          "meaning": "the person's solo score, 70 here"
+        },
+        {
+          "sym": "S_machine",
+          "meaning": "the machine's solo score"
+        },
+        {
+          "sym": "S_pair",
+          "meaning": "the score of the person and machine together"
+        },
+        {
+          "sym": "max",
+          "meaning": "the better of the two solo scores"
+        }
+      ],
+      "source_anchor": "not-every-voice-deserves-an-equal-say",
+      "source_section": "Not every voice deserves an equal say",
+      "provenance": "The chapter's constructed example, stated as invented numbers and not a study's results. The machine's score and the pair's score are controls here.",
+      "kind": "formula",
+      "assumptions": "Both solo scores are real alternatives. A walking aid cannot walk alone as a person does, so comparing its solo score with a person's would answer nothing. The right comparison depends on the task and the outcome that matters. With only 100 questions a gap of a few points may be sampling noise, a point the chapter's invented numbers do not address.",
+      "prediction": "With scores 70, 80 and 75, predict which of these is true: the pair beats the person; the pair beats the machine.",
+      "reveal": {
+        "state": {
+          "pair": 75,
+          "machine": 80
+        },
+        "text": "Both statements are true in different directions: the pair beats the person by 5 and loses to the machine by 5. Reporting only the first would hide the better available result."
+      },
+      "takeaway": "Compare the pair with its best real alternative, not only with the weaker member.",
+      "why_it_matters": "The arithmetic turns 'did the machine help?' into a sharper question: what did the partnership add compared with the best alternative?",
+      "sides": {
+        "brain": "A person's solo score is a measured alternative only when the person could do the task alone.",
+        "machine": "A machine's solo score matters only if the machine could be deployed alone."
+      },
+      "explanation": "There are three differences to compute. The pair minus the person shows what the machine added to the person. The pair minus the machine shows what the person added to the machine. The pair minus the better of the two tells whether the partnership beat the best alternative that was available.",
+      "check": "The pair scores 85 and the machine 80. What do the three comparisons say, and what does the result hint at?",
+      "answer": "Pair minus person is +15, pair minus machine is +5, and pair minus the best solo score is +5. The pair beat the best alternative, which would point to a real contribution from the partnership, subject to sampling noise.",
+      "controls": [
+        {
+          "key": "pair",
+          "label": "Pair's score",
+          "values": [
+            60,
+            65,
+            70,
+            75,
+            80,
+            85,
+            90,
+            95
+          ],
+          "default": 75,
+          "widget": "slider"
+        },
+        {
+          "key": "machine",
+          "label": "Machine's solo score",
+          "values": [
+            70,
+            80,
+            90
+          ],
+          "default": 80
+        }
+      ],
+      "function": "partnership_picture",
+      "alt": "Bars of person, machine and pair scores, and the pair's gain over the better solo score against the pair's score.",
+      "symbols": "S_person: the person's solo score, 70 here; S_machine: the machine's solo score; S_pair: the score of the person and machine together; max: the better of the two solo scores",
+      "application": "The arithmetic turns 'did the machine help?' into a sharper question: what did the partnership add compared with the best alternative?",
+      "default_parameters": "Pair's score: 75 · Machine's solo score: 80",
+      "worked_example": {
+        "Pair minus person": "+5",
+        "Pair minus machine": "-5",
+        "Better solo score": "80",
+        "Did the pair beat the best alone": "no, 5 short"
+      },
+      "worked_interpretation": "The pair scores 75, which is +5 against the person and -5 against the machine. Saying only the first would hide that the better available result was 80.",
+      "reader_anchor": "C01-D04"
+    },
+    {
+      "id": "C01-D05",
+      "title": "How does a prediction tell two rules apart?",
+      "question": "Sight and touch both judge a bar's height, and the picture can be made grainier. What does each combination rule predict about leaning toward touch, and about how finely the two senses together discriminate?",
+      "equations": [
+        "w_{\\text{touch}}=\\frac{1/\\sigma_h^{2}}{1/\\sigma_h^{2}+1/\\sigma_v^{2}},\\qquad \\sigma_{\\text{both}}^{2}=\\frac{\\sigma_v^{2}\\sigma_h^{2}}{\\sigma_v^{2}+\\sigma_h^{2}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "sigma_v, sigma_h",
+          "meaning": "the spread of the visual and the touch judgments"
+        },
+        {
+          "sym": "w_touch",
+          "meaning": "the share of the judgment given to touch"
+        },
+        {
+          "sym": "sigma_both",
+          "meaning": "the predicted spread when both senses are used"
+        }
+      ],
+      "source_anchor": "the-rule-was-tested-on-people",
+      "source_section": "The rule was tested on people",
+      "provenance": "The chapter reports Ernst and Banks (2002): judgments came close to the predicted lean toward touch as the picture grew grainier and to the prediction that two senses discriminate more finely than either alone. The numbers plotted here are constructed from the rule and are not their measurements.",
+      "kind": "formula",
+      "assumptions": "The three rules shown are hypotheses for contrast. Unbiased judgments and independent errors are assumed. The chapter notes a close match is good evidence about behavior, and how neurons produce it takes more evidence.",
+      "prediction": "If vision becomes twice as variable as touch, predict how much of the judgment each rule gives to touch, and which rule predicts a gain over the steadier sense.",
+      "reveal": {
+        "state": {
+          "ratio": 2,
+          "rule": "reliability weights"
+        },
+        "text": "Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat it."
+      },
+      "takeaway": "A rule is an idea until its predictions are checked, and different rules predict different leans and different gains.",
+      "why_it_matters": "This is the difference between describing, predicting and building: the rule described a pattern, predicted what happens when a sense degrades, and can be used to build a machine that combines measurements.",
+      "sides": {
+        "brain": "A match to behavior does not prove the brain does this arithmetic; the paper offers neural populations as a candidate and tests none.",
+        "machine": "The same formula specifies a computation a machine performs on uncertain measurements."
+      },
+      "explanation": "The reliability-weight rule makes two predictions. As the picture gets grainier, the judgment should lean smoothly toward touch. And the two senses together should discriminate more finely than either alone. A plain average predicts no lean. A winner-take-all rule predicts a sudden jump and no combined gain. Observing a lean and a gain together fits the reliability rule and counts against the others.",
+      "check": "If people showed a smooth lean toward touch but no gain from using both senses, which of the three rules would that count against?",
+      "answer": "It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either.",
+      "controls": [
+        {
+          "key": "ratio",
+          "label": "Vision's spread relative to touch's",
+          "values": [
+            0.25,
+            0.5,
+            1,
+            2,
+            4,
+            8
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "rule",
+          "label": "Combination rule",
+          "values": [
+            "reliability weights",
+            "plain average",
+            "trust the steadier sense"
+          ],
+          "default": "reliability weights"
+        }
+      ],
+      "function": "rules_picture",
+      "alt": "Bars of the spread for vision, touch and three rules, and the share given to touch against vision's relative spread.",
+      "symbols": "sigma_v, sigma_h: the spread of the visual and the touch judgments; w_touch: the share of the judgment given to touch; sigma_both: the predicted spread when both senses are used",
+      "application": "This is the difference between describing, predicting and building: the rule described a pattern, predicted what happens when a sense degrades, and can be used to build a machine that combines measurements.",
+      "default_parameters": "Vision's spread relative to touch's: 2 · Combination rule: reliability weights",
+      "worked_example": {
+        "Share given to touch": "0.8",
+        "Spread of the combined judgment": "0.894",
+        "Steadier sense alone": "1",
+        "Combined against the steadier sense": "better"
+      },
+      "worked_interpretation": "Reliability weights give touch 0.8 here, and the combined spread 0.894 is better than the steadier sense alone (1). The lean grows smoothly as the picture gets grainier.",
+      "reader_anchor": "C01-D05"
+    }
+  ]
+}

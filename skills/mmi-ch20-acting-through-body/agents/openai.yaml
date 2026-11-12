@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Acting Through a Body"
+  short_description: "Explore and apply Chapter 20 of the book."
+  default_prompt: "Use $mmi-ch20-acting-through-body to help me understand or apply this idea: "

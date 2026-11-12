@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" class="cmp-page cmp-home">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive figures and calculations for each chapter of The Mathematics of Machine Intelligence, with executed chapter notebooks and chapter skills.">
+<title>The Mathematics of Machine Intelligence: Interactive companion</title>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style>
+<link rel="stylesheet" href="../_shared/companion.css">
+<style>.cmp-card.is-planned{background:transparent;border-style:dashed}.cmp-card.is-planned h3{color:var(--cmp-muted)}.cmp-card.is-planned .cmp-card-summary{font-style:italic}.skip{position:absolute;top:-70px;left:20px;background:#fff;padding:12px}.skip:focus{top:10px}.cmp-note{margin:0 0 10px;max-width:46em;color:var(--cmp-muted);font-size:14.5px}</style>
+</head>
+<body>
+<a href="#chapters" class="skip">Skip to chapters</a>
+<header class="cmp-masthead"><div class="cmp-wrap">
+<h1>The Mathematics of Machine Intelligence</h1>
+<p class="cmp-byline">The Shared Mathematics of Brains, Machines, and Human-AI Partnership</p>
+<p class="cmp-intro">Interactive companion to the book by Jason Karpeles: change a value, watch the figure respond, and check the arithmetic yourself. Each chapter has an illustrated reader, an executed notebook and a chapter skill.</p>
+<ul class="cmp-stats"><li><b>34</b>of 34 chapters built</li><li><b>215</b>demonstrations</li></ul>
+</div></header>
+<main class="cmp-wrap" id="main">
+<section class="cmp-part" id="chapters"><header class="cmp-part-head"><p>Start here</p><h2>Orientation</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">01</span><span class="cmp-count">5 demonstrations</span></div><h3><a href="chapters/01-making-mind/reader.html">What Does It Take to Make a Mind?</a></h3><p class="cmp-card-summary">Turn a noisy recording into an estimate, weigh unequal voices, and ask what a partnership added.</p><div class="cmp-actions"><a href="chapters/01-making-mind/reader.html">Open chapter</a><a href="chapters/01-making-mind/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch01-making-mind/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-part"><header class="cmp-part-head"><p>Part I</p><h2>Making Sense of the World</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">02</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/02-building-perception/reader.html">Building a Perception</a></h3><p class="cmp-card-summary">Weigh two reports you cannot fully trust, and see when the weighing fails.</p><div class="cmp-actions"><a href="chapters/02-building-perception/reader.html">Open chapter</a><a href="chapters/02-building-perception/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch02-building-perception/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">03</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/03-keeping-what-matters/reader.html">Keeping What Matters</a></h3><p class="cmp-card-summary">Spend a few distinguishable signal steps where the world is crowded, and see what that rule does not say.</p><div class="cmp-actions"><a href="chapters/03-keeping-what-matters/reader.html">Open chapter</a><a href="chapters/03-keeping-what-matters/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch03-keeping-what-matters/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">04</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/04-expecting-world/reader.html">Expecting the World</a></h3><p class="cmp-card-summary">Send only what a shared guess missed, weigh the guess against the senses, and see where surprise stops being information.</p><div class="cmp-actions"><a href="chapters/04-expecting-world/reader.html">Open chapter</a><a href="chapters/04-expecting-world/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch04-expecting-world/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">05</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/05-what-to-notice/reader.html">Choosing What to Notice</a></h3><p class="cmp-card-summary">Share out a limited budget of attention with softmax and divisive normalization, and see what the weights cannot say.</p><div class="cmp-actions"><a href="chapters/05-what-to-notice/reader.html">Open chapter</a><a href="chapters/05-what-to-notice/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch05-what-to-notice/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-part"><header class="cmp-part-head"><p>Part II</p><h2>Turning Experience into Knowledge</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">06</span><span class="cmp-count">8 demonstrations</span></div><h3><a href="chapters/06-remembering-fragment/reader.html">Remembering from a Fragment</a></h3><p class="cmp-card-summary">Let a few cues bring back a whole stored pattern, and see where the recall fails.</p><div class="cmp-actions"><a href="chapters/06-remembering-fragment/reader.html">Open chapter</a><a href="chapters/06-remembering-fragment/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch06-remembering-fragment/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">07</span><span class="cmp-count">5 demonstrations</span></div><h3><a href="chapters/07-learning-without-losing/reader.html">Learning Without Losing Everything</a></h3><p class="cmp-card-summary">Measure how one lesson disturbs another, what mixing old and new buys, and what savings and competing expectations say about forgetting.</p><div class="cmp-actions"><a href="chapters/07-learning-without-losing/reader.html">Open chapter</a><a href="chapters/07-learning-without-losing/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch07-learning-without-losing/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">08</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/08-knowing-things-relate/reader.html">Knowing How Things Relate</a></h3><p class="cmp-card-summary">Store a fact in one direction, then ask whether it can be read from the other end.</p><div class="cmp-actions"><a href="chapters/08-knowing-things-relate/reader.html">Open chapter</a><a href="chapters/08-knowing-things-relate/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch08-knowing-things-relate/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">09</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/09-forming-concept/reader.html">Forming a Concept</a></h3><p class="cmp-card-summary">A rule says whether a thing belongs; a summary says how well it fits, and what it keeps depends on the purpose.</p><div class="cmp-actions"><a href="chapters/09-forming-concept/reader.html">Open chapter</a><a href="chapters/09-forming-concept/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch09-forming-concept/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">10</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/10-making-meaning-language/reader.html">Making Meaning with Language</a></h3><p class="cmp-card-summary">Familiar words, a new arrangement, and the tests that show whether a learner composes.</p><div class="cmp-actions"><a href="chapters/10-making-meaning-language/reader.html">Open chapter</a><a href="chapters/10-making-meaning-language/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch10-making-meaning-language/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">11</span><span class="cmp-count">8 demonstrations</span></div><h3><a href="chapters/11-learning-from-little/reader.html">Learning from Very Little</a></h3><p class="cmp-card-summary">Turn one or two examples into a confident answer, and see what the confidence costs.</p><div class="cmp-actions"><a href="chapters/11-learning-from-little/reader.html">Open chapter</a><a href="chapters/11-learning-from-little/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch11-learning-from-little/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">12</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/12-imagining-new/reader.html">Imagining Something New</a></h3><p class="cmp-card-summary">Try an option without taking it, and ask who checks the result.</p><div class="cmp-actions"><a href="chapters/12-imagining-new/reader.html">Open chapter</a><a href="chapters/12-imagining-new/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch12-imagining-new/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-part"><header class="cmp-part-head"><p>Part III</p><h2>Giving Knowledge a Purpose</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">13</span><span class="cmp-count">5 demonstrations</span></div><h3><a href="chapters/13-what-matters/reader.html">What Matters to a Mind?</a></h3><p class="cmp-card-summary">Give a machine a way to value outcomes, and see what each way builds in.</p><div class="cmp-actions"><a href="chapters/13-what-matters/reader.html">Open chapter</a><a href="chapters/13-what-matters/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch13-what-matters/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">14</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/14-learning-consequences/reader.html">Learning from Consequences</a></h3><p class="cmp-card-summary">Revise a forecast by the gap between what you expected and what you got.</p><div class="cmp-actions"><a href="chapters/14-learning-consequences/reader.html">Open chapter</a><a href="chapters/14-learning-consequences/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch14-learning-consequences/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">15</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/15-when-to-decide/reader.html">When to Decide</a></h3><p class="cmp-card-summary">Weigh the price of waiting, the price of each error and the rarity of the event before you say yes.</p><div class="cmp-actions"><a href="chapters/15-when-to-decide/reader.html">Open chapter</a><a href="chapters/15-when-to-decide/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch15-when-to-decide/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">16</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/16-discovering-causes/reader.html">Discovering What Causes What</a></h3><p class="cmp-card-summary">Tell what a thing does when set from what it merely goes along with, and see where a stand-in score fails.</p><div class="cmp-actions"><a href="chapters/16-discovering-causes/reader.html">Open chapter</a><a href="chapters/16-discovering-causes/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch16-discovering-causes/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">17</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/17-considering-future/reader.html">Considering a Future</a></h3><p class="cmp-card-summary">Score a plan inside a model, price a look, and see what a search cannot weigh.</p><div class="cmp-actions"><a href="chapters/17-considering-future/reader.html">Open chapter</a><a href="chapters/17-considering-future/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch17-considering-future/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">18</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/18-sketching-before-detail/reader.html">Sketching Before Detail</a></h3><p class="cmp-card-summary">Count the passes saved by a rough-first method, sharpen a number level by level, and see what a vote among drafts cannot fix.</p><div class="cmp-actions"><a href="chapters/18-sketching-before-detail/reader.html">Open chapter</a><a href="chapters/18-sketching-before-detail/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch18-sketching-before-detail/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">19</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/19-spending-thought-wisely/reader.html">Spending Thought Wisely</a></h3><p class="cmp-card-summary">Price a look by what it could improve minus what it costs, and see when to stop, decline or follow a rule.</p><div class="cmp-actions"><a href="chapters/19-spending-thought-wisely/reader.html">Open chapter</a><a href="chapters/19-spending-thought-wisely/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch19-spending-thought-wisely/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">20</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/20-acting-through-body/reader.html">Acting Through a Body</a></h3><p class="cmp-card-summary">Plan a move from a prediction, correct only what matters, and see what a delay or a changed world does to the plan.</p><div class="cmp-actions"><a href="chapters/20-acting-through-body/reader.html">Open chapter</a><a href="chapters/20-acting-through-body/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch20-acting-through-body/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-part"><header class="cmp-part-head"><p>Part IV</p><h2>Intelligence Working with Intelligence</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">21</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/21-knowing-what-you-know/reader.html">Knowing What You Know</a></h3><p class="cmp-card-summary">Check whether a confidence number sorts right above wrong, and whether it matches how often answers are right.</p><div class="cmp-actions"><a href="chapters/21-knowing-what-you-know/reader.html">Open chapter</a><a href="chapters/21-knowing-what-you-know/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch21-knowing-what-you-know/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">22</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/22-another-mind/reader.html">Understanding Another Mind</a></h3><p class="cmp-card-summary">Read goals and beliefs from steps, and see why one correct answer rarely settles which reading is right.</p><div class="cmp-actions"><a href="chapters/22-another-mind/reader.html">Open chapter</a><a href="chapters/22-another-mind/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch22-another-mind/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">23</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/23-several-minds-help/reader.html">When Several Minds Help</a></h3><p class="cmp-card-summary">Count how much your guessers&#39; mistakes overlap before counting heads.</p><div class="cmp-actions"><a href="chapters/23-several-minds-help/reader.html">Open chapter</a><a href="chapters/23-several-minds-help/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch23-several-minds-help/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">24</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/24-learning-across-generations/reader.html">Learning Across Generations</a></h3><p class="cmp-card-summary">Pass knowledge down a chain of learners, and see what a sample loses and where a chain settles.</p><div class="cmp-actions"><a href="chapters/24-learning-across-generations/reader.html">Open chapter</a><a href="chapters/24-learning-across-generations/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch24-learning-across-generations/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">25</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/25-designing-joint-intelligence/reader.html">Designing a Joint Intelligence</a></h3><p class="cmp-card-summary">Share a task between a person and a machine, and test whether the pair beats the better one alone.</p><div class="cmp-actions"><a href="chapters/25-designing-joint-intelligence/reader.html">Open chapter</a><a href="chapters/25-designing-joint-intelligence/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch25-designing-joint-intelligence/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-part"><header class="cmp-part-head"><p>Part V</p><h2>From Abilities to Minds</h2></header><ul class="cmp-grid"><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">26</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/26-starting-structure/reader.html">Where the Starting Structure Comes From</a></h3><p class="cmp-card-summary">Find a starting design by search, and see what choosing can and cannot do without people.</p><div class="cmp-actions"><a href="chapters/26-starting-structure/reader.html">Open chapter</a><a href="chapters/26-starting-structure/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch26-starting-structure/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">27</span><span class="cmp-count">5 demonstrations</span></div><h3><a href="chapters/27-learning-after-training/reader.html">Learning After Training</a></h3><p class="cmp-card-summary">Change a trained mind on purpose, and see what each way of doing it costs.</p><div class="cmp-actions"><a href="chapters/27-learning-after-training/reader.html">Open chapter</a><a href="chapters/27-learning-after-training/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch27-learning-after-training/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">28</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/28-editing-learned-mind/reader.html">Editing a Learned Mind</a></h3><p class="cmp-card-summary">Can a mind be fixed or taught by changing its connections directly, instead of by training it?</p><div class="cmp-actions"><a href="chapters/28-editing-learned-mind/reader.html">Open chapter</a><a href="chapters/28-editing-learned-mind/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch28-editing-learned-mind/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">29</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/29-interpreter/reader.html">The Interpreter</a></h3><p class="cmp-card-summary">When a person or a machine explains a choice, how can we tell whether the explanation describes what caused it?</p><div class="cmp-actions"><a href="chapters/29-interpreter/reader.html">Open chapter</a><a href="chapters/29-interpreter/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch29-interpreter/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">30</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/30-modeling-yourself/reader.html">Modeling Yourself</a></h3><p class="cmp-card-summary">How does a system tell what it did from what merely happened, and what information might help it do so?</p><div class="cmp-actions"><a href="chapters/30-modeling-yourself/reader.html">Open chapter</a><a href="chapters/30-modeling-yourself/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch30-modeling-yourself/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">31</span><span class="cmp-count">5 demonstrations</span></div><h3><a href="chapters/31-making-information-available/reader.html">Making Information Available</a></h3><p class="cmp-card-summary">How does one piece of information become usable by memory, speech and action at once, and how would anyone know it had?</p><div class="cmp-actions"><a href="chapters/31-making-information-available/reader.html">Open chapter</a><a href="chapters/31-making-information-available/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch31-making-information-available/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">32</span><span class="cmp-count">7 demonstrations</span></div><h3><a href="chapters/32-question-experience/reader.html">The Question of Experience</a></h3><p class="cmp-card-summary">Work the numbers behind the tests that try to detect experience, and see what each can and cannot show.</p><div class="cmp-actions"><a href="chapters/32-question-experience/reader.html">Open chapter</a><a href="chapters/32-question-experience/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch32-question-experience/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">33</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/33-what-counts/reader.html">What Counts as Intelligence?</a></h3><p class="cmp-card-summary">Take a benchmark score apart, and see what one number carries and what has to travel with it.</p><div class="cmp-actions"><a href="chapters/33-what-counts/reader.html">Open chapter</a><a href="chapters/33-what-counts/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch33-what-counts/SKILL.md">Skill</a></div></li><li class="cmp-card"><div class="cmp-card-top"><span class="cmp-num">34</span><span class="cmp-count">6 demonstrations</span></div><h3><a href="chapters/34-abilities-work-together/reader.html">How the Abilities Work Together</a></h3><p class="cmp-card-summary">Follow the one update rule that recurs across the book, and test what a pair adds beyond its better member.</p><div class="cmp-actions"><a href="chapters/34-abilities-work-together/reader.html">Open chapter</a><a href="chapters/34-abilities-work-together/notebook.ipynb" download>Notebook</a><a href="skills/mmi-ch34-abilities-work-together/SKILL.md">Skill</a></div></li>
+</ul></section>
+<section class="cmp-github" aria-labelledby="gh">
+<h2 id="gh">How to use the companion</h2>
+<p>Open a chapter, make a prediction, move a slider and press "Show what happens". The equations, symbols and the full hand calculation sit under each figure. Reading a saved notebook needs no programming.</p>
+<p>The master skill <code>mmi-guide</code> and the chapter skills help apply a chapter's mathematics to your own question. They run in an assistant that supports SKILL.md packages.</p>
+<p class="cmp-note">Examples use book values or disclosed illustrative parameters. A simulation is not a measurement, and for a brain the mathematics is a model: a close fit to behavior does not by itself show how neurons produce it. Nothing here is clinical or treatment advice. Built against the review copy, brain-computer partnership revision of 1 November 2026.</p>
+</section>
+</main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="#chapters">Chapters</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot.</p></div></footer>
+</body>
+</html>

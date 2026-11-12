@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: When Several Minds Help"
+  short_description: "Explore and apply Chapter 23 of the book."
+  default_prompt: "Use $mmi-ch23-several-minds-help to help me understand or apply this idea: "

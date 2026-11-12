@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Discovering What Causes What"
+  short_description: "Explore and apply Chapter 16 of the book."
+  default_prompt: "Use $mmi-ch16-discovering-causes to help me understand or apply this idea: "

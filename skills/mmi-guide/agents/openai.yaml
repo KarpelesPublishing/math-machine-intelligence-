@@ -1,0 +1,4 @@
+interface:
+  display_name: "The Mathematics of Machine Intelligence"
+  short_description: "Find, illustrate, and apply the book's mathematics."
+  default_prompt: "Use $mmi-guide to help me understand or apply this idea: "

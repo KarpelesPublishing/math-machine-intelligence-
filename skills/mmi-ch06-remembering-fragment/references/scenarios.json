@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Two other units are plus one and one is minus one, all links 1. What does the unit do, and what if one plus unit flips to minus?",
+    "expected_behavior": "h = 1, so plus one; after the flip h = -1, so minus one."
+  },
+  {
+    "prompt": "Two units agree in three stored patterns and disagree in one. What is their link, and what does one more disagreement do?",
+    "expected_behavior": "Link 2, then 1; links are unnormalized sums."
+  },
+  {
+    "prompt": "Candidate records score 3 and 2. What shares at beta 1 and at beta 5, and does 0.99 mean 99 percent sure?",
+    "expected_behavior": "0.731 and 0.269 at beta 1; 0.993 and 0.007 at beta 5. It is a weight in the illustration, not a chance of being right."
+  }
+]

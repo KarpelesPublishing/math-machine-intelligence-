@@ -1,0 +1,18 @@
+[
+  {
+    "prompt": "One person has 1,000 ducats and another 100,000. Each gains 1,000. What does the logarithmic rule say?",
+    "expected_behavior": "Scores ln(2) = 0.693 and ln(1.01) = 0.00995, so the poorer person's gain scores about 70 times more; say the rule and its scale b are assumptions."
+  },
+  {
+    "prompt": "A ticket pays 0 or 20,000 ducats with equal chances. Is 9,000 a fair price?",
+    "expected_behavior": "Under the logarithmic rule it depends on wealth: the worth is sqrt(w(w + 20,000)) - w, which is 9,000 only at w = 40,500; holders with less would sell at 9,000, with more would buy. State this is the rule's output, not data."
+  },
+  {
+    "prompt": "Does the loss weight explain why the gift-and-gamble groups chose differently?",
+    "expected_behavior": "No. With loss weight 1 the certain loss still scores about -22.4 and the gamble -15.8. The reference point and the curve's bend make the reversal; the loss weight matters in the even bet."
+  },
+  {
+    "prompt": "A model scores clip A at 2 and clip B at 1. What chance does it give a person preferring A?",
+    "expected_behavior": "e^2/(e^2 + e^1) = 0.731; adding any common number to both leaves it unchanged; a share of random responses pulls it toward 0.5."
+  }
+]

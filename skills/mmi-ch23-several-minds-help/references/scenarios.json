@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Four estimates each have error variance 1 and pairwise error correlation 0.2. What is the variance of their average?",
+    "expected_behavior": "(1 - 0.2)/4 + 0.2 = 0.4, against 0.25 for unrelated errors; the floor is 0.2 however many are added."
+  },
+  {
+    "prompt": "787 guessers share an error correlation of 0.021. How many independent guessers are they worth?",
+    "expected_behavior": "787/(1 + 786 x 0.021) = about 45, with a ceiling of 1/0.021, about 48; say the 0.021 is chosen, not measured."
+  },
+  {
+    "prompt": "A panel of nine models has error variance 1 each and correlation 0.4. Does a tenth similar model help, and what does an independent check with variance 1 do?",
+    "expected_behavior": "The panel gives about 0.467, a tenth gives 0.46, and the independent check combined by precision gives about 0.318."
+  }
+]

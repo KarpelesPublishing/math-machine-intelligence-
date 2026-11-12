@@ -1,0 +1,556 @@
+{
+  "chapter": 10,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-10.md",
+  "source_sha256": "88424600e0eee2f2967c6207652251c23777f6211028d880e3a48434e8e2d7ba",
+  "calculation_sha256": "f07c39bc957a22756ec627da084ea5a1b0516a15ae34b91ebafd22957f738466",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C10-D01",
+      "title": "How does a short rulebook decode a command it never saw?",
+      "question": "A command joins 'jump twice' and 'walk left' with 'after'. What are the actions, in order, and why does the second part come first?",
+      "equations": [
+        "[\\![x\\text{ after }y]\\!] = [\\![y]\\!] \\,\\|\\, [\\![x]\\!]"
+      ],
+      "symbols_list": [
+        {
+          "sym": "[[x]]",
+          "meaning": "the list of basic actions that command x specifies"
+        },
+        {
+          "sym": "||",
+          "meaning": "joins two action lists, the left one performed first"
+        },
+        {
+          "sym": "x, y",
+          "meaning": "the two commands joined by 'after'"
+        }
+      ],
+      "source_anchor": "a-small-language-with-a-rulebook",
+      "source_section": "A small language with a rulebook",
+      "provenance": "Book formula and worked example (Figure 10.1). The 13 words, 6 actions and 20,910 commands are the chapter's. The rules for 'thrice', 'opposite' and 'around' are the companion's reconstruction, checked by reproducing the chapter's counts (D02 and D07). The lookup-table comparison is constructed, as the chapter says.",
+      "kind": "formula",
+      "assumptions": "A finite language with no recursion and unambiguous commands. The rulebook is a specification of the artificial language, not a claim about how a person or a trained network represents grammar.",
+      "prediction": "Decode 'jump twice after walk left' yourself. Which two actions come first, and does 'after' put the left or the right part first?",
+      "reveal": {
+        "state": {
+          "command": 0
+        },
+        "text": "x = jump twice gives jump, jump; y = walk left gives turn left, walk. 'After' puts y first, so the result is turn left, walk, jump, jump, four actions from two parts of two actions each."
+      },
+      "takeaway": "A short rulebook decodes every command exactly, while a lookup table would need one row for each of 20,910 commands.",
+      "why_it_matters": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules, not a gap in the data.",
+      "sides": {
+        "brain": "The chapter makes no brain claim here; the rulebook is not a model of how a person represents grammar.",
+        "machine": "The rulebook is a specification, written by a designer, that decodes the artificial language exactly."
+      },
+      "explanation": "Each part is decoded on its own from the word meanings. The joining word then decides the order: 'and' keeps the written order and 'after' performs the right-hand part first. Because the rules apply to any parts, a combination never seen before decodes as easily as a familiar one.",
+      "check": "Decode 'jump after run'. Then say how many rows a lookup table would need for all commands of this language.",
+      "answer": "Run comes first, so the actions are run, jump. A lookup table needs one row per command, 20,910, while the rulebook stores the meanings of 13 words and the rules.",
+      "controls": [
+        {
+          "key": "command",
+          "label": "Example command",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "value_labels": [
+            "1. jump twice after walk left",
+            "2. jump after run",
+            "3. walk twice and look",
+            "4. look thrice and run left",
+            "5. run left after jump twice",
+            "6. turn left and jump thrice",
+            "7. look after turn right twice",
+            "8. run twice after jump thrice"
+          ],
+          "default": 1
+        }
+      ],
+      "function": "decoder_picture",
+      "alt": "Blocks showing two parts of a command decoded into actions and joined in order, and a bar chart of actions produced by eight examples.",
+      "symbols": "[[x]]: the list of basic actions that command x specifies; ||: joins two action lists, the left one performed first; x, y: the two commands joined by 'after'",
+      "application": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules, not a gap in the data.",
+      "default_parameters": "Example command: 1",
+      "worked_example": {
+        "Actions produced": "2",
+        "Parts decoded separately": "2",
+        "Rows a lookup table needs": "20,910",
+        "Words whose meaning is stored": "13"
+      },
+      "worked_interpretation": "'jump after run' splits into x = 'jump' (1 actions) and y = 'run' (1), and the joining word orders them. The result is run, jump. A lookup table would need 20,910 rows; the rulebook stores 13 word meanings and the rules.",
+      "reader_anchor": "C10-D01"
+    },
+    {
+      "id": "C10-D02",
+      "title": "Why does a score of 99.8 percent not settle whether a network composes?",
+      "question": "A network scores 99.8 percent on a random split of the commands. What would you expect it to score on commands that compose a word it saw only alone?",
+      "equations": [
+        "\\text{score} = 100\\times\\frac{\\text{commands answered exactly right}}{\\text{commands tested}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "score",
+          "meaning": "percent of test commands whose whole action sequence was exactly right"
+        },
+        {
+          "sym": "held out",
+          "meaning": "the commands kept out of training and used for the test"
+        }
+      ],
+      "source_anchor": "the-word-that-stayed-alone",
+      "source_section": "The word that stayed alone",
+      "provenance": "Reported result. All scores are quoted from the chapter (Lake and Baroni 2018, recurrent networks). The test counts 4,182, 7,706 and 3,920 follow the chapter's 80 percent split, its jump count and its length split; the 7,706 is also recounted from the grammar. Nothing is simulated.",
+      "kind": "reported result",
+      "assumptions": "Each bar is a different network on a different held-out set. The chapter notes the paper reports no combined score. The study tested 2018 recurrent networks only, and no people.",
+      "prediction": "The network was right on 99.8 percent of a random split. Predict its score on commands that combine 'jump' with other words when jump appeared in training only by itself.",
+      "reveal": {
+        "state": {
+          "result": 4
+        },
+        "text": "On the composed jump commands the best design scored 1.2 percent, though it scored 95 percent or better on its own training commands. The failure was invisible in the random split."
+      },
+      "takeaway": "A random split draws test commands from the same pool as training, so it can look excellent while a held-out combination fails.",
+      "why_it_matters": "A smooth answer to a familiar command proves nothing about a new one. The test has to hold out the combination.",
+      "sides": {
+        "brain": "No people were tested on SCAN; the authors wrote only that they suspect people would not have problems.",
+        "machine": "These are measured scores of 2018 recurrent networks, reported by the authors, not a model of behavior."
+      },
+      "explanation": "The same kind of network learns a lot from a small share of commands and nearly all of them from a random split, yet it fails on composed commands when a word was only ever seen alone. The 'turn left' word occurs inside many training commands, and composing it scored about 90 percent. Adding 32 composed examples lifted the jump score to 88.4 percent, still described as far from systematic.",
+      "check": "A random split sends 80 percent of 20,910 commands to training. How many are left to test, and what share of 100 test commands does a score of 1.2 percent represent?",
+      "answer": "20,910 x 0.2 = 4,182 test commands. A score of 1.2 percent is a little more than one command in 100.",
+      "controls": [
+        {
+          "key": "result",
+          "label": "Which test",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "value_labels": [
+            "random split, 80 percent to train",
+            "1 percent of commands to train",
+            "2 percent of commands to train",
+            "4 percent of commands to train",
+            "jump taught only alone",
+            "turn left taught only alone",
+            "jump alone plus 32 composed examples",
+            "length split, up to 22 actions to train"
+          ],
+          "default": 0
+        }
+      ],
+      "function": "scan_results_picture",
+      "alt": "A ten by ten grid filled to the selected score, and horizontal bars for eight SCAN test scores from 1.2 to 99.8 percent.",
+      "symbols": "score: percent of test commands whose whole action sequence was exactly right; held out: the commands kept out of training and used for the test",
+      "application": "A smooth answer to a familiar command proves nothing about a new one. The test has to hold out the combination.",
+      "default_parameters": "Which test: 0",
+      "worked_example": {
+        "Reported score (percent)": "99.8",
+        "Test commands": "4,182 (20 percent)",
+        "Network": "top architecture"
+      },
+      "worked_interpretation": "On 'random split, 80 percent to train' the chapter reports 99.8 percent exact matches. The bars come from different networks on different held-out commands, so there is no single score for the model. The random split alone would have made the networks look fine.",
+      "reader_anchor": "C10-D02"
+    },
+    {
+      "id": "C10-D03",
+      "title": "How can a sum of word codes remember order?",
+      "question": "Two commands use the same two words in opposite order. Does a plain sum of word codes tell them apart, and what changes if each word is tied to its place first?",
+      "equations": [
+        "\\lVert b(\\text{walk and jump})-b(\\text{jump and walk})\\rVert=\\lVert f_{\\text{walk}}-f_{\\text{jump}}\\rVert\\,\\lVert r_1-r_2\\rVert,\\qquad b(\\text{p q})=f_p\\otimes r_1+f_q\\otimes r_2"
+      ],
+      "symbols_list": [
+        {
+          "sym": "f_p",
+          "meaning": "the code (list of numbers) for word p"
+        },
+        {
+          "sym": "r_1, r_2",
+          "meaning": "codes for the first and second place"
+        },
+        {
+          "sym": "b",
+          "meaning": "the code for a command: each word's code times its place's code, added"
+        },
+        {
+          "sym": "overlap",
+          "meaning": "cosine between two unit codes; 0 means unrelated, 1 means identical"
+        }
+      ],
+      "source_anchor": "the-word-that-stayed-alone",
+      "source_section": "The word that stayed alone",
+      "provenance": "Constructed example. The chapter's Figure 10.3 is a schematic of this contrast and cites Smolensky's 1990 proposal; the codes here are made-up two-number vectors. The closed form for the difference is the companion's algebra. The chapter says the sources do not test whether binding explains the jump failure.",
+      "kind": "constructed example",
+      "assumptions": "Two content words, two places, and unit-length codes in a plane. Real networks learn their own codes; this shows only why a sum without places loses order and what tying words to places restores.",
+      "prediction": "If the two place codes were identical, would the tied sums still tell the two orders apart? Predict before moving the slider to 1.",
+      "reveal": {
+        "state": {
+          "word_overlap": 0,
+          "role_overlap": 0
+        },
+        "text": "With unrelated word codes and unrelated place codes the tied codes differ by 2, the largest possible here, while the plain sums differ by 0. Slide the place overlap to 1 and the difference falls to 0."
+      },
+      "takeaway": "Order survives only if the place codes differ; a plain sum, or places that cannot be told apart, treats both orders as one.",
+      "why_it_matters": "Whether a network holds a sentence as a sum or as words in places changes which questions it can answer, and the chapter treats the binding idea as a proposal, not a finding.",
+      "sides": {
+        "brain": "Nothing here is measured in a brain. The chapter says people's understanding depends on order and grouping, but gives no brain evidence for binding.",
+        "machine": "The tied code is a specification of a representation proposed in 1990, not a model of what trained networks do."
+      },
+      "explanation": "Adding word codes is order-free, so both orders give one total. Multiplying each word's code by its place's code before adding gives a different total for each order, by exactly the difference of the words times the difference of the places. If either difference is zero, the two orders collapse again.",
+      "check": "Word overlap 0 and place overlap 0.5. By the formula, how much do the tied codes differ for the two orders?",
+      "answer": "sqrt(2 x 1) x sqrt(2 x 0.5) = 1.414 x 1 = 1.41. The plain sums still differ by 0.",
+      "controls": [
+        {
+          "key": "word_overlap",
+          "label": "Overlap between the two word codes",
+          "values": [
+            0,
+            0.5,
+            0.9
+          ],
+          "default": 0
+        },
+        {
+          "key": "role_overlap",
+          "label": "Overlap between the two place codes",
+          "values": [
+            0,
+            0.25,
+            0.5,
+            0.75,
+            0.9,
+            1
+          ],
+          "default": 0,
+          "widget": "slider"
+        }
+      ],
+      "function": "binding_picture",
+      "alt": "Bars comparing the tied codes of two word orders, and curves of their difference against the overlap between place codes.",
+      "symbols": "f_p: the code (list of numbers) for word p; r_1, r_2: codes for the first and second place; b: the code for a command: each word's code times its place's code, added; overlap: cosine between two unit codes; 0 means unrelated, 1 means identical",
+      "application": "Whether a network holds a sentence as a sum or as words in places changes which questions it can answer, and the chapter treats the binding idea as a proposal, not a finding.",
+      "default_parameters": "Overlap between the two word codes: 0 · Overlap between the two place codes: 0",
+      "worked_example": {
+        "Plain-sum difference": "0",
+        "Tied-code difference": "2",
+        "Order kept": "yes"
+      },
+      "worked_interpretation": "A plain sum of word codes gives 'walk and jump' and 'jump and walk' the same total, so their difference is 0. Tying each word to its place first gives a difference of 2 at word overlap 0 and place overlap 0; if the two place codes are identical, order is lost again.",
+      "reader_anchor": "C10-D03"
+    },
+    {
+      "id": "C10-D04",
+      "title": "How close did machines come to people on the colored-circle task?",
+      "question": "People mostly gave the rule-based answer. A model was trained on a mixture set near 80 percent rule-based. Predict whether it scored below, near or above the people, and how GPT-4 did.",
+      "equations": [
+        "\\text{percent matching}=100\\times\\frac{\\text{answers matching the rule-based answer}}{\\text{answers}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "rule-based answer",
+          "meaning": "the answer a fixed set of rules gives; the authors call it the algebraic standard"
+        },
+        {
+          "sym": "chance",
+          "meaning": "2.8 percent for a two-symbol answer with the length known"
+        }
+      ],
+      "source_anchor": "a-language-of-colored-circles",
+      "source_section": "A language of colored circles",
+      "provenance": "Reported result, quoted from the chapter (Lake and Baroni 2023 and its supplement). The counts 176 of 217, 29 of 40 and 10 of 41 are the chapter's archive recount. The model's score is the most systematic of ten runs, sampled. Nothing is simulated here.",
+      "kind": "reported result",
+      "assumptions": "One online study of 25 people with no brain measurement. The people-study model's training target was chosen to approximate human accuracy, so the closeness is by design. The GPT-4 and model scores are dated 2023 and may not describe later models.",
+      "prediction": "The model was trained with about 80 percent rule-based targets to match people's 80.7. Predict whether its score was below, near or above 80.7, and whether GPT-4 reached it.",
+      "reveal": {
+        "state": {
+          "source": 2
+        },
+        "text": "The people-study model scored 82.4 percent, near the people's 80.7, as designed. GPT-4 reached 58.0 percent at best and 14.0 with the examples in random order. The model's errors differed: more than half were one circle per word, against about a quarter for people."
+      },
+      "takeaway": "A model trained to match people's accuracy matches it, and that closeness is a design choice, not evidence that it errs for the same reasons.",
+      "why_it_matters": "A score alone does not say how a learner gets there. The pattern of mistakes is a second test, and here it separated people from the model.",
+      "sides": {
+        "brain": "People are known from behavior only, in one online study of 25 people. Their answers are a model target here, not a measurement of how a brain composes.",
+        "machine": "The transformer is a trained model; its scores are measured outputs on this task, not a specification."
+      },
+      "explanation": "People applied the rule in most answers and still made patterned mistakes: one circle per word, or keeping the written order on the word that reverses it. The model was shaped to match the overall rate, so the interesting comparison is the kind of error. GPT-4 did worse and was badly hurt by shuffling the order of the examples.",
+      "check": "People gave 176 exact answers out of 217. What percent is that, and how does it compare with the paper's 80.7?",
+      "answer": "176/217 = 81.1 percent, about 0.4 points above the paper's 80.7, as the chapter notes of its recount.",
+      "controls": [
+        {
+          "key": "source",
+          "label": "Who answered",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "value_labels": [
+            "people, all queries",
+            "people, longest answers",
+            "people-study model",
+            "GPT-4, best condition",
+            "GPT-4, random order"
+          ],
+          "default": 0
+        }
+      ],
+      "function": "circle_picture",
+      "alt": "A ten by ten grid filled to the selected score and five bars comparing people, a people-study model and GPT-4, with a chance line at 2.8.",
+      "symbols": "rule-based answer: the answer a fixed set of rules gives; the authors call it the algebraic standard; chance: 2.8 percent for a two-symbol answer with the length known",
+      "application": "A score alone does not say how a learner gets there. The pattern of mistakes is a second test, and here it separated people from the model.",
+      "default_parameters": "Who answered: 0",
+      "worked_example": {
+        "Matches the rule-based answer (percent)": "80.7",
+        "Points from people's 80.7": "0",
+        "Basis": "25 people, one online study",
+        "Errors of one circle per word": "about a quarter (10 of 41 errors)"
+      },
+      "worked_interpretation": "People, all queries matched the rule-based answer 80.7 percent of the time, 0 points from the people's 80.7. The people-study model was trained on a mixture set to 80 percent rule-based to approximate people, so its closeness is by design. Nothing here shows that people and models err for the same reasons.",
+      "reader_anchor": "C10-D04"
+    },
+    {
+      "id": "C10-D05",
+      "title": "How much does a correlation from ten items settle?",
+      "question": "A model's score on each of ten instructions tracked how hard people found them, with a correlation of 0.788. If that came from ten items, what range of true correlations is still plausible?",
+      "equations": [
+        "z=\\operatorname{arctanh}(r),\\qquad r_{\\text{low}},\\ r_{\\text{high}}=\\tanh\\!\\Big(z\\mp\\frac{1.96}{\\sqrt{n-3}}\\Big)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "r",
+          "meaning": "the correlation measured on the items, 1 being a perfect match"
+        },
+        {
+          "sym": "n",
+          "meaning": "the number of items"
+        },
+        {
+          "sym": "z",
+          "meaning": "Fisher's transform of r, whose spread is approximately 1/sqrt(n - 3)"
+        }
+      ],
+      "source_anchor": "a-language-of-colored-circles",
+      "source_section": "A language of colored circles",
+      "provenance": "The 0.788 and the ten items are the chapter's, which says ten items are few. The Fisher interval is the companion's own addition, not in the chapter or paper. The scatter is a constructed sample with a disclosed seed, not the study's data.",
+      "kind": "formula (companion's own illustration)",
+      "assumptions": "The usual approximation: items behave like a random sample from a bivariate normal population. Ten instructions are not a random sample, so the range is a guide to how loose the number is, not a verdict.",
+      "prediction": "Predict the low end of the plausible range for 0.788 from ten items. Is it close to 0.788, to 0.5, or lower?",
+      "reveal": {
+        "state": {
+          "items": 10,
+          "r": 0.788
+        },
+        "text": "The range runs from about 0.31 to 0.95. Even a correlation that looks strong from ten items leaves a true value near 0.3 plausible. With 160 items the same r would be pinned to about 0.72 to 0.84."
+      },
+      "takeaway": "Ten items leave a wide range: the chapter's caution that ten items are few has a number behind it.",
+      "why_it_matters": "A single correlation is easy to over-read. Knowing how wide the range is keeps a model-versus-people comparison honest.",
+      "sides": {
+        "brain": "The difficulty ratings come from behavior of 25 people online, not from a brain measurement.",
+        "machine": "The model's per-instruction scores are measured outputs; the range here is a statistical approximation about the measurement."
+      },
+      "explanation": "Fisher's transform makes the spread of a correlation roughly constant, about 1/sqrt(n - 3). A 95 percent range is the transform of r plus and minus 1.96 of that spread, converted back. Quadrupling the items only halves the width of the transformed range.",
+      "check": "For n = 10, what is the half-width in the transformed scale, and what range follows for r = 0.788?",
+      "answer": "1.96/sqrt(7) = 0.741 in z units. The transform of 0.788 is 1.066, so the range is tanh(0.325) = 0.314 to tanh(1.807) = 0.947.",
+      "controls": [
+        {
+          "key": "items",
+          "label": "Number of items",
+          "values": [
+            5,
+            10,
+            20,
+            40,
+            80,
+            160
+          ],
+          "default": 10,
+          "widget": "slider"
+        },
+        {
+          "key": "r",
+          "label": "Measured correlation",
+          "values": [
+            0.5,
+            0.788,
+            0.9
+          ],
+          "default": 0.788,
+          "widget": "slider"
+        }
+      ],
+      "function": "correlation_picture",
+      "alt": "A scatter of a constructed sample of items, and curves of the plausible range for a correlation against the number of items.",
+      "symbols": "r: the correlation measured on the items, 1 being a perfect match; n: the number of items; z: Fisher's transform of r, whose spread is approximately 1/sqrt(n - 3)",
+      "application": "A single correlation is easy to over-read. Knowing how wide the range is keeps a model-versus-people comparison honest.",
+      "default_parameters": "Number of items: 10 · Measured correlation: 0.788",
+      "worked_example": {
+        "Measured correlation": "0.788",
+        "Items": "10",
+        "95 percent range": "0.314 to 0.948",
+        "Range width": "0.633"
+      },
+      "worked_interpretation": "A correlation of 0.788 measured on 10 items is compatible with a true value anywhere from 0.314 to 0.948. The range narrows only as the square root of the item count. The chapter says ten items are few; this range is the companion's own illustration, not a figure from the paper.",
+      "reader_anchor": "C10-D05"
+    },
+    {
+      "id": "C10-D06",
+      "title": "Why does shuffling word meanings make a model read the examples?",
+      "question": "If 95 percent of practice episodes reassign what six words mean, how often is a word's usual meaning right, and what does a learner have to do instead?",
+      "equations": [
+        "P(\\text{word keeps its meaning})=(1-p)+\\frac{p}{6},\\qquad 6!=720"
+      ],
+      "symbols_list": [
+        {
+          "sym": "p",
+          "meaning": "the share of practice episodes in which the meanings are reassigned"
+        },
+        {
+          "sym": "6",
+          "meaning": "the six words (jump, run, walk, look, left, right) whose meanings are shuffled"
+        },
+        {
+          "sym": "6!",
+          "meaning": "the number of ways to reassign six items one-to-one"
+        }
+      ],
+      "source_anchor": "shuffling-word-meanings",
+      "source_section": "Shuffling word meanings",
+      "provenance": "Simulation. The 95 percent, the six words and the 10 study pairs per episode are the chapter's. The uniform one-to-one reassignment and the seed 10 are the companion's assumptions for the illustration; the chapter says only that the meanings were reassigned. The reported add-jump errors, 99.27 and 0.22 percent, are the chapter's.",
+      "kind": "simulation",
+      "assumptions": "A uniform random one-to-one reassignment of the six words' meanings, and an idealized learner that reads the study pairs perfectly. This illustrates the pressure of the training schedule; it is not a model of the network or a measurement.",
+      "prediction": "At 95 percent shuffling, predict how often a word keeps its usual meaning. Is it closer to 5 percent, 20 percent or 50 percent?",
+      "reveal": {
+        "state": {
+          "shuffle_prob": 0.95
+        },
+        "text": "A word keeps its usual meaning with chance 0.05 + 0.95/6 = 0.208, so trusting word identity is wrong about four times in five. Reading the study pairs is the only way to do well, and the reported effect on add jump was a fall in error from 99.27 to 0.22 percent."
+      },
+      "takeaway": "Shuffling makes word identity unreliable, so a model is pushed to infer meanings from the study examples in each episode.",
+      "why_it_matters": "Much of the teaching in the chapter's method is done by the training schedule, not a new network design. The authors call the many-grammar training not developmentally plausible.",
+      "sides": {
+        "brain": "The authors do not claim a child learns this way; nothing here is a brain measurement.",
+        "machine": "The schedule is a training procedure; the simulated learner is an idealization, not the transformer."
+      },
+      "explanation": "If a word's meaning is reassigned in most episodes, memorizing that meaning gets it wrong most of the time. The study pairs in the episode always give the current meaning. A learner that reads them can then answer a new word shown once, such as jump with one example.",
+      "check": "At 50 percent shuffling, what is the chance a word keeps its usual meaning?",
+      "answer": "(1 - 0.5) + 0.5/6 = 0.5 + 0.0833 = 0.583.",
+      "controls": [
+        {
+          "key": "shuffle_prob",
+          "label": "Share of episodes shuffled",
+          "values": [
+            0,
+            0.25,
+            0.5,
+            0.75,
+            0.95
+          ],
+          "default": 0.95,
+          "widget": "slider"
+        }
+      ],
+      "function": "shuffle_picture",
+      "alt": "A grid of twelve simulated episodes colored by whether each word kept its meaning, and curves of chance against the share shuffled.",
+      "symbols": "p: the share of practice episodes in which the meanings are reassigned; 6: the six words (jump, run, walk, look, left, right) whose meanings are shuffled; 6!: the number of ways to reassign six items one-to-one",
+      "application": "Much of the teaching in the chapter's method is done by the training schedule, not a new network design. The authors call the many-grammar training not developmentally plausible.",
+      "default_parameters": "Share of episodes shuffled: 0.95",
+      "worked_example": {
+        "Episodes shuffled": "95 percent",
+        "Chance a word keeps its usual meaning": "0.208",
+        "Possible reassignments of 6 words": "720",
+        "Of 12 shown, with every word unchanged": "2"
+      },
+      "worked_interpretation": "When 95 percent of practice episodes reassign the six word meanings at random, a word keeps its usual meaning with chance 0.208. Trusting word identity pays little, and reading the study pairs pays fully. Reported add-jump error fell from 99.27 to 0.22 percent (five-run averages).",
+      "reader_anchor": "C10-D06"
+    },
+    {
+      "id": "C10-D07",
+      "title": "What does a length split hold out?",
+      "question": "Train on commands that need up to 22 actions and test on the rest. How many commands is that on each side, and does the cut matter?",
+      "equations": [
+        "\\text{held out}=\\frac{\\#\\{c:\\ |\\llbracket c\\rrbracket|>L\\}}{20{,}910}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "L",
+          "meaning": "the longest command allowed in training, in basic actions"
+        },
+        {
+          "sym": "|[[c]]|",
+          "meaning": "the number of basic actions command c produces"
+        }
+      ],
+      "source_anchor": "longer-than-practiced",
+      "source_section": "Longer than practiced",
+      "provenance": "Computation. Command lengths come from decoding all 20,910 commands with the rulebook of D01, which reproduces the chapter's 16,990 training and 3,920 test commands and the 48-action maximum. The reported scores quoted in the summary are the chapter's.",
+      "kind": "constructed example (computed from the rulebook)",
+      "assumptions": "The rules for 'thrice', 'opposite' and 'around' are the companion's reconstruction, supported by matching the chapter's counts. Other cut points are the companion's variations on the chapter's single split.",
+      "prediction": "The chapter trains on commands that need up to 22 actions. Predict how many of the 20,910 go to the test set: closer to 1 in 100, 1 in 5, or 1 in 2?",
+      "reveal": {
+        "state": {
+          "cut": 22
+        },
+        "text": "3,920 of the 20,910 commands, about 1 in 5.3 (18.7 percent), need 24 to 48 actions and form the test. The top network scored 20.8 percent, and 100 percent error for the meta-trained model; this is a different skill from learning a new word."
+      },
+      "takeaway": "Length is a separate test: every test command is longer than anything in training, so no memorized pattern covers it.",
+      "why_it_matters": "The chapter calls this skill productivity and says it is largely distinct from systematicity. A model can pass a new-word test and still fail on length.",
+      "sides": {
+        "brain": "No brain evidence is involved; people were not tested on the length split.",
+        "machine": "The reported scores are for separately trained 2018 and 2023 models, and one large pretrained model with worked examples reached 99.7 percent by a different route."
+      },
+      "explanation": "Decoding gives each command a length. Cutting at a length sends all commands above it to the test set, so every test command is longer than any training command. Moving the cut shows how the held-out share changes, and that no command needs exactly 23 actions.",
+      "check": "At the chapter's cut, what do the two counts add to, and what share is held out?",
+      "answer": "16,990 + 3,920 = 20,910. The held-out share is 3,920/20,910 = 18.7 percent.",
+      "controls": [
+        {
+          "key": "cut",
+          "label": "Longest training command (actions)",
+          "values": [
+            8,
+            12,
+            16,
+            20,
+            22,
+            26,
+            30,
+            36
+          ],
+          "default": 22,
+          "widget": "slider"
+        }
+      ],
+      "function": "length_picture",
+      "alt": "A bar chart of command counts by number of actions, colored training and test, and a curve of the held-out share against the cut.",
+      "symbols": "L: the longest command allowed in training, in basic actions; |[[c]]|: the number of basic actions command c produces",
+      "application": "The chapter calls this skill productivity and says it is largely distinct from systematicity. A model can pass a new-word test and still fail on length.",
+      "default_parameters": "Longest training command (actions): 22",
+      "worked_example": {
+        "Training commands": "16,990",
+        "Test commands": "3,920",
+        "Share held out": "18.7 percent",
+        "Longest command (actions)": "48"
+      },
+      "worked_interpretation": "Training on commands that need up to 22 actions leaves 16,990 to train on and 3,920 to test, the longest needing 48. At the chapter's cut of 22 the counts are 16,990 and 3,920. The chapter reports 20.8 percent for the top architecture, 100 percent error for the meta-trained model and 99.7 percent for least-to-most prompting on this split.",
+      "reader_anchor": "C10-D07"
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "chapter": 24,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-24.md",
+  "source_sha256": "bb53435da04a3b4d2694f9b45815e52b1648ee3b28f9e1eb4922093bffa263a9",
+  "calculation_sha256": "5a9bddfe5bb64811ddd329faf3325fd980cf78afdc0c1443a189efa7211b8454",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C24-D01",
+      "title": "How likely is a rare answer to vanish in one handoff?",
+      "question": "A rare answer has a 1 in 100 chance on each draw, and the next learner trains on 100 draws. How likely is the answer to be missing from the sample?",
+      "equations": [
+        "P(\\text{missing})=(1-p)^{n}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "p",
+          "meaning": "chance of the rare answer on one draw, between zero and one"
+        },
+        {
+          "sym": "n",
+          "meaning": "number of draws in the sample passed on"
+        },
+        {
+          "sym": "1 - p",
+          "meaning": "chance of missing the answer on one draw"
+        }
+      ],
+      "source_anchor": "a-small-model-fed-its-own-text-ended-up-writing-about-jackrabbits",
+      "source_section": "A small model fed its own text ended up writing about jackrabbits",
+      "provenance": "Book formula and constructed example (the chapter's 1 in 100 answer and 100 samples, recomputed exactly). The other values of p and n are this companion's variations. No simulation or data is used here.",
+      "kind": "formula",
+      "assumptions": "Draws are independent. The next learner is a plain copier that can produce only answers present in its sample; a more general model might keep earlier knowledge or generalize to an unseen answer.",
+      "prediction": "Before moving the sliders, predict how many draws are needed before a 1 in 100 answer has even odds of having appeared at all.",
+      "reveal": {
+        "state": {
+          "p": 0.01,
+          "n": 100
+        },
+        "text": "A 1 in 100 answer is missing from a 100-item sample 37 percent of the time. It takes 69 draws just to reach even odds of seeing it once, which is why a sample the size of the reciprocal of p is not enough."
+      },
+      "takeaway": "A sample the same size as 1 divided by p misses the answer about 37 percent of the time, and only a much larger sample makes the loss unlikely.",
+      "why_it_matters": "Whenever a copy is made from a sample of a copy, rare details are the first to go, and the formula says how fast. Where outside material is not brought back, the loss is permanent for a plain copier.",
+      "sides": {
+        "brain": "Bartlett's readers rebuilt a tale rather than copying it, so this formula is not an account of what they did.",
+        "machine": "For a model retrained on its own samples, the formula is the chapter's illustration of why rare content can go first. The paper did not count rare answers in OPT-125m."
+      },
+      "explanation": "Each draw misses the answer with the leftover chance 1 - p. Missing it every time multiplies that leftover chance by itself, once per draw. With more draws the product falls, but slowly when p is small, so rare answers need large samples to survive.",
+      "check": "With p = 0.02 and a sample of 50, how likely is the answer to be missing, and is the sample comfortably safe?",
+      "answer": "(0.98)^50 is about 0.364. A 2 in 100 answer is missing from a 50-item sample more than a third of the time, so the sample is not safe.",
+      "controls": [
+        {
+          "key": "p",
+          "label": "Chance of the rare answer on one draw",
+          "values": [
+            0.005,
+            0.01,
+            0.02,
+            0.05
+          ],
+          "default": 0.01,
+          "widget": "slider"
+        },
+        {
+          "key": "n",
+          "label": "Draws in the sample",
+          "values": [
+            25,
+            50,
+            100,
+            200,
+            500
+          ],
+          "default": 100,
+          "widget": "slider"
+        }
+      ],
+      "function": "loss_picture",
+      "alt": "A curve of the chance a rare answer is still missing as draws accumulate, and curves of that chance against sample size for four values of p.",
+      "symbols": "p: chance of the rare answer on one draw, between zero and one; n: number of draws in the sample passed on; 1 - p: chance of missing the answer on one draw",
+      "application": "Whenever a copy is made from a sample of a copy, rare details are the first to go, and the formula says how fast. Where outside material is not brought back, the loss is permanent for a plain copier.",
+      "default_parameters": "Chance of the rare answer on one draw: 0.01 · Draws in the sample: 100",
+      "worked_example": {
+        "Chance it never appears": "0.366",
+        "Chance it appears at least once": "0.634",
+        "Expected appearances in the sample": "1",
+        "Draws for even odds of seeing it": "69"
+      },
+      "worked_interpretation": "An answer with chance 0.01 per draw is missing from all 100 draws 36.6 percent of the time. If the next learner can produce only what its sample contains, a missing answer is gone from that learner.",
+      "reader_anchor": "C24-D01"
+    },
+    {
+      "id": "C24-D02",
+      "title": "Why does a page carrying the clause favor no clause?",
+      "question": "A reader sees a page with the odd clause. Before reading, the clause was 0.2 likely to be held. Writers copy a held clause 7 times in 10 and add an absent one 3 times in 10. What does the reader believe?",
+      "equations": [
+        "P(S\\mid d)=\\frac{P(S)P(d\\mid S)}{P(S)P(d\\mid S)+P(O)P(d\\mid O)}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "S, O",
+          "meaning": "the writer held the clause (S) or did not (O)"
+        },
+        {
+          "sym": "d",
+          "meaning": "the observed page, which carries the clause"
+        },
+        {
+          "sym": "P(S)",
+          "meaning": "the prior, the belief before reading"
+        },
+        {
+          "sym": "P(d | S)",
+          "meaning": "copying fidelity: the chance a holder puts the clause on the page"
+        },
+        {
+          "sym": "P(d | O)",
+          "meaning": "the false-positive rate: the chance a non-holder adds it (here 1 minus fidelity)"
+        }
+      ],
+      "source_anchor": "one-odd-clause-and-two-kinds-of-reader",
+      "source_section": "One odd clause, and two kinds of reader",
+      "provenance": "Book formula and constructed example. The numbers (prior 0.2, fidelity 0.7, false positives 0.3) are the chapter's own arithmetic, chosen for the arithmetic and fitted to nobody. The other priors and fidelities are this companion's variations.",
+      "kind": "formula",
+      "assumptions": "Two explanations, S and O, that cover the possibilities. The false-positive rate equals one minus the fidelity unless the dashed curve is read, where it stays at 0.3. The reader weighs the two stories and cannot ask the writer.",
+      "prediction": "Predict whether a reader who sees the clause on the page should believe the writer held it. Then predict how much higher the fidelity must be for a best-guess reader to keep it.",
+      "reveal": {
+        "state": {
+          "prior": 0.2,
+          "fidelity": 0.7
+        },
+        "text": "The weights are 0.14 for held and 0.24 for not held, so the page favors no clause even though it carries the clause. The share on the clause is 0.14 out of 0.38, about 0.37: a best-guess reader drops it, a sampling reader adopts it about 4 times in 10. With a prior of 0.2 the tie falls at fidelity 0.8."
+      },
+      "takeaway": "A best-guess reader needs the page to be convincing enough to overcome a low prior, and a false-positive rate that does not shrink with fidelity can make that impossible.",
+      "why_it_matters": "A minority detail that is common enough to keep turning up on pages can still be dropped every time by a reader who always takes the likeliest version. That is how a chain can erase a detail that keeps arriving.",
+      "sides": {
+        "brain": "The chapter gives no measurement of how people weigh a clause. Bartlett's account was convention, not arithmetic, and nothing here was fitted to his readers.",
+        "machine": "Beam search resembles a best-guess reader in preferring likely output. The collapse study used beam search to write each generation's data, so decoding and refitting are tangled and the study cannot say which did the damage."
+      },
+      "explanation": "Each story gets a weight: its prior times the chance it produces this page. The share of the total on the clause is the posterior. A best-guess reader adopts whichever story weighs more. A sampling reader adopts the clause with a chance equal to its share of the total weight.",
+      "check": "With prior 0.3 and fidelity 0.7 (false positives 0.3), what is the posterior, and what does a best-guess reader do?",
+      "answer": "The weights are 0.3 x 0.7 = 0.21 and 0.7 x 0.3 = 0.21, a tie with posterior 0.5. The best-guess rule has no preference, so the reader is at its tipping point.",
+      "controls": [
+        {
+          "key": "prior",
+          "label": "Prior that the writer held the clause",
+          "values": [
+            0.1,
+            0.2,
+            0.3,
+            0.5
+          ],
+          "default": 0.2,
+          "widget": "slider"
+        },
+        {
+          "key": "fidelity",
+          "label": "Copying fidelity",
+          "values": [
+            0.6,
+            0.7,
+            0.8,
+            0.9,
+            0.95
+          ],
+          "default": 0.7,
+          "widget": "slider"
+        }
+      ],
+      "function": "clause_picture",
+      "alt": "Bars of the two weights behind a page that carries the clause, and curves of the posterior against copying fidelity with the one half line.",
+      "symbols": "S, O: the writer held the clause (S) or did not (O); d: the observed page, which carries the clause; P(S): the prior, the belief before reading; P(d | S): copying fidelity: the chance a holder puts the clause on the page; P(d | O): the false-positive rate: the chance a non-holder adds it (here 1 minus fidelity)",
+      "application": "A minority detail that is common enough to keep turning up on pages can still be dropped every time by a reader who always takes the likeliest version. That is how a chain can erase a detail that keeps arriving.",
+      "default_parameters": "Prior that the writer held the clause: 0.2 · Copying fidelity: 0.7",
+      "worked_example": {
+        "Weight if held (S)": "0.14",
+        "Weight if not (O)": "0.24",
+        "Share of weight on S (posterior)": "0.368",
+        "Best-guess reader": "drops the clause"
+      },
+      "worked_interpretation": "With prior 0.2 and fidelity 0.7 the page favors O (weights 0.14 and 0.24). A sampling reader adopts the clause about 3.7 times in 10.",
+      "reader_anchor": "C24-D02"
+    },
+    {
+      "id": "C24-D03",
+      "title": "Where does a chain of readers end up?",
+      "question": "If every writer sees a page from the writer before and rebuilds a belief, does the clause persist down the chain, and does it matter whether readers take the likeliest version or sample?",
+      "equations": [
+        "P(S_{t+1}\\mid S_t)\\;=\\;\\sum_{d}P(d\\mid S_t)\\,\\mathrm{reader}(d),\\qquad \\lambda_2=P(S\\to S)-P(O\\to S)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "S_t",
+          "meaning": "whether the writer at step t holds the clause"
+        },
+        {
+          "sym": "reader(d)",
+          "meaning": "chance the next writer adopts the clause after page d: the posterior (sampling) or 1 or 0 (best guess)"
+        },
+        {
+          "sym": "lambda_2",
+          "meaning": "the second eigenvalue: how much of the starting difference survives each generation"
+        },
+        {
+          "sym": "prior",
+          "meaning": "0.2, the shared prior of every learner"
+        }
+      ],
+      "source_anchor": "nine-students-a-slider-and-where-a-chain-ends-up",
+      "source_section": "Nine students, a slider, and where a chain ends up",
+      "provenance": "Model built on the chapter's two-state ghost-clause example (prior 0.2, false positives equal to one minus fidelity). The settling of sampling chains at the prior is Griffiths and Kalish's result, stated in the chapter under conditions. The best-guess figures are this companion's arithmetic on the chapter's example, not a result from either paper.",
+      "kind": "model",
+      "assumptions": "Two hypotheses, every learner with the same prior and a correct guess about how pages are made, one page per step, and an exactly computed chain with no sampling noise. The best-guess tie rule is a coin flip. Exact settling at the prior holds only under these conditions; a real pipeline that reads, rewrites and samples ends where all three steps together send it.",
+      "prediction": "Predict what the sampling chain settles on, and whether raising the fidelity toward 1 makes it settle faster or slower.",
+      "reveal": {
+        "state": {
+          "fidelity": 0.99,
+          "reader": "sampling"
+        },
+        "text": "At fidelity 0.99 a sampling chain still holds the clause in about 63 percent of chains after 10 generations, and it takes more than 30 generations to get near the prior, 0.2. Near-exact copying remembers its start for a long time. At fidelity 1 it would never forget."
+      },
+      "takeaway": "A chain of sampling readers forgets its start and settles at the prior, and the closer the copy, the longer that takes. A chain of best-guess readers can erase the clause or flatten the share to one half.",
+      "why_it_matters": "Near-exact copying preserves an early mistake as well as an early insight, and a likeliest-version rule can wipe out a minority view. A real pipeline that rewrites and samples ends where its steps together send it.",
+      "sides": {
+        "brain": "The student chains were consistent with a pull toward a rising line. Nothing shows the students sampled their beliefs, and the task was bars and sliders, not a story.",
+        "machine": "The settling result is exact only for idealized learners like these. Nothing shows that near-exact distillation keeps a teacher's first mistakes."
+      },
+      "explanation": "Each generation has a chance of staying on the clause if the writer held it and a chance of adding it if not. The difference between those two chances is the memory kept per generation. When it is near 1, the chain barely moves. When it is near 0, the chain forgets in a step.",
+      "check": "At fidelity 0.7, how many generations does a best-guess chain keep the clause, and where does a sampling chain end?",
+      "answer": "A best-guess chain drops the clause after one generation, because a page with the clause gives a posterior of 0.37 and a page without gives about 0.10. A sampling chain forgets quickly (memory 0.11 per generation) and sits at the prior, 0.2.",
+      "controls": [
+        {
+          "key": "fidelity",
+          "label": "Copying fidelity",
+          "values": [
+            0.6,
+            0.7,
+            0.75,
+            0.85,
+            0.9,
+            0.95,
+            0.99
+          ],
+          "default": 0.7,
+          "widget": "slider"
+        },
+        {
+          "key": "reader",
+          "label": "Kind of reader",
+          "values": [
+            "sampling",
+            "best guess"
+          ],
+          "default": "sampling"
+        }
+      ],
+      "function": "chain_picture",
+      "alt": "Share of chains holding the clause over generations for two kinds of reader, and the long-run share against copying fidelity.",
+      "symbols": "S_t: whether the writer at step t holds the clause; reader(d): chance the next writer adopts the clause after page d: the posterior (sampling) or 1 or 0 (best guess); lambda_2: the second eigenvalue: how much of the starting difference survives each generation; prior: 0.2, the shared prior of every learner",
+      "application": "Near-exact copying preserves an early mistake as well as an early insight, and a likeliest-version rule can wipe out a minority view. A real pipeline that rewrites and samples ends where its steps together send it.",
+      "default_parameters": "Copying fidelity: 0.7 · Kind of reader: sampling",
+      "worked_example": {
+        "After 1 generation": "0.287",
+        "After 10 generations": "0.2",
+        "Long-run share": "0.2",
+        "Memory kept per generation": "0.109"
+      },
+      "worked_interpretation": "At fidelity 0.7 a chain of sampling readers drifts to the prior, 0.2, whatever it started on. The higher the fidelity, the slower it forgets (memory 0.109 per generation).",
+      "reader_anchor": "C24-D03"
+    },
+    {
+      "id": "C24-D04",
+      "title": "Does a chain of copiers lose a rare answer, and can the original bring it back?",
+      "question": "A rare answer starts at 1 in 100. Each copier trains on a sample of the one before. How many chains lose it entirely, and what changes if part of each sample comes from the original?",
+      "equations": [
+        "x_{t+1}=\\frac{K_t}{n},\\qquad K_t\\sim\\mathrm{Binomial}\\bigl(n,\\;r\\,p_0+(1-r)\\,x_t\\bigr)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x_t",
+          "meaning": "share of generation t's output that gives the rare answer"
+        },
+        {
+          "sym": "n",
+          "meaning": "sample size passed on"
+        },
+        {
+          "sym": "r",
+          "meaning": "share of each sample drawn from the original source"
+        },
+        {
+          "sym": "p_0",
+          "meaning": "the original share, 0.01"
+        }
+      ],
+      "source_anchor": "what-keeps-a-story-alive-and-what-keeps-a-model-whole",
+      "source_section": "What keeps a story alive, and what keeps a model whole",
+      "provenance": "Seeded simulation built from the chapter's 1 in 100 example: 400 chains of 30 generations per setting, seed 2024. It is this companion's construction, not the model-collapse study (which used OPT-125m and did not count rare answers) and not a measurement. The chapter reports only the one-step miss chance and that a run with some original data degraded less.",
+      "kind": "simulation",
+      "assumptions": "A plain copier that reproduces exactly its sample. Draws are independent. The share r stands in for keeping some original data; the paper's 10 percent run also trained for ten epochs against five, so it does not isolate the 10 percent.",
+      "prediction": "Predict whether the average share after 30 generations stays near 1 in 100 even though many chains reach zero.",
+      "reveal": {
+        "state": {
+          "n": 100,
+          "restore": 0.0
+        },
+        "text": "With samples of 100 and no original data, the answer is missing in about 36 percent of chains after one generation, close to the formula's 0.366, and in about 94 percent by generation 30. A chain that reaches zero stays at zero, while the few that drift up keep the mean near 1 in 100."
+      },
+      "takeaway": "Without a route back to the original, loss is one-way for a plain copier. Drawing even part of each sample from the original keeps the rare answer alive in far more chains.",
+      "why_it_matters": "This is the chapter's practical lesson: a link back to the original lets a reader recover what a copy of a copy has lost. The simulation shows the direction and the size of the effect in a constructed case, nothing more.",
+      "sides": {
+        "machine": "Gerstgrasser and colleagues found that piling synthetic data on top of real data avoided collapse in the settings they tested. The simulation here does not reproduce that study."
+      },
+      "explanation": "Each generation draws n items, each from the original source with chance r and otherwise from the last generation. The count that gives the rare answer becomes the next generation's share. If the count is zero and r is zero, the answer cannot come back.",
+      "check": "In the settings with no original data, which sample size has the smallest share of chains without the answer at generation 30, and why does the mean not shrink with it?",
+      "answer": "The largest sample, 500: about 72 percent of chains are still without it at generation 30, against 94 percent at 100, so bigger samples slow the loss without stopping it. The mean stays near 0.01 because at zero original share the expected next share equals the current one: chains that fall to zero are balanced by chains that climb.",
+      "controls": [
+        {
+          "key": "n",
+          "label": "Sample size per generation",
+          "values": [
+            25,
+            50,
+            100,
+            200,
+            500
+          ],
+          "default": 100,
+          "widget": "slider"
+        },
+        {
+          "key": "restore",
+          "label": "Share of each sample from the original",
+          "values": [
+            0.0,
+            0.05,
+            0.1,
+            0.3
+          ],
+          "default": 0.0,
+          "widget": "slider"
+        }
+      ],
+      "function": "copier_picture",
+      "alt": "Ten simulated chains of a rare answer's share over 30 generations, and a grid of the share of chains that lost it by sample size and original share.",
+      "symbols": "x_t: share of generation t's output that gives the rare answer; n: sample size passed on; r: share of each sample drawn from the original source; p_0: the original share, 0.01",
+      "application": "This is the chapter's practical lesson: a link back to the original lets a reader recover what a copy of a copy has lost. The simulation shows the direction and the size of the effect in a constructed case, nothing more.",
+      "default_parameters": "Sample size per generation: 100 · Share of each sample from the original: 0.0",
+      "worked_example": {
+        "Missing after generation 1 (simulated)": "0.364",
+        "Missing after generation 1 (formula)": "0.366",
+        "Missing after generation 30": "0.938",
+        "Mean share after generation 30": "0.00921"
+      },
+      "worked_interpretation": "With samples of 100 and 0 of each sample taken from the original, the rare answer is missing from 93.8 percent of 2000 seeded chains by generation 30. A chain that hits zero stays there unless the original is drawn on.",
+      "reader_anchor": "C24-D04"
+    },
+    {
+      "id": "C24-D05",
+      "title": "What did a model do to its own text, and how bad was the score?",
+      "question": "A small model was retrained again and again on text written by the one before. How did its score on real text change, and what changed when some original data was kept?",
+      "equations": [
+        "\\text{ratio}=\\frac{\\text{perplexity}}{34}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "perplexity",
+          "meaning": "how surprised the model is by each next token of real text; lower is better when the test and tokenization are fixed"
+        },
+        {
+          "sym": "34",
+          "meaning": "the starting perplexity, given in the paper's text"
+        }
+      ],
+      "source_anchor": "what-keeps-a-story-alive-and-what-keeps-a-model-whole",
+      "source_section": "What keeps a story alive, and what keeps a model whole",
+      "provenance": "Reported values quoted in the chapter from Shumailov and colleagues (Nature, 2024). Only the starting value 34 is printed in the paper's text. The 60, 52 and 37 are read by eye from the paper's figure and are shown as approximate. The ratio is this companion's own arithmetic. The prompt outputs are the paper's one printed example. No simulation is used here.",
+      "kind": "reported result",
+      "assumptions": "One small model (OPT-125m), generations 0 to 9 only. The 10 percent run also trained for ten epochs against five. Each generation's data was written with beam search, so decoding and refitting are tangled and the study cannot say which did the damage. The paper did not count rare answers in this model.",
+      "prediction": "Predict whether the score after nine generations is worse than after one, and how close keeping 10 percent of the original gets to the start.",
+      "reveal": {
+        "state": {
+          "bar": "gen9_10pct"
+        },
+        "text": "With 10 percent of the original data kept, the score ends near 37, against about 52 without it and 34 at the start. The authors report only minor degradation for this run, but it also trained for ten epochs, so the 10 percent alone is not isolated."
+      },
+      "takeaway": "Retraining on a model's own text raised perplexity from 34 to roughly 60 after one generation and about 52 after nine. Keeping some original data ended near 37.",
+      "why_it_matters": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate.",
+      "sides": {
+        "machine": "A model trained on a teacher's text can lose rare content and drift toward typical output, which the authors call model collapse. The scores are the evidence here, plus theory."
+      },
+      "explanation": "Perplexity measures how surprised the model is by real text. It started at 34. With no original target examples in fine-tuning, it jumped at generation 1 and settled near 52 by generation 9. With a random 10 percent of the original kept, it ended near 37.",
+      "check": "Why can the chapter not say the 10 percent of original data caused the lower score?",
+      "answer": "The 10 percent run also trained for ten epochs against five, so two things changed at once. The study also tangles decoding with refitting, so it cannot say which did the damage.",
+      "controls": [
+        {
+          "key": "bar",
+          "label": "Which score",
+          "values": [
+            "start",
+            "gen1",
+            "gen9",
+            "gen9_10pct"
+          ],
+          "value_labels": [
+            "start: 34",
+            "after 1 generation: about 60",
+            "after 9 generations: about 52",
+            "after 9, 10 percent original: about 37"
+          ],
+          "default": "gen9"
+        }
+      ],
+      "function": "perplexity_picture",
+      "alt": "Four bars of perplexity from the start to nine generations, and four printed outputs from one prompt across generations.",
+      "symbols": "perplexity: how surprised the model is by each next token of real text; lower is better when the test and tokenization are fixed; 34: the starting perplexity, given in the paper's text",
+      "application": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate.",
+      "default_parameters": "Which score: gen9",
+      "worked_example": {
+        "Perplexity": "about 52",
+        "Source of the number": "read by eye from the paper's figure",
+        "Ratio to the start (companion's arithmetic)": "1.53"
+      },
+      "worked_interpretation": "After 9 generations, no original examples kept: perplexity about 52, 1.53 times the start. Only the start (34) is printed in the paper's text; the rest are read by eye, and the 10 percent run also trained for ten epochs against five.",
+      "reader_anchor": "C24-D05"
+    },
+    {
+      "id": "C24-D06",
+      "title": "How many of the 32 chains really moved toward a rising line?",
+      "question": "28 of 32 chains of students ended on a rising line. Eight chains began on one. How strong is the evidence of a pull toward it?",
+      "equations": [
+        "\\#\\{\\text{began elsewhere, ended rising}\\}=28-x,\\qquad 4\\le x\\le 8"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x",
+          "meaning": "how many of the eight rising-start chains ended rising (not reported, so it is a control)"
+        },
+        {
+          "sym": "28",
+          "meaning": "chains that ended on a rising line, out of 32"
+        },
+        {
+          "sym": "24",
+          "meaning": "chains that began on a falling line, a U shape or random pairs"
+        }
+      ],
+      "source_anchor": "nine-students-a-slider-and-where-a-chain-ends-up",
+      "source_section": "Nine students, a slider, and where a chain ends up",
+      "provenance": "Reported counts quoted in the chapter from Kalish, Griffiths and Lewandowsky (2007): 288 undergraduates, 32 chains of nine students, eight chains from each of four starting data sets, 28 of 32 ended rising, 3 ended falling, 1 never settled. The count of how many rising-start chains ended rising is not in the chapter, so it is the control. The bound is arithmetic. No simulation is used.",
+      "kind": "reported result",
+      "assumptions": "The experimenters read the pull as consistent with students expecting a rising line. They did not fit a model, and they write that significantly more data would be required to confirm the stable distribution predicted by the theory. The task was bars and sliders, not a story.",
+      "prediction": "Predict the smallest number of chains that began elsewhere and still ended on a rising line.",
+      "reveal": {
+        "state": {
+          "rising_start": 8
+        },
+        "text": "If all eight rising-start chains ended rising, 20 of the 24 chains that began elsewhere did as well, which is the smallest it can be. If some rising-start chains moved away, more of the others ended rising. Either way the pull toward a rising line is real in the counts, though the study did not fit a model."
+      },
+      "takeaway": "At least 20 of the 24 chains that began elsewhere ended on a rising line, which is what makes the count more than a restatement of the starting data.",
+      "why_it_matters": "A headline count can hide how much of it was already there at the start. Subtracting the chains that began on the answer shows what is left, and the chapter does exactly that.",
+      "sides": {
+        "brain": "A behavioral result in 288 undergraduates at one university. It says what chains of learners did on one task, not how any mind works.",
+        "machine": "The theory of sampling learners predicts settling at the prior. The students were not shown to sample."
+      },
+      "explanation": "There were four starting data sets with eight chains each. 28 chains ended on a rising line. Because at most eight of those began there, at least 20 came from the other 24. The unknown is how many of the eight stayed.",
+      "check": "If only 5 of the 8 rising-start chains ended rising, how many of the 24 other chains did?",
+      "answer": "28 - 5 = 23 of 24, above the floor of 20. Three rising-start chains would then have ended elsewhere, and 1 of the 24 others would not have ended rising: 3 + 1 = the 4 chains that did not end rising.",
+      "controls": [
+        {
+          "key": "rising_start",
+          "label": "Rising-start chains that ended rising (unreported)",
+          "values": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "default": 8,
+          "widget": "slider"
+        }
+      ],
+      "function": "kalish_picture",
+      "alt": "Stacked bars of where the 32 student chains ended by starting condition, and the count of non-rising starts that ended rising.",
+      "symbols": "x: how many of the eight rising-start chains ended rising (not reported, so it is a control); 28: chains that ended on a rising line, out of 32; 24: chains that began on a falling line, a U shape or random pairs",
+      "application": "A headline count can hide how much of it was already there at the start. Subtracting the chains that began on the answer shows what is left, and the chapter does exactly that.",
+      "default_parameters": "Rising-start chains that ended rising (unreported): 8",
+      "worked_example": {
+        "Ended rising": "28 of 32",
+        "Rising-start chains ending rising (assumed)": "8 of 8",
+        "Began elsewhere, ended rising": "20 of 24",
+        "Other endings": "3 falling, 1 unsettled"
+      },
+      "worked_interpretation": "Twenty-eight of 32 chains ended on a rising line, but eight began on one. If 8 of those eight ended rising, then 20 of the 24 that began elsewhere did. Whatever the split, at least 20 did.",
+      "reader_anchor": "C24-D06"
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "chapter": 13,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-13.md",
+  "source_sha256": "d3dd31748cad62aa0edbb8615934d0a7433b42dc9332179c6f56558592c8862a",
+  "calculation_sha256": "417894ecb29484371a054c6f5a6d0d1c870d434d68140482d1fb6b5c2c4661bc",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C13-D01",
+      "title": "Why does the same gain count for less when you already have more?",
+      "question": "A gain of 1,000 ducats scores differently at different starting wealth, and so does a ticket that pays 0 or 20,000. How does the logarithm make the same ticket worth more to some holders?",
+      "equations": [
+        "y=b\\ln\\frac{x}{x_0}",
+        "\\ln(w+p)=\\tfrac12\\ln w+\\tfrac12\\ln(w+20000)\\ \\Rightarrow\\ p=\\sqrt{w\\,(w+20000)}-w"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x_0, x",
+          "meaning": "wealth before and after the gain, both above zero"
+        },
+        {
+          "sym": "y",
+          "meaning": "the score of the gain, in arbitrary units (b = 1 here)"
+        },
+        {
+          "sym": "w",
+          "meaning": "the holder's wealth, not counting the ticket"
+        },
+        {
+          "sym": "p",
+          "meaning": "the certain amount that scores the same as holding the ticket"
+        }
+      ],
+      "source_anchor": "wealth-changes-the-value-of-a-gain",
+      "source_section": "Wealth changes the value of a gain",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-11-logarithmic-value-chapter-13"
+      ],
+      "provenance": "Book formula (Bernoulli's rule as the chapter presents it). The 1,000 and 100,000 ducat wealth figures are the chapter's constructed examples. The ticket worth p is this companion's computation from the chapter's rule, using the chapter's ticket (0 or 20,000, equal chances) and the 9,000 price; the chapter states neither the formula for p nor the 40,500 ducat figure, and Bernoulli's argument was not a recorded sale.",
+      "kind": "formula",
+      "assumptions": "A gain's worth is inversely proportional to existing wealth, which gives the logarithm. Both wealth amounts must be above zero. The score is not a measurement of anyone's happiness, and other curves predict the same direction.",
+      "prediction": "At 1,000 ducats a 1,000 ducat gain scores 0.693. Predict how it scores at 100,000 ducats, and at what wealth the ticket is worth exactly 9,000, before moving the slider.",
+      "reveal": {
+        "state": {
+          "start_wealth": 100000
+        },
+        "text": "At 100,000 ducats the same gain scores 0.00995, about 70 times less than at 1,000. The ticket is worth about 9,540 there. It is worth exactly 9,000 at 40,500 ducats: holders with less would sell at 9,000, and holders with more would buy."
+      },
+      "takeaway": "A rule that makes a gain matter less as wealth grows gives the same outcome different worth to different holders, with no change in the outcome itself.",
+      "why_it_matters": "A program given outcomes and a curve will price one ticket differently for two people. The price comes from the chosen curve and the wealth supplied, not from the outcome, so both must be checked against the person.",
+      "sides": {
+        "brain": "Bernoulli argued that a poor holder could sell at 9,000 without error and a rich one would buy. It was an argument, and nothing here says a brain computes a logarithm.",
+        "machine": "A program supplied with a wealth figure and this curve computes the worth directly. The designer chose what it counts and how sharply the curve bends; the calculation does not show the curve fits a given person."
+      },
+      "explanation": "Taking each small gain as worth less in proportion to what you hold adds up to a logarithm of the wealth ratio. The same 1,000 ducats is a doubling at 1,000 and a one percent rise at 100,000. For the ticket, averaging the scores of the two final wealth amounts and finding the certain amount that scores the same gives a worth that climbs toward the 10,000 average prize as wealth grows.",
+      "check": "A holder has 1,000 ducats. What certain amount is the ticket worth under the rule, and is 9,000 above or below it?",
+      "answer": "p = sqrt(1,000 x 21,000) - 1,000 = 4,583 - 1,000, about 3,583 ducats. So 9,000 is far above its worth to this holder, and selling at 9,000 is no mistake.",
+      "controls": [
+        {
+          "key": "start_wealth",
+          "label": "Starting wealth (ducats)",
+          "values": [
+            0,
+            100,
+            1000,
+            10000,
+            40500,
+            100000
+          ],
+          "default": 1000,
+          "widget": "slider"
+        }
+      ],
+      "function": "log_picture",
+      "alt": "Curve of the score of a 1,000 ducat gain against starting wealth, and curve of a ticket's certain worth against wealth with the 9,000 price.",
+      "symbols": "x_0, x: wealth before and after the gain, both above zero; y: the score of the gain, in arbitrary units (b = 1 here); w: the holder's wealth, not counting the ticket; p: the certain amount that scores the same as holding the ticket",
+      "application": "A program given outcomes and a curve will price one ticket differently for two people. The price comes from the chosen curve and the wealth supplied, not from the outcome, so both must be checked against the person.",
+      "default_parameters": "Starting wealth (ducats): 1000",
+      "worked_example": {
+        "Score of a 1,000 ducat gain": "0.693",
+        "Wealth after the gain (ducats)": "2000",
+        "Worth of the ticket (ducats)": "3583",
+        "Worth against 9,000": "below 9,000: selling at 9,000 is no mistake"
+      },
+      "worked_interpretation": "Starting from 1,000 ducats, a 1,000 ducat gain scores 0.693. The ticket, which pays 0 or 20,000 with equal chances, is worth 3583 certain ducats to this holder, below 9,000: selling at 9,000 is no mistake.",
+      "reader_anchor": "C13-D01"
+    },
+    {
+      "id": "C13-D02",
+      "title": "Which part of the model makes a loss frame choose the gamble?",
+      "question": "Two groups face the same final amounts but one hears gains and the other losses. A curve measured from a reference point can reproduce the majority choices, and the question is which of its features does the work.",
+      "equations": [
+        "v(x)=\\begin{cases}\\sqrt{x}, & x\\ge 0,\\\\ -\\lambda\\sqrt{-x}, & x<0.\\end{cases}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x",
+          "meaning": "the change from the reference point, in pounds (positive for a gain, negative for a loss)"
+        },
+        {
+          "sym": "v(x)",
+          "meaning": "the score, in arbitrary units"
+        },
+        {
+          "sym": "lambda",
+          "meaning": "the loss weight: 2 in the chapter's curve, and 1 means no extra weight on losses"
+        }
+      ],
+      "source_anchor": "measure-the-change",
+      "source_section": "Measure the change",
+      "provenance": "The curve is the chapter's own constructed illustration, chosen for easy arithmetic and not estimated from the respondents. The choice problems are the 1979 hypothetical questions: 70 respondents with a gift of 1,000 pounds (84 percent chose the certain gain) and 68 with a gift of 2,000 (31 percent chose the certain loss). The even bet is the chapter's own illustration and was not put to respondents. Scores average outcomes by their chances, with no probability weighting.",
+      "kind": "constructed example",
+      "assumptions": "A reference point (the gift) and a curve that bends the same way on both sides. The study measured stated choices of different people, not neurons or one person reversing. Matching the direction of the majority does not predict the percentages or explain how people choose their reference points.",
+      "prediction": "Set the loss weight to 1 in the loss frame. Predict whether the model still prefers the gamble, then try the even bet and ask what the weight does there.",
+      "reveal": {
+        "state": {
+          "problem": "loss frame",
+          "loss_weight": 1
+        },
+        "text": "With no extra weight on losses the certain loss still scores about -22.4 against -15.8 for the gamble, so the gamble still wins. Raising the weight scales both loss scores by the same positive number and cannot reverse their order. The weight matters only in the even bet."
+      },
+      "takeaway": "The reference point and the curve's bend produce the gain and loss framing reversal; the loss weight does its own, separate work in a bet that mixes gains and losses.",
+      "why_it_matters": "A machine that records only final amounts has already lost the framing. Giving it a reference point restores the distinction, and checking which feature produces which effect keeps a designer from crediting the wrong one.",
+      "sides": {
+        "brain": "The 1979 study measured hypothetical choices of different groups. It did not identify neurons computing this curve, and a program with no variable for fear or relief still produces the gain and loss pattern.",
+        "machine": "The machine implements the arithmetic exactly. That shows a limited computational capability, not that emotion is irrelevant to people or that the machine experiences the scores."
+      },
+      "explanation": "Measured from the gift, the extra 500 is a gain for one group and a loss for the other. Square roots bend both sides, so a sure thing beats a gamble among gains and a gamble beats a sure thing among losses. Making losses count more multiplies every loss score by the same number, so it does not reorder two loss options, but it makes an even chance of gaining or losing the same amount look bad.",
+      "check": "In the even bet, at what loss weight does the model score the gamble at exactly zero, the same as the certain change of zero?",
+      "answer": "The gamble scores half of sqrt(500) minus half of the weight times sqrt(500), which is zero only when the weight is 1. Any larger weight scores it below zero, so the certain zero is preferred.",
+      "controls": [
+        {
+          "key": "problem",
+          "label": "Problem",
+          "values": [
+            "gain frame",
+            "loss frame",
+            "even bet"
+          ],
+          "default": "gain frame"
+        },
+        {
+          "key": "loss_weight",
+          "label": "Loss weight",
+          "values": [
+            1,
+            1.5,
+            2,
+            3
+          ],
+          "default": 2
+        }
+      ],
+      "function": "value_picture",
+      "alt": "Bars for the certain option and the gamble scores in one problem, and lines of gamble minus certain score against loss weight for three problems.",
+      "symbols": "x: the change from the reference point, in pounds (positive for a gain, negative for a loss); v(x): the score, in arbitrary units; lambda: the loss weight: 2 in the chapter's curve, and 1 means no extra weight on losses",
+      "application": "A machine that records only final amounts has already lost the framing. Giving it a reference point restores the distinction, and checking which feature produces which effect keeps a designer from crediting the wrong one.",
+      "default_parameters": "Problem: gain frame · Loss weight: 2",
+      "worked_example": {
+        "Score of the certain option": "22.4",
+        "Score of the gamble": "15.8",
+        "Model picks": "the certain option",
+        "Majority in the study": "certain gain (84 percent of 70 chose it)"
+      },
+      "worked_interpretation": "With loss weight 2, the certain option scores 22.4 and the gamble 15.8, so the model picks the certain option. The curve is the chapter's constructed illustration, not fitted to the respondents.",
+      "reader_anchor": "C13-D02"
+    },
+    {
+      "id": "C13-D03",
+      "title": "How can the same food be worth something, nothing, or less than nothing?",
+      "question": "A model body scores an outcome by how far it moves the body toward its set points. What does three units of food score when the body is hungry, full, or thirsty?",
+      "equations": [
+        "D(H_t)=\\Big(\\sum_{i=1}^{N}|h_i^*-h_{i,t}|^{n}\\Big)^{1/m},\\qquad r(H_t,K_t)=D(H_t)-D(H_t+K_t)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "h_i^*, h_i",
+          "meaning": "set point and current level of need i (food and water here, set points 10)"
+        },
+        {
+          "sym": "D",
+          "meaning": "drive: the combined gap from the set points"
+        },
+        {
+          "sym": "n, m",
+          "meaning": "positive numbers that set how gaps combine; n = m = 1 is the chapter's illustration"
+        },
+        {
+          "sym": "K_t",
+          "meaning": "the change an outcome causes (3 units of food, or of water)"
+        },
+        {
+          "sym": "r",
+          "meaning": "reward: drive before minus drive after"
+        }
+      ],
+      "source_anchor": "need-changes-the-goal",
+      "source_section": "Need changes the goal",
+      "provenance": "Book formula (the Keramati and Gutkin homeostatic reward as the chapter presents it). The set points of 10 and the 3-unit outcome follow the chapter's constructed example, whose hungry case (food 4, water 10) gives drive 6 to 3 and reward 3, and whose full case gives drive 0 to 3 and reward -3. The second drive form (n = 3, m = 2) is the paper's regime n > m > 1, evaluated here by this companion; the chapter's n = m = 1 relaxes that restriction.",
+      "kind": "model",
+      "assumptions": "Two needs, a fixed set point for each, and a reward defined as reduction in drive. Overshooting a set point can give a negative score. The model specifies internal levels; it does not say how a body senses or regulates its own state.",
+      "prediction": "Predict what the model scores for 3 units of food at food 10 and water 10, and whether water scores higher when water is at 4.",
+      "reveal": {
+        "state": {
+          "food": 10,
+          "water": 10,
+          "form": 1
+        },
+        "text": "A model body at both set points scores 3 units of food at -3 (drive goes from 0 to 3). A hungry one (food 4, water 10) scores it at +3. The same outcome has opposite scores when the starting state differs."
+      },
+      "takeaway": "Once the score depends on the body's state, the same outcome can reward, do nothing, or penalize, because value is the change in drive and not a fixed number attached to food.",
+      "why_it_matters": "A machine that gives food a fixed score cannot represent a changing need through that score alone. Supplying a state description and letting the score depend on it is one way to do so.",
+      "sides": {
+        "brain": "Rats that had learned a Y-maze with food on one side and water on the other tended to choose the side that fit their test need. The only source is a 1940 conference abstract with no counts, and the model paper did not test that maze, so this is a resemblance in direction, not a fit.",
+        "machine": "The equations are a specification of a designed system: given levels and set points they return a score. A designed system that scores departures from a target does not establish that a brain uses this formula."
+      },
+      "explanation": "Drive adds up how far each need is from its set point. An outcome is scored by how much it shrinks that total. Food that fills a gap shrinks it, food added to a full body opens a new gap and grows it, and food does nothing to a gap in water. So reward depends on what the body lacks now.",
+      "check": "A model body has food 10 and water 4, set points 10, with n = m = 1. What do 3 units of food and 3 units of water score?",
+      "answer": "Drive now is 6. Food takes the body to (13, 4): gaps 3 and 6, drive 9, reward 6 - 9 = -3. Water takes it to (10, 7): drive 3, reward +3. Water scores higher.",
+      "controls": [
+        {
+          "key": "food",
+          "label": "Current food level",
+          "values": [
+            0,
+            2,
+            4,
+            7,
+            10,
+            12
+          ],
+          "default": 4,
+          "widget": "slider"
+        },
+        {
+          "key": "water",
+          "label": "Current water level",
+          "values": [
+            4,
+            10
+          ],
+          "default": 10
+        },
+        {
+          "key": "form",
+          "label": "Drive form (1: n = m = 1; 2: n = 3, m = 2)",
+          "values": [
+            1,
+            2
+          ],
+          "default": 1
+        }
+      ],
+      "function": "drive_picture",
+      "alt": "Bars of drive before and after 3 units of food or water, and curves of the reward of each against the current food level.",
+      "symbols": "h_i^*, h_i: set point and current level of need i (food and water here, set points 10); D: drive: the combined gap from the set points; n, m: positive numbers that set how gaps combine; n = m = 1 is the chapter's illustration; K_t: the change an outcome causes (3 units of food, or of water); r: reward: drive before minus drive after",
+      "application": "A machine that gives food a fixed score cannot represent a changing need through that score alone. Supplying a state description and letting the score depend on it is one way to do so.",
+      "default_parameters": "Current food level: 4 · Current water level: 10 · Drive form (1: n = m = 1; 2: n = 3, m = 2): 1",
+      "worked_example": {
+        "Drive before": "6",
+        "Reward of 3 units of food": "3",
+        "Reward of 3 units of water": "-3",
+        "Higher reward": "food"
+      },
+      "worked_interpretation": "At food 4 and water 10 the model body's drive is 6. Three units of food score 3 and three units of water -3, so food scores higher. This is a constructed model, not a fit to any animal.",
+      "reader_anchor": "C13-D03"
+    },
+    {
+      "id": "C13-D04",
+      "title": "How do two scores become a predicted preference?",
+      "question": "A model gives clip A a score of 2 and clip B a score of 1. What chance does it give that a person prefers A, and what happens if every score shifts?",
+      "equations": [
+        "P(a\\succ b)=\\frac{e^{r_a}}{e^{r_a}+e^{r_b}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "r_a, r_b",
+          "meaning": "the model's scores for options a and b"
+        },
+        {
+          "sym": "e",
+          "meaning": "the constant 2.718..."
+        },
+        {
+          "sym": "P(a > b)",
+          "meaning": "the predicted chance that a person prefers a"
+        }
+      ],
+      "source_anchor": "a-machine-can-learn-from-human-comparisons",
+      "source_section": "A machine can learn from human comparisons",
+      "provenance": "Book formula with the chapter's constructed scores (2 and 1, not scores of any hopper clip). The 10 percent random-response option follows the chapter's remark that the training method allowed a 10 percent chance of a random response; reading that as a fair coin, so P is 0.9 times the rule plus 0.05, is this companion's, not the chapter's formula.",
+      "kind": "formula",
+      "assumptions": "The model's scores summarize which option a person tends to choose. The rule is a model of answers, not an established account of how the brain makes them.",
+      "prediction": "Predict the chance A is preferred when the scores are 2 and 1, then predict it when both scores are 12 and 11.",
+      "reveal": {
+        "state": {
+          "score_a": 2,
+          "score_b": 1,
+          "random_response": 0
+        },
+        "text": "The chance is e^2/(e^2 + e^1), about 0.731, and the right panel shows the same chance whenever the gap is 1, whatever the zero. Turning on 10 percent random responses pulls it toward 0.5, to about 0.708."
+      },
+      "takeaway": "Only the gap between two scores sets the predicted preference, so scores have no fixed zero, and equal scores give exactly one half.",
+      "why_it_matters": "A reward learned from comparisons is determined only up to a shift. Knowing that tells a designer what the numbers can and cannot mean.",
+      "sides": {
+        "brain": "A person who is asked which of two clips is better produces an answer. The rule predicts the pattern of answers, not how the person's brain reaches them.",
+        "machine": "A reward model uses scores for clips and this rule to score its own fit to the comparisons it receives; the agent is then trained against the learned scores."
+      },
+      "explanation": "Raising both scores by the same number multiplies the top and bottom of the fraction by the same factor, so it cancels. A gap of 1 gives 73 percent for the higher option, a gap of 3 gives 95 percent, and no gap gives one half. Random responses mix in a coin flip and keep the chance away from 0 and 1.",
+      "check": "Scores of 3 and 0. What chance does the rule give that A is preferred, and what is it with 10 percent random responses?",
+      "answer": "e^3/(e^3 + 1) = 20.09/21.09, about 0.953. With random responses it is 0.9 x 0.953 + 0.05, about 0.907.",
+      "controls": [
+        {
+          "key": "score_a",
+          "label": "Score of A",
+          "values": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "score_b",
+          "label": "Score of B",
+          "values": [
+            0,
+            1,
+            2
+          ],
+          "default": 1
+        },
+        {
+          "key": "random_response",
+          "label": "Share of random responses",
+          "values": [
+            0,
+            0.1
+          ],
+          "default": 0
+        }
+      ],
+      "function": "comparison_picture",
+      "alt": "Curve of the chance A is preferred against the score gap, with and without random responses, and curves against A's score for three scores of B.",
+      "symbols": "r_a, r_b: the model's scores for options a and b; e: the constant 2.718...; P(a > b): the predicted chance that a person prefers a",
+      "application": "A reward learned from comparisons is determined only up to a shift. Knowing that tells a designer what the numbers can and cannot mean.",
+      "default_parameters": "Score of A: 2 · Score of B: 1 · Share of random responses: 0",
+      "worked_example": {
+        "Score gap (A minus B)": "1",
+        "Chance A is preferred": "0.731",
+        "Chance B is preferred": "0.269",
+        "Same with 5 added to both scores": "0.731"
+      },
+      "worked_interpretation": "Scores 2 and 1 give a gap of 1 and a predicted chance of 0.731 that A is preferred. Adding the same number to both scores leaves the chance at 0.731, because only the gap matters.",
+      "reader_anchor": "C13-D04"
+    },
+    {
+      "id": "C13-D05",
+      "title": "How much comparing does it take to recover a score gap?",
+      "question": "Learning runs the other way from the preference rule: given a person's comparisons, the system adjusts scores to account for them. How close does a score gap get as comparisons accumulate?",
+      "equations": [
+        "\\hat g=\\ln\\frac{f}{1-f},\\qquad \\text{typical error}\\approx\\frac{1}{\\sqrt{n\\,p(1-p)}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "g-hat",
+          "meaning": "the estimated score gap between two options"
+        },
+        {
+          "sym": "f",
+          "meaning": "the share of the n comparisons in which the first option was preferred"
+        },
+        {
+          "sym": "p",
+          "meaning": "the true chance the first option is preferred, from the rule in the previous demonstration"
+        },
+        {
+          "sym": "n",
+          "meaning": "the number of comparisons"
+        }
+      ],
+      "source_anchor": "a-machine-can-learn-from-human-comparisons",
+      "source_section": "A machine can learn from human comparisons",
+      "provenance": "A seeded simulation of this companion's, with a made-up true gap (0.5, 1 or 2) and the rule of the previous demonstration. The estimate is the maximum likelihood gap for one pair, and the error formula is the standard large-sample one; neither is stated in the chapter. It is a simulation, not a measurement, and not the hopper study, which reported that 900 queries in under an hour taught a backflip by training a reward model with a neural network on clips.",
+      "kind": "simulation",
+      "assumptions": "One pair of options, independent comparisons, a fixed true gap and no random responses or mislabeling. A learned score can fail on behavior unlike what the person evaluated, which this demonstration does not test.",
+      "prediction": "Predict whether 10 comparisons recover a gap of 1 as well as 100 do, and how much 900 improve on 100.",
+      "reveal": {
+        "state": {
+          "true_gap": 1,
+          "comparisons": 100
+        },
+        "text": "With 100 comparisons and a true gap of 1 the typical error is about 0.23. Nine times the comparisons cut it by a factor of 3, so 900 comparisons leave an error of about 0.075."
+      },
+      "takeaway": "A score is learned from comparisons by raising the likelihood of the answers received, and the error shrinks slowly, in proportion to one over the square root of the number of comparisons.",
+      "why_it_matters": "A person can judge examples without assigning every clip a number, and the machine can use those judgments. But how many are needed depends on how large the difference is, and the learned scores say nothing beyond the person's answers.",
+      "sides": {
+        "brain": "A person supplies the comparisons. The simulation has no person, only a coin with a chosen bias, so it says nothing about how people judge.",
+        "machine": "The estimate is a computation on the comparisons received. A system that matches a person's comparisons has learned a score for their answers, which does not show that it understands or experiences the goal."
+      },
+      "explanation": "The share of comparisons that favor A is the data, and the gap that best explains that share is the log of its odds. Few comparisons leave the share noisy, and if all go one way the best gap is infinite, so the estimate is undefined. More comparisons narrow the spread, and larger gaps are easier to see because the shares are further from one half.",
+      "check": "The true gap is 2, so A is preferred with chance 0.881. About how large is the typical error after 100 comparisons?",
+      "answer": "1/sqrt(100 x 0.881 x 0.119) = 1/sqrt(10.5), about 0.31.",
+      "controls": [
+        {
+          "key": "true_gap",
+          "label": "True score gap",
+          "values": [
+            0.5,
+            1,
+            2
+          ],
+          "default": 1,
+          "widget": "slider"
+        },
+        {
+          "key": "comparisons",
+          "label": "Comparisons",
+          "values": [
+            10,
+            30,
+            100,
+            300,
+            900
+          ],
+          "default": 100,
+          "widget": "slider"
+        }
+      ],
+      "function": "learn_picture",
+      "alt": "A simulated run of the estimated score gap against comparisons, and curves of typical error against the number of comparisons with simulated points.",
+      "symbols": "g-hat: the estimated score gap between two options; f: the share of the n comparisons in which the first option was preferred; p: the true chance the first option is preferred, from the rule in the previous demonstration; n: the number of comparisons",
+      "application": "A person can judge examples without assigning every clip a number, and the machine can use those judgments. But how many are needed depends on how large the difference is, and the learned scores say nothing beyond the person's answers.",
+      "default_parameters": "True score gap: 1 · Comparisons: 100",
+      "worked_example": {
+        "Share preferring A (this run)": "0.65",
+        "Estimated score gap": "0.619",
+        "True score gap": "1",
+        "Typical error (formula)": "0.226"
+      },
+      "worked_interpretation": "After 100 simulated comparisons the preferred answer won 65, giving an estimated gap of 0.619 against a true gap of 1. The formula puts the typical error at 0.226; this is a simulation with a made-up true gap, not a measurement.",
+      "reader_anchor": "C13-D05"
+    }
+  ]
+}

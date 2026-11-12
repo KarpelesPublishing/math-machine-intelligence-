@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: How the Abilities Work Together"
+  short_description: "Explore and apply Chapter 34 of the book."
+  default_prompt: "Use $mmi-ch34-abilities-work-together to help me understand or apply this idea: "

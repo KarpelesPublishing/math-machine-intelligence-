@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Ana is mother of Bea and Bea is mother of Cy. Flip the grid. Who has Bea as a mother, and what new facts were stored?",
+    "expected_behavior": "The flipped grid has a 1 in Bea's row under Ana and in Cy's row under Bea. It is the has mother grid, read from the stored facts with nothing new stored. Do not call it child of."
+  },
+  {
+    "prompt": "Ash is at 0, Birch at 1, the step east is 1. What is the score for Birch as head and Ash as tail, with the step and with its reverse?",
+    "expected_behavior": "|1 + 1 - 0| = 2 strides with the eastward step; |1 - 1 - 0| = 0 with the step negated."
+  },
+  {
+    "prompt": "A model scored 96.7 percent in one direction and 0.1 in the other. Is that a reason to expect the same of people?",
+    "expected_behavior": "No. The paper tested a fine-tuned model on invented facts and says it knows of no such ordering effects in humans; the word-pair study is not a test of facts."
+  }
+]

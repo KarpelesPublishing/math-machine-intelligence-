@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: What Counts as Intelligence?"
+  short_description: "Explore and apply Chapter 33 of the book."
+  default_prompt: "Use $mmi-ch33-what-counts to help me understand or apply this idea: "

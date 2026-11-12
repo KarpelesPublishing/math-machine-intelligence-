@@ -1,0 +1,624 @@
+{
+  "chapter": 14,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-14.md",
+  "source_sha256": "fdb5f241dd602f47bd44a751bc4742e68f24478fca55c0f0ea67bfc8db5e9c67",
+  "calculation_sha256": "99896aeab9fb8132bab0e7c99cb9e1d21517d24c5c9f50a63217c496d1c33c6a",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C14-D01",
+      "title": "How much should a surprise change a forecast?",
+      "question": "A monkey that has learned a light predicts juice gets juice, or does not. What is the prediction error, and how far does the forecast move?",
+      "equations": [
+        "\\delta_t=r_{t+1}+\\gamma V(S_{t+1})-V(S_t),\\qquad V_{\\mathrm{new}}(S_t)=V_{\\mathrm{old}}(S_t)+\\alpha\\delta_t"
+      ],
+      "symbols_list": [
+        {
+          "sym": "delta",
+          "meaning": "prediction error: reward plus discounted next forecast, minus the forecast held before"
+        },
+        {
+          "sym": "r",
+          "meaning": "the reward received, in drops of juice"
+        },
+        {
+          "sym": "V",
+          "meaning": "a forecast of the rewards to come from a situation"
+        },
+        {
+          "sym": "gamma",
+          "meaning": "the discount on later rewards; here nothing follows the juice, so it drops out"
+        },
+        {
+          "sym": "alpha",
+          "meaning": "learning rate, between zero and one"
+        }
+      ],
+      "source_anchor": "dopamine-cells-burst-at-surprise-juice-and-dipped-when-juice-failed",
+      "source_section": "Dopamine cells burst at surprise juice and dipped when juice failed",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-12-temporal-difference-chapter-14"
+      ],
+      "provenance": "Book formulas and the chapter's illustrative numbers: forecast 1 with juice gives 0, no juice gives minus 1, juice with no forecast gives plus 1, and the constructed forecast 0.4, outcome 1, rate 0.5 gives 0.7. The recordings behind the dopamine comparison are the 1997 review's Figure 1, which the book redraws as a schematic with no values.",
+      "kind": "formula",
+      "assumptions": "The task ends after the reward, so the next situation is worth zero. The error is a number in a model; the book says it has no real units and cannot be compared with spike counts. A reward is a number the task supplies, not pleasure.",
+      "prediction": "The light has taught a forecast of 1. Predict the error when juice arrives, when it fails, and when juice arrives with no light, then check each against the controls.",
+      "reveal": {
+        "state": {
+          "forecast": 0.4,
+          "reward": 1,
+          "alpha": 0.5
+        },
+        "text": "A forecast of 0.4 and an outcome of 1 give an error of 0.6, and the forecast moves halfway at rate 0.5 to 0.7. Set the forecast to 1 and the reward to 1 to see the error vanish, and the reward to 0 to see it turn negative."
+      },
+      "takeaway": "The error is the gap between what arrived and what was forecast; the forecast moves by a share of that gap and stops moving when the gap is zero.",
+      "why_it_matters": "A learner that corrects itself by the size and sign of its surprise needs no teacher to say what the right forecast was. When nothing is surprising, nothing changes.",
+      "sides": {
+        "brain": "The 1997 review set recordings of monkey dopamine cells beside this error: a burst at surprise juice, none at expected juice, a dip when expected juice failed. The match is in sign and timing only, and the book names a mismatch (early juice).",
+        "machine": "A learner computes the error explicitly and applies the update. A reward here is a number supplied by the task, not a claim that the machine feels pleasure."
+      },
+      "explanation": "The forecast before the reward is what the learner expected. The error compares it with what came, plus whatever the learner forecasts afterwards. A positive error says things went better than forecast, a negative one worse, and zero means the forecast was right. The update then moves the forecast a share alpha of the way, so one outcome does not become the whole truth.",
+      "check": "The forecast is 0.5, the reward is 1, and alpha is 0.5. What are the error and the new forecast?",
+      "answer": "The error is 1 - 0.5 = 0.5, and the new forecast is 0.5 + 0.5 x 0.5 = 0.75.",
+      "controls": [
+        {
+          "key": "forecast",
+          "label": "Forecast before the reward",
+          "values": [
+            0.0,
+            0.4,
+            1.0
+          ],
+          "default": 0.0
+        },
+        {
+          "key": "reward",
+          "label": "Reward received (drops)",
+          "values": [
+            0,
+            1
+          ],
+          "default": 1
+        },
+        {
+          "key": "alpha",
+          "label": "Learning rate (alpha)",
+          "values": [
+            0.25,
+            0.5,
+            1.0
+          ],
+          "default": 0.5
+        }
+      ],
+      "function": "td_picture",
+      "alt": "Bars for forecast, reward, error and updated forecast, and lines of prediction error against forecast for reward 0 and 1.",
+      "symbols": "delta: prediction error: reward plus discounted next forecast, minus the forecast held before; r: the reward received, in drops of juice; V: a forecast of the rewards to come from a situation; gamma: the discount on later rewards; here nothing follows the juice, so it drops out; alpha: learning rate, between zero and one",
+      "application": "A learner that corrects itself by the size and sign of its surprise needs no teacher to say what the right forecast was. When nothing is surprising, nothing changes.",
+      "default_parameters": "Forecast before the reward: 0.0 · Reward received (drops): 1 · Learning rate (alpha): 0.5",
+      "worked_example": {
+        "Prediction error": "1",
+        "Sign": "positive (burst-like)",
+        "Forecast after the update": "0.5",
+        "Forecast moves by": "0.5"
+      },
+      "worked_interpretation": "The learner forecast 0 and received 1, so the error is 1, which is positive (burst-like). With learning rate 0.5 the forecast moves by 0.5 to 0.5, not all the way to the outcome.",
+      "reader_anchor": "C14-D01"
+    },
+    {
+      "id": "C14-D02",
+      "title": "How does credit travel back from the juice to the light?",
+      "question": "If a reward follows the sixth of six cues, how many trials pass before the first cue gains value?",
+      "equations": [
+        "\\delta_k=r_{k+1}+V(S_{k+1})-V(S_k),\\qquad \\Delta V(S_i)=\\alpha\\sum_{k\\ge i}\\lambda^{\\,k-i}\\,\\delta_k"
+      ],
+      "symbols_list": [
+        {
+          "sym": "delta_k",
+          "meaning": "the error at cue k, from values held at the start of the trial"
+        },
+        {
+          "sym": "lambda",
+          "meaning": "how far a trace carries later errors back to earlier cues (0 is the plain method, 1 lasts through all six)"
+        },
+        {
+          "sym": "alpha",
+          "meaning": "learning rate"
+        },
+        {
+          "sym": "V",
+          "meaning": "the value of a cue"
+        }
+      ],
+      "source_anchor": "credit-ran-back-from-the-juice-to-the-light",
+      "source_section": "Credit ran back from the juice to the light",
+      "provenance": "The chapter's idealized chain: six cues, the reward after the sixth, no discount, learning rate 1, all values starting at 0. The companion adds the trace parameter lambda as one standard way to write a fading memory of recent cues; the chapter states only the two ends (no trace, and a trace through all six). Constructed example, not data.",
+      "kind": "constructed example",
+      "assumptions": "A single fixed chain, no discount, and every cue updated from values held at the start of the trial. In the brain, the corresponding shift of the burst from juice to light is a population average over cells recorded in different sessions; the cited reports do not follow one cell across days.",
+      "prediction": "With the plain method (trace 0) and learning rate 1, predict the trial on which cue 1 first gains value, and what a trace through all six changes.",
+      "reveal": {
+        "state": {
+          "alpha": 1.0,
+          "lam": 1.0
+        },
+        "text": "A trace that lasts through all six cues gives every cue its value on trial 1. Return the trace to 0 to see the plain method: only cue 6 gains on trial 1, and cue 1 waits until trial 6."
+      },
+      "takeaway": "Bootstrapping passes value back one cue per trial; a trace lets one reward credit the whole chain at once.",
+      "why_it_matters": "The earliest event that reliably predicts a reward is the one worth reacting to. A learner finds it by correcting each forecast with the next, without waiting to see the final reward in every case.",
+      "sides": {
+        "brain": "In monkeys learning a light-and-lever task, fewer cells burst at the juice and more at the light as training went on. That is a population average, and it does not show that one cell was followed through learning.",
+        "machine": "The update is a specification: each cue's value is corrected from the next cue's value. The trace is a design choice that speeds the spread of credit."
+      },
+      "explanation": "On the first trial only the last cue sees a reward, so only it gains value. On the next trial the fifth cue is followed by a cue that is now worth something, so it gains, and so on back to cue 1. A trace carries each error to the earlier cues in the same trial, so the whole chain learns together.",
+      "check": "With learning rate 1 and no trace, on which trial does cue 3 first gain value?",
+      "answer": "Cue 6 gains on trial 1, cue 5 on trial 2, and cue 3 on trial 4.",
+      "controls": [
+        {
+          "key": "lam",
+          "label": "Trace length (lambda)",
+          "values": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "default": 0.0,
+          "widget": "slider"
+        },
+        {
+          "key": "alpha",
+          "label": "Learning rate (alpha)",
+          "values": [
+            0.5,
+            1.0
+          ],
+          "default": 1.0
+        }
+      ],
+      "function": "credit_picture",
+      "alt": "A grid of cue values over eight trials for six cues, and lines of cue 1's value over trials for three trace lengths.",
+      "symbols": "delta_k: the error at cue k, from values held at the start of the trial; lambda: how far a trace carries later errors back to earlier cues (0 is the plain method, 1 lasts through all six); alpha: learning rate; V: the value of a cue",
+      "application": "The earliest event that reliably predicts a reward is the one worth reacting to. A learner finds it by correcting each forecast with the next, without waiting to see the final reward in every case.",
+      "default_parameters": "Trace length (lambda): 0.0 · Learning rate (alpha): 1.0",
+      "worked_example": {
+        "Cue 1 first gains value": "trial 6",
+        "Cue 6 after trial 1": "1",
+        "Cue 1 after trial 1": "0",
+        "Cue 1 after 8 trials": "1"
+      },
+      "worked_interpretation": "With learning rate 1 and trace 0, cue 1 first gains value on trial 6. Without a full trace, value creeps back about one cue per trial.",
+      "reader_anchor": "C14-D02"
+    },
+    {
+      "id": "C14-D03",
+      "title": "Why does a cue added to a predicted outcome teach so little?",
+      "question": "If a noise already predicts a shock, how much does a light added to it learn in eight pairings?",
+      "equations": [
+        "\\Delta V_X=c\\,\\Big(\\lambda_{\\mathrm{out}}-\\sum_{Y\\ \\mathrm{present}}V_Y\\Big)\\quad\\text{for each cue }X\\text{ present}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "V_X",
+          "meaning": "associative strength of cue X (noise or light)"
+        },
+        {
+          "sym": "lambda_out",
+          "meaning": "the strength the outcome can support; 1 here"
+        },
+        {
+          "sym": "c",
+          "meaning": "a learning-rate constant, a disclosed made-up value in this illustration"
+        },
+        {
+          "sym": "sum",
+          "meaning": "the combined strength of all cues present on the trial"
+        }
+      ],
+      "source_anchor": "blocking-rats-learned-little-from-a-cue-added-to-a-predicted-outcome",
+      "source_section": "Blocking: rats learned little from a cue added to a predicted outcome",
+      "provenance": "The rule is the Rescorla and Wagner update as the chapter states it (each cue present learns a share of the gap between the outcome and the combined strength of all cues present). The learning rates and trial counts follow the chapter's design (16 noise trials, then 8 pairings, against 8 pairings from the start); the rates are made up. Kamin's reported median suppression ratios, .05 for light and noise learned together and .45 for noise first, are context and are not fitted: a strength is not a suppression ratio.",
+      "kind": "model",
+      "assumptions": "Both cues have the same learning rate and the outcome is the same size on every trial. The rule shows what blocking would look like, which does not show that rats follow it. The link joins two models of learning, not a brain and a machine.",
+      "prediction": "Predict the light's strength after 8 pairings if the noise has already reached strength 1, then find how many noise-alone trials get close to that.",
+      "reveal": {
+        "state": {
+          "preliminary": 16,
+          "rate": 0.2
+        },
+        "text": "After 16 noise-alone trials at rate 0.2 the noise holds strength 0.972, the gap left is 0.028, and the light gains only about 0.014 in 8 pairings, against about 0.49 when light and noise are learned together. Kamin's rats showed the same direction (a ratio of .45 near no effect, against .05)."
+      },
+      "takeaway": "When the outcome is already predicted, the gap that drives learning is nearly zero, so a new cue is learned poorly.",
+      "why_it_matters": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. This also explains why redundant signals can be ignored.",
+      "sides": {
+        "brain": "In 2013 rats were given a laser pulse at reward time to switch on dopamine cells during the pairing of sound plus light; they then responded more to the light. This supports sufficiency in that task, not necessity, and the cells' firing was not measured.",
+        "machine": "The rule is the same error-driven update as in the previous cards, applied to several cues at once. It is a specification for a learner, and a model of behavior for animals."
+      },
+      "explanation": "Each cue present learns a share of the gap between the outcome and the combined strength of all cues present. After enough noise-alone trials the noise already accounts for the outcome, so the gap at the first pairing is small and the light gains almost nothing. With no earlier trials the gap is large, and the two cues share it.",
+      "check": "If the noise has reached strength 1 exactly, what does the light gain on the first pairing?",
+      "answer": "The gap is 1 minus 1, which is zero, so the light gains nothing, however many pairings follow.",
+      "controls": [
+        {
+          "key": "preliminary",
+          "label": "Noise-alone trials before the light",
+          "values": [
+            0,
+            2,
+            4,
+            8,
+            16
+          ],
+          "default": 8,
+          "widget": "slider"
+        },
+        {
+          "key": "rate",
+          "label": "Learning-rate constant (c)",
+          "values": [
+            0.1,
+            0.2,
+            0.4
+          ],
+          "default": 0.2
+        }
+      ],
+      "function": "blocking_picture",
+      "alt": "Strength of noise and light over trials for a chosen number of noise-alone trials, and light strength after 8 pairings against that number.",
+      "symbols": "V_X: associative strength of cue X (noise or light); lambda_out: the strength the outcome can support; 1 here; c: a learning-rate constant, a disclosed made-up value in this illustration; sum: the combined strength of all cues present on the trial",
+      "application": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. This also explains why redundant signals can be ignored.",
+      "default_parameters": "Noise-alone trials before the light: 8 · Learning-rate constant (c): 0.2",
+      "worked_example": {
+        "Light strength after 8 pairings": "0.0825",
+        "Same, light and noise learned together": "0.492",
+        "Gap left for learning at the first pairing": "0.168",
+        "Light as a share of the together value": "0.168"
+      },
+      "worked_interpretation": "After 8 noise-alone trials the noise holds strength 0.832, leaving a gap of 0.168 for the light to learn from. After 8 pairings the light has strength 0.0825, against 0.492 when light and noise were learned together.",
+      "reader_anchor": "C14-D03"
+    },
+    {
+      "id": "C14-D04",
+      "title": "How does a learner revise the value of an action?",
+      "question": "Moving left is valued at 2, earns 1, and the best next option is valued at 3. What is the new estimate?",
+      "equations": [
+        "Q_{\\mathrm{new}}(s,a)=Q_{\\mathrm{old}}(s,a)+\\alpha\\left[r+\\gamma\\max_{a'}Q_{\\mathrm{old}}(s',a')-Q_{\\mathrm{old}}(s,a)\\right]"
+      ],
+      "symbols_list": [
+        {
+          "sym": "Q",
+          "meaning": "estimated total future reward from taking an action in a situation"
+        },
+        {
+          "sym": "r",
+          "meaning": "the reward just received"
+        },
+        {
+          "sym": "gamma",
+          "meaning": "the discount on later rewards"
+        },
+        {
+          "sym": "max Q(s', a')",
+          "meaning": "the best estimated value available in the next situation, zero if the task ends"
+        },
+        {
+          "sym": "alpha",
+          "meaning": "learning rate, the share of the gap used for the correction"
+        }
+      ],
+      "source_anchor": "learning-which-action-to-take",
+      "source_section": "Learning which action to take",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-13-q-learning-fixed-point-chapter-14"
+      ],
+      "provenance": "Book formula with the chapter's constructed numbers (estimate 2, reward 1, best next value 3, discount 0.9, rate 0.5, giving a target of 3.7 and a new estimate of 2.85). Not game results.",
+      "kind": "formula",
+      "assumptions": "A table of action values for one situation and action. The target counts the best next action even when the learner explores and tries something else. A deep Q-network learns toward a related target by training a network, not by replacing a table entry.",
+      "prediction": "With a discount of 0.9 and a rate of 0.5, predict the new estimate, then predict what happens to it when the next situation ends the task.",
+      "reveal": {
+        "state": {
+          "alpha": 0.5,
+          "gamma": 0.9,
+          "ends_task": 1
+        },
+        "text": "If the next situation ends the task, the target is just the reward, 1, and the estimate falls from 2 to 1.5. In the continuing case the target is 3.7 and the estimate rises to 2.85."
+      },
+      "takeaway": "The estimate moves a share alpha of the way toward a target built from the reward and the best next value.",
+      "why_it_matters": "Action values let a learner choose between actions from experience, without a model of the world. The discount sets how much later rewards count.",
+      "sides": {
+        "machine": "This is a specification of the update. A reward is a number the task supplies. A related update, with a neural network estimating the values from game images, was the 2015 Atari learner."
+      },
+      "explanation": "The target is what the experience suggests the action is worth: the reward now plus the discounted value of the best next option. The estimate is nudged toward it by a share alpha. A discount of zero ignores the future, and a learning rate of one replaces the estimate with the target.",
+      "check": "With estimate 2, reward 1, best next value 3, discount 0.5 and rate 0.5, what is the new estimate?",
+      "answer": "The target is 1 + 0.5 x 3 = 2.5, and the new estimate is 2 + 0.5 x (2.5 - 2) = 2.25.",
+      "controls": [
+        {
+          "key": "alpha",
+          "label": "Learning rate (alpha)",
+          "values": [
+            0.1,
+            0.25,
+            0.5,
+            1.0
+          ],
+          "default": 0.5
+        },
+        {
+          "key": "gamma",
+          "label": "Discount (gamma)",
+          "values": [
+            0.0,
+            0.5,
+            0.9
+          ],
+          "default": 0.9
+        },
+        {
+          "key": "ends_task",
+          "label": "The next situation ends the task (1 = yes)",
+          "values": [
+            0,
+            1
+          ],
+          "default": 0
+        }
+      ],
+      "function": "q_picture",
+      "alt": "Bars for the old estimate, target and new estimate, and lines of the new estimate against learning rate for three discounts.",
+      "symbols": "Q: estimated total future reward from taking an action in a situation; r: the reward just received; gamma: the discount on later rewards; max Q(s', a'): the best estimated value available in the next situation, zero if the task ends; alpha: learning rate, the share of the gap used for the correction",
+      "application": "Action values let a learner choose between actions from experience, without a model of the world. The discount sets how much later rewards count.",
+      "default_parameters": "Learning rate (alpha): 0.5 · Discount (gamma): 0.9 · The next situation ends the task (1 = yes): 0",
+      "worked_example": {
+        "Target": "3.7",
+        "Gap, target minus estimate": "1.7",
+        "New estimate": "2.85",
+        "Share of the gap closed": "0.5"
+      },
+      "worked_interpretation": "The target is 3.7 (best next value 3 is counted), so the estimate of 2 moves a share 0.5 of the gap 1.7 to 2.85. A learning rate of 1 would jump all the way to the target.",
+      "reader_anchor": "C14-D04"
+    },
+    {
+      "id": "C14-D05",
+      "title": "Why does trusting the best-looking estimate overrate an action?",
+      "question": "If every action is equally good but the estimates are noisy, how much does the best-looking one overshoot?",
+      "equations": [
+        "\\mathbb{E}\\left[\\max_a \\hat Q(a)\\right]=\\sigma\\,\\mathbb{E}\\left[\\max_{i\\le n}Z_i\\right]\\ \\ge\\ 0,\\qquad Z_i\\sim\\mathcal N(0,1)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "Q-hat(a)",
+          "meaning": "a noisy but unbiased estimate of the action's value, whose true value is 0 for every action here"
+        },
+        {
+          "sym": "sigma",
+          "meaning": "the standard deviation of the estimate's noise"
+        },
+        {
+          "sym": "n",
+          "meaning": "the number of equally good actions"
+        },
+        {
+          "sym": "Z_i",
+          "meaning": "independent standard normal draws"
+        }
+      ],
+      "source_anchor": "atari-75-percent-of-a-human-testers-gain-on-29-of-49-games-00-percent-on-montezumas-revenge",
+      "source_section": "Atari: 75 percent of a human tester's gain on 29 of 49 games, 0.0 percent on Montezuma's Revenge",
+      "provenance": "The chapter says that trusting the best-looking estimate can overrate an action, and that van Hasselt and colleagues found the 2015 network sometimes overestimates action values in some games. This card is the companion's own constructed illustration of the statistical reason, with made-up noise and equally good actions. It is not a measurement of any network, and the size of the real overestimate is not shown here.",
+      "kind": "simulation",
+      "assumptions": "Independent, unbiased, normally distributed noise of the same size for every action, and equal true values. Real estimates are neither independent nor equally noisy.",
+      "prediction": "Estimates are unbiased, so predict whether the best-looking of two equal actions is overestimated, and by roughly what fraction of the noise sd.",
+      "reveal": {
+        "state": {
+          "n_actions": 2,
+          "noise_sd": 1.0
+        },
+        "text": "With two equal actions the best-looking estimate overshoots by sd / sqrt(pi), about 0.56 of the noise sd, even though each estimate alone is unbiased. Move to 16 actions and it overshoots by about 1.77 sd."
+      },
+      "takeaway": "The maximum of unbiased noisy estimates is biased upward, more so with more options and more noise.",
+      "why_it_matters": "A learner that bases its target on the best-looking next estimate inherits this bias. The score it is given is not the cause; the maximum is.",
+      "sides": {
+        "machine": "Q-learning's target takes a maximum over estimated values, which is why the chapter notes the 2015 network sometimes overestimates action values. This picture is the arithmetic of a maximum, not a test of that network."
+      },
+      "explanation": "Each estimate errs up or down with equal chance. Picking the largest picks, among other things, the one that erred upward the most. The more options there are, the more likely one of them has a large upward error, so the best-looking estimate rises even though no action is truly better.",
+      "check": "For 2 actions with noise sd 2, what is the average overestimate of the best-looking one?",
+      "answer": "2 / sqrt(pi) = 1.13.",
+      "controls": [
+        {
+          "key": "n_actions",
+          "label": "Number of equally good actions",
+          "values": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "default": 8,
+          "widget": "slider"
+        },
+        {
+          "key": "noise_sd",
+          "label": "Noise sd of each estimate",
+          "values": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "default": 1.0
+        }
+      ],
+      "function": "overestimate_picture",
+      "alt": "Dots for one round of noisy estimates of equal actions with the best ringed, and curves of average overestimate against the number of actions.",
+      "symbols": "Q-hat(a): a noisy but unbiased estimate of the action's value, whose true value is 0 for every action here; sigma: the standard deviation of the estimate's noise; n: the number of equally good actions; Z_i: independent standard normal draws",
+      "application": "A learner that bases its target on the best-looking next estimate inherits this bias. The score it is given is not the cause; the maximum is.",
+      "default_parameters": "Number of equally good actions: 8 · Noise sd of each estimate: 1.0",
+      "worked_example": {
+        "Average best-looking estimate": "1.42",
+        "True value of the action it picks": "0",
+        "Overestimate in units of the noise sd": "1.42",
+        "This round's best-looking estimate": "1.25"
+      },
+      "worked_interpretation": "With 8 equally good actions and estimate noise sd 1, the best-looking one is overestimated by 1.42 on average, though the estimates themselves are unbiased. The upward bias comes from picking the maximum of noisy numbers, and it grows with the number of options.",
+      "reader_anchor": "C14-D05"
+    },
+    {
+      "id": "C14-D06",
+      "title": "How good is a game score, counted over random play?",
+      "question": "On Frostbite the 2015 network scored 328.3, random play 65.2 and a human tester 4,335. What share of the human gain is that?",
+      "equations": [
+        "\\text{share}=\\frac{\\text{score}-\\text{random}}{\\text{human}-\\text{random}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "score",
+          "meaning": "the learner's game score"
+        },
+        {
+          "sym": "random",
+          "meaning": "the score of random play, 65.2 on Frostbite"
+        },
+        {
+          "sym": "human",
+          "meaning": "the professional tester's score, 4,335 on Frostbite"
+        }
+      ],
+      "source_anchor": "atari-75-percent-of-a-human-testers-gain-on-29-of-49-games-00-percent-on-montezumas-revenge",
+      "source_section": "Atari: 75 percent of a human tester's gain on 29 of 49 games, 0.0 percent on Montezuma's Revenge",
+      "provenance": "Reported result from Mnih and colleagues (2015), as quoted in the chapter: Frostbite scores of 65.2, 328.3 and 4,335, and that the networks reached at least 75 percent of the tester's gain on 29 of 49 games. The companion's arithmetic gives the gains and shares. Scores other than 328.3 on the slider are hypothetical, to show what each share would take.",
+      "kind": "reported result",
+      "assumptions": "Gains are counted over random play so that only what was learned beyond guessing counts. A different network was trained on each game, so this is 49 trained networks, not one network that learned 49 games. Rewards were clipped to plus 1, minus 1 or zero, which hid differences in size. The study did not show that the score stands for what a person wants.",
+      "prediction": "Predict, before moving the slider, whether 328.3 is above or below a quarter of the human gain on Frostbite, then find the score needed for 75 percent.",
+      "reveal": {
+        "state": {
+          "score": 3267.55
+        },
+        "text": "A score of 3267.55 is exactly 75 percent of the human gain on Frostbite: 65.2 + 0.75 x 4269.8. The network's 328.3 is far below that, at 6.2 percent."
+      },
+      "takeaway": "Counted over random play, the network's Frostbite gain is 6.2 percent of the human gain, though it reached 75 percent on 29 of 49 games.",
+      "why_it_matters": "An average over games hides weak ones. Subtracting random play keeps a lucky guesser from looking skilled.",
+      "sides": {
+        "machine": "Each network used the same design and settings but trained from scratch on one game. The score is a stand-in for the goal, not the goal."
+      },
+      "explanation": "The gain over random play is the part of the score that was learned. Dividing the network's gain by the human tester's gain gives the share. Frostbite is one of the weak games; Montezuma's Revenge was 0.0 percent.",
+      "check": "A hypothetical Frostbite score of 2,200: what share of the human gain is it?",
+      "answer": "The gain is 2200 - 65.2 = 2134.8, and 2134.8 / 4269.8 is about 0.5, or 50 percent.",
+      "controls": [
+        {
+          "key": "score",
+          "label": "Frostbite score (328.3 is the network's)",
+          "values": [
+            65.2,
+            328.3,
+            1000.0,
+            2000.0,
+            3267.55,
+            4335.0
+          ],
+          "default": 328.3,
+          "widget": "slider"
+        }
+      ],
+      "function": "frostbite_picture",
+      "alt": "Bars of Frostbite scores for random play, a chosen score and a human tester, and a line of share of the human gain against score.",
+      "symbols": "score: the learner's game score; random: the score of random play, 65.2 on Frostbite; human: the professional tester's score, 4,335 on Frostbite",
+      "application": "An average over games hides weak ones. Subtracting random play keeps a lucky guesser from looking skilled.",
+      "default_parameters": "Frostbite score (328.3 is the network's): 328.3",
+      "worked_example": {
+        "Gain over random play": "263.1",
+        "Human gain over random play": "4269.8",
+        "Share of the human gain (percent)": "6.16",
+        "Reaches 75 percent": "no"
+      },
+      "worked_interpretation": "The 2015 network's Frostbite score of 328.3 is a gain of 263.1 over random play, 6.16 percent of the human tester's 4269.8. Reaching 75 percent on this game takes a score of 3268.",
+      "reader_anchor": "C14-D06"
+    },
+    {
+      "id": "C14-D07",
+      "title": "Why would many forecasting channels have different reversal points?",
+      "question": "If some channels weigh good news more and others bad news, where does each settle, and which reward sizes flip its sign?",
+      "equations": [
+        "v\\leftarrow v+\\eta\\,\\tau\\,(r-v)\\ \\ (r>v),\\qquad v\\leftarrow v+\\eta\\,(1-\\tau)\\,(r-v)\\ \\ (r<v)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "v",
+          "meaning": "the channel's forecast, which is also its reversal point"
+        },
+        {
+          "sym": "tau",
+          "meaning": "the channel's optimism: the weight on good news, between 0 and 1"
+        },
+        {
+          "sym": "eta",
+          "meaning": "a small step size (0.02 here, made up)"
+        },
+        {
+          "sym": "r",
+          "meaning": "the reward delivered"
+        }
+      ],
+      "source_anchor": "mouse-dopamine-cells-flipped-at-different-reward-sizes-as-a-machine-idea-had-predicted",
+      "source_section": "Mouse dopamine cells flipped at different reward sizes, as a machine idea had predicted",
+      "provenance": "The structure follows the chapter's description of the distributional idea: channels that give more weight to good news drift high and those that give more weight to bad news drift low. The seven reward sizes (1 to 7) and the three chance patterns are constructed, not the mice's water amounts. The reported result is the 2020 reanalysis the chapter describes: 40 dopamine cells recorded earlier by another team from a handful of mice, which the authors say had substantially different reversal points.",
+      "kind": "model",
+      "assumptions": "Each channel follows its own error with asymmetric weights, and rewards are drawn independently from a fixed pattern. A close agreement with data would show consistency with this account, not that dopamine cells run this rule. The recordings were gathered for another purpose, the mice were few, and there are no human data.",
+      "prediction": "With seven equally likely reward sizes, predict which pair of sizes a channel with optimism 0.1 flips between, and one with optimism 0.9.",
+      "reveal": {
+        "state": {
+          "tau": 0.9,
+          "distribution": "equal chances"
+        },
+        "text": "With equal chances, an optimistic channel (0.9) settles at about 5.7, between sizes 5 and 6, while a pessimistic one (0.1) settles at about 2.3, between sizes 2 and 3. A channel at 0.5 settles at the average reward, 4."
+      },
+      "takeaway": "Channels that weigh good and bad news differently settle at different forecasts, so each flips sign at a different reward size.",
+      "why_it_matters": "Together the channels trace out the spread of possible rewards, not only the average. That is the prediction machine learning made first, which the 2020 study then tested.",
+      "sides": {
+        "brain": "In the 2020 reanalysis, 40 cells from a handful of mice had substantially different reversal points, and the pattern held when the trials were split in half at random. The evidence is observational and model-dependent, and the mathematics of a brain is a model.",
+        "machine": "A distributional learner keeps many forecasts with different asymmetries. Together they describe a distribution of rewards instead of one average."
+      },
+      "explanation": "A channel stops changing when the pull from rewards above its forecast balances the pull from rewards below it, each weighted by its optimism. A balanced channel (0.5) settles at the average reward. An optimistic channel needs a larger reward before the news counts as good, so its reversal point is higher.",
+      "check": "For equal chances of sizes 1 to 7, what is the reversal point of a channel with optimism 0.5?",
+      "answer": "The average reward, (1 + 2 + 3 + 4 + 5 + 6 + 7) / 7 = 4.",
+      "controls": [
+        {
+          "key": "tau",
+          "label": "Optimism of the channel (tau)",
+          "values": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            0.9
+          ],
+          "default": 0.5,
+          "widget": "slider"
+        },
+        {
+          "key": "distribution",
+          "label": "Chances of the seven reward sizes (constructed)",
+          "values": [
+            "equal chances",
+            "small rewards likelier",
+            "large rewards likelier"
+          ],
+          "default": "equal chances"
+        }
+      ],
+      "function": "channel_picture",
+      "alt": "A channel's forecast settling at its exact reversal point, and reversal point against optimism for three constructed reward patterns.",
+      "symbols": "v: the channel's forecast, which is also its reversal point; tau: the channel's optimism: the weight on good news, between 0 and 1; eta: a small step size (0.02 here, made up); r: the reward delivered",
+      "application": "Together the channels trace out the spread of possible rewards, not only the average. That is the prediction machine learning made first, which the 2020 study then tested.",
+      "default_parameters": "Optimism of the channel (tau): 0.5 · Chances of the seven reward sizes (constructed): equal chances",
+      "worked_example": {
+        "Reversal point (exact)": "4",
+        "Falls between reward sizes": "4 and 5",
+        "Average reward": "4",
+        "Last 500 trials of the run": "3.94"
+      },
+      "worked_interpretation": "A channel that weighs good news 0.5 and bad news 0.5 settles where rewards above its forecast and below it balance, at 4. Rewards larger than 4 give it a positive error and smaller ones a negative error, so its reversal point sits between sizes 4 and 5.",
+      "reader_anchor": "C14-D07"
+    }
+  ]
+}

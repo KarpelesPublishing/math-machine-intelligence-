@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Building a Perception"
+  short_description: "Explore and apply Chapter 2 of the book."
+  default_prompt: "Use $mmi-ch02-building-perception to help me understand or apply this idea: "

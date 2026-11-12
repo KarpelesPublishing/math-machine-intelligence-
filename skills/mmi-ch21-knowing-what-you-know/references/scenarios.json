@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A rater gives every right answer 90 percent and every wrong one 80 percent; 6 of 10 are right. Evaluate it.",
+    "expected_behavior": "Sorting score 1 (perfect), but average stated confidence 86 percent against a 60 percent hit rate, so badly calibrated; Brier score 0.262, worse than the 0.24 of always saying 60 percent, which sorts nothing."
+  },
+  {
+    "prompt": "A forecaster believes rain has chance 0.7. Should she report 0.9 to sound decisive?",
+    "expected_behavior": "Under the Brier score the honest 0.7 costs 0.21 a day and 0.9 costs 0.25; the extra cost is the squared distance between report and belief."
+  },
+  {
+    "prompt": "A model gets 70 of 100 right, declines its 40 hardest (16 of which it would have got right) and reports 90 percent accuracy. Fair?",
+    "expected_behavior": "It is 54 of 60, 90 percent, but only on 60 percent of the questions; report the share answered and the 16 right answers given up."
+  }
+]

@@ -1,0 +1,259 @@
+# Chapter 33: What Counts as Intelligence?
+
+Take a benchmark score apart, and see what one number carries and what has to travel with it.
+
+Ask which tasks, with what weights, on which set, under which harness and effort, on which date. Ask for the profile before the total. Check whether a part of the input alone predicts the answer, whether scores that rise together could come from overlapping causes, and whether the comparison with people was matched. Say that a total is not the thing it names.
+
+Practical question: A leaderboard shows one model at 99.95 percent and 62.7 percent. What must I know before saying which is its score?
+
+## C33-D01: What does a level score reward?
+
+If a human baseline is 20 moves on a level, how does the agent's move count set its level score?
+
+The ratio of human moves to agent moves is squared, so taking twice the moves costs three quarters of the score and taking three times costs eight ninths. The cap at 1.15 means that finishing in fewer moves than the baseline earns a little extra but no more. A level not finished scores zero however few moves were used.
+
+$$
+s_l=\min\!\left[\left(\frac{h_l}{a_l}\right)^{2},\,1.15\right]
+$$
+
+**Symbols:** s_l: the score for level l, as a fraction; zero if the agent does not finish the level; h_l: the human baseline move count for the level (20 here); it must be positive; a_l: the agent's move count; it must be positive; 1.15: the cap: no level scores above 115 percent
+
+**Predict:** Predict the level score when the agent takes twice the human baseline, and when it takes fewer moves than the baseline.
+
+**Worked example:**
+- Agent moves: 40
+- Moves divided by human baseline: 2
+- Squared ratio (h/a)^2: 0.25
+- Level score (percent): 25
+
+With 40 moves against a human baseline of 20, the squared ratio is 0.25 and the level scores 25 percent.
+
+**Calculation:** s = min((h/a)^2, 1.15) = min((20/40)^2, 1.15) = min(0.25, 1.15) = 0.25.
+
+**Takeaway:** The squared ratio punishes extra moves quickly, and the cap stops fewer moves from buying an unlimited bonus.
+
+**What happens:** At Agent's moves on the level = 40, Did the agent finish the level? = finished: Twice the baseline gives (1/2)^2, a quarter, so 25 percent. Try 15 moves: the squared ratio is 1.78, but the cap holds it at 115 percent, and anything under about 18.7 moves is capped the same.
+
+**Why it matters:** A benchmark score is a rule applied to move counts. Reading the rule shows what a number such as 99.95 percent rewards: completing levels and doing it efficiently.
+
+**In brains and behavior:** The baseline is the upper-median move count of people who finished the level. About 500 members of the public were tested, and an environment was kept only if at least two of them solved every level on first exposure, which is a selection rule, not a finding that any person solves any environment.
+
+**In machines:** The agent's move count comes from one run of the harness and model. The score compares counts of actions and says nothing about how the agent decided them.
+
+**Assumptions and limits:** The score depends on move counts alone, the human baseline is the upper median of the people who finished that level, and a level the agent does not finish scores zero. The benchmark total also depends on weights and a completion term, shown in the next demonstration.
+
+**Check:** The baseline is 20 moves and an agent takes 25. What is the level score?
+
+**Answer:** (20/25)^2 = 0.64, so 64 percent.
+
+**Source:** 99.95 percent combines completion and move efficiency; anchor `9995-percent-combines-completion-and-move-efficiency`. Book formula, the per-level score the chapter gives for ARC-AGI-3. The chapter notes that the technical report prints the cap in a different place from its prose and an inspected software version; this follows the chapter's formula. The 20-move baseline is a constructed number: the score depends only on the ratio.
+
+## C33-D02: Why is an environment score the smaller of two averages?
+
+In a five-level environment weighted by level number, how do finishing fewer levels and using fewer moves combine?
+
+Each finished level scores by its move ratio, capped; each unfinished level scores zero. The two averages weight levels by their number, so later levels matter more. Completion is the share of that weight finished. Efficiency can exceed completion only through the bonus above 100 percent, and taking the smaller removes that bonus.
+
+$$
+\text{score}=\min\!\Big(\sum_l w_l\,s_l,\ \sum_l w_l\,c_l\Big),\qquad w_l=\frac{l}{\sum_k k}
+$$
+
+**Symbols:** w_l: the weight of level l: its level number divided by the sum of level numbers (15 for five levels); s_l: the level score from the previous demonstration, zero if not finished; c_l: 1 if the agent finished level l, otherwise 0
+
+**Predict:** An agent finishes only levels 1 and 2 of 5, using fewer moves than the human baseline on both. Predict whether its efficiency bonus raises its environment score above the completed share.
+
+**Worked example:**
+- Weighted efficiency average (percent): 40
+- Weighted completion (percent): 40
+- Environment score (percent): 40
+- Which is smaller: neither (equal)
+
+Finishing 3 of 5 levels at 1 of the human move count, each finished level scores 1. Efficiency averages 40 percent and completion 40 percent, so the environment scores 40.
+
+**Calculation:** Weights are the level numbers over 15. Efficiency = sum of weight x level score = 0.4. Completion = sum of weight x finished = 0.4. Score = min(0.4, 0.4) = 0.4.
+
+**Takeaway:** The smaller of the two averages means finished levels count at full weight, and the cap prevents a bonus on the early levels from standing in for the later ones.
+
+**What happens:** At Levels finished (from level 1 up) = 2, Agent moves divided by human moves = 0.8: At 0.8 times the human moves each finished level scores 1.15, so efficiency averages 23 percent. Completion is 3/15, 20 percent, and the environment score takes the smaller, 20. Efficiency cannot buy credit for levels never finished.
+
+**Why it matters:** A headline total hides how completion and efficiency were combined. Knowing the rule shows why 99.95 percent needs nearly every level finished, and finished efficiently.
+
+**In brains and behavior:** Later levels count more because early levels should contribute less. That choice is the designers', not a finding about human skill.
+
+**In machines:** The score is computed from the agent's recorded runs. It is a specification of the scoring rule applied to action counts, not a model of how the agent works.
+
+**Assumptions and limits:** Five levels, the agent finishes levels 1 up to k, and every finished level uses the same move ratio. The benchmark total then averages such environment scores, which is not shown. The cap placement follows the chapter's formula.
+
+**Check:** An agent finishes levels 1 to 3 of 5 at exactly the human move count. What is its environment score?
+
+**Answer:** Each finished level scores 1, so efficiency and completion are both (1 + 2 + 3)/15 = 0.4, and the score is 40 percent.
+
+**Source:** 99.95 percent combines completion and move efficiency; anchor `9995-percent-combines-completion-and-move-efficiency`. The environment score and level weights are the chapter's rule: the smaller of the weighted efficiency average and the weighted fraction of levels completed, with the level number as the weight. The chapter does not say how many levels an environment has; the five-level environment and the common move ratio on every finished level are constructed here.
+
+## C33-D03: Can one model have two scores on the same set?
+
+GPT-6 Astra scored 62.7 and 99.95 percent on the same set. How do the harness and the effort setting each enter?
+
+The same model was run under two wrappers at six effort settings. The Standard harness score depends strongly on effort, and is not even steady across settings, since none beats low. The Adapter scores sit between 96.7 and 99.95 throughout. Comparing the two at each setting, as the right panel does, removes the effort mismatch of the two best entries.
+
+$$
+\text{gap}(e)=S_{\text{Adapter}}(e)-S_{\text{Standard}}(e)
+$$
+
+**Symbols:** e: the effort setting: none, low, medium, high, xhigh or max; S_Standard(e), S_Adapter(e): the best entry's score under each harness at effort e, in percent; gap(e): the difference in points at the same effort
+
+**Predict:** The chapter's two best entries are at different effort levels (max for Standard, high for Adapter). Predict whether the Provider Adapter would still lead at every effort setting.
+
+**Worked example:**
+- Standard harness (percent): 54.8
+- Provider Adapter harness (percent): 99.95
+- Gap at this effort (points): 45.15
+- Adapter higher at all six settings: yes
+
+At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, a gap of 45.15 points. The Adapter is higher at all six settings, and each entry is a single run on one date, so a score needs its harness, set and effort.
+
+**Calculation:** Gap = 99.95 - 54.8 = 45.15 points. The best entries differ in effort: Standard 62.7 at max, Adapter 99.95 at high, a gap of 37.25 that mixes the harness effect with the effort setting.
+
+**Takeaway:** The Adapter leads at every effort setting, so the 99.95 versus 62.7 headline is not only an effort effect, but a number still has to travel with its harness, set and date.
+
+**What happens:** At Effort setting = max: At max effort the Standard harness scored 62.7 and the Provider Adapter 98.6, a gap of 35.9 points. The Adapter is higher at all six settings, and the Standard scores range from 17.5 to 62.7 while the Adapter never fell below 96.7.
+
+**Why it matters:** A single score can describe the model together with its software. The foundation treats the two harnesses as separate questions, so quoting one without the other can mislead.
+
+**In brains and behavior:** The human baseline behind both scores came from about 500 members of the public, not chosen for puzzle-solving skill. A score near 100 indicates high completion and action efficiency under this scoring rule.
+
+**In machines:** The harness decides what the model carries from step to step. In the Standard harness it carries notes it chose to write; the Provider Adapter uses the provider's own memory features. The effort level is a dial the tester sets.
+
+**Assumptions and limits:** The numbers are the chapter's as of 2 November 2026. Each is one run, so no spread is available. The gap at the same effort isolates the harness more than the headline pair does, but it does not show why the harness matters.
+
+**Check:** At which effort setting is the gap between the harnesses largest, and how large is it?
+
+**Answer:** At low effort: 98.0 minus 17.5 is 80.5 points. The smallest gap is at max effort, 35.9 points.
+
+**Source:** 99.95 percent combines completion and move efficiency; anchor `9995-percent-combines-completion-and-move-efficiency`. The twelve scores are those in the chapter's source note, from the foundation's leaderboard data file of 2 November 2026: each entry is the best of its harness at that effort, on the semi-private set, a single run. The web page shows the 99.95 entry as 99.9 (data value 0.99946). The companion did not check them against the live leaderboard; standings move.
+
+## C33-D04: Can the order of two children flip with no change in their scores?
+
+Two children, P and Q, have made-up scores on two groups of tasks. How does the weight on each group decide who leads?
+
+The weighted average is a straight line in the weight. P's line starts at 35 and ends at 85, Q's starts at 75 and ends at 45, so the lines cross exactly where the weight is one half. Left of the crossing Q leads, and right of it P leads. The scores themselves never move.
+
+$$
+S=\sum_{t=1}^{N}w_t r_t,\qquad \sum_{t=1}^{N}w_t=1
+$$
+
+**Symbols:** r_t: the score on task group t; w_t: its weight, nonnegative; N: the number of groups (two here); S: the weighted average
+
+**Predict:** With equal weights both children average 60. Predict who leads if the first group counts four times as much, and the weight at which the order flips.
+
+**Worked example:**
+- P weighted average: 60
+- Q weighted average: 60
+- Ahead: neither (tie)
+- Weight on the second group: 0.5
+
+With weight 0.5 on the first group and 0.5 on the second, P averages 60 and Q 60. The separate scores never change; the weights decide the order, because they record which question was asked.
+
+**Calculation:** P = 0.5 x 85 + 0.5 x 35 = 60. Q = 0.5 x 45 + 0.5 x 75 = 60. The difference is 80 x w - 40 = 0, which is zero at w = 0.5.
+
+**Takeaway:** Neither average is wrong. The weights record which question was asked, and changing them can reverse a ranking.
+
+**What happens:** At Weight on the first group = 0.8: With 0.8 on the first group P averages 75 and Q 51, as in the chapter. At 0.5 they tie at 60, and below 0.5 Q leads: at 0.2 Q has 69 and P 45.
+
+**Why it matters:** A leaderboard is a ranked table of weighted averages. When two systems have different profiles, their order depends on weights someone chose, so the profile should travel with the total.
+
+**In brains and behavior:** A person's test total is a weighted sum of results on separate tasks. Two people can have the same total and different profiles; the numbers here are made up.
+
+**In machines:** A benchmark such as ARC-AGI-3 states its weights openly: level 3 counts three times level 1. Changing the weights could change the order of systems.
+
+**Assumptions and limits:** Two groups on a common scale, nonnegative weights that sum to one. The scores are made up and say nothing about any child.
+
+**Check:** With weight 0.6 on the first group, what do P and Q average, and who leads?
+
+**Answer:** P = 0.6 x 85 + 0.4 x 35 = 65 and Q = 0.6 x 45 + 0.4 x 75 = 57. P leads by 8.
+
+**Source:** A total is a weighted average; anchor `a-total-is-a-weighted-average`. The chapter's illustration with made-up scores: P scores 85 and 35, Q scores 45 and 75. The averages 60 and 60, 75 and 51, 45 and 69 are the chapter's.
+
+## C33-D05: Can a one-factor table arise with no shared die?
+
+Tests that are sums of overlapping dice correlate. Can the correlations look like one common factor even when no die is common to every test?
+
+Each die adds to every test that uses it, so two tests correlate in proportion to the dice they share. When tests use different shares of a large pool, the pattern of correlations has the same shape as a one-factor table, where the correlation is a product of two loadings. The fit improves as the pool grows and the random wobble shrinks.
+
+$$
+X_i=\lambda_i\,g+\epsilon_i\ \Rightarrow\ r_{ij}=\lambda_i\lambda_j,\qquad r_{ij}=\frac{n_{ij}}{\sqrt{n_i n_j}}\ \text{for sums of dice}
+$$
+
+**Symbols:** X_i: the score on test i; lambda_i: the loading of test i on the common factor g; n_i: the number of dice in test i; n_ij: the number of dice that tests i and j share; r_ij: the correlation between tests i and j
+
+**Predict:** Predict whether ten tests built with no die shared by all of them can have a correlation table that a single common factor fits closely, and what happens as the pool of dice grows.
+
+**Worked example:**
+- Dice entering all ten tests: 0
+- Most tests any one die enters: 8
+- Mean correlation between tests: 0.296
+- Largest gap from a one-factor table: 0.108
+
+With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlation is 0.296, and the best one-factor table misses by at most 0.108. A one-factor table summarizes these correlations although no die is common to all tests.
+
+**Calculation:** Test i uses each die with chance 0.15 to 0.45 (ten values). Correlation = shared dice / sqrt(dice in one x dice in the other). A one-factor table has correlation = loading i x loading j; the best fit leaves a largest gap of 0.108 (seeded draw).
+
+**Takeaway:** A one-factor fit is a summary of the correlations, not a finding that a common cause lies behind them.
+
+**What happens:** At Random dice in the pool = 5000, Dice shared by all ten tests = 0: With 5000 random dice and none shared by all tests, no die enters all ten, the correlations are all positive, and a one-factor table fits them within about 0.03. The shared-dice case is nearly as close, so the fit does not tell the two apart.
+
+**Why it matters:** A single factor from scores that rise together can come from a shared cause, from overlapping causes, or from skills that help each other. The data alone, as Thomson showed, did not separate the first two.
+
+**In brains and behavior:** Spearman reported positive correlations among all nine pairs of senses and gradings in 24 schoolchildren, the smallest 0.25 and the average 0.38. His 1904 argument is a proposal of a common factor, and he called it rough.
+
+**In machines:** Language models that share training material and fail together could show a common factor from shared exposure. Kim and colleagues found two wrong models picked the same wrong option about 60 percent of the time, against one third for independent choices, and the cause is not established.
+
+**Assumptions and limits:** Independent fair dice that add in each test, which the chapter says psychological factors need not do. The simulation shows only that a table of positive correlations can be summarized by one factor without a common cause. It does not say anything about intelligence, and the chapter lists a common factor, overlapping causes and mutual benefit as three accounts that fit the same data.
+
+**Check:** In the left panel, does a correlation between two tests tell you which dice they share, or only how many?
+
+**Answer:** Only how many: the correlation is the number of shared dice divided by the square root of the product of the two test sizes. Many different assignments of dice give the same table.
+
+**Source:** Thomson's dice: a one-factor table with no shared die; anchor `thomsons-dice-a-one-factor-table-with-no-shared-die`. A constructed simulation in the spirit of the chapter's Thomson example, with disclosed seeds. It is not Thomson's table: each die enters each of ten tests with a chance between 0.15 and 0.45, and the 19 shared dice and 145 dice echo the numbers in the chapter and its source note. The one-factor equation is a later form, not in Spearman's 1904 paper.
+
+## C33-D06: What does a classifier that never read the premise reveal?
+
+A classifier that saw only the hypothesis got 67.0 percent right. How does that split a test into Easy and Hard, and what does the split do to a model's overall score?
+
+Easy items are those the blind classifier got right, so their share of the test is its accuracy, 67.0 percent. The full model's overall score is then an average of its Easy and Hard scores with those weights, which is the same weighted average as in the previous demonstrations. The numbers fit, so the split is consistent with the reported scores.
+
+$$
+S_{\text{overall}}=e\,S_{\text{Easy}}+(1-e)\,S_{\text{Hard}}
+$$
+
+**Symbols:** e: the share of test items the blind classifier got right, which are the Easy items; S_Easy, S_Hard: the full model's scores on the Easy and Hard items: 93.4 and 72.7 percent; S_overall: the full model's overall score, reported as 86.5 percent
+
+**Predict:** Using only the 67.0 percent and the model's 93.4 and 72.7, predict the full model's overall score before looking.
+
+**Worked example:**
+- Easy share: 0.67
+- Hard share: 0.33
+- Weighted overall (percent): 86.57
+- Reported overall (percent): 86.5
+
+If the blind classifier got 67 percent right, Easy items are that share and Hard the rest, so a model scoring 93.4 on Easy and 72.7 on Hard averages 86.57. At 67.0 percent this is 86.57, within 0.1 of the reported 86.5.
+
+**Calculation:** Overall = share Easy x 93.4 + share Hard x 72.7 = 0.67 x 93.4 + 0.33 x 72.7 = 86.57. Solving 86.5 = e x 93.4 + (1 - e) x 72.7 gives e = 0.667.
+
+**Takeaway:** The reported overall score is what the Easy and Hard scores give when the blind classifier's accuracy sets the weights, so the three numbers are consistent.
+
+**What happens:** At Share of items the blind classifier got right = 0.67: At 0.67, Easy items are two thirds of the set, and the weighted average is 86.57, within rounding of the reported 86.5. Move the slider to see how the overall score would change if the blind classifier had done worse or better.
+
+**Why it matters:** A score can reward a shortcut instead of the skill the test names. A blind baseline is a quick way to see how much of a test can be passed without the skill, and how a split of the test can change the story.
+
+**In brains and behavior:** Binet and Simon met a human version: some children always chose the line on one side of the sheet, which earns one right in three. The habit buys no good score.
+
+**In machines:** The blind classifier, fastText, learned which words in a hypothesis go with a label, for example words such as nobody and never for a contradiction. The authors say such artifacts do not render any particular example incorrect.
+
+**Assumptions and limits:** Easy items are exactly those the blind classifier got right, all scores are on one test set, and the reported percentages are rounded. The blind classifier shows only that the data allow a shortcut. Whether the full model used it is a separate question, and because Hard is defined by the blind classifier's failures, the split itself can contribute to the drop.
+
+**Check:** If the blind classifier had been right on only 50 percent of items, with the same Easy and Hard scores, what would the overall score be?
+
+**Answer:** 0.5 x 93.4 + 0.5 x 72.7 = 83.05, about 83.1 percent.
+
+**Source:** A classifier that never saw the premise got 67.0 percent right; anchor `a-classifier-that-never-saw-the-premise-got-670-percent-right`. The scores 34.3, 67.0, 93.4, 72.7 and 86.5 percent are quoted from the chapter (Gururangan and colleagues, 2018). The identity that the Easy share equals the blind classifier's accuracy follows from the chapter's definition of Easy; the weighted-average check against 86.5 is the companion's own, and it assumes all the scores come from the same test set.

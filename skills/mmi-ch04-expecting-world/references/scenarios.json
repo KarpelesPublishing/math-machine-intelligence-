@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Neighbors read 10 above their usual level, the fraction is one half and the center's usual level is 20. The center reads 22. What is sent?",
+    "expected_behavior": "Guess 20 + 0.5 x 10 = 25, residual 22 - 25 = -3; the receiver adds it back to the guess to get 22."
+  },
+  {
+    "prompt": "My input is 12 with noise variance 1 and my expectation is 2 with noise variance 10. Where should the estimate be?",
+    "expected_behavior": "Reliabilities 1 and 0.1, estimate (12 + 0.2) / 1.1 = 11.09, about 11.1; say it is the book's arithmetic on made-up readings and the same as a Bayesian calculation with those variances."
+  },
+  {
+    "prompt": "Should an agent be rewarded for prediction error to make it curious?",
+    "expected_behavior": "Note that a random event stays unpredictable however well the model learns, so surprise can keep paying where nothing is left to learn; a reward for expected information gain would pay nothing for another flip of a known fair coin. This is a design idea, not a result in the chapter's source."
+  }
+]

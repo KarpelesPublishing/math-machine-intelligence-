@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Seen height 58 mm, felt height 52 mm, error sds 3 and 2 mm. What does the rule give?",
+    "expected_behavior": "Precisions 1/9 and 1/4, weights 4/13 and 9/13, estimate 52 + (4/13) x 6 = 53.85 mm; state the unbiased, unrelated-error assumptions."
+  },
+  {
+    "prompt": "Two thermometers in one window both read 20 and each has error sd 2. Is the average more trustworthy?",
+    "expected_behavior": "Not if they share error; with equal weights and correlation 0 the variance is 2, at 0.5 it is 3, at 1 it is 4; ask whether the errors are related."
+  },
+  {
+    "prompt": "My filter assumes sensor noise variance 4 but the sensor's is 16. How bad is that?",
+    "expected_behavior": "Use the steady-state formulas: long-run error about 2.11 m against 1.88 m with the right assumption and 4 m for raw readings, for a random-walk position with variance 1 per step."
+  }
+]

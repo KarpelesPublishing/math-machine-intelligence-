@@ -1,0 +1,510 @@
+{
+  "chapter": 21,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-21.md",
+  "source_sha256": "fa2d05ab01b718aa45afcd48876f14875ed92567d44ba8ca719718fcc8c24130",
+  "calculation_sha256": "e52c23a67adc24410a2dae3b61667aec3d9e3f8026d330465cae58335c5354e0",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C21-D01",
+      "title": "How sure should an answer be, given how far the evidence is from the line?",
+      "question": "If the evidence lands one unit from the decision line and d-prime is 1.5, what chance should the answer be right?",
+      "equations": [
+        "P(\\text{correct}\\mid u)=\\frac{1}{1+e^{-d'u}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "u",
+          "meaning": "distance of the evidence from the decision line, in units of the scatter of the evidence; zero or more"
+        },
+        {
+          "sym": "d'",
+          "meaning": "d-prime: the gap between the typical evidence for the two answers divided by the scatter"
+        },
+        {
+          "sym": "P(correct | u)",
+          "meaning": "the chance the answer is right given that distance"
+        }
+      ],
+      "source_anchor": "peirces-marks-of-sureness-tracked-accuracy-even-the-zeros",
+      "source_section": "Peirce's marks of sureness tracked accuracy, even the zeros",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-19-confidence-from-evidence-chapter-21"
+      ],
+      "provenance": "Book formula. The d-prime 1.5 and distance 1 example, and the chance of 0.82, are the chapter's; every other pair of values is a choice for exploration, not data.",
+      "kind": "formula",
+      "assumptions": "Bell-shaped evidence with the same scatter for both cases, equal prior chances, and a decision line halfway between the two typical values. Peirce and Jastrow fitted a different formula to their average marks; this one is a model of how confidence could follow evidence.",
+      "prediction": "Before moving anything: at d-prime 1.5, will the answer be right with a chance above or below 0.9 when the evidence is two units from the line?",
+      "reveal": {
+        "state": {
+          "dprime": 1.5,
+          "u": 1.0
+        },
+        "text": "At d-prime 1.5 and one unit from the line the chance is 0.818, the chapter's 0.82. At zero distance the chance is exactly one half, whatever d-prime is. Move to two units and watch the chance pass 0.9."
+      },
+      "takeaway": "Confidence should rise with distance from the decision line, and rise faster when the task separates the two cases more cleanly.",
+      "why_it_matters": "It gives a reason a stated confidence could carry information at all, and shows what a well-behaved confidence report looks like: at the line it says one half.",
+      "sides": {
+        "brain": "A model of how a judge's sureness could follow the evidence in a task such as Peirce's weights. The chapter does not claim the brain computes this.",
+        "machine": "A specification for a classifier whose confidence follows the same logistic form; real networks need to be checked against outcomes, not assumed to obey it."
+      },
+      "explanation": "The two answers produce evidence around two typical values. A point far from the line between them is almost surely from the nearer case; a point at the line is a toss-up. With bell-shaped evidence of equal scatter, the log odds of being right grow in a straight line with the distance, with slope d-prime, so the chance follows a logistic curve.",
+      "check": "At d-prime 3 and distance 1, what is the chance, and what are the odds of right to wrong?",
+      "answer": "The odds are e^3 = 20.1, so the chance is 20.1/21.1 = 0.953.",
+      "controls": [
+        {
+          "key": "dprime",
+          "label": "d-prime (how well the task separates the cases)",
+          "values": [
+            0.5,
+            1.0,
+            1.5,
+            2.0,
+            3.0
+          ],
+          "default": 1.5,
+          "widget": "slider"
+        },
+        {
+          "key": "u",
+          "label": "Distance from the decision line (u)",
+          "values": [
+            0.0,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "default": 1.0,
+          "widget": "slider"
+        }
+      ],
+      "function": "distance_picture",
+      "alt": "Two bell curves of evidence with a decision line and a marked evidence point, and logistic curves of chance right against distance.",
+      "symbols": "u: distance of the evidence from the decision line, in units of the scatter of the evidence; zero or more; d': d-prime: the gap between the typical evidence for the two answers divided by the scatter; P(correct | u): the chance the answer is right given that distance",
+      "application": "It gives a reason a stated confidence could carry information at all, and shows what a well-behaved confidence report looks like: at the line it says one half.",
+      "default_parameters": "d-prime (how well the task separates the cases): 1.5 · Distance from the decision line (u): 1.0",
+      "worked_example": {
+        "Chance the answer is right": "0.818",
+        "Chance it is wrong": "0.182",
+        "Odds right to wrong": "4.48",
+        "d-prime times u": "1.5"
+      },
+      "worked_interpretation": "With d-prime 1.5 and evidence 1 units from the line, the model says the answer is right with chance 0.818. At the line itself the chance is one half, and it climbs faster for a larger d-prime.",
+      "reader_anchor": "C21-D01"
+    },
+    {
+      "id": "C21-D02",
+      "title": "Did Peirce's zero marks carry any information?",
+      "question": "Peirce marked zero (no preference) on 706 judgments and 436 were right. Could a true hit rate of one half produce that?",
+      "equations": [
+        "P(X\\ge 436)=\\sum_{k=436}^{706}\\binom{706}{k}\\,q^{k}(1-q)^{706-k}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "X",
+          "meaning": "the number of right answers among the 706 zero-marked judgments"
+        },
+        {
+          "sym": "q",
+          "meaning": "the assumed true chance of a right answer on a zero-marked judgment"
+        },
+        {
+          "sym": "C(706, k)",
+          "meaning": "the number of ways to choose which k of the 706 were right"
+        }
+      ],
+      "source_anchor": "peirces-marks-of-sureness-tracked-accuracy-even-the-zeros",
+      "source_section": "Peirce's marks of sureness tracked accuracy, even the zeros",
+      "provenance": "The tallies are the chapter's, quoted from Peirce and Jastrow's 1885 footnote: 706 zero marks among 1,125 judgments, 436 right, and 62, 82, 90 and 97 percent right at marks 0 to 3. The binomial tail is the companion's own calculation on those printed counts; the authors did not report it.",
+      "kind": "reported result",
+      "assumptions": "The 706 judgments are treated as independent trials with one hit rate. That is a simplification: they came from one person over a long series. The tally covers two people on one weight task, and shows nothing about how confidence is made.",
+      "prediction": "Before moving the slider: if the true hit rate on zero marks were 0.6, would 436 right of 706 be rare or ordinary?",
+      "reveal": {
+        "state": {
+          "chance": 0.5
+        },
+        "text": "At a true hit rate of one half, 436 or more right of 706 has chance about 2.2 in 10 billion. The zeros were not coin flips, as the chapter says. The count is ordinary for a rate near 0.62."
+      },
+      "takeaway": "Even Peirce's marks of no preference were right about 62 percent of the time, which a coin flip makes very unlikely.",
+      "why_it_matters": "It is the earliest evidence in the chapter that a judge's sureness, even at its lowest mark, can carry information about being right.",
+      "sides": {
+        "brain": "A person's reported sureness was linked to accuracy. This is a record of reports, not of neural activity, and two people were tested.",
+        "machine": "The same check applies to a machine: take the cases at its lowest confidence and ask whether it still beats chance."
+      },
+      "explanation": "If every zero-marked answer had a fixed chance q of being right, the count right would vary around 706 times q with a spread of about 13 or less. A count of 436 sits more than six spreads above 353, the coin-flip expectation. The tail sum adds up every count from 436 to 706 to measure how unusual that is.",
+      "check": "At a hit rate of 0.6, how many of the 706 would you expect to be right, and is 436 above or below that?",
+      "answer": "706 x 0.6 = 423.6 expected; 436 is above it by about 12, which is ordinary: the chance of 436 or more is 0.18.",
+      "controls": [
+        {
+          "key": "chance",
+          "label": "Assumed true hit rate on zero marks",
+          "values": [
+            0.5,
+            0.55,
+            0.6,
+            0.62,
+            0.65
+          ],
+          "default": 0.5,
+          "widget": "slider"
+        }
+      ],
+      "function": "peirce_picture",
+      "alt": "Bars of the share right at marks 0 to 3 with a coin-flip line, and a binomial curve with the observed count of 436 marked.",
+      "symbols": "X: the number of right answers among the 706 zero-marked judgments; q: the assumed true chance of a right answer on a zero-marked judgment; C(706, k): the number of ways to choose which k of the 706 were right",
+      "application": "It is the earliest evidence in the chapter that a judge's sureness, even at its lowest mark, can carry information about being right.",
+      "default_parameters": "Assumed true hit rate on zero marks: 0.5",
+      "worked_example": {
+        "Observed share right at mark 0": "61.8 percent",
+        "Count expected at this hit rate": "353",
+        "Chance of 436 or more": "2.22e-10",
+        "Zero marks as a share of 1,125": "62.8 percent"
+      },
+      "worked_interpretation": "Of Peirce's 706 zero marks, 436 were right, 61.8 percent. If the true hit rate were 0.5, about 353 would be right, and 436 or more would turn up with chance 2.22e-10. This is a binomial calculation on the printed tallies, not a re-analysis of the 1885 data.",
+      "reader_anchor": "C21-D02"
+    },
+    {
+      "id": "C21-D03",
+      "title": "Can confidence sort perfectly and still be wrong about its numbers?",
+      "question": "Ten answers, six right and four wrong. How do sorting and calibration behave as you change the confidence given to each group?",
+      "equations": [
+        "\\text{sorting}=\\Pr(c_{\\text{right}}>c_{\\text{wrong}})+\\tfrac12\\Pr(c_{\\text{right}}=c_{\\text{wrong}}),\\qquad \\operatorname{BS}=\\frac1n\\sum_i (p_i-y_i)^2"
+      ],
+      "symbols_list": [
+        {
+          "sym": "c_right, c_wrong",
+          "meaning": "the stated confidence on a right answer and on a wrong answer"
+        },
+        {
+          "sym": "sorting",
+          "meaning": "chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage"
+        },
+        {
+          "sym": "BS",
+          "meaning": "the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better"
+        }
+      ],
+      "source_anchor": "one-fitted-number-cut-a-networks-calibration-error-from-1653-to-126-percent",
+      "source_section": "One fitted number cut a network's calibration error from 16.53 to 1.26 percent",
+      "provenance": "Constructed example adapted by the book from Fleming and Lau (90 percent on right answers, 80 percent on wrong ones, 60 percent right). The Brier score for the settings is the companion's calculation. The other grid values are choices for exploration.",
+      "kind": "constructed example",
+      "assumptions": "Every right answer gets one confidence value and every wrong answer another, so the sorting score is 1, 0.5 or 0. Real raters give varied numbers; this reduces the case to its logic.",
+      "prediction": "Rater A gives 0.9 to right answers and 0.8 to wrong ones. Rater B says 0.6 every time. Which has the better sorting score and which the better Brier score?",
+      "reveal": {
+        "state": {
+          "conf_right": 0.9,
+          "conf_wrong": 0.8
+        },
+        "text": "A sorts perfectly (score 1) but states an average of 0.86 against a hit rate of 0.6, and its Brier score is 0.262. Now set 0.6 and 0.6: nothing is sorted (0.5), yet the numbers match the hit rate and the Brier score is 0.24, better than A's."
+      },
+      "takeaway": "Sorting and calibration are separate checks, and a confidence can pass one while failing the other.",
+      "why_it_matters": "A reviewer who can inspect only a fixed share of cases needs sorting. One who acts on a cost threshold needs the numbers to be right. Both checks are needed before trusting a confidence report.",
+      "sides": {
+        "brain": "Peirce's marks were tallied by hit rate at each mark, a sorting-style check. They were never tested for whether a mark stood for a stated chance.",
+        "machine": "A machine's confidence can be graded on both counts, as Guo and colleagues did for calibration."
+      },
+      "explanation": "Sorting asks only about the order of the confidences. Calibration asks whether the numbers equal how often answers are right. Rater A has the right order and the wrong scale. Rater B has the right scale and no order. The Brier score punishes both defects, which is why a rater that sorts perfectly can still lose to one that states the base rate.",
+      "check": "Give right answers 0.8 and wrong answers 0.2. What are the sorting score and the average stated confidence?",
+      "answer": "Sorting is 1. The average stated is (6 x 0.8 + 4 x 0.2)/10 = 0.56, close to the hit rate of 0.6, and the Brier score is 0.04.",
+      "controls": [
+        {
+          "key": "conf_right",
+          "label": "Confidence given to right answers",
+          "values": [
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "default": 0.9,
+          "widget": "slider"
+        },
+        {
+          "key": "conf_wrong",
+          "label": "Confidence given to wrong answers",
+          "values": [
+            0.2,
+            0.4,
+            0.6,
+            0.8
+          ],
+          "default": 0.8,
+          "widget": "slider"
+        }
+      ],
+      "function": "sorting_picture",
+      "alt": "Ten confidence dots in two groups with lines for average stated confidence and hit rate, and a grid of sorting scores and calibration gaps.",
+      "symbols": "c_right, c_wrong: the stated confidence on a right answer and on a wrong answer; sorting: chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage; BS: the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better",
+      "application": "A reviewer who can inspect only a fixed share of cases needs sorting. One who acts on a cost threshold needs the numbers to be right. Both checks are needed before trusting a confidence report.",
+      "default_parameters": "Confidence given to right answers: 0.9 · Confidence given to wrong answers: 0.8",
+      "worked_example": {
+        "Sorting score": "1",
+        "Average stated confidence": "0.86",
+        "Share actually right": "0.6",
+        "Brier score (lower is better)": "0.262"
+      },
+      "worked_interpretation": "Giving right answers 0.9 and wrong ones 0.8, the sorting score is 1 and the stated numbers average 0.86 against a hit rate of 0.6. Sorting and calibration move separately: the Brier score is 0.262.",
+      "reader_anchor": "C21-D03"
+    },
+    {
+      "id": "C21-D04",
+      "title": "Why does an honest probability score best?",
+      "question": "A forecaster believes the chance of rain is 0.7. What does reporting 0.5 or 0.9 cost her, compared with reporting 0.7?",
+      "equations": [
+        "\\mathbb{E}[\\mathrm{cost}]=b(1-q)^2+(1-b)q^2=b(1-b)+(q-b)^2"
+      ],
+      "symbols_list": [
+        {
+          "sym": "b",
+          "meaning": "the forecaster's true belief about the chance of rain"
+        },
+        {
+          "sym": "q",
+          "meaning": "the chance she reports"
+        },
+        {
+          "sym": "cost",
+          "meaning": "the squared gap between the report and what happened (1 if it rained, 0 if not), averaged over days"
+        }
+      ],
+      "source_anchor": "briers-1950-score-for-weather-forecasters-rewards-honest-probabilities",
+      "source_section": "Brier's 1950 score for weather forecasters rewards honest probabilities",
+      "provenance": "Constructed example from the chapter: belief 0.7, costs 0.21 for 0.7 and 0.25 for 0.5 or 0.9. The log-loss curve and the algebraic split into belief variance plus squared distance are the companion's additions. The chapter's log-loss check (0.99: 0.98 squared error, 4.61 log loss; 0.60: 0.36, 0.92) is quoted in the check below.",
+      "kind": "formula",
+      "assumptions": "The forecaster's belief is accurate, so rain follows it on average. The score is the one-event Brier score; Brier's 1950 version doubled it. Honesty here means the report that minimizes expected cost; it does not show anyone is honest.",
+      "prediction": "She believes 0.7. Which costs more per day, reporting 0.5 or reporting 0.9?",
+      "reveal": {
+        "state": {
+          "belief": 0.7,
+          "report": 0.9
+        },
+        "text": "Reporting 0.9 costs 0.25 a day, against 0.21 for the honest 0.7. Change the report to 0.5 and it costs 0.25 too. Both shadings are 0.2 from her belief, and the extra cost is 0.2 squared, 0.04."
+      },
+      "takeaway": "Under the Brier score the cheapest report is the real belief, and shading either way adds the square of the shading.",
+      "why_it_matters": "A score that rewards hedging or overstatement would teach forecasters, and models, to misreport. This one does not, though it cannot make a system actually hold accurate beliefs.",
+      "sides": {
+        "brain": "Nothing here says a brain scores itself this way.",
+        "machine": "Machines are trained on log loss, a relative of the Brier score that is also honest but harsher on confident misses. Guo's networks were trained on it and still ended overconfident."
+      },
+      "explanation": "If the event happens with chance b, the expected cost of announcing q is b(1-q)^2 + (1-b)q^2. Expanding gives b(1-b), the irreducible uncertainty, plus (q-b)^2, a penalty that is zero only at q = b. The log-loss curve also bottoms out at q = b, but it climbs steeply as the report nears 0 or 1.",
+      "check": "For a forecast of 0.99 on an event that does not happen, what are the squared error and the log loss? And for 0.60?",
+      "answer": "At 0.99 the true outcome got probability 0.01: squared error 0.99^2 = 0.98, log loss -ln(0.01) = 4.61. At 0.60 the outcome got 0.40: squared error 0.36, log loss -ln(0.4) = 0.92.",
+      "controls": [
+        {
+          "key": "belief",
+          "label": "Forecaster's true belief",
+          "values": [
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "default": 0.7,
+          "widget": "slider"
+        },
+        {
+          "key": "report",
+          "label": "Reported chance of rain",
+          "values": [
+            0.3,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "default": 0.7,
+          "widget": "slider"
+        }
+      ],
+      "function": "honesty_picture",
+      "alt": "A U-shaped curve of expected cost against the reported chance, lowest at the belief, for Brier cost and log loss, and curves for four beliefs.",
+      "symbols": "b: the forecaster's true belief about the chance of rain; q: the chance she reports; cost: the squared gap between the report and what happened (1 if it rained, 0 if not), averaged over days",
+      "application": "A score that rewards hedging or overstatement would teach forecasters, and models, to misreport. This one does not, though it cannot make a system actually hold accurate beliefs.",
+      "default_parameters": "Forecaster's true belief: 0.7 · Reported chance of rain: 0.7",
+      "worked_example": {
+        "Average Brier cost of this report": "0.21",
+        "Cost of the honest report": "0.21",
+        "Extra cost of shading": "0",
+        "Average log loss of this report": "0.611"
+      },
+      "worked_interpretation": "A forecaster who believes the chance is 0.7 and reports 0.7 pays 0.21 a day in squared error, against 0.21 for reporting the belief. The extra cost is the squared distance between report and belief, 0.",
+      "reader_anchor": "C21-D04"
+    },
+    {
+      "id": "C21-D05",
+      "title": "Can one number repair a network's overconfidence?",
+      "question": "If a classifier's scores are too sharp, what happens to its calibration error and its predictions when every score is divided by one temperature?",
+      "equations": [
+        "\\hat p_k=\\frac{e^{z_k/T}}{\\sum_j e^{z_j/T}},\\qquad \\mathrm{ECE}=\\sum_{b=1}^{15}\\frac{|B_b|}{N}\\,\\bigl|\\operatorname{acc}(B_b)-\\operatorname{conf}(B_b)\\bigr|"
+      ],
+      "symbols_list": [
+        {
+          "sym": "z_k",
+          "meaning": "the raw score for class k, before conversion to percentages"
+        },
+        {
+          "sym": "T",
+          "meaning": "the temperature, one number dividing every score; above 1 spreads the percentages out"
+        },
+        {
+          "sym": "ECE",
+          "meaning": "calibration error: the average gap between share right and stated confidence across 15 confidence groups, weighted by group size"
+        },
+        {
+          "sym": "B_b, N",
+          "meaning": "the cases in group b, and the total number of cases"
+        }
+      ],
+      "source_anchor": "one-fitted-number-cut-a-networks-calibration-error-from-1653-to-126-percent",
+      "source_section": "One fitted number cut a network's calibration error from 16.53 to 1.26 percent",
+      "provenance": "Reported result: Guo and colleagues found ResNet-110 on CIFAR-100 had calibration error 16.53 percent, cut to 1.26 percent by one fitted temperature, with predicted classes unchanged. The picture is NOT that experiment: it is a seeded simulation (seed 2026, 20,000 cases, 10 classes) built so that one temperature is exactly right.",
+      "kind": "simulation",
+      "assumptions": "Labels are drawn from softmax(score/true temperature), so the raw softmax is overconfident by construction and the right temperature is known. Real networks have no such clean structure, and the chapter notes the fix slightly hurt on a text collection (Reuters) and assumed one data source. No study here says brains use such a repair.",
+      "prediction": "If the simulator's own temperature is 2, which scaling temperature do you expect to give the smallest calibration error?",
+      "reveal": {
+        "state": {
+          "true_temp": 2.0,
+          "temp": 2.0
+        },
+        "text": "With the scaling temperature equal to the simulator's, 2, the calibration error falls to a fraction of a percent, against a much larger error at temperature 1. Accuracy and every predicted class are exactly as before."
+      },
+      "takeaway": "Dividing the scores by one fitted number can fix the scale of confidence while leaving every predicted class alone.",
+      "why_it_matters": "It shows calibration can be repaired without changing the sorting of cases or the answers. It is also a reminder that the fix is fitted on held-out cases and may fail on different data.",
+      "sides": {
+        "brain": "No study in the chapter claims brains use a rescaling like this.",
+        "machine": "A post-hoc recalibration of a classifier's scores, fitted on held-out cases. The simulation is a specification of the idea, not a model of any real network."
+      },
+      "explanation": "The top percentage is the largest of the converted scores. Dividing all scores by T above 1 shrinks the gaps between them, so the top percentage falls, yet the largest score stays the largest, so the predicted class is unchanged. Choosing T so that the stated confidences match the share right in each group gives the fix; in this simulation the matching value is the one the labels were drawn with.",
+      "check": "In the simulation with true temperature 2, does scaling by 4 repair the overconfidence, over-correct it, or do nothing?",
+      "answer": "It over-corrects: the stated confidence falls below the share actually right, and the calibration error is larger than at temperature 2. The predicted classes still do not change.",
+      "controls": [
+        {
+          "key": "true_temp",
+          "label": "Simulator's own temperature (how overconfident the raw scores are)",
+          "values": [
+            1.5,
+            2.0,
+            3.0
+          ],
+          "default": 2.0
+        },
+        {
+          "key": "temp",
+          "label": "Temperature the scores are divided by",
+          "values": [
+            0.5,
+            1.0,
+            1.5,
+            2.0,
+            2.5,
+            3.0,
+            4.0
+          ],
+          "default": 1.0,
+          "widget": "slider"
+        }
+      ],
+      "function": "temperature_picture",
+      "alt": "A reliability plot of share right against stated confidence with a diagonal, and calibration error against temperature for three simulators.",
+      "symbols": "z_k: the raw score for class k, before conversion to percentages; T: the temperature, one number dividing every score; above 1 spreads the percentages out; ECE: calibration error: the average gap between share right and stated confidence across 15 confidence groups, weighted by group size; B_b, N: the cases in group b, and the total number of cases",
+      "application": "It shows calibration can be repaired without changing the sorting of cases or the answers. It is also a reminder that the fix is fitted on held-out cases and may fail on different data.",
+      "default_parameters": "Simulator's own temperature (how overconfident the raw scores are): 2.0 · Temperature the scores are divided by: 1.0",
+      "worked_example": {
+        "Calibration error (percent)": "22.6",
+        "Average confidence (percent)": "65.8",
+        "Accuracy (percent)": "43.2",
+        "Predicted classes changed by scaling": "0 of 20000"
+      },
+      "worked_interpretation": "On 20000 simulated cases, dividing the scores by 1 gives calibration error 22.6 percent when the simulator's own temperature is 2. Accuracy stays 43.2 percent and no predicted class changes. A simulation is a construction, not a measurement of any real network.",
+      "reader_anchor": "C21-D05"
+    },
+    {
+      "id": "C21-D06",
+      "title": "When a model declines the hard questions, what does its accuracy mean?",
+      "question": "A model gets 70 of 100 right. If it declines some questions, how does its accuracy on the rest change?",
+      "equations": [
+        "\\text{accuracy on answered}=\\frac{70-r}{100-d},\\qquad \\text{coverage}=\\frac{100-d}{100}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "d",
+          "meaning": "the number of questions declined"
+        },
+        {
+          "sym": "r",
+          "meaning": "how many of the declined questions the model would have got right"
+        },
+        {
+          "sym": "coverage",
+          "meaning": "the share of questions the model actually answered"
+        }
+      ],
+      "source_anchor": "monkeys-with-a-sure-bet-and-patients-with-front-of-brain-damage",
+      "source_section": "Monkeys with a sure bet and patients with front-of-brain damage",
+      "provenance": "Constructed example: the chapter's imagined model with 70 of 100 right that declines its 40 hardest cases (16 right), giving 54 of 60. The other declines and hit shares are choices for exploration. Kiani and Shadlen's monkeys are not simulated.",
+      "kind": "constructed example",
+      "assumptions": "The number of declines and the share of declined cases that would have been right are set by hand. Not every pair is possible: the declined cases cannot hold more than the 30 wrong answers. Which cases a real model declines is the whole question, and this does not model it.",
+      "prediction": "Suppose the model declines 40 questions and 70 percent of them would have been right, the same as its average. Will its accuracy on the remaining 60 go up, go down or stay?",
+      "reveal": {
+        "state": {
+          "declined": 40,
+          "right_share_declined": 0.4
+        },
+        "text": "Declining 40 cases of which 16 (40 percent) would have been right leaves 54 of 60, 90 percent, at 60 percent coverage. Change the declined share to 0.7 and accuracy stays at 70 percent: declining easy cases buys nothing."
+      },
+      "takeaway": "Declining raises accuracy on the answered cases only if the declined ones were harder, and it always costs coverage.",
+      "why_it_matters": "A 90 percent figure means little without the share answered, and without the right answers given up. The same logic applies to a reviewer deciding which cases to send for human checking.",
+      "sides": {
+        "brain": "In Kiani and Shadlen's task, monkeys took a sure bet more often on weak evidence and were more accurate on trials where they passed it up. The authors' account is correlational and low-level; nothing here simulates it.",
+        "machine": "A model that can decline, graded on answered cases alone, can look better than it is; the chapter's Kadavath paper did not test declining."
+      },
+      "explanation": "Of the 70 right answers, the model gives up r by declining and keeps the rest. Its accuracy on the answered cases is the remaining right answers divided by the remaining questions. If the declined cases were right as often as the average, accuracy stays 70 percent while coverage falls. Only declining cases that are mostly wrong raises it.",
+      "check": "Decline 20 questions of which 40 percent would have been right. What is accuracy on the answered cases and the coverage?",
+      "answer": "8 right are given up, leaving 62 right of 80 answered, 77.5 percent, at 80 percent coverage.",
+      "controls": [
+        {
+          "key": "declined",
+          "label": "Questions declined",
+          "values": [
+            0,
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          "default": 40,
+          "widget": "slider"
+        },
+        {
+          "key": "right_share_declined",
+          "label": "Share of the declined that would have been right",
+          "values": [
+            0.4,
+            0.5,
+            0.6,
+            0.7
+          ],
+          "default": 0.4
+        }
+      ],
+      "function": "abstain_picture",
+      "alt": "Bars of answered and declined questions by right and wrong, and accuracy against coverage for four shares of declined cases that were right.",
+      "symbols": "d: the number of questions declined; r: how many of the declined questions the model would have got right; coverage: the share of questions the model actually answered",
+      "application": "A 90 percent figure means little without the share answered, and without the right answers given up. The same logic applies to a reviewer deciding which cases to send for human checking.",
+      "default_parameters": "Questions declined: 40 · Share of the declined that would have been right: 0.4",
+      "worked_example": {
+        "Share answered (percent)": "60",
+        "Accuracy on answered (percent)": "90",
+        "Right answers given up": "16",
+        "Wrong answers avoided": "24"
+      },
+      "worked_interpretation": "Declining 40 of 100 questions, with 40 percent of those declined cases right anyway, leaves 54 right of 60 answered, 90 percent, at 60 percent coverage. Accuracy on the answered cases must always be reported with the share answered.",
+      "reader_anchor": "C21-D06"
+    }
+  ]
+}

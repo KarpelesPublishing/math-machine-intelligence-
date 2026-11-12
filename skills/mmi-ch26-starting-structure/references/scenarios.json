@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A creature with 10 open switches, fixed genes all right, gets up to 1,000 random tries. How likely is it to find the good wiring?",
+    "expected_behavior": "1 minus (1 - 1/1024) to the 1,000th power, about 0.62; with 20 open switches it is under 1 in 1,000."
+  },
+  {
+    "prompt": "A population has no striped seeds. The striped seed would leave the most offspring. What does choosing do for it?",
+    "expected_behavior": "Nothing: zero share times any offspring count is zero, so the share stays zero until variation in copying introduces it."
+  },
+  {
+    "prompt": "Four seeds with hook lengths 0, 1, 2 and 3 mm leave 1, 1, 2 and 2 seedlings, and D's seedlings come out 0.3 mm shorter. What happens to the average?",
+    "expected_behavior": "Choosing adds one third, copying subtracts 0.1, and the net rise is about 0.23 mm; the parts add exactly."
+  }
+]

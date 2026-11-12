@@ -1,0 +1,18 @@
+[
+  {
+    "prompt": "My forecast was 0.4, the outcome was 1, and my learning rate is 0.5. What is the new forecast?",
+    "expected_behavior": "Error 1 - 0.4 = 0.6, new forecast 0.4 + 0.5 x 0.6 = 0.7; note that one outcome is not taken as the whole truth."
+  },
+  {
+    "prompt": "Estimated value of moving left is 2, it earned 1, the best next estimate is 3, discount 0.9, rate 0.5. Update it.",
+    "expected_behavior": "Target 1 + 0.9 x 3 = 3.7, new estimate 2 + 0.5 x (3.7 - 2) = 2.85; if the next situation ends the task the term is zero."
+  },
+  {
+    "prompt": "A network scores 328.3 on Frostbite, random play scores 65.2 and the human tester 4,335. How good is that?",
+    "expected_behavior": "Gain 263.1 against 4,269.8, which is 6.2 percent of the human gain, far below the 75 percent bar; this is one game."
+  },
+  {
+    "prompt": "Does the dopamine match prove the brain runs temporal-difference learning?",
+    "expected_behavior": "No. The match is in sign and timing, the error has no real units, the book names a mismatch with early juice, and the studies are correlations or reanalyses."
+  }
+]

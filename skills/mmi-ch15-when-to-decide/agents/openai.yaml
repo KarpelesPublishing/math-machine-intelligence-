@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: When to Decide"
+  short_description: "Explore and apply Chapter 15 of the book."
+  default_prompt: "Use $mmi-ch15-when-to-decide to help me understand or apply this idea: "

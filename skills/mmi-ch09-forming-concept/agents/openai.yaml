@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Forming a Concept"
+  short_description: "Explore and apply Chapter 9 of the book."
+  default_prompt: "Use $mmi-ch09-forming-concept to help me understand or apply this idea: "

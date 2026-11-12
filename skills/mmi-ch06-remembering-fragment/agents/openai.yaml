@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Remembering from a Fragment"
+  short_description: "Explore and apply Chapter 6 of the book."
+  default_prompt: "Use $mmi-ch06-remembering-fragment to help me understand or apply this idea: "

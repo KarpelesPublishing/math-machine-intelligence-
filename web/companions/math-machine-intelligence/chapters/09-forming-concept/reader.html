@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A rule says whether a thing belongs; a summary says how well it fits, and what it keeps depends on the purpose. An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 9 · Forming a Concept</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="../../index.html">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="../../index.html">All chapters</a><a href="notebook.ipynb" download>Notebook</a><a href="../08-knowing-things-relate/reader.html" rel="prev">&larr; Previous chapter</a><a href="../10-making-meaning-language/reader.html" rel="next">Next chapter &rarr;</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 9</p><h1>Forming a Concept</h1><p class="cmp-lead">A rule says whether a thing belongs; a summary says how well it fits, and what it keeps depends on the purpose.</p><p class="cmp-summary">6 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C09-D01">1. Why would students rate 3 as a better odd number than 447?</a><a href="#C09-D02">2. Should a new case be judged by an average or by every stored case?</a><a href="#C09-D03">3. How does a feature weight change which stored case is nearest?</a><a href="#C09-D04">4. Can a category win without any single decisive match?</a><a href="#C09-D05">5. What should a compact summary keep: shape or color?</a><a href="#C09-D06">6. Why is the middle level of a name called basic?</a></nav>
+
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C09-D01" aria-labelledby="title-C09-D01">
+<div class="demo-title"><span class="chapter-number">01 / 06</span><h2 id="title-C09-D01">Why would students rate 3 as a better odd number than 447?</h2></div>
+<p class="source-line small">From Chapter 9, Chapter 9: Forming a Concept</p>
+<p class="question">The rule for odd numbers gives 3 and 447 the same answer. What did students rate instead, and did they think rating made sense?</p><p>Both 3 and 447 leave a remainder of 1 when divided by two, so the rule cannot tell them apart. The students still rated 3 as a better example, at 1.6 against 3.7, a gap of 2.1 points. The second group is the surprising part: every one of the 21 said rating odd numbers by degree makes no sense, and still rated 3 at 1.0 and 447 at 1.9.</p>
+<p class="prediction"><strong>Predict first:</strong> The rule gives every odd number the same answer. Before opening the second group, predict whether students who said rating makes no sense still graded 3 and 447 differently.</p>
+<div class="controls" role="group" aria-label="Controls for Why would students rate 3 as a better odd number than 447?">
+<div class="control"><label for="C09-D01-rating_set">Group of students</label><select id="C09-D01-rating_set" data-control="rating_set"><option value="0" selected>experiment 1</option><option value="1">experiment 3</option></select></div><div class="control"><label for="C09-D01-kind">Kind shown on the right</label><select id="C09-D01-kind" data-control="kind"><option value="0">vehicle</option><option value="1">vegetable</option><option value="2">fruit</option><option value="3">sport</option><option value="4">female</option><option value="5">even number</option><option value="6" selected>odd number</option><option value="7">plane geometry figure</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D01/06.svg" alt="Dot chart of mean ratings for odd numbers beside bars of the percent of students saying rating by degree makes no sense, by kind." width="960" height="540"><figcaption><strong class="takeaway">A membership rule asks whether something qualifies; a typicality rating asks how representative it seems. They can give different answers for the same item.</strong><br><span class="selected-parameters">Group of students: experiment 1 · Kind shown on the right: odd number</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. The grading did not depend on believing the kind was graded.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1&#39;s students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group said grading makes no sense.</p>
+<dl class="metrics"><div class="metric"><dt>Rule: remainder of 3 and of 447 on dividing by 2</dt><dd>1 and 1</dd></div><div class="metric"><dt>Rating of 3, and of 447 (1 is best)</dt><dd>1.6 and 3.7</dd></div><div class="metric"><dt>Gap in mean rating, 447 minus 3</dt><dd>2.1</dd></div><div class="metric"><dt>Said no to rating for odd number</dt><dd>100 percent</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A system that applies an exact test and a system that ranks by typicality answer different questions. Treating a good rating as proof of membership, or a flat rule as proof that no ranking exists, mixes them up.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Students graded an exact kind. The authors suggested a core rule alongside a separate rough identification process; the study did not test why 3 came out ahead, and every result is behavior, not brain activity.</p></div><div class="note"><strong>In machines</strong><p>An exact test such as the remainder gives 3 and 447 the same answer. Any graded score a machine reports for them must come from some other computation, such as a summary of cases.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">3 = 2 x 1 + 1 and 447 = 2 x 223 + 1, so both are odd. Mean ratings: 1.6 for 3 and 3.7 for 447, so 447 minus 3 = 2.1 rating points. Percent saying no for odd number: 100.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mrow><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>&#8289;</mo></mrow><mspace width="0.222em"></mspace><mn>2</mn></mrow><mo>=</mo><mn>1</mn><mspace width="0.222em"></mspace><mrow><mtext mathvariant="normal">for every odd </mtext><mspace width="0.333em"></mspace></mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">
+n \bmod 2 = 1 \ \text{for every odd } n
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>n mod 2</dt><dd>the remainder when the whole number n is divided by two; every odd number leaves 1</dd><dt>rating</dt><dd>mean of students&#39; ratings from 1 (a very good example) to 7 (a very poor one)</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The ratings are means of students&#39; judgments of how well a number fits their idea or image of odd. The study measured behavior; it did not test why 3 came out ahead or what a mind stores, and it compared no storage models.</p></div></div>
+<details><summary>Check your understanding: In the chapter&#39;s first experiment, how large is the gap in mean rating between 447 and 3, and which of the six odd numbers was rated best after 3?</summary><div class="answer">447 minus 3 is 3.7 minus 1.6 = 2.1 rating points. After 3 (1.6) the best-rated was 7 at 1.9.</div></details>
+<p class="source small">Book source: Chapter 9, Chapter 9: Forming a Concept. <span title="chapter-9-forming-a-concept">Illustration C09-D01</span>. Reported result. Reported results quoted from the chapter&#39;s account of Armstrong, Gleitman and Gleitman (1983): the 31 students&#39; mean ratings of six odd numbers, the 21 students&#39; percentages saying rating by degree makes no sense, and the two Table 6 means for odd number (3 at 1.0, 447 at 1.9). Only those two Table 6 means are given in the chapter.</p>
+</section>
+<section class="demo" id="C09-D02" aria-labelledby="title-C09-D02">
+<div class="demo-title"><span class="chapter-number">02 / 06</span><h2 id="title-C09-D02">Should a new case be judged by an average or by every stored case?</h2></div>
+<p class="source-line small">From Chapter 9, Would a rating make sense for odd numbers? Twenty-one students said no</p>
+<p class="question">Kind A has cases at 2, 3 and 4 and kind B at 1 and 7. Where do the two rules disagree about a new case?</p><p>The prototype rule keeps only one number per kind. The exemplar rule keeps every case and lets a nearby stored case count a lot. A new case at 0 sits close to B&#39;s single case at 1, so the exemplar rule favors B even though A&#39;s average is nearer. Moving the new case along the line shows two stretches where the rules answer differently.</p>
+<p class="prediction"><strong>Predict first:</strong> A new case at 0 is far from both averages (3 and 4). Predict which kind each rule picks.</p>
+<div class="controls" role="group" aria-label="Controls for Should a new case be judged by an average or by every stored case?">
+<div class="control"><label for="C09-D02-new_case">Position of the new case: <output class="slider-value" data-for="new_case">0</output></label><input type="range" id="C09-D02-new_case" data-control="new_case" min="0" max="10" step="1" value="1" aria-valuetext="0"><div class="slider-ends small"><span>-1</span><span>8</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D02/01.svg" alt="A number line with kind A and B cases and a new case, beside bands showing where the prototype and exemplar rules answer A or B." width="960" height="540"><figcaption><strong class="takeaway">The same stored cases can give two different labels, so graded ratings alone cannot say which rule a mind uses.</strong><br><span class="selected-parameters">Position of the new case: 0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At 0 the average of A (3) is nearer than the average of B (4), so the prototype rule says A. The exemplar rule says B: its case at 1 is one step away and counts about 0.33, against about 0.16 in total from A&#39;s three cases.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">A new case at 0 goes to A by the average and to B by total closeness to stored cases, so they disagree. The same cases can get two labels, so graded ratings alone cannot say which rule a mind uses.</p>
+<dl class="metrics"><div class="metric"><dt>Prototype rule answers</dt><dd>A (distances 3 and 4)</dd></div><div class="metric"><dt>Exemplar rule answers</dt><dd>B (supports 0.16 and 0.334)</dd></div><div class="metric"><dt>Do the rules agree?</dt><dd>they disagree</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>Few-shot machine classifiers that label a new input by its nearest class average use the first rule; a system that compares with every stored case uses the second. Knowing which one is in use predicts where it will disagree with the other.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Whether a mind keeps one average or each case is open. Graded ratings fit a prototype account but do not prove one, and the odd-number studies compared no storage models.</p></div><div class="note"><strong>In machines</strong><p>In prototypical networks (Snell and colleagues, 2017) a class&#39;s prototype is the average of its embedded cases and a new input goes to the nearest one. The word is borrowed from psychology and the authors do not claim to model human concepts.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Averages: A = (2 + 3 + 4)/3 = 3, B = (1 + 7)/2 = 4. Distances from 0: 3 and 4. Support = sum of (1/3)^distance over stored cases: A 0.16, B 0.334.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">prototype: nearest average</mtext><mo>,</mo><mspace width="2.0em"></mspace><mrow><mtext mathvariant="normal">exemplar: </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>S</mi><mi>K</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>c</mi><mo>∈</mo><mi>K</mi></mrow></munder><msup><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mo>−</mo><mi>c</mi><mo stretchy="false" form="prefix">|</mo></mrow></msup></mrow><annotation encoding="application/x-tex">
+\text{prototype: nearest average},\qquad \text{exemplar: } S_K(x)=\sum_{c\in K}\left(\tfrac13\right)^{|x-c|}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>x</dt><dd>the position of the new case on the line</dd><dt>c</dt><dd>a stored case of kind K</dd><dt>S_K(x)</dt><dd>the exemplar support for kind K: each stored case counts a third as much for each step of distance</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>One line, two kinds with fixed cases. The prototype rule uses the plain average; the exemplar rule adds closeness over every stored case with a fixed one-third decay. Real studies of people compared no storage models.</p></div></div>
+<details><summary>Check your understanding: For a new case at 5, which kind does the prototype rule pick, and which does the exemplar rule pick?</summary><div class="answer">Distances to the averages are 2 (A at 3) and 1 (B at 4), so the prototype rule says B. The exemplar support is (1/3)^3 + (1/3)^2 + (1/3)^1 = 0.481 for A and (1/3)^4 + (1/3)^2 = 0.123 for B, so the exemplar rule says A.</div></details>
+<p class="source small">Book source: Chapter 9, Would a rating make sense for odd numbers? Twenty-one students said no. <span title="would-a-rating-make-sense-for-odd-numbers-twenty-one-students-said-no">Illustration C09-D02</span>. Constructed example. The chapter&#39;s constructed example (not data): cases at 2, 3, 4 and 1, 7, a new case at 0, and a stored case counting a third as much for each step. The sweep over other positions is the companion&#39;s own use of the same two rules.</p>
+</section>
+<section class="demo" id="C09-D03" aria-labelledby="title-C09-D03">
+<div class="demo-title"><span class="chapter-number">03 / 06</span><h2 id="title-C09-D03">How does a feature weight change which stored case is nearest?</h2></div>
+<p class="source-line small">From Chapter 9, Sixteen semicircles, and weights that followed the task</p>
+<p class="question">A new case differs from stored case P mostly in size and from stored case Q mostly in angle. Which is nearer as the weight on size changes?</p><p>Each feature&#39;s gap is squared, scaled by its weight and added. P differs only in size, so its distance is 4 times the size weight. Q differs a little in size and a lot in angle, so its distance shrinks as the angle weight falls. At small size weights P is nearer; once size dominates, Q is.</p>
+<p class="prediction"><strong>Predict first:</strong> P is 2 steps off in size only. Q is 1 step off in size and 2 in angle. Predict whether the weight on size must be above or below one half for P to be nearer.</p>
+<div class="controls" role="group" aria-label="Controls for How does a feature weight change which stored case is nearest?">
+<div class="control"><label for="C09-D03-size_weight">Weight on size: <output class="slider-value" data-for="size_weight">0.5</output></label><input type="range" id="C09-D03-size_weight" data-control="size_weight" min="0" max="8" step="1" value="4" aria-valuetext="0.5"><div class="slider-ends small"><span>0.1</span><span>0.9</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D03/04.svg" alt="A grid with a new case, stored cases P and Q and an equal-distance curve, beside lines of squared distance to P and Q against the size weight." width="960" height="540"><figcaption><strong class="takeaway">What counts as alike depends on how much each feature is weighted, so the nearest stored case can change when the weights change.</strong><br><span class="selected-parameters">Weight on size: 0.5</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With weights 0.5 on size and 0.5 on angle, the squared distances are 2 to P and 2.5 to Q, so P is nearer. Changing what counts can change which stored case is nearest.</p>
+<dl class="metrics"><div class="metric"><dt>Squared distance to P</dt><dd>2</dd></div><div class="metric"><dt>Squared distance to Q</dt><dd>2.5</dd></div><div class="metric"><dt>Nearer stored case</dt><dd>P</dd></div><div class="metric"><dt>Size gap counts this many times an equal angle gap</dt><dd>1</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A distance with fixed weights bakes in a view of which features matter. Changing the purpose can change the weights and with them the answer.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>In the semicircle study the fitted weights followed the task: where size alone decided the kind, the weight on angle fell to nearly zero. That is a model fitted to choices of two paid observers.</p></div><div class="note"><strong>In machines</strong><p>A task weight over features is fixed for a task. Transformer attention, by contrast, is worked out afresh for each input, so the machine parallel is only partial.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Gaps: P differs by 2 in size and 0 in angle, Q by 1 and 2. d^2(P) = 0.5 x 4 + 0.5 x 0 = 2. d^2(Q) = 0.5 x 1 + 0.5 x 4 = 2.5.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>d</mi><mi>w</mi><mn>2</mn></msubsup><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mi>k</mi></munder><msub><mi>w</mi><mi>k</mi></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>k</mi></msub><mo>−</mo><msub><mi>z</mi><mi>k</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>,</mo><mspace width="1.0em"></mspace><munder><mo>∑</mo><mi>k</mi></munder><msub><mi>w</mi><mi>k</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="1.0em"></mspace><msub><mi>w</mi><mi>k</mi></msub><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
+d_w^2(x,z)=\sum_k w_k\,(x_k-z_k)^2,\quad \sum_k w_k=1,\quad w_k\ge 0
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>d_w^2(x,z)</dt><dd>the weighted squared distance between cases x and z</dd><dt>k</dt><dd>a feature; here size and angle</dd><dt>w_k</dt><dd>the weight on feature k, nonnegative, all weights add to one</dd><dt>x_k, z_k</dt><dd>the two cases&#39; values on feature k</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Two features, weights adding to one. The cases are made up. The weights in Nosofsky&#39;s study were estimated from choices; attention was never manipulated, so they describe a pattern without showing a cause.</p></div></div>
+<details><summary>Check your understanding: With a size weight of 0.5, what are the squared distances to P and to Q?</summary><div class="answer">d^2(P) = 0.5 x 4 + 0.5 x 0 = 2. d^2(Q) = 0.5 x 1 + 0.5 x 4 = 2.5. P is nearer.</div></details>
+<p class="source small">Book source: Chapter 9, Sixteen semicircles, and weights that followed the task. <span title="sixteen-semicircles-and-weights-that-followed-the-task">Illustration C09-D03</span>. Constructed example. The chapter&#39;s weighted-distance equation. The positions (new case at 2, 2; P at 4, 2; Q at 3, 4 on a four-by-four grid like the 16 semicircles) are constructed by the companion; they are not Nosofsky&#39;s stimuli or data.</p>
+</section>
+<section class="demo" id="C09-D04" aria-labelledby="title-C09-D04">
+<div class="demo-title"><span class="chapter-number">04 / 06</span><h2 id="title-C09-D04">Can a category win without any single decisive match?</h2></div>
+<p class="source-line small">From Chapter 9, Sixteen semicircles, and weights that followed the task</p>
+<p class="question">Category A has matches of 0.6 and a second one; category B has a single match. How does a category&#39;s share come out, and when does the total disagree with the best single match?</p><p>Each category&#39;s support is the sum of the similarities to its stored cases, and dividing by the sum over both gives a share. With two partial matches A reaches 0.8 and B&#39;s single 0.4 gives it only a third of the total. Raising B&#39;s match to 0.8 ties the totals. At 0.7, B owns the best single match, but A&#39;s two matches still add to more.</p>
+<p class="prediction"><strong>Predict first:</strong> A has 0.6 and 0.2 and B has 0.4. Predict how large B&#39;s single match must be before A&#39;s share falls to one half.</p>
+<div class="controls" role="group" aria-label="Controls for Can a category win without any single decisive match?">
+<div class="control"><label for="C09-D04-b_match">Similarity of B&#39;s one match: <output class="slider-value" data-for="b_match">0.4</output></label><input type="range" id="C09-D04-b_match" data-control="b_match" min="0" max="5" step="1" value="1" aria-valuetext="0.4"><div class="slider-ends small"><span>0.2</span><span>0.9</span></div></div><div class="control"><label for="C09-D04-a_second">Similarity of A&#39;s second match</label><select id="C09-D04-a_second" data-control="a_second"><option value="0">0.0</option><option value="1" selected>0.2</option><option value="2">0.4</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D04/04.svg" alt="Stacked bars of summed similarity for categories A and B, beside curves of A&#39;s share against the similarity of B&#39;s match." width="960" height="540"><figcaption><strong class="takeaway">Adding similarities over every stored case can pick a different category from the single best match.</strong><br><span class="selected-parameters">Similarity of B&#39;s one match: 0.4 · Similarity of A&#39;s second match: 0.2</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> B&#39;s match of 0.7 is higher than any single match of A (0.6), yet A&#39;s total of 0.8 still wins, with a share of 0.533. A category can win through several partial matches even when no single case is decisive.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">A holds 0.8 from its matches and B 0.4, so A&#39;s share is 0.667. By total support the winner is A; by the single best match it is A.</p>
+<dl class="metrics"><div class="metric"><dt>Total for A</dt><dd>0.8</dd></div><div class="metric"><dt>Total for B</dt><dd>0.4</dd></div><div class="metric"><dt>A&#39;s share</dt><dd>0.667</dd></div><div class="metric"><dt>Winner by total (by best single match)</dt><dd>A (A)</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A rule that reads only the single closest case and a rule that sums over all cases behave differently near a boundary. Which one a system uses decides how it treats one strong lookalike against several moderate ones.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The semicircle model fit well, accounting for between about three quarters and nearly all of the pattern in the choices. It is a fitted model of two observers&#39; behavior.</p></div><div class="note"><strong>In machines</strong><p>A system that sums similarity over stored cases is computing this rule as a specification; whether a given trained model does so internally is a separate question.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">A: 0.6 + 0.2 = 0.8. B: 0.4. Share of A = 0.8/(0.8 + 0.4) = 0.667. This is the equal-bias case, with no response-bias weights.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">support</mtext><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>c</mi><mo>∈</mo><mi>K</mi></mrow></munder><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mtext mathvariant="normal">support</mtext><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mtext mathvariant="normal">support</mtext><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mtext mathvariant="normal">support</mtext><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{support}(K)=\sum_{c\in K}s(c),\qquad P(A)=\frac{\text{support}(A)}{\text{support}(A)+\text{support}(B)}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>s(c)</dt><dd>the similarity of the new case to stored case c</dd><dt>support(K)</dt><dd>a category&#39;s total similarity over its stored cases</dd><dt>P(A)</dt><dd>A&#39;s share of the total, when no category is given extra bias</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Equal response bias for the two categories, as in the chapter. The similarities are chosen by hand and no data stand behind them.</p></div></div>
+<details><summary>Check your understanding: With A&#39;s matches 0.6 and 0.2, what share does A hold when B&#39;s one match is 0.8?</summary><div class="answer">A&#39;s total is 0.8, B&#39;s is 0.8, and A&#39;s share is 0.8/(0.8 + 0.8) = 1/2.</div></details>
+<p class="source small">Book source: Chapter 9, Sixteen semicircles, and weights that followed the task. <span title="sixteen-semicircles-and-weights-that-followed-the-task">Illustration C09-D04</span>. Constructed example. The chapter&#39;s constructed example: A has partial matches of 0.6 and 0.2, B has one of 0.4, and A&#39;s share is about 0.67. The practice question (B rising to 0.8 gives a share of 1/2) is in the book&#39;s back matter. Other values are the companion&#39;s own variation.</p>
+</section>
+<section class="demo" id="C09-D05" aria-labelledby="title-C09-D05">
+<div class="demo-title"><span class="chapter-number">05 / 06</span><h2 id="title-C09-D05">What should a compact summary keep: shape or color?</h2></div>
+<p class="source-line small">From Chapter 9, A toy summary that keeps shape and drops color</p>
+<p class="question">An object has a shape bit and a color bit. Which of four summaries scores lowest when the target is shape, and what happens if the target or the trade-off weight changes?</p><p>Each summary pays one point per bit it keeps about the object and earns beta points per bit it keeps about the target. With a large enough weight, keeping the target wins. With weight 0 the target earns nothing, so keeping nothing wins. At weight 1 keeping shape and keeping nothing tie, and the rule alone does not choose between them.</p>
+<p class="prediction"><strong>Predict first:</strong> At weight 2 and target shape, predict the lowest score and which summary reaches it. Then predict what happens at weight 0.</p>
+<div class="controls" role="group" aria-label="Controls for What should a compact summary keep: shape or color?">
+<div class="control"><label for="C09-D05-target">Target</label><select id="C09-D05-target" data-control="target"><option value="0" selected>shape</option><option value="1">color</option></select></div><div class="control"><label for="C09-D05-beta">Trade-off weight (beta): <output class="slider-value" data-for="beta">2</output></label><input type="range" id="C09-D05-beta" data-control="beta" min="0" max="6" step="1" value="4" aria-valuetext="2"><div class="slider-ends small"><span>0</span><span>4</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D05/04.svg" alt="Horizontal bars of the scores of four summaries, beside lines of each summary&#39;s score against the trade-off weight." width="960" height="540"><figcaption><strong class="takeaway">A summary is good for a purpose, and the purpose is the target: change it and the winner changes.</strong><br><span class="selected-parameters">Target: shape · Trade-off weight (beta): 2</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Keeping shape only scores 1 - 2 = -1, below keeping both (0), color only (1) and nothing (0). No summary can score below -1 at this weight, since shape carries one bit and keeping shape reaches that bound.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With target shape and weight 2, the lowest score is -1, won by keep shape only. Changing the target or the weight changes the winner, because the purpose decides what is worth keeping.</p>
+<dl class="metrics"><div class="metric"><dt>Lowest score</dt><dd>-1</dd></div><div class="metric"><dt>Winner</dt><dd>keep shape only</dd></div><div class="metric"><dt>Score of keeping both</dt><dd>0</dd></div><div class="metric"><dt>Score of keeping nothing</dt><dd>0</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A compact code that keeps color and drops a faint marking can score well on average and still miss the cases that matter. Someone has to name the purpose before the summary can be judged.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The toy does not explain the odd-number ratings and the bottleneck paper has no brain evidence. It is a way to say what a concept keeps, not a claim about what a mind keeps.</p></div><div class="note"><strong>In machines</strong><p>A designer or user has to decide what the system should preserve. In the toy the chosen purpose decides the winner.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Score = bits about the object - 2 x bits about shape. Keep both: 2 - 2 x 1 = 0. Keep shape only: 1 - 2 x 1 = -1. Keep color only: 1 - 0 = 1. Keep nothing: 0.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi mathvariant="normal">min</mi><mi>T</mi></munder><mspace width="0.278em"></mspace><mi>I</mi><mo stretchy="false" form="prefix">(</mo><mi>X</mi><mo>;</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>β</mi><mspace width="0.167em"></mspace><mi>I</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo>;</mo><mi>Y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\min_T\; I(X;T)-\beta\,I(T;Y)
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>X</dt><dd>the input, here the object with its shape bit and color bit</dd><dt>T</dt><dd>the summary; its cost is the bits it keeps about X</dd><dt>Y</dt><dd>the target, the signal the summary must predict (shape or color)</dd><dt>beta</dt><dd>the trade-off weight, zero or more, chosen first</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A summary keeps whole properties. Each property is one independent fair bit. The target is named before the summary is chosen, and the weight is set by hand; the paper itself says there is no single right solution for the trade-off.</p></div></div>
+<details><summary>Check your understanding: Target shape, weight 1. Which summaries tie for the lowest score?</summary><div class="answer">Scores are 1 (both), 0 (shape only), 1 (color only) and 0 (nothing), so shape only and nothing tie at 0.</div></details>
+<p class="source small">Book source: Chapter 9, A toy summary that keeps shape and drops color. <span title="a-toy-summary-that-keeps-shape-and-drops-color">Illustration C09-D05</span>. Constructed example. The chapter&#39;s constructed example (not data): two independent fair bits, four summaries and a weight set by hand to 2. The practice questions (weights 0 and 1) are the same toy at other weights. The paper behind the idea (Tishby, Pereira and Bialek) contains no data and no shape-and-color case.</p>
+</section>
+<section class="demo" id="C09-D06" aria-labelledby="title-C09-D06">
+<div class="demo-title"><span class="chapter-number">06 / 06</span><h2 id="title-C09-D06">Why is the middle level of a name called basic?</h2></div>
+<p class="source-line small">From Chapter 9, Names favor a middle level, and color words sat near a best trade-off</p>
+<p class="question">Students listed attributes for names at three levels. Which step adds the most shared attributes?</p><p>Going from the broad name to the middle name adds 5.55 shared attributes. Going on to the most specific name adds only 2.02 more. The specific name still has the highest total, which is why the basic level is chosen by the size of the jump and not by the largest count.</p>
+<p class="prediction"><strong>Predict first:</strong> The most specific level holds the most shared attributes. Predict what share of the whole rise comes in the first step, from the broad name to the middle name.</p>
+<div class="controls" role="group" aria-label="Controls for Why is the middle level of a name called basic?">
+<div class="control"><label for="C09-D06-level">Level</label><select id="C09-D06-level" data-control="level"><option value="0">superordinate</option><option value="1" selected>basic</option><option value="2">subordinate</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C09-D06/01.svg" alt="Bars of average shared attributes at three naming levels beside bars of the attributes added by each step between levels." width="960" height="540"><figcaption><strong class="takeaway">The middle level is basic because the largest gain in shared attributes comes there, even though the most specific level holds the most in total.</strong><br><span class="selected-parameters">Level: basic</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> The first step adds 5.55 of the whole 7.57, about 0.73, roughly three quarters. The second step adds only 2.02. The biggest jump comes at the middle level.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">At the basic level the average is 9.05 shared attributes. The first step, from 3.5 to 9.05, adds 5.55, which is 0.733 of the whole rise of 7.57. That is why the middle level is called basic.</p>
+<dl class="metrics"><div class="metric"><dt>Shared attributes at this level</dt><dd>9.05</dd></div><div class="metric"><dt>Added by the step that reaches it</dt><dd>5.55</dd></div><div class="metric"><dt>Share of the whole rise reached</dt><dd>0.733</dd></div><div class="metric"><dt>Whole rise, top to bottom</dt><dd>7.57</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A name that buys a lot of shared structure at a small cost is useful for a mind or a system that must label things cheaply. Counting where the gain is largest, not where the total is largest, picks that level.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The students&#39; lists are behavior. The chapter notes a related result on color words in 111 languages scored against a best possible trade-off, but the paper does not show that speakers compute a trade-off.</p></div><div class="note"><strong>In machines</strong><p>A system with a bottleneck cost could look for the level where one label buys the most for its cost. That is the chapter&#39;s interpretation, not a result of the study.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Rise = 11.07 - 3.5 = 7.57. First step = 9.05 - 3.5 = 5.55, and 5.55/7.57 = 0.733. Second step = 11.07 - 9.05 = 2.02.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">share of the rise</mtext><mo>=</mo><mfrac><mrow><msub><mi>A</mi><mtext mathvariant="normal">basic</mtext></msub><mo>−</mo><msub><mi>A</mi><mtext mathvariant="normal">super</mtext></msub></mrow><mrow><msub><mi>A</mi><mtext mathvariant="normal">sub</mtext></msub><mo>−</mo><msub><mi>A</mi><mtext mathvariant="normal">super</mtext></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{share of the rise}=\frac{A_{\text{basic}}-A_{\text{super}}}{A_{\text{sub}}-A_{\text{super}}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>A_super, A_basic, A_sub</dt><dd>average shared attributes at the superordinate, basic and subordinate levels: 3.5, 9.05 and 11.07</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The counts are attributes listed by at least six of 20 students. The study counted attributes; it fit no trade-off to these counts, and reading the middle level as a good trade is the chapter&#39;s interpretation, not the paper&#39;s.</p></div></div>
+<details><summary>Check your understanding: What share of the whole rise from 3.5 to 11.07 happens in the first step?</summary><div class="answer">The whole rise is 11.07 - 3.5 = 7.57, the first step is 9.05 - 3.5 = 5.55, and 5.55/7.57 = 0.733.</div></details>
+<p class="source small">Book source: Chapter 9, Names favor a middle level, and color words sat near a best trade-off. <span title="names-favor-a-middle-level-and-color-words-sat-near-a-best-trade-off">Illustration C09-D06</span>. Reported result. Reported result, quoted from the chapter&#39;s account of Rosch and colleagues (1976): 200 students, 90 object names in nine taxonomies. The averages 3.5, 9.05 and 11.07 are the book&#39;s averages of the paper&#39;s raw tallies over six taxonomies (trees, fish and birds left out), not figures printed in the paper. The ratios computed here are the companion&#39;s arithmetic on them.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="../../index.html">All chapters</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":9,"demos":[{"id":"C09-D01","title":"Why would students rate 3 as a better odd number than 447?","alt":"Dot chart of mean ratings for odd numbers beside bars of the percent of students saying rating by degree makes no sense, by kind.","controls":[{"key":"rating_set","label":"Group of students","values":["experiment 1","experiment 3"],"default":"experiment 1"},{"key":"kind","label":"Kind shown on the right","values":["vehicle","vegetable","fruit","sport","female","even number","odd number","plane geometry figure"],"default":"odd number"}],"default_key":"[\"experiment 1\",\"odd number\"]","reveal_key":"[\"experiment 3\",\"odd number\"]","reveal_text":"All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. The grading did not depend on believing the kind was graded.","states":{"[\"experiment 1\",\"odd number\"]":{"image":"states/C09-D01/06.svg","metrics":{"Rule: remainder of 3 and of 447 on dividing by 2":"1 and 1","Rating of 3, and of 447 (1 is best)":"1.6 and 3.7","Gap in mean rating, 447 minus 3":"2.1","Said no to rating for odd number":"100 percent"},"interpretation":"The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group said grading makes no sense.","calculation":"3 = 2 x 1 + 1 and 447 = 2 x 223 + 1, so both are odd. Mean ratings: 1.6 for 3 and 3.7 for 447, so 447 minus 3 = 2.1 rating points. Percent saying no for odd number: 100."}}},{"id":"C09-D02","title":"Should a new case be judged by an average or by every stored case?","alt":"A number line with kind A and B cases and a new case, beside bands showing where the prototype and exemplar rules answer A or B.","controls":[{"key":"new_case","label":"Position of the new case","values":[-1,0,1,2,3,3.5,4,5,6,7,8],"default":0,"widget":"slider"}],"default_key":"[0]","reveal_key":"[0]","reveal_text":"At 0 the average of A (3) is nearer than the average of B (4), so the prototype rule says A. The exemplar rule says B: its case at 1 is one step away and counts about 0.33, against about 0.16 in total from A's three cases.","states":{"[0]":{"image":"states/C09-D02/01.svg","metrics":{"Prototype rule answers":"A (distances 3 and 4)","Exemplar rule answers":"B (supports 0.16 and 0.334)","Do the rules agree?":"they disagree"},"interpretation":"A new case at 0 goes to A by the average and to B by total closeness to stored cases, so they disagree. The same cases can get two labels, so graded ratings alone cannot say which rule a mind uses.","calculation":"Averages: A = (2 + 3 + 4)/3 = 3, B = (1 + 7)/2 = 4. Distances from 0: 3 and 4. Support = sum of (1/3)^distance over stored cases: A 0.16, B 0.334."}}},{"id":"C09-D03","title":"How does a feature weight change which stored case is nearest?","alt":"A grid with a new case, stored cases P and Q and an equal-distance curve, beside lines of squared distance to P and Q against the size weight.","controls":[{"key":"size_weight","label":"Weight on size","values":[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9],"default":0.5,"widget":"slider"}],"default_key":"[0.5]","reveal_key":"[0.8]","reveal_text":"At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571.","states":{"[0.5]":{"image":"states/C09-D03/04.svg","metrics":{"Squared distance to P":"2","Squared distance to Q":"2.5","Nearer stored case":"P","Size gap counts this many times an equal angle gap":"1"},"interpretation":"With weights 0.5 on size and 0.5 on angle, the squared distances are 2 to P and 2.5 to Q, so P is nearer. Changing what counts can change which stored case is nearest.","calculation":"Gaps: P differs by 2 in size and 0 in angle, Q by 1 and 2. d^2(P) = 0.5 x 4 + 0.5 x 0 = 2. d^2(Q) = 0.5 x 1 + 0.5 x 4 = 2.5."}}},{"id":"C09-D04","title":"Can a category win without any single decisive match?","alt":"Stacked bars of summed similarity for categories A and B, beside curves of A's share against the similarity of B's match.","controls":[{"key":"b_match","label":"Similarity of B's one match","values":[0.2,0.4,0.6,0.7,0.8,0.9],"default":0.4,"widget":"slider"},{"key":"a_second","label":"Similarity of A's second match","values":[0.0,0.2,0.4],"default":0.2}],"default_key":"[0.4,0.2]","reveal_key":"[0.7,0.2]","reveal_text":"B's match of 0.7 is higher than any single match of A (0.6), yet A's total of 0.8 still wins, with a share of 0.533. A category can win through several partial matches even when no single case is decisive.","states":{"[0.4,0.2]":{"image":"states/C09-D04/04.svg","metrics":{"Total for A":"0.8","Total for B":"0.4","A's share":"0.667","Winner by total (by best single match)":"A (A)"},"interpretation":"A holds 0.8 from its matches and B 0.4, so A's share is 0.667. By total support the winner is A; by the single best match it is A.","calculation":"A: 0.6 + 0.2 = 0.8. B: 0.4. Share of A = 0.8/(0.8 + 0.4) = 0.667. This is the equal-bias case, with no response-bias weights."}}},{"id":"C09-D05","title":"What should a compact summary keep: shape or color?","alt":"Horizontal bars of the scores of four summaries, beside lines of each summary's score against the trade-off weight.","controls":[{"key":"target","label":"Target","values":["shape","color"],"default":"shape"},{"key":"beta","label":"Trade-off weight (beta)","values":[0,0.5,1,1.5,2,3,4],"default":2,"widget":"slider"}],"default_key":"[\"shape\",2]","reveal_key":"[\"shape\",2]","reveal_text":"Keeping shape only scores 1 - 2 = -1, below keeping both (0), color only (1) and nothing (0). No summary can score below -1 at this weight, since shape carries one bit and keeping shape reaches that bound.","states":{"[\"shape\",2]":{"image":"states/C09-D05/04.svg","metrics":{"Lowest score":"-1","Winner":"keep shape only","Score of keeping both":"0","Score of keeping nothing":"0"},"interpretation":"With target shape and weight 2, the lowest score is -1, won by keep shape only. Changing the target or the weight changes the winner, because the purpose decides what is worth keeping.","calculation":"Score = bits about the object - 2 x bits about shape. Keep both: 2 - 2 x 1 = 0. Keep shape only: 1 - 2 x 1 = -1. Keep color only: 1 - 0 = 1. Keep nothing: 0."}}},{"id":"C09-D06","title":"Why is the middle level of a name called basic?","alt":"Bars of average shared attributes at three naming levels beside bars of the attributes added by each step between levels.","controls":[{"key":"level","label":"Level","values":["superordinate","basic","subordinate"],"default":"basic"}],"default_key":"[\"basic\"]","reveal_key":"[\"basic\"]","reveal_text":"The first step adds 5.55 of the whole 7.57, about 0.73, roughly three quarters. The second step adds only 2.02. The biggest jump comes at the middle level.","states":{"[\"basic\"]":{"image":"states/C09-D06/01.svg","metrics":{"Shared attributes at this level":"9.05","Added by the step that reaches it":"5.55","Share of the whole rise reached":"0.733","Whole rise, top to bottom":"7.57"},"interpretation":"At the basic level the average is 9.05 shared attributes. The first step, from 3.5 to 9.05, adds 5.55, which is 0.733 of the whole rise of 7.57. That is why the middle level is called basic.","calculation":"Rise = 11.07 - 3.5 = 7.57. First step = 9.05 - 3.5 = 5.55, and 5.55/7.57 = 0.733. Second step = 11.07 - 9.05 = 2.02."}}}]}</script><script src="states/C09-D01.js"></script><script src="states/C09-D02.js"></script><script src="states/C09-D03.js"></script><script src="states/C09-D04.js"></script><script src="states/C09-D05.js"></script><script src="states/C09-D06.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

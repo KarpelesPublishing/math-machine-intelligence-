@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Learning Without Losing Everything"
+  short_description: "Explore and apply Chapter 7 of the book."
+  default_prompt: "Use $mmi-ch07-learning-without-losing to help me understand or apply this idea: "

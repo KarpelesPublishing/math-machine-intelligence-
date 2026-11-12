@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A cell has 10 distinguishable levels. What is the most it can carry per signal, and when does it reach it?",
+    "expected_behavior": "log2 10 = 3.32 bits, reached only when all ten levels are used equally often; say this is an idealized capacity, not a measurement of any real cell."
+  },
+  {
+    "prompt": "Eight of every ten readings fall in a narrow band. How should ten steps be spent?",
+    "expected_behavior": "To use every step equally, eight steps in the band at 100 readings per 1,000 each and one step in each tail; if the goal is a small squared miss instead, the layout reaches farther into the tails."
+  },
+  {
+    "prompt": "Software raises sensitivity by 2 points but lowers specificity by 3. What changes per 100,000 exams?",
+    "expected_behavior": "At a cancer rate of 0.00505, 2 points of sensitivity is about 10 cancers and 3 points of specificity is about 3,000 recalls of women without cancer; say the studies were observational and the numbers are arithmetic, not advice."
+  }
+]

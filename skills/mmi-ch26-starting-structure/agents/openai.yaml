@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Where the Starting Structure Comes From"
+  short_description: "Explore and apply Chapter 26 of the book."
+  default_prompt: "Use $mmi-ch26-starting-structure to help me understand or apply this idea: "

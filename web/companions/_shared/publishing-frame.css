@@ -1,0 +1,11 @@
+/* Publishing chrome only. Reader controls, calculations and book palettes stay local. */
+.kml-publishing-frame { background: #fbfbf5; color: #151711; border-bottom: 1px solid #dce0d6; padding: 16px max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 12px 28px; flex-wrap: wrap; font: 15px/1.5 system-ui, sans-serif; }
+.kml-publishing-frame .kml-publishing-brand { font: 500 23px/1.2 Georgia, serif; color: #151711; }
+.kml-publishing-frame div { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.kml-publishing-frame a { color: #285f46; display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.kml-publishing-frame a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.kml-publishing-frame a:focus-visible { outline: 3px solid #39765c; outline-offset: 4px; }
+@media(max-width:600px) { .kml-publishing-frame { padding: 12px 20px; } .kml-publishing-frame div { gap: 4px 18px; } }
+
+.kml-publishing-frame .kml-book-return { font-weight: 650; }
+html[data-book-embedded] .kml-publishing-frame { display: none; }

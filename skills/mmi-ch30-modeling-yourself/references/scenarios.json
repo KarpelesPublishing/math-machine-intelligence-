@@ -1,0 +1,10 @@
+[
+  {
+    "prompt": "The leftover is 1 degree. Did something outside move the camera?",
+    "expected_behavior": "Says it might have (a correctly predicted 10 degree turn plus 1 degree of outside motion) or the prediction gain may be 0.9 with no outside motion; the leftover alone cannot tell."
+  },
+  {
+    "prompt": "Do the ticklishness ratings show the brain subtracts a prediction?",
+    "expected_behavior": "Says the ratings fit that proposal but do not measure self-attribution, depend on guesses, recorded no brain activity, and the scans do not show subtraction."
+  }
+]

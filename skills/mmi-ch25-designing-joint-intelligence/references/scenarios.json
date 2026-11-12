@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A model is right 0.95 of the time on clear cases and the counselor 0.90, with 0.05 per question. Who takes clear cases?",
+    "expected_behavior": "0.90 minus 0.05 is 0.85, short of 0.95, so the model keeps them; the rule needs the counselor's chance less the cost to exceed the model's."
+  },
+  {
+    "prompt": "The person and rule disagree on 150 of 1,000 cases and the person is right on 60. Net effect of always overriding?",
+    "expected_behavior": "40 percent wins; 60 right against 90 wrong is minus 30 cases, minus 3 points of accuracy."
+  },
+  {
+    "prompt": "Doctors with GPT-4 scored 76 percent, doctors without 74 percent, GPT-4 alone 92 percent. Did the pair do worse than the model?",
+    "expected_behavior": "The 16-point gap between the medians is a reading, not a tested result; the 2-point gain was not distinguishable from chance. Scoring and inputs differ across arms."
+  }
+]

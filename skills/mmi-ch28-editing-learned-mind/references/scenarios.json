@@ -1,0 +1,10 @@
+[
+  {
+    "prompt": "Does the corrected insert protect the old pairs?",
+    "expected_behavior": "Says it makes the damage as small as it can be for an exact write on the toy table (0.707 against 0.866), not zero, and moves some of it onto a pair the naive write spared."
+  },
+  {
+    "prompt": "Did the weight edit teach the model math?",
+    "expected_behavior": "Says the chapter's evidence points to recovery from looping settings; with thinking off the unedited model scored about 44 to 51 percent and the edit's effect was small or negative in two outside checks."
+  }
+]

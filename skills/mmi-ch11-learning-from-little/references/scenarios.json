@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Candidate A explains a picture 9 times as well as B, and the prior odds are 1 to 1. What are the odds and the chance for A?",
+    "expected_behavior": "Odds 9 to 1; chance 0.9 only if A and B are the only cases."
+  },
+  {
+    "prompt": "After 2 successes in a row, what does the rule of succession predict, and what does it assume?",
+    "expected_behavior": "3 in 4, under a fixed unknown chance, independent trials and a uniform prior."
+  },
+  {
+    "prompt": "Candidate 1 misses 2 steady cells and candidate 2 misses 8 shaky cells. Which does weighing pick, and why?",
+    "expected_behavior": "Candidate 2: penalties 4.5 against about 2.6, because a miss on a steady cell is more alarming."
+  }
+]

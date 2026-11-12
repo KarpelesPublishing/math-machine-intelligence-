@@ -1,0 +1,665 @@
+{
+  "chapter": 11,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-11.md",
+  "source_sha256": "baa54284327e8f8f05a578269ee3b1d25fab2c8a236f3e71d25083d6f4ca67ac",
+  "calculation_sha256": "10bf28d2e896ff757cd2617c5ae4a72e3ba44f6fe6543df190e5b3aa2bdc6ad9",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C11-D01",
+      "title": "How does a picture change the odds between two candidates?",
+      "question": "A picture is explained nine times as well by candidate A as by B, and the odds were even beforehand. What are the odds afterward, and what changes if the prior favored B?",
+      "equations": [
+        "\\frac{p(c\\mid I)}{p(c'\\mid I)}=\\frac{p(I\\mid c)}{p(I\\mid c')}\\cdot\\frac{p(c)}{p(c')}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "c, c'",
+          "meaning": "two candidate characters"
+        },
+        {
+          "sym": "I",
+          "meaning": "the one picture shown"
+        },
+        {
+          "sym": "p(I | c) / p(I | c')",
+          "meaning": "the likelihood ratio, how much better c explains the picture"
+        },
+        {
+          "sym": "p(c) / p(c')",
+          "meaning": "the prior odds before the picture"
+        }
+      ],
+      "source_anchor": "one-example-was-enough-because-the-learner-knew-how-characters-are-drawn",
+      "source_section": "One example was enough because the learner knew how characters are drawn",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-9-posterior-odds-chapter-11"
+      ],
+      "provenance": "Book formula. The nine-to-one case with equal prior odds is the chapter's illustration; the chapter says it states the idea of the rule, not the exact score the paper computes. The other values are chosen here. The 2 to 3 prior with likelihood ratio 3 is the derivation's constructed check (posterior odds 2).",
+      "kind": "formula",
+      "assumptions": "Both candidates and the picture have nonzero probability, and the picture has nonzero likelihood under c'. Converting odds to a probability needs the two candidates to exclude each other and exhaust the cases.",
+      "prediction": "With a likelihood ratio of 9 and a prior favoring B by 9 to 1, predict whether the picture is enough to make A the better bet.",
+      "reveal": {
+        "state": {
+          "likelihood_ratio": 9,
+          "prior_odds": 1
+        },
+        "text": "Even prior odds times 9 give odds of 9 to 1 for A, a chance of 0.9 if A and B are the only cases. Now move the prior to 1 to 9: the nine-fold likelihood ratio exactly cancels it and the odds are 1 to 1."
+      },
+      "takeaway": "Evidence multiplies the odds you started with, so a strong prior can offset strong evidence and a weak prior can be overturned by it.",
+      "why_it_matters": "The rest of the chapter asks where the prior comes from. This line is why it matters: one example can settle a question only because the learner arrives already holding odds.",
+      "sides": {
+        "brain": "A model that predicts behavior does not show that a person's brain uses the same machinery. The chapter says this of its Bayesian account.",
+        "machine": "A machine can apply the rule if its designer specifies priors and likelihoods; the arithmetic does not make a poorly specified model reliable."
+      },
+      "explanation": "Write each candidate's chance of explaining the picture and its chance beforehand. Dividing one candidate's posterior by the other's cancels the common evidence probability, leaving the likelihood ratio times the prior odds.",
+      "check": "Priors 0.4 and 0.6 for A and B and likelihoods 0.75 and 0.25. What are the posterior odds for A?",
+      "answer": "Likelihood ratio 0.75/0.25 = 3, prior odds 0.4/0.6 = 2/3, so the posterior odds are 3 x 2/3 = 2, as in the book's derivation.",
+      "controls": [
+        {
+          "key": "likelihood_ratio",
+          "label": "Likelihood ratio (A over B)",
+          "values": [
+            1,
+            3,
+            9,
+            30
+          ],
+          "default": 9,
+          "widget": "slider"
+        },
+        {
+          "key": "prior_odds",
+          "label": "Prior odds (A to B)",
+          "values": [
+            0.1111111111111111,
+            0.3333333333333333,
+            0.6666666666666666,
+            1,
+            3,
+            9
+          ],
+          "value_labels": [
+            "1 to 9",
+            "1 to 3",
+            "2 to 3",
+            "1 to 1",
+            "3 to 1",
+            "9 to 1"
+          ],
+          "default": 1,
+          "widget": "slider"
+        }
+      ],
+      "function": "bayes_odds_picture",
+      "alt": "Bars of the chance of candidate A before and after a picture, and lines of posterior odds against likelihood ratio.",
+      "symbols": "c, c': two candidate characters; I: the one picture shown; p(I | c) / p(I | c'): the likelihood ratio, how much better c explains the picture; p(c) / p(c'): the prior odds before the picture",
+      "application": "The rest of the chapter asks where the prior comes from. This line is why it matters: one example can settle a question only because the learner arrives already holding odds.",
+      "default_parameters": "Likelihood ratio (A over B): 9 · Prior odds (A to B): 1",
+      "worked_example": {
+        "Prior odds": "1 to 1",
+        "Likelihood ratio": "9",
+        "Odds after the picture": "9 to 1",
+        "Chance of A after the picture": "0.9"
+      },
+      "worked_interpretation": "Candidate A explains the picture 9 times as well as B and starts at odds 1 to 1, so the odds after the picture are 9 to 1. If A and B are the only cases, that is a chance of 0.9 for A, up from 0.5.",
+      "reader_anchor": "C11-D01"
+    },
+    {
+      "id": "C11-D02",
+      "title": "Why can fewer misses lose?",
+      "question": "One rival misses the picture on 2 steady cells and another misses on 8 shaky cells. Which should a learner who knows the cells' habits prefer?",
+      "equations": [
+        "w=\\ln\\frac{1-d}{d},\\qquad d=2f(1-f)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "f",
+          "meaning": "the chance one drawing flips a cell"
+        },
+        {
+          "sym": "d",
+          "meaning": "the chance two drawings of the same character differ on that cell"
+        },
+        {
+          "sym": "w",
+          "meaning": "the weight a disagreement on that cell counts against a candidate"
+        }
+      ],
+      "source_anchor": "one-example-was-enough-because-the-learner-knew-how-characters-are-drawn",
+      "source_section": "One example was enough because the learner knew how characters are drawn",
+      "provenance": "The chapter's own simulated world: 40 cells, 20 steady (flip chance 0.05) and 20 shaky (0.30). The weights 2.25 and 0.32, and the penalties 4.5 and about 2.6, are the chapter's numbers recomputed. It is a toy, not a result from the paper.",
+      "kind": "constructed example",
+      "assumptions": "Cells are inked or blank with equal chance, flip independently across cells and between drawings, and the learner knows each cell's flip chance. Real characters are not grids of independent cells.",
+      "prediction": "Candidate 1 has 2 misses on steady cells and candidate 2 has 8 on shaky cells. Predict which wins when you count, and which when you weigh.",
+      "reveal": {
+        "state": {
+          "steady_misses": 2,
+          "shaky_misses": 8
+        },
+        "text": "Counting picks candidate 1 (2 against 8). Weighing gives 2 x 2.25 = 4.51 against 8 x 0.323 = 2.58, so candidate 2 wins with four times the misses. Drop candidate 1 to a single steady miss and weighing flips back to candidate 1, at 2.25 against 2.58."
+      },
+      "takeaway": "Knowing which cells are steady changes which misses count, so the learner with that knowledge can prefer the candidate with more misses.",
+      "why_it_matters": "This is the chapter's account of what a prior buys: it tells a learner which differences matter, so one picture can be sorted from many.",
+      "sides": {
+        "brain": "The chapter makes no claim that people weigh cells this way; it is an illustration of knowing how copies vary.",
+        "machine": "The weights are a specification a program can compute exactly, from the flip chances."
+      },
+      "explanation": "Two drawings of one character differ on a steady cell about 1 time in 10 and on a shaky cell about 4 times in 10. Taking the logarithm of how much more often a cell agrees than disagrees turns that into a score that adds across cells.",
+      "check": "How many shaky misses would candidate 2 need before weighing stops preferring it to a candidate with 2 steady misses?",
+      "answer": "Weighing ties when m x 0.323 = 2 x 2.25, so m is about 14. With whole misses, 14 shaky misses give 4.52 against 4.51 and the steady candidate wins by a hair.",
+      "controls": [
+        {
+          "key": "steady_misses",
+          "label": "Candidate 1 misses on steady cells",
+          "values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "shaky_misses",
+          "label": "Candidate 2 misses on shaky cells",
+          "values": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12
+          ],
+          "default": 8,
+          "widget": "slider"
+        }
+      ],
+      "function": "weighing_picture",
+      "alt": "Bars of misses and weighted penalties for two candidates, and a plane showing where counting and weighing disagree.",
+      "symbols": "f: the chance one drawing flips a cell; d: the chance two drawings of the same character differ on that cell; w: the weight a disagreement on that cell counts against a candidate",
+      "application": "This is the chapter's account of what a prior buys: it tells a learner which differences matter, so one picture can be sorted from many.",
+      "default_parameters": "Candidate 1 misses on steady cells: 2 · Candidate 2 misses on shaky cells: 8",
+      "worked_example": {
+        "Weight on a steady cell": "2.25",
+        "Weight on a shaky cell": "0.323",
+        "Penalty, candidate 1 / candidate 2": "4.51 / 2.58",
+        "Weighing picks": "candidate 2"
+      },
+      "worked_interpretation": "A miss on a steady cell costs 2.25 and on a shaky cell 0.323. Candidate 1 has 2 steady misses and candidate 2 has 8 shaky ones, so counting picks candidate 1 and weighing picks candidate 2. This is a constructed toy, not data.",
+      "reader_anchor": "C11-D02"
+    },
+    {
+      "id": "C11-D03",
+      "title": "How often does knowing which cells are steady pay off?",
+      "question": "Over many 20-way trials, how much worse is counting agreements than weighing them, and does the gap shrink when all cells are equally steady?",
+      "equations": [
+        "\\text{choose } c \\text{ minimizing } \\sum_{\\text{cells } i} w_i\\,[\\,c_i \\ne I_i\\,]"
+      ],
+      "symbols_list": [
+        {
+          "sym": "w_i",
+          "meaning": "the weight of cell i, equal to 1 when counting"
+        },
+        {
+          "sym": "c_i, I_i",
+          "meaning": "the candidate's and the picture's value at cell i"
+        }
+      ],
+      "source_anchor": "one-example-was-enough-because-the-learner-knew-how-characters-are-drawn",
+      "source_section": "One example was enough because the learner knew how characters are drawn",
+      "provenance": "Simulation with disclosed seeds (11000 plus 10 times the shaky chance in percent plus the number of candidates), 40,000 trials per setting, written for this companion from the chapter's description. The chapter reports about 10.6 and 1.6 percent for 20 candidates and a shaky flip chance of 0.30. Not a result from the paper.",
+      "kind": "simulation",
+      "assumptions": "The chapter's constructed world: independent 40-cell grids, 20 steady cells at 0.05, the rest at the shaky chance, other candidates unrelated characters, ties broken at random. A simulation is a computation with a stated model, not a measurement.",
+      "prediction": "Predict the error of counting agreements and of weighing by steadiness for 20 candidates, and what happens when the shaky cells are as steady as the others.",
+      "reveal": {
+        "state": {
+          "shaky_flip": 0.3,
+          "candidates": 20
+        },
+        "text": "Counting is wrong about 10.5 percent of the time and weighing about 1.5 percent in this seeded run, close to the chapter's 10.6 and 1.6. Slide the shaky chance down to 0.05 and the two methods become identical, since all weights are equal."
+      },
+      "takeaway": "The benefit of weighing comes from the learner knowing how cells differ in steadiness; with nothing to know, it adds nothing.",
+      "why_it_matters": "It shows the prior doing real work in a controlled world, and that its value depends on how well it matches the world.",
+      "sides": {
+        "machine": "Both pickers are explicit procedures that a program applies; the second needs the flip chances as background knowledge."
+      },
+      "explanation": "Each trial draws a character, a picture and a twin as two noisy redraws of it, and unrelated rivals. The counting rule picks the candidate matching the most cells; the weighing rule picks the one with the lowest weighted penalty.",
+      "check": "If every cell had the same flip chance, why would counting and weighing give the same answers?",
+      "answer": "All weights would then be equal, so the weighted penalty is a constant times the count and ranks candidates the same way.",
+      "controls": [
+        {
+          "key": "shaky_flip",
+          "label": "Flip chance of the 20 shaky cells",
+          "values": [
+            0.05,
+            0.1,
+            0.2,
+            0.3,
+            0.4
+          ],
+          "default": 0.3,
+          "widget": "slider"
+        },
+        {
+          "key": "candidates",
+          "label": "Candidates to choose among",
+          "values": [
+            2,
+            5,
+            20
+          ],
+          "default": 20,
+          "widget": "slider"
+        }
+      ],
+      "function": "simulation_picture",
+      "alt": "Bars of wrong-pick rates for counting and weighing in a simulation, and curves of both against the shaky cells' flip chance.",
+      "symbols": "w_i: the weight of cell i, equal to 1 when counting; c_i, I_i: the candidate's and the picture's value at cell i",
+      "application": "It shows the prior doing real work in a controlled world, and that its value depends on how well it matches the world.",
+      "default_parameters": "Flip chance of the 20 shaky cells: 0.3 · Candidates to choose among: 20",
+      "worked_example": {
+        "Counting, wrong picks (percent)": "10.5",
+        "Weighing, wrong picks (percent)": "1.5",
+        "Random pick would be wrong (percent)": "95",
+        "Counting errors per weighing error": "6.96"
+      },
+      "worked_interpretation": "In this seeded simulation of 40,000 trials, counting agreements picks the wrong twin 10.5 percent of the time and weighing by steadiness 1.5 percent, with shaky cells flipping 0.3 of the time. The chapter reports about 10.6 and 1.6 percent for 20 candidates and 0.30; this run is a constructed model, not a measurement.",
+      "reader_anchor": "C11-D03"
+    },
+    {
+      "id": "C11-D04",
+      "title": "What did the one-shot character test report?",
+      "question": "After one look at a new handwritten character, how often did people, a stroke model and a convolutional network pick its twin wrongly, and how did that change with less background?",
+      "equations": [
+        "\\text{errors}=100\\times\\frac{\\text{wrong picks}}{\\text{trials}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "errors",
+          "meaning": "the percent of 20-way trials answered wrongly"
+        },
+        {
+          "sym": "random guessing",
+          "meaning": "wrong 95 times in 100 among 20 candidates"
+        }
+      ],
+      "source_anchor": "one-example-was-enough-because-the-learner-knew-how-characters-are-drawn",
+      "source_section": "One example was enough because the learner knew how characters are drawn",
+      "provenance": "Reported results quoted from the chapter: Lake, Salakhutdinov and Tenenbaum (Science, 2015) and the 2019 progress report. 40 people on Mechanical Turk, ten trials each; the 3.5 percent figure for the stroke-learning lesion comes from the paper's supplement as cited in the chapter. The two five-alphabet sets are listed in the order the chapter gives them, and each used 136 or 156 characters.",
+      "kind": "reported result",
+      "assumptions": "Nothing is recomputed. The authors say the 4.5 percent for people may be an upper bound, since people answered quickly and had no incentive. The stroke model also had pen-stroke data the network never saw, and the two were trained on different tasks.",
+      "prediction": "Predict whether the network's errors fall or rise when the background shrinks from 30 alphabets to five, and what that does to the stroke model.",
+      "reveal": {
+        "state": {
+          "scenario": "five alphabets, first set"
+        },
+        "text": "The stroke model rose only from 3.3 to 4.3 percent, while the network went from 13.5 to 24.0. Then pick the lesion that tripled copy variation: the stroke model's errors rise to 11.0, so knowing how copies vary was doing real work."
+      },
+      "takeaway": "A built-in plan needed few earlier examples to fill in its numbers, and one learned part, how much copies vary, mattered a great deal. The reported results do not show that the whole prior did.",
+      "why_it_matters": "It is the chapter's evidence that a prior can make one example enough, and its warning that the gap between models is not all prior.",
+      "sides": {
+        "brain": "People averaged 4.5 percent errors. Accounts of how they did it are models, and the study does not show a mechanism.",
+        "machine": "The stroke model is a program with a designed structure (the authors call it prewired) and numbers learned from earlier characters; the network learned from pictures only."
+      },
+      "explanation": "The stroke model fitted numbers inside a fixed plan of strokes, parts and relations. Tripling its allowance for how much one copy differs from the standard form raised errors from 3.3 to 11.0 percent. A separate lesion to what it learned about how strokes are shaped, sized and joined left errors at 3.5.",
+      "check": "Does the lesion result show that the whole prior accounts for the gap between 3.3 and 13.5 percent?",
+      "answer": "No. It shows that knowing how copies vary mattered. The stroke model also had pen strokes the network never saw, and the authors give no split of how much each difference mattered.",
+      "controls": [
+        {
+          "key": "scenario",
+          "label": "Case",
+          "values": [
+            "30 alphabets",
+            "five alphabets, first set",
+            "five alphabets, second set",
+            "30 alphabets, copy variation tripled",
+            "30 alphabets, stroke learning removed"
+          ],
+          "default": "30 alphabets"
+        }
+      ],
+      "function": "omniglot_picture",
+      "alt": "Bars of reported errors for people, the stroke model and the network in one case, and a chart of the reported cases.",
+      "symbols": "errors: the percent of 20-way trials answered wrongly; random guessing: wrong 95 times in 100 among 20 candidates",
+      "application": "It is the chapter's evidence that a prior can make one example enough, and its warning that the gap between models is not all prior.",
+      "default_parameters": "Case: 30 alphabets",
+      "worked_example": {
+        "Stroke model errors (percent)": "3.3",
+        "Convolutional network errors (percent)": "13.5",
+        "People errors (percent)": "4.5",
+        "Network errors per stroke-model error": "4.09"
+      },
+      "worked_interpretation": "Reported errors for 30 alphabets: stroke model 3.3 percent, convolutional network 13.5 percent, people 4.5 percent. The chapter gives no split of how much each difference between the models mattered, and a lesion shows one learned part mattered, not that the whole prior did.",
+      "reader_anchor": "C11-D04"
+    },
+    {
+      "id": "C11-D05",
+      "title": "How much did a manual change a first game?",
+      "question": "How many times higher was the average first-game Frostbite score for players who read a manual than for players with no help?",
+      "equations": [
+        "\\text{ratio}=\\frac{\\bar{S}_{\\text{group}}}{\\bar{S}_{\\text{no help}}},\\qquad \\text{scaled}=100\\times\\frac{S-S_{\\text{random}}}{S_{\\text{tester}}-S_{\\text{random}}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "S bar",
+          "meaning": "a group's mean score in its first full game"
+        },
+        {
+          "sym": "S_random, S_tester",
+          "meaning": "65.2 for random play and 4335 for a professional tester, from the 2015 deep Q-network paper"
+        }
+      ],
+      "source_anchor": "players-who-read-a-manual-scored-52-times-higher-in-their-first-frostbite-game",
+      "source_section": "Players who read a manual scored 5.2 times higher in their first Frostbite game",
+      "provenance": "Reported results quoted from the chapter and its sources: Tsividis and colleagues (2017) for the four group means (356, 417, 1,144 and 1,848) and group sizes; Mnih and colleagues (2015) for the 328.3 score and the 6.2 percent scale. The conversion of the human scores to the 2015 scale is this companion's own, to show the scale.",
+      "kind": "reported result",
+      "assumptions": "A short symposium paper comparing four Frostbite groups on first episodes only. The 328.3 is the original deep Q-network, not the Double DQN the authors compared; people and networks come to the game with different things already in place, so the comparison is not a fair count of what each learner had beforehand.",
+      "prediction": "Predict the factor by which reading a manual raised the first-game score, and whether blurring the moving objects changed it.",
+      "reveal": {
+        "state": {
+          "group": "manual"
+        },
+        "text": "The manual group averaged 1,848 against 356: 5.19 times, the chapter's 5.2. Switch to blurred objects: 417, only 1.17 times, which the authors report as no detectable difference (p = 0.663)."
+      },
+      "takeaway": "A short manual was worth about five times the first-game score, but the reported data do not say what the manual changed in the players' minds.",
+      "why_it_matters": "It shows a head start that a learner can be given in words, and the chapter's caution that nobody has counted what each learner arrived with.",
+      "sides": {
+        "brain": "The players are people on Mechanical Turk, paid by score. The authors' remark about building a model of the game dynamics is an interpretation; no mechanism was measured.",
+        "machine": "The networks learn from game scores over about 920 hours of play, while the manual players had one session."
+      },
+      "explanation": "The ratio divides a group's mean first-game score by the unaided group's. The scale in the 2015 paper sets random play at 0 and a professional tester at 100.",
+      "check": "The original network scored 328.3 against 65.2 for random play and 4335 for a professional tester. What is that on the 2015 scale?",
+      "answer": "100 x (328.3 - 65.2)/(4335 - 65.2) = 6.2, the figure in the 2015 paper.",
+      "controls": [
+        {
+          "key": "group",
+          "label": "Group",
+          "values": [
+            "no help",
+            "blurred objects",
+            "video",
+            "manual"
+          ],
+          "default": "manual"
+        }
+      ],
+      "function": "frostbite_picture",
+      "alt": "Bars of mean first-game Frostbite score for a selected group, no help and the 2015 network, and bars for all four groups.",
+      "symbols": "S bar: a group's mean score in its first full game; S_random, S_tester: 65.2 for random play and 4335 for a professional tester, from the 2015 deep Q-network paper",
+      "application": "It shows a head start that a learner can be given in words, and the chapter's caution that nobody has counted what each learner arrived with.",
+      "default_parameters": "Group: manual",
+      "worked_example": {
+        "Mean first-game score": "1,848",
+        "Times the no-help score": "5.19",
+        "Players in the group": "72",
+        "On the 2015 paper's scale (companion's conversion)": "41.8"
+      },
+      "worked_interpretation": "Players in the group 'read a manual' averaged 1,848 points, 5.19 times the no-help 356. The chapter reads the manual result as a hint that people build a model of the game, which is the authors' interpretation; no mechanism was measured. The original deep Q-network scored 328.3, 6.2 on the 2015 scale.",
+      "reader_anchor": "C11-D05"
+    },
+    {
+      "id": "C11-D06",
+      "title": "How sure can n successes make you?",
+      "question": "After n successes in a row and no failures, how likely is another success, and how much of that answer is the prior?",
+      "equations": [
+        "P(\\text{next success}\\mid n\\text{ successes})=\\frac{n+1}{n+2}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "n",
+          "meaning": "the number of successes observed, with no failures"
+        },
+        {
+          "sym": "a",
+          "meaning": "prior counts of success and failure; a = 1 is Laplace's uniform prior"
+        }
+      ],
+      "source_anchor": "a-strong-guess-about-the-world-speeds-learning-until-the-world-disagrees",
+      "source_section": "A strong guess about the world speeds learning until the world disagrees",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-10-rule-of-succession-chapter-11"
+      ],
+      "provenance": "Book formula and Laplace's 1814 figures (1,826,213 days, odds 1,826,214 to one) as the chapter quotes them. The prior counts a other than 1 are this companion's variation, using the standard result for a symmetric prior, to show that the answer depends on the prior.",
+      "kind": "formula",
+      "assumptions": "A fixed but unknown chance of success, independent trials given that chance, and a uniform prior on it. A figure like Laplace's is a statement about a prior, not a measured chance.",
+      "prediction": "Predict the chance of another success after 1 and after 2 successes, then the failure chance after Laplace's 1,826,213.",
+      "reveal": {
+        "state": {
+          "n": 2,
+          "prior_count": 1
+        },
+        "text": "After 1 success the chance is 2 in 3 and after 2 it is 3 in 4, exactly the derivation's check. Move n to 1,826,213 and the odds are 1,826,214 to 1. Then change the prior counts at the same n: the answer changes with the prior."
+      },
+      "takeaway": "Each success raises the prediction but never reaches certainty, and the number is as much about the prior as about the data.",
+      "why_it_matters": "It shows how a stated assumption about the world turns a count into a confident prediction.",
+      "sides": {
+        "brain": "Laplace's example shows a mathematician's reasoning, not a measurement of how people judge the sun.",
+        "machine": "A system can apply the rule to a simple binary event when its assumptions are defensible, and should also consider failures and changes over time."
+      },
+      "explanation": "Average the next trial's success chance over the belief about the unknown chance after n successes, which is proportional to p to the n under a uniform prior. The integral gives (n + 1)/(n + 2).",
+      "check": "A system has seen 9 successes and no failures. What does the rule predict, and what must hold for it to be sensible?",
+      "answer": "(9 + 1)/(9 + 2) = 10/11, or 0.909. It needs a fixed chance, independent trials and a uniform prior, and it ignores any change in the process.",
+      "controls": [
+        {
+          "key": "n",
+          "label": "Successes observed (n)",
+          "values": [
+            0,
+            1,
+            2,
+            5,
+            10,
+            100,
+            1000,
+            1826213
+          ],
+          "value_labels": [
+            "0",
+            "1",
+            "2",
+            "5",
+            "10",
+            "100",
+            "1,000",
+            "1,826,213 (Laplace)"
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "prior_count",
+          "label": "Prior counts (a)",
+          "values": [
+            0.5,
+            1,
+            2
+          ],
+          "value_labels": [
+            "0.5",
+            "1 (Laplace)",
+            "2"
+          ],
+          "default": 1,
+          "widget": "slider"
+        }
+      ],
+      "function": "succession_picture",
+      "alt": "A density of the failure chance after n successes, and curves of the chance the next trial fails against n for three priors.",
+      "symbols": "n: the number of successes observed, with no failures; a: prior counts of success and failure; a = 1 is Laplace's uniform prior",
+      "application": "It shows how a stated assumption about the world turns a count into a confident prediction.",
+      "default_parameters": "Successes observed (n): 2 · Prior counts (a): 1",
+      "worked_example": {
+        "Chance of another success": "0.75",
+        "Chance of failure": "0.25",
+        "Odds for another success": "3 to 1",
+        "Prior (pseudo-counts a)": "1 (the chapter's uniform prior)"
+      },
+      "worked_interpretation": "After 2 successes and no failures, the uniform-prior rule gives 0.75 for another success. With prior counts a = 1 the answer is 0.75: the rule is a statement about the prior, not a measured chance. Only a = 1 is the chapter's rule; the other values are this companion's variation.",
+      "reader_anchor": "C11-D06"
+    },
+    {
+      "id": "C11-D07",
+      "title": "What does a strong prior cost when it is wrong?",
+      "question": "Two examples fit 64 of 256 possible rules. A learner who favors one-switch rules is nearly certain after them. How does it fare when the hidden rule is one of those, and when it is not?",
+      "equations": [
+        "\\text{belief}(r\\mid\\text{examples})\\propto \\text{prior}(r)\\cdot[\\,r\\text{ fits all examples}\\,]"
+      ],
+      "symbols_list": [
+        {
+          "sym": "r",
+          "meaning": "one of the 256 rules, a yes or no for each of the 8 switch settings"
+        },
+        {
+          "sym": "prior(r)",
+          "meaning": "flat: 1/256 each. Soft bias: the favored share split over the six one-switch rules, the rest over the other 250"
+        }
+      ],
+      "source_anchor": "a-strong-guess-about-the-world-speeds-learning-until-the-world-disagrees",
+      "source_section": "A strong guess about the world speeds learning until the world disagrees",
+      "provenance": "The chapter's own simulated world, computed exactly by listing all 256 rules; not a result from any paper. The examples are all switches down, first down with the other two up, and for the third example first and third up with the second down; each answer is the hidden rule's own (no, no, and no for parity, as in the chapter).",
+      "kind": "constructed example",
+      "assumptions": "Three two-way switches, every setting's answer given by the hidden rule, and no noise. The third example's answer comes from whichever hidden rule is chosen. The chapter's 'no free lunch' remark rests on Wolpert and Macready's result for search problems and does not say the same balance holds for the real world.",
+      "prediction": "After the two examples, predict the learner's average probability on the right answers if the hidden rule is the first-switch rule, and if it is parity.",
+      "reveal": {
+        "state": {
+          "hidden_rule": "odd number of switches up (parity)",
+          "examples": 2,
+          "simple_share": 0.99
+        },
+        "text": "With parity hidden the biased learner is nearly sure of the first-switch rule and averages only 0.34 on the right answers, worse than a coin. Set the examples to 3 and its prediction falls back to 0.5."
+      },
+      "takeaway": "A strong prior is a gift when the world fits it and a trap when it does not, and averaged over all possible rules it gains nothing.",
+      "why_it_matters": "It is the chapter's honest ledger for one-shot learning: the head start and its price.",
+      "sides": {
+        "machine": "Both learners are exact Bayesian calculations over a list of rules; the bias is a design choice, not something learned here."
+      },
+      "explanation": "Keep only the rules that fit the examples and renormalize the belief. The learner's chance on an unseen setting is the total belief of the rules that match the hidden rule there.",
+      "check": "Why does the flat learner average exactly 0.5 on every unseen setting?",
+      "answer": "Among the rules that fit the examples, half say yes and half say no on any setting that was not shown, so its belief on each answer is one half.",
+      "controls": [
+        {
+          "key": "hidden_rule",
+          "label": "Hidden rule",
+          "values": [
+            "first switch up",
+            "odd number of switches up (parity)",
+            "first and second both up"
+          ],
+          "default": "first switch up"
+        },
+        {
+          "key": "examples",
+          "label": "Examples shown",
+          "values": [
+            2,
+            3
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "simple_share",
+          "label": "Belief in one-switch rules",
+          "values": [
+            0.5,
+            0.9,
+            0.99
+          ],
+          "default": 0.99,
+          "widget": "slider"
+        }
+      ],
+      "function": "switch_picture",
+      "alt": "Bars of each learner's probability on the right answer for each unseen setting, and bars across three hidden rules.",
+      "symbols": "r: one of the 256 rules, a yes or no for each of the 8 switch settings; prior(r): flat: 1/256 each. Soft bias: the favored share split over the six one-switch rules, the rest over the other 250",
+      "application": "It is the chapter's honest ledger for one-shot learning: the head start and its price.",
+      "default_parameters": "Hidden rule: first switch up · Examples shown: 2 · Belief in one-switch rules: 0.99",
+      "worked_example": {
+        "Soft-bias learner, average on the right answers": "0.992",
+        "Flat learner, average on the right answers": "0.5",
+        "Rules still consistent (of 256)": "64",
+        "Belief on the six one-switch rules": "0.985"
+      },
+      "worked_interpretation": "After the examples (DDD is no, DUU is no) the soft-bias learner puts 0.985 of its belief on the one-switch rules and scores 0.992 on the unseen settings; the flat learner scores 0.5. Averaged over all 256 possible hidden rules both would score exactly 0.5. This is a constructed toy.",
+      "reader_anchor": "C11-D07"
+    },
+    {
+      "id": "C11-D08",
+      "title": "Which test case can separate two rules?",
+      "question": "Several rules explain every example so far. Which new item could the answer actually tell apart?",
+      "equations": [
+        "\\text{informative} \\iff \\text{rule}_1(x)\\ne\\text{rule}_2(x)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "rule_1, rule_2",
+          "meaning": "two rival rules, such as the true rule and a narrower one"
+        },
+        {
+          "sym": "x",
+          "meaning": "a new triple or prompt"
+        }
+      ],
+      "source_anchor": "an-example-that-every-candidate-rule-explains-teaches-nothing",
+      "source_section": "An example that every candidate rule explains teaches nothing",
+      "provenance": "Wason's 1960 puzzle as the chapter reports it: the true rule is three numbers in increasing order, and the narrower rule is intervals of two. 29 students: 6 announced the right rule first, 22 a wrong one, one none; 21 found the right one in the end. The prompt with the # symbol is the chapter's own invention, as it says; no system was tested.",
+      "kind": "reported result and constructed example",
+      "assumptions": "Two rival rules only. The chapter notes the puzzle was built to trap confirming evidence, so it does not measure everyday reasoning, and the coding of each student's reasons was Wason's own. A finite set of answers cannot prove no unimagined rule also fits.",
+      "prediction": "Predict whether 10 12 14, 1 3 13 and 3 2 1 can each tell 'increasing' from 'gaps of two'.",
+      "reveal": {
+        "state": {
+          "item": "triple 1 3 13"
+        },
+        "text": "Only 1 3 13 splits the rules here: the true rule says yes and the narrow rule no. The triple 10 12 14 fits both and 3 2 1 fails both, so neither teaches anything. Then try the prompt 2 # 1, which separates addition from 'first plus twice the second'."
+      },
+      "takeaway": "An example that every candidate rule explains teaches nothing, and a test case is an input chosen to make the rules disagree.",
+      "why_it_matters": "It gives a way to check any confident answer, from a person or a machine: ask for a case where the favored rule and a rival differ.",
+      "sides": {
+        "brain": "Wason's students mostly tested triples that fit their own guess. That is the chapter's account of one lab task, not a law of how people reason.",
+        "machine": "The # prompt is an invented illustration; no system was tested."
+      },
+      "explanation": "A triple that fits 'intervals of two' also fits the true rule, so hearing yes teaches nothing about which is right. Only a triple the narrow rule forbids but the true rule accepts can eliminate it.",
+      "check": "Why does the prompt 6 # 0 teach nothing about addition versus 'first plus twice the second'?",
+      "answer": "The second number is 0, so both rules give 6. The three given examples all had a second number of 0 for the same reason.",
+      "controls": [
+        {
+          "key": "item",
+          "label": "Test item",
+          "values": [
+            "triple 2 4 6",
+            "triple 10 12 14",
+            "triple 1 2 3",
+            "triple 1 3 13",
+            "triple 3 2 1",
+            "triple 5 5 5",
+            "prompt 6 # 0",
+            "prompt 0 # 0",
+            "prompt 2 # 1",
+            "prompt 1 # 1",
+            "prompt 4 # 3"
+          ],
+          "default": "triple 1 3 13"
+        }
+      ],
+      "function": "test_item_picture",
+      "alt": "Two tiles showing what each rival rule says for a test item, and a list of all test items marked by whether they separate the rules.",
+      "symbols": "rule_1, rule_2: two rival rules, such as the true rule and a narrower one; x: a new triple or prompt",
+      "application": "It gives a way to check any confident answer, from a person or a machine: ask for a case where the favored rule and a rival differ.",
+      "default_parameters": "Test item: triple 1 3 13",
+      "worked_example": {
+        "Item": "triple 1 3 13",
+        "Rule 1 says": "yes (true rule)",
+        "Rule 2 says": "no (narrow rule)",
+        "Tells the rules apart": "yes"
+      },
+      "worked_interpretation": "For the triple 1 3 13, the true rule (increasing order) says yes and the narrow rule (gaps of two) says no. Only a triple that one rule forbids and the other accepts can split them. Wason's students and rules are the chapter's account of his 1960 study.",
+      "reader_anchor": "C11-D08"
+    }
+  ]
+}

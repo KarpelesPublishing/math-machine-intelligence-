@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Two explanations start at 0.5 each. A clue has probability 0.8 under the first and 0.2 under the second. What are the new weights?",
+    "expected_behavior": "Products 0.4 and 0.1, total 0.5, posterior 0.8 and 0.2; odds go from 1 to 1 to 4 to 1."
+  },
+  {
+    "prompt": "Eight equally noisy reports have pairwise error correlation 0.3. What are they worth?",
+    "expected_behavior": "8 / (1 + 7 x 0.3) = 8 / 3.1 = 2.58, about 2.6 independent reports; the ceiling as reports are added is 1/0.3, about 3.3."
+  },
+  {
+    "prompt": "A person scores 70, an AI 80 and the pair 75. Did the pair add value?",
+    "expected_behavior": "Synergy = 75 - max(70, 80) = -5. The pair beat the person but fell 5 short of the better solo; say what the same-task, same-scale assumption is."
+  }
+]

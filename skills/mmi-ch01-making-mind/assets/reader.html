@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Turn a noisy recording into an estimate, weigh unequal voices, and ask what a partnership added. An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 1 · What Does It Take to Make a Mind?</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="#main">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="#main">Chapter illustrations</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 1</p><h1>What Does It Take to Make a Mind?</h1><p class="cmp-lead">Turn a noisy recording into an estimate, weigh unequal voices, and ask what a partnership added.</p><p class="cmp-summary">5 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C01-D01">1. How does a decoder turn a noisy recording into probabilities?</a><a href="#C01-D02">2. How much calibration data does a decoder need?</a><a href="#C01-D03">3. Why not give every voice an equal say?</a><a href="#C01-D04">4. What did the partnership add?</a><a href="#C01-D05">5. How does a prediction tell two rules apart?</a></nav>
+<div class="intro"><p>Ask what each source reports and how reliable it is, whether their errors are independent, what the best real alternative is, and whether a claim is a measured result, a drawn comparison or an open question. Work the weights and the comparison by hand before running any simulation, and say what was constructed.</p><div class="callout"><span class="small">Try asking the chapter skill</span><p style="margin:8px 0 0">“A person scores 70 out of 100, a tool scores 80, and together they score 75. Did the tool help?”</p><p class="small" style="margin:10px 0 0">Use <code>mmi-ch01-making-mind</code> with the companion's AI skill package. The illustrations below also work on their own.</p></div></div>
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C01-D01" aria-labelledby="title-C01-D01">
+<div class="demo-title"><span class="chapter-number">01 / 05</span><h2 id="title-C01-D01">How does a decoder turn a noisy recording into probabilities?</h2></div>
+<p class="source-line small">From Chapter 1, A recording is not a command</p>
+<p class="question">A recording lands at one value, and each of three attempts (left hip, neither, right hip) would leave a noisy value near its own center. How likely is each attempt?</p><p>Each attempt would leave a recorded value near its own center, blurred by noise. Given a recording, the closer a center is, the more weight that attempt gets. Dividing each weight by the total makes the three weights probabilities that add to one. When the noise is large, even a recording sitting on a center leaves the other attempts plausible.</p>
+<p class="prediction"><strong>Predict first:</strong> If the recording lies exactly midway between the centers for &#39;neither&#39; (0) and &#39;right hip&#39; (1), predict what the decoder reports for those two attempts.</p>
+<div class="controls" role="group" aria-label="Controls for How does a decoder turn a noisy recording into probabilities?">
+<div class="control"><label for="C01-D01-x">Recorded value: <output class="slider-value" data-for="x">0.75</output></label><input type="range" id="C01-D01-x" data-control="x" min="0" max="5" step="1" value="3" aria-valuetext="0.75"><div class="slider-ends small"><span>-1</span><span>1.5</span></div></div><div class="control"><label for="C01-D01-sigma">Noise (sigma)</label><select id="C01-D01-sigma" data-control="sigma"><option value="0">0.5</option><option value="1" selected>1</option><option value="2">1.5</option><option value="3">2</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C01-D01/13.svg" alt="Three bell curves for the three attempts with the recording marked, and bars for the probability of each attempt." width="960" height="540"><figcaption><strong class="takeaway">A recording does not say &#39;move the left leg&#39;. It supports probabilities, which the system then uses.</strong><br><span class="selected-parameters">Recorded value: 0.75 · Noise (sigma): 1</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At x = 0.5 the two attempts get exactly the same probability, 0.422 each, and the left hip gets 0.155. The decoder gives a graded estimate and not a command, and a tie is allowed.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">At recorded value 0.75 with noise 1, the most likely attempt is right hip at probability 0.5. The decoder gives a probability for each attempt and never a command.</p>
+<dl class="metrics"><div class="metric"><dt>Probability of left hip</dt><dd>0.111</dd></div><div class="metric"><dt>Probability of neither</dt><dd>0.389</dd></div><div class="metric"><dt>Probability of right hip</dt><dd>0.5</dd></div><div class="metric"><dt>Most likely attempt</dt><dd>right hip</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This is the first job mathematics does in the book: it turns messy measurements into an estimate that can guide an action.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The brain recordings were measurements associated with attempted movement; the chapter notes the paper says intention and attempt, not thought.</p></div><div class="note"><strong>In machines</strong><p>The decoder is a program that maps measurements to estimates; its probabilities helped set the strength of stimulation.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Weights for left hip, neither, right hip: e^(-(0.75 - (-1))^2 / 2) = 0.216, e^(-(0.75 - (0))^2 / 2) = 0.755, e^(-(0.75 - (1))^2 / 2) = 0.969. Each probability is its weight divided by the total 1.94.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>k</mi></msub><mo>=</mo><mfrac><mrow><mrow><mi mathvariant="normal">exp</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><msub><mi>μ</mi><mi>k</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mi>m</mi></munder><mrow><mi mathvariant="normal">exp</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><msub><mi>μ</mi><mi>m</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+p_k=\frac{\exp\!\bigl(-(x-\mu_k)^2/(2\sigma^2)\bigr)}{\sum_m \exp\!\bigl(-(x-\mu_m)^2/(2\sigma^2)\bigr)}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>x</dt><dd>the recorded value</dd><dt>mu_k</dt><dd>the typical value for attempt k: minus 1, 0 and 1 here</dd><dt>sigma</dt><dd>how far a recording typically strays from its center (the noise)</dd><dt>p_k</dt><dd>the estimated probability of attempt k, assuming the three attempts are equally likely to start</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>One recorded value, three attempts that start equally likely, and equal noise for each. A real decoder uses many measurements and learned weights.</p></div></div>
+<details><summary>Check your understanding: With noise 2 instead of 1, does a recording at 1 (the right-hip center) make the right hip more certain or less certain than with noise 1?</summary><div class="answer">Less certain. Greater noise blurs the three bell curves together, so the right hip&#39;s probability falls (from about 0.574 to about 0.402 here) and the others rise.</div></details>
+<p class="source small">Book source: Chapter 1, A recording is not a command. <span title="a-recording-is-not-a-command">Illustration C01-D01</span>. Formula. A constructed illustration of the chapter&#39;s statement that the decoder estimated the probabilities of attempting to flex the left hip, the right hip or neither. The bell-curve model, the centers and the noise are invented here; the study&#39;s decoder is built differently and uses several recording sites.</p>
+</section>
+<section class="demo" id="C01-D02" aria-labelledby="title-C01-D02">
+<div class="demo-title"><span class="chapter-number">02 / 05</span><h2 id="title-C01-D02">How much calibration data does a decoder need?</h2></div>
+<p class="source-line small">From Chapter 1, A recording is not a command</p>
+<p class="question">A decoder learns the typical recording for each attempt from examples. How does its accuracy depend on how many examples it saw, and how noisy the recordings are?</p><p>The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but accuracy can never pass the ceiling set by the noise in single recordings.</p>
+<p class="prediction"><strong>Predict first:</strong> At noise 1, predict whether 5 examples per attempt are enough to get near the ceiling, or whether you need many more.</p>
+<div class="controls" role="group" aria-label="Controls for How much calibration data does a decoder need?">
+<div class="control"><label for="C01-D02-n">Examples per attempt: <output class="slider-value" data-for="n">10</output></label><input type="range" id="C01-D02-n" data-control="n" min="0" max="6" step="1" value="3" aria-valuetext="10"><div class="slider-ends small"><span>1</span><span>100</span></div></div><div class="control"><label for="C01-D02-sigma">Noise (sigma)</label><select id="C01-D02-sigma" data-control="sigma"><option value="0">0.5</option><option value="1" selected>1.0</option><option value="2">1.5</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C01-D02/10.svg" alt="Histogram of simulated decoder accuracies with the ceiling marked, and average accuracy against calibration examples for three noise levels." width="960" height="540"><figcaption><strong class="takeaway">Calibration is estimation too: a few noisy examples give a noisy decoder, and the error in each learned center shrinks like one over the square root of the examples.</strong><br><span class="selected-parameters">Examples per attempt: 10 · Noise (sigma): 1.0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At noise 1, five examples per attempt averaged about 56 percent against a ceiling of about 59, and a few calibrations did much worse. One example per attempt averages about 47 percent, so the first few examples close most of the gap and later ones add little.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.6 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 54 percent or less.</p>
+<dl class="metrics"><div class="metric"><dt>Average accuracy</dt><dd>57.6 percent</dd></div><div class="metric"><dt>Accuracy if the means were known</dt><dd>58.9 percent</dd></div><div class="metric"><dt>Gap to that ceiling</dt><dd>1.3 points</dd></div><div class="metric"><dt>Worst tenth of calibrations</dt><dd>54 percent or less</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>It shows why the study&#39;s time spent calibrating, and recalibrating on later days, is part of the mathematics and not just housekeeping.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The person supplied the examples by attempting each movement; the chapter says Oskam supplied the examples and the machine found the pattern.</p></div><div class="note"><strong>In machines</strong><p>The decoder estimates its own parameters from examples, and the examples it saw limit how well it can estimate.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Each calibration estimates a mean from 10 noisy examples, whose own error has spread 1 / sqrt(10) = 0.316. Ceiling: (4 x Phi(0.5 / 1) - 1) / 3 = 0.589, where Phi is the bell-curve cumulative probability.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">spread of the learned center</mtext><mo>=</mo><mfrac><mi>σ</mi><msqrt><mi>n</mi></msqrt></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">ceiling</mtext><mo>=</mo><mfrac><mrow><mn>4</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">Φ</mi><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mstyle displaystyle="false"><mfrac><mn>1</mn><mrow><mn>2</mn><mi>σ</mi></mrow></mfrac></mstyle><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mn>1</mn></mrow><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">
+\text{spread of the learned center}=\frac{\sigma}{\sqrt{n}},\qquad \text{ceiling}=\frac{4\,\Phi\!\left(\tfrac{1}{2\sigma}\right)-1}{3}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>n</dt><dd>calibration examples per attempt</dd><dt>sigma</dt><dd>noise in a single recording</dd><dt>Phi</dt><dd>the standard bell-curve cumulative probability</dd><dt>ceiling</dt><dd>the best accuracy a nearest-center rule can reach with the three centers known exactly</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A one-number recording, equal noise, centers at -1, 0 and 1, and a nearest-learned-center rule. The study&#39;s decoder was calibrated differently and updated over later days. A simulation here is not a measurement of any person or system.</p></div></div>
+<details><summary>Check your understanding: Why does halving the noise help more than quadrupling the examples?</summary><div class="answer">The ceiling itself depends on the noise, and quadrupling the examples only halves the center error. Halving the noise both halves the center error and lifts the ceiling.</div></details>
+<p class="source small">Book source: Chapter 1, A recording is not a command. <span title="a-recording-is-not-a-command">Illustration C01-D02</span>. Simulation. Simulation with disclosed seeds: 400 calibrations per setting, each tested on 300 fresh recordings (100 per attempt), using the invented three-center model of C01-D01. It does not model the study&#39;s calibration, whose five-minute standing test and six weeks of preparation the chapter reports.</p>
+</section>
+<section class="demo" id="C01-D03" aria-labelledby="title-C01-D03">
+<div class="demo-title"><span class="chapter-number">03 / 05</span><h2 id="title-C01-D03">Why not give every voice an equal say?</h2></div>
+<p class="source-line small">From Chapter 1, Not every voice deserves an equal say</p>
+<p class="question">A person and a machine estimate the same quantity and one is steadier. What does an equal share do to the error spread, and what does a reliability weight do?</p><p>The blend&#39;s spread depends on how much of each voice goes in. Putting all weight on the steadier source gives its own spread. Moving a small share to the weaker source lowers the spread, because their errors partly cancel, and the best share is the one in inverse proportion to each source&#39;s variance. An equal share goes too far when one source is much weaker.</p>
+<p class="prediction"><strong>Predict first:</strong> If the person is twice as variable as the machine, predict whether a plain 50-50 average beats the machine alone.</p>
+<div class="controls" role="group" aria-label="Controls for Why not give every voice an equal say?">
+<div class="control"><label for="C01-D03-ratio">Person&#39;s spread relative to the machine&#39;s: <output class="slider-value" data-for="ratio">2</output></label><input type="range" id="C01-D03-ratio" data-control="ratio" min="0" max="5" step="1" value="3" aria-valuetext="2"><div class="slider-ends small"><span>0.5</span><span>4</span></div></div><div class="control"><label for="C01-D03-rule">Rule for the share</label><select id="C01-D03-rule" data-control="rule"><option value="0" selected>equal share</option><option value="1">reliability weights</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C01-D03/06.svg" alt="Blend error spread against the share given to the person, and the blend spread of two rules against the ratio of the sources&#39; spreads." width="960" height="540"><figcaption><strong class="takeaway">Under no bias and independent errors, a reliability weight beats either source alone, while an equal share can lose to the better one.</strong><br><span class="selected-parameters">Person&#39;s spread relative to the machine&#39;s: 2 · Rule for the share: equal share</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> No. The equal share gives a spread of about 1.12 against the machine&#39;s 1. Reliability weights of 0.2 for the person and 0.8 for the machine give about 0.894, better than either source alone.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With the person 2 times as variable, an equal share gives a spread of 1.12, above the 1 of the better source alone. Mixing in a much weaker voice at equal weight hurts.</p>
+<dl class="metrics"><div class="metric"><dt>Blend error spread</dt><dd>1.12</dd></div><div class="metric"><dt>Better source alone</dt><dd>1</dd></div><div class="metric"><dt>Blend against the better source</dt><dd>worse</dd></div><div class="metric"><dt>Share given to the person</dt><dd>0.5</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>It turns the question &#39;should I trust the tool?&#39; into a sharper one: how much weight does each source deserve, given how reliable it is?</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The same rule was tested on how people combine sight and touch (C01-D05).</p></div><div class="note"><strong>In machines</strong><p>An engineer can use the rule to combine uncertain measurements, as the chapter says.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Blend spread = sqrt(w^2 x 2^2 + (1 - w)^2 x 1^2). Equal share w = 0.5 gives sqrt(1 + 0.25) = 1.12. Reliability weight w = 1 / (2^2 + 1) = 0.2 gives 0.894, which equals 1 / sqrt(1/2^2 + 1/1^2).</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mo>*</mo></msup><mo>=</mo><mfrac><msubsup><mi>σ</mi><mi>m</mi><mn>2</mn></msubsup><mrow><msubsup><mi>σ</mi><mi>p</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>m</mi><mn>2</mn></msubsup></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>σ</mi><mtext mathvariant="normal">blend</mtext><mn>2</mn></msubsup><mo>=</mo><msup><mi>w</mi><mn>2</mn></msup><msubsup><mi>σ</mi><mi>p</mi><mn>2</mn></msubsup><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>w</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><msubsup><mi>σ</mi><mi>m</mi><mn>2</mn></msubsup><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>σ</mi><mo>*</mo><mn>2</mn></msubsup><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mi>/</mi><msubsup><mi>σ</mi><mi>p</mi><mn>2</mn></msubsup><mo>+</mo><mn>1</mn><mi>/</mi><msubsup><mi>σ</mi><mi>m</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+w^{*}=\frac{\sigma_m^{2}}{\sigma_p^{2}+\sigma_m^{2}},\qquad \sigma_{\text{blend}}^{2}=w^{2}\sigma_p^{2}+(1-w)^{2}\sigma_m^{2},\qquad \sigma_{*}^{2}=\frac{1}{1/\sigma_p^{2}+1/\sigma_m^{2}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>w</dt><dd>the share given to the person; the machine gets 1 minus w</dd><dt>sigma_p, sigma_m</dt><dd>the error spread of the person&#39;s and the machine&#39;s estimates</dd><dt>w*</dt><dd>the share that gives the smallest blend spread</dd><dt>sigma_*</dt><dd>the smallest achievable spread</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Both estimates are unbiased and their errors are independent. Shared errors or a consistent bias can change the answer. Spread means how much an estimate varies from one attempt to the next.</p></div></div>
+<details><summary>Check your understanding: With equal spreads, what is the best share for the person, and what is the blend&#39;s spread?</summary><div class="answer">The best share is one half, and the spread is 1/sqrt(2), about 0.71 of either source alone, because with equal reliability the plain average is the reliability-weighted blend.</div></details>
+<p class="source small">Book source: Chapter 1, Not every voice deserves an equal say. <span title="not-every-voice-deserves-an-equal-say">Illustration C01-D03</span>. Formula. Book rule, stated in words in this chapter and worked in Chapter 2. The ratio of spreads is a control; the numbers are illustrative, not from a study. The rule needs the independence and no-bias conditions listed.</p>
+</section>
+<section class="demo" id="C01-D04" aria-labelledby="title-C01-D04">
+<div class="demo-title"><span class="chapter-number">04 / 05</span><h2 id="title-C01-D04">What did the partnership add?</h2></div>
+<p class="source-line small">From Chapter 1, Not every voice deserves an equal say</p>
+<p class="question">A person scores 70 out of 100, a machine scores 80, and together they score 75. Did the machine help?</p><p>There are three differences to compute. The pair minus the person shows what the machine added to the person. The pair minus the machine shows what the person added to the machine. The pair minus the better of the two tells whether the partnership beat the best alternative that was available.</p>
+<p class="prediction"><strong>Predict first:</strong> With scores 70, 80 and 75, predict which of these is true: the pair beats the person; the pair beats the machine.</p>
+<div class="controls" role="group" aria-label="Controls for What did the partnership add?">
+<div class="control"><label for="C01-D04-pair">Pair&#39;s score: <output class="slider-value" data-for="pair">75</output></label><input type="range" id="C01-D04-pair" data-control="pair" min="0" max="7" step="1" value="3" aria-valuetext="75"><div class="slider-ends small"><span>60</span><span>95</span></div></div><div class="control"><label for="C01-D04-machine">Machine&#39;s solo score</label><select id="C01-D04-machine" data-control="machine"><option value="0">70</option><option value="1" selected>80</option><option value="2">90</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C01-D04/10.svg" alt="Bars of person, machine and pair scores, and the pair&#39;s gain over the better solo score against the pair&#39;s score." width="960" height="540"><figcaption><strong class="takeaway">Compare the pair with its best real alternative, not only with the weaker member.</strong><br><span class="selected-parameters">Pair&#39;s score: 75 · Machine&#39;s solo score: 80</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Both statements are true in different directions: the pair beats the person by 5 and loses to the machine by 5. Reporting only the first would hide the better available result.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">The pair scores 75, which is +5 against the person and -5 against the machine. Saying only the first would hide that the better available result was 80.</p>
+<dl class="metrics"><div class="metric"><dt>Pair minus person</dt><dd>+5</dd></div><div class="metric"><dt>Pair minus machine</dt><dd>-5</dd></div><div class="metric"><dt>Better solo score</dt><dd>80</dd></div><div class="metric"><dt>Did the pair beat the best alone</dt><dd>no, 5 short</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>The arithmetic turns &#39;did the machine help?&#39; into a sharper question: what did the partnership add compared with the best alternative?</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>A person&#39;s solo score is a measured alternative only when the person could do the task alone.</p></div><div class="note"><strong>In machines</strong><p>A machine&#39;s solo score matters only if the machine could be deployed alone.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Pair minus person = 75 - 70 = +5. Pair minus machine = 75 - 80 = -5. Pair minus the better solo score = 75 - 80 = -5.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">added</mtext><mo>=</mo><msub><mi>S</mi><mtext mathvariant="normal">pair</mtext></msub><mo>−</mo><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><msub><mi>S</mi><mtext mathvariant="normal">person</mtext></msub><mo>,</mo><mspace width="0.167em"></mspace><msub><mi>S</mi><mtext mathvariant="normal">machine</mtext></msub><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\text{added}=S_{\text{pair}}-\max\bigl(S_{\text{person}},\,S_{\text{machine}}\bigr)
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>S_person</dt><dd>the person&#39;s solo score, 70 here</dd><dt>S_machine</dt><dd>the machine&#39;s solo score</dd><dt>S_pair</dt><dd>the score of the person and machine together</dd><dt>max</dt><dd>the better of the two solo scores</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Both solo scores are real alternatives. A walking aid cannot walk alone as a person does, so comparing its solo score with a person&#39;s would answer nothing. The right comparison depends on the task and the outcome that matters. With only 100 questions a gap of a few points may be sampling noise, a point the chapter&#39;s invented numbers do not address.</p></div></div>
+<details><summary>Check your understanding: The pair scores 85 and the machine 80. What do the three comparisons say, and what does the result hint at?</summary><div class="answer">Pair minus person is +15, pair minus machine is +5, and pair minus the best solo score is +5. The pair beat the best alternative, which would point to a real contribution from the partnership, subject to sampling noise.</div></details>
+<p class="source small">Book source: Chapter 1, Not every voice deserves an equal say. <span title="not-every-voice-deserves-an-equal-say">Illustration C01-D04</span>. Formula. The chapter&#39;s constructed example, stated as invented numbers and not a study&#39;s results. The machine&#39;s score and the pair&#39;s score are controls here.</p>
+</section>
+<section class="demo" id="C01-D05" aria-labelledby="title-C01-D05">
+<div class="demo-title"><span class="chapter-number">05 / 05</span><h2 id="title-C01-D05">How does a prediction tell two rules apart?</h2></div>
+<p class="source-line small">From Chapter 1, The rule was tested on people</p>
+<p class="question">Sight and touch both judge a bar&#39;s height, and the picture can be made grainier. What does each combination rule predict about leaning toward touch, and about how finely the two senses together discriminate?</p><p>The reliability-weight rule makes two predictions. As the picture gets grainier, the judgment should lean smoothly toward touch. And the two senses together should discriminate more finely than either alone. A plain average predicts no lean. A winner-take-all rule predicts a sudden jump and no combined gain. Observing a lean and a gain together fits the reliability rule and counts against the others.</p>
+<p class="prediction"><strong>Predict first:</strong> If vision becomes twice as variable as touch, predict how much of the judgment each rule gives to touch, and which rule predicts a gain over the steadier sense.</p>
+<div class="controls" role="group" aria-label="Controls for How does a prediction tell two rules apart?">
+<div class="control"><label for="C01-D05-ratio">Vision&#39;s spread relative to touch&#39;s: <output class="slider-value" data-for="ratio">2</output></label><input type="range" id="C01-D05-ratio" data-control="ratio" min="0" max="5" step="1" value="3" aria-valuetext="2"><div class="slider-ends small"><span>0.25</span><span>8</span></div></div><div class="control"><label for="C01-D05-rule">Combination rule</label><select id="C01-D05-rule" data-control="rule"><option value="0" selected>reliability weights</option><option value="1">plain average</option><option value="2">trust the steadier sense</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C01-D05/09.svg" alt="Bars of the spread for vision, touch and three rules, and the share given to touch against vision&#39;s relative spread." width="960" height="540"><figcaption><strong class="takeaway">A rule is an idea until its predictions are checked, and different rules predict different leans and different gains.</strong><br><span class="selected-parameters">Vision&#39;s spread relative to touch&#39;s: 2 · Combination rule: reliability weights</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat it.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">Reliability weights give touch 0.8 here, and the combined spread 0.894 is better than the steadier sense alone (1). The lean grows smoothly as the picture gets grainier.</p>
+<dl class="metrics"><div class="metric"><dt>Share given to touch</dt><dd>0.8</dd></div><div class="metric"><dt>Spread of the combined judgment</dt><dd>0.894</dd></div><div class="metric"><dt>Steadier sense alone</dt><dd>1</dd></div><div class="metric"><dt>Combined against the steadier sense</dt><dd>better</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This is the difference between describing, predicting and building: the rule described a pattern, predicted what happens when a sense degrades, and can be used to build a machine that combines measurements.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>A match to behavior does not prove the brain does this arithmetic; the paper offers neural populations as a candidate and tests none.</p></div><div class="note"><strong>In machines</strong><p>The same formula specifies a computation a machine performs on uncertain measurements.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Touch spread 1, vision spread 2. Reliability weight on touch = 2^2 / (2^2 + 1) = 0.8. For the selected rule the share is 0.8, so spread = sqrt(0.8^2 x 1 + 0.2^2 x 2^2) = 0.894.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mtext mathvariant="normal">touch</mtext></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mi>/</mi><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></mrow><mrow><mn>1</mn><mi>/</mi><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup><mo>+</mo><mn>1</mn><mi>/</mi><msubsup><mi>σ</mi><mi>v</mi><mn>2</mn></msubsup></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>σ</mi><mtext mathvariant="normal">both</mtext><mn>2</mn></msubsup><mo>=</mo><mfrac><mrow><msubsup><mi>σ</mi><mi>v</mi><mn>2</mn></msubsup><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></mrow><mrow><msubsup><mi>σ</mi><mi>v</mi><mn>2</mn></msubsup><mo>+</mo><msubsup><mi>σ</mi><mi>h</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+w_{\text{touch}}=\frac{1/\sigma_h^{2}}{1/\sigma_h^{2}+1/\sigma_v^{2}},\qquad \sigma_{\text{both}}^{2}=\frac{\sigma_v^{2}\sigma_h^{2}}{\sigma_v^{2}+\sigma_h^{2}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>sigma_v, sigma_h</dt><dd>the spread of the visual and the touch judgments</dd><dt>w_touch</dt><dd>the share of the judgment given to touch</dd><dt>sigma_both</dt><dd>the predicted spread when both senses are used</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The three rules shown are hypotheses for contrast. Unbiased judgments and independent errors are assumed. The chapter notes a close match is good evidence about behavior, and how neurons produce it takes more evidence.</p></div></div>
+<details><summary>Check your understanding: If people showed a smooth lean toward touch but no gain from using both senses, which of the three rules would that count against?</summary><div class="answer">It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either.</div></details>
+<p class="source small">Book source: Chapter 1, The rule was tested on people. <span title="the-rule-was-tested-on-people">Illustration C01-D05</span>. Formula. The chapter reports Ernst and Banks (2002): judgments came close to the predicted lean toward touch as the picture grew grainier and to the prediction that two senses discriminate more finely than either alone. The numbers plotted here are constructed from the rule and are not their measurements.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="#main">Chapter illustrations</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":1,"demos":[{"id":"C01-D01","title":"How does a decoder turn a noisy recording into probabilities?","alt":"Three bell curves for the three attempts with the recording marked, and bars for the probability of each attempt.","controls":[{"key":"x","label":"Recorded value","values":[-1,0,0.5,0.75,1,1.5],"default":0.75,"widget":"slider"},{"key":"sigma","label":"Noise (sigma)","values":[0.5,1,1.5,2],"default":1}],"default_key":"[0.75,1]","reveal_key":"[0.5,1]","reveal_text":"At x = 0.5 the two attempts get exactly the same probability, 0.422 each, and the left hip gets 0.155. The decoder gives a graded estimate and not a command, and a tie is allowed.","states":{"[0.75,1]":{"image":"states/C01-D01/13.svg","metrics":{"Probability of left hip":"0.111","Probability of neither":"0.389","Probability of right hip":"0.5","Most likely attempt":"right hip"},"interpretation":"At recorded value 0.75 with noise 1, the most likely attempt is right hip at probability 0.5. The decoder gives a probability for each attempt and never a command.","calculation":"Weights for left hip, neither, right hip: e^(-(0.75 - (-1))^2 / 2) = 0.216, e^(-(0.75 - (0))^2 / 2) = 0.755, e^(-(0.75 - (1))^2 / 2) = 0.969. Each probability is its weight divided by the total 1.94."}}},{"id":"C01-D02","title":"How much calibration data does a decoder need?","alt":"Histogram of simulated decoder accuracies with the ceiling marked, and average accuracy against calibration examples for three noise levels.","controls":[{"key":"n","label":"Examples per attempt","values":[1,2,5,10,20,50,100],"default":10,"widget":"slider"},{"key":"sigma","label":"Noise (sigma)","values":[0.5,1.0,1.5],"default":1.0}],"default_key":"[10,1]","reveal_key":"[5,1]","reveal_text":"At noise 1, five examples per attempt averaged about 56 percent against a ceiling of about 59, and a few calibrations did much worse. One example per attempt averages about 47 percent, so the first few examples close most of the gap and later ones add little.","states":{"[10,1]":{"image":"states/C01-D02/10.svg","metrics":{"Average accuracy":"57.6 percent","Accuracy if the means were known":"58.9 percent","Gap to that ceiling":"1.3 points","Worst tenth of calibrations":"54 percent or less"},"interpretation":"With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.6 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 54 percent or less.","calculation":"Each calibration estimates a mean from 10 noisy examples, whose own error has spread 1 / sqrt(10) = 0.316. Ceiling: (4 x Phi(0.5 / 1) - 1) / 3 = 0.589, where Phi is the bell-curve cumulative probability."}}},{"id":"C01-D03","title":"Why not give every voice an equal say?","alt":"Blend error spread against the share given to the person, and the blend spread of two rules against the ratio of the sources' spreads.","controls":[{"key":"ratio","label":"Person's spread relative to the machine's","values":[0.5,1,1.5,2,3,4],"default":2,"widget":"slider"},{"key":"rule","label":"Rule for the share","values":["equal share","reliability weights"],"default":"equal share"}],"default_key":"[2,\"equal share\"]","reveal_key":"[2,\"equal share\"]","reveal_text":"No. The equal share gives a spread of about 1.12 against the machine's 1. Reliability weights of 0.2 for the person and 0.8 for the machine give about 0.894, better than either source alone.","states":{"[2,\"equal share\"]":{"image":"states/C01-D03/06.svg","metrics":{"Blend error spread":"1.12","Better source alone":"1","Blend against the better source":"worse","Share given to the person":"0.5"},"interpretation":"With the person 2 times as variable, an equal share gives a spread of 1.12, above the 1 of the better source alone. Mixing in a much weaker voice at equal weight hurts.","calculation":"Blend spread = sqrt(w^2 x 2^2 + (1 - w)^2 x 1^2). Equal share w = 0.5 gives sqrt(1 + 0.25) = 1.12. Reliability weight w = 1 / (2^2 + 1) = 0.2 gives 0.894, which equals 1 / sqrt(1/2^2 + 1/1^2)."}}},{"id":"C01-D04","title":"What did the partnership add?","alt":"Bars of person, machine and pair scores, and the pair's gain over the better solo score against the pair's score.","controls":[{"key":"pair","label":"Pair's score","values":[60,65,70,75,80,85,90,95],"default":75,"widget":"slider"},{"key":"machine","label":"Machine's solo score","values":[70,80,90],"default":80}],"default_key":"[75,80]","reveal_key":"[75,80]","reveal_text":"Both statements are true in different directions: the pair beats the person by 5 and loses to the machine by 5. Reporting only the first would hide the better available result.","states":{"[75,80]":{"image":"states/C01-D04/10.svg","metrics":{"Pair minus person":"+5","Pair minus machine":"-5","Better solo score":"80","Did the pair beat the best alone":"no, 5 short"},"interpretation":"The pair scores 75, which is +5 against the person and -5 against the machine. Saying only the first would hide that the better available result was 80.","calculation":"Pair minus person = 75 - 70 = +5. Pair minus machine = 75 - 80 = -5. Pair minus the better solo score = 75 - 80 = -5."}}},{"id":"C01-D05","title":"How does a prediction tell two rules apart?","alt":"Bars of the spread for vision, touch and three rules, and the share given to touch against vision's relative spread.","controls":[{"key":"ratio","label":"Vision's spread relative to touch's","values":[0.25,0.5,1,2,4,8],"default":2,"widget":"slider"},{"key":"rule","label":"Combination rule","values":["reliability weights","plain average","trust the steadier sense"],"default":"reliability weights"}],"default_key":"[2,\"reliability weights\"]","reveal_key":"[2,\"reliability weights\"]","reveal_text":"Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat it.","states":{"[2,\"reliability weights\"]":{"image":"states/C01-D05/09.svg","metrics":{"Share given to touch":"0.8","Spread of the combined judgment":"0.894","Steadier sense alone":"1","Combined against the steadier sense":"better"},"interpretation":"Reliability weights give touch 0.8 here, and the combined spread 0.894 is better than the steadier sense alone (1). The lean grows smoothly as the picture gets grainier.","calculation":"Touch spread 1, vision spread 2. Reliability weight on touch = 2^2 / (2^2 + 1) = 0.8. For the selected rule the share is 0.8, so spread = sqrt(0.8^2 x 1 + 0.2^2 x 2^2) = 0.894."}}}]}</script><script src="states/C01-D01.js"></script><script src="states/C01-D02.js"></script><script src="states/C01-D03.js"></script><script src="states/C01-D04.js"></script><script src="states/C01-D05.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

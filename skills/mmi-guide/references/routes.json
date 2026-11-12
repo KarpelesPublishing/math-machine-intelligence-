@@ -1,0 +1,999 @@
+{
+  "version": "0.1.0-pilot",
+  "path_base": "The directory containing mmi-guide/SKILL.md; paths are not relative to this references file.",
+  "note": "Routes for chapters that are not built come from titles and question lines only. Do not describe their content.",
+  "routes": [
+    {
+      "question": "My person-plus-AI team scored between its two members. Did pairing help?",
+      "chapter": 1,
+      "title": "What Does It Take to Make a Mind?",
+      "topic": "Estimates, models and partnership",
+      "keywords": [
+        "partnership",
+        "best",
+        "alone",
+        "estimate",
+        "decoder",
+        "model",
+        "evidence",
+        "unequal",
+        "sources",
+        "weights"
+      ],
+      "available": true,
+      "skill": "../mmi-ch01-making-mind/SKILL.md",
+      "reader": "../mmi-ch01-making-mind/assets/reader.html",
+      "demonstrations": [
+        "C01-D01",
+        "C01-D02",
+        "C01-D03",
+        "C01-D04",
+        "C01-D05"
+      ],
+      "prerequisites": [
+        "Averages",
+        "Squares and square roots"
+      ]
+    },
+    {
+      "question": "Two sources disagree. How much should each one count?",
+      "chapter": 2,
+      "title": "Building a Perception",
+      "topic": "Combining unequal sources",
+      "keywords": [
+        "precision",
+        "weights",
+        "reliability",
+        "kalman",
+        "filter",
+        "sensors",
+        "correlated",
+        "errors",
+        "one",
+        "source",
+        "or",
+        "two",
+        "bias"
+      ],
+      "available": true,
+      "skill": "../mmi-ch02-building-perception/SKILL.md",
+      "reader": "../mmi-ch02-building-perception/assets/reader.html",
+      "demonstrations": [
+        "C02-D01",
+        "C02-D02",
+        "C02-D03",
+        "C02-D04",
+        "C02-D05",
+        "C02-D06",
+        "C02-D07"
+      ],
+      "prerequisites": [
+        "Averages and weighted averages",
+        "Variance as squared spread"
+      ]
+    },
+    {
+      "question": "How much can a signal with only a few levels carry?",
+      "chapter": 3,
+      "title": "Keeping What Matters",
+      "topic": "Limited signals",
+      "keywords": [
+        "information",
+        "bits",
+        "response",
+        "levels",
+        "entropy",
+        "coding",
+        "capacity"
+      ],
+      "available": true,
+      "skill": "../mmi-ch03-keeping-what-matters/SKILL.md",
+      "reader": "../mmi-ch03-keeping-what-matters/assets/reader.html",
+      "demonstrations": [
+        "C03-D01",
+        "C03-D02",
+        "C03-D03",
+        "C03-D04",
+        "C03-D05",
+        "C03-D06",
+        "C03-D07"
+      ],
+      "prerequisites": [
+        "Logarithms to base two",
+        "Probability as a share of cases"
+      ]
+    },
+    {
+      "question": "How should I use what I expect, and what if the world disagrees?",
+      "chapter": 4,
+      "title": "Expecting the World",
+      "topic": "Expectation and surprise",
+      "keywords": [
+        "prediction",
+        "expectation",
+        "prior",
+        "surprise",
+        "error"
+      ],
+      "available": true,
+      "skill": "../mmi-ch04-expecting-world/SKILL.md",
+      "reader": "../mmi-ch04-expecting-world/assets/reader.html",
+      "demonstrations": [
+        "C04-D01",
+        "C04-D02",
+        "C04-D03",
+        "C04-D04",
+        "C04-D05",
+        "C04-D06",
+        "C04-D07"
+      ],
+      "prerequisites": [
+        "Averages and weighted averages",
+        "Variance and correlation",
+        "Logarithms to base two"
+      ]
+    },
+    {
+      "question": "When more arrives than I can handle, how is attention shared out?",
+      "chapter": 5,
+      "title": "Choosing What to Notice",
+      "topic": "Attention as weighting",
+      "keywords": [
+        "attention",
+        "softmax",
+        "weights",
+        "selection"
+      ],
+      "available": true,
+      "skill": "../mmi-ch05-what-to-notice/SKILL.md",
+      "reader": "../mmi-ch05-what-to-notice/assets/reader.html",
+      "demonstrations": [
+        "C05-D01",
+        "C05-D02",
+        "C05-D03",
+        "C05-D04",
+        "C05-D05",
+        "C05-D06",
+        "C05-D07"
+      ],
+      "prerequisites": [
+        "Exponentials and shares of a total",
+        "Weighted averages"
+      ]
+    },
+    {
+      "question": "How can a small piece bring back a whole stored item?",
+      "chapter": 6,
+      "title": "Remembering from a Fragment",
+      "topic": "Memory from a fragment",
+      "keywords": [
+        "hopfield",
+        "associative",
+        "memory",
+        "pattern",
+        "completion",
+        "energy",
+        "capacity",
+        "softmax",
+        "attention"
+      ],
+      "available": true,
+      "skill": "../mmi-ch06-remembering-fragment/SKILL.md",
+      "reader": "../mmi-ch06-remembering-fragment/assets/reader.html",
+      "demonstrations": [
+        "C06-D01",
+        "C06-D02",
+        "C06-D03",
+        "C06-D04",
+        "C06-D05",
+        "C06-D06",
+        "C06-D07",
+        "C06-D08"
+      ],
+      "prerequisites": [
+        "Sums and signs",
+        "The exponential function"
+      ]
+    },
+    {
+      "question": "How can something new be learned without losing the old?",
+      "chapter": 7,
+      "title": "Learning Without Losing Everything",
+      "topic": "Learning without losing",
+      "keywords": [
+        "forgetting",
+        "interference",
+        "continual",
+        "learning",
+        "lessons"
+      ],
+      "available": true,
+      "skill": "../mmi-ch07-learning-without-losing/SKILL.md",
+      "reader": "../mmi-ch07-learning-without-losing/assets/reader.html",
+      "demonstrations": [
+        "C07-D01",
+        "C07-D02",
+        "C07-D03",
+        "C07-D04",
+        "C07-D05"
+      ],
+      "prerequisites": [
+        "Dot products of two lists of numbers",
+        "Weighted averages",
+        "Ratios and fractions"
+      ]
+    },
+    {
+      "question": "If A goes with B, how is B going with A known?",
+      "chapter": 8,
+      "title": "Knowing How Things Relate",
+      "topic": "Relations",
+      "keywords": [
+        "relation",
+        "association",
+        "reversal"
+      ],
+      "available": true,
+      "skill": "../mmi-ch08-knowing-things-relate/SKILL.md",
+      "reader": "../mmi-ch08-knowing-things-relate/assets/reader.html",
+      "demonstrations": [
+        "C08-D01",
+        "C08-D02",
+        "C08-D03",
+        "C08-D04",
+        "C08-D05",
+        "C08-D06",
+        "C08-D07"
+      ],
+      "prerequisites": [
+        "Rows and columns of a grid",
+        "Distance between two points on a line"
+      ]
+    },
+    {
+      "question": "How are different things judged to be the same kind?",
+      "chapter": 9,
+      "title": "Forming a Concept",
+      "topic": "Concepts",
+      "keywords": [
+        "concept",
+        "category",
+        "compression",
+        "information"
+      ],
+      "available": true,
+      "skill": "../mmi-ch09-forming-concept/SKILL.md",
+      "reader": "../mmi-ch09-forming-concept/assets/reader.html",
+      "demonstrations": [
+        "C09-D01",
+        "C09-D02",
+        "C09-D03",
+        "C09-D04",
+        "C09-D05",
+        "C09-D06"
+      ],
+      "prerequisites": [
+        "Averages",
+        "Squared distance",
+        "A bit as the answer to one yes-or-no question"
+      ]
+    },
+    {
+      "question": "How can familiar words express an unmet meaning?",
+      "chapter": 10,
+      "title": "Making Meaning with Language",
+      "topic": "Meaning from words",
+      "keywords": [
+        "language",
+        "meaning",
+        "words",
+        "composition"
+      ],
+      "available": true,
+      "skill": "../mmi-ch10-making-meaning-language/SKILL.md",
+      "reader": "../mmi-ch10-making-meaning-language/assets/reader.html",
+      "demonstrations": [
+        "C10-D01",
+        "C10-D02",
+        "C10-D03",
+        "C10-D04",
+        "C10-D05",
+        "C10-D06",
+        "C10-D07"
+      ],
+      "prerequisites": [
+        "Counting and percentages",
+        "Reading a bar chart"
+      ]
+    },
+    {
+      "question": "How does one or two examples become a confident answer?",
+      "chapter": 11,
+      "title": "Learning from Very Little",
+      "topic": "Inference from little",
+      "keywords": [
+        "bayes",
+        "posterior",
+        "odds",
+        "prior",
+        "likelihood",
+        "rule",
+        "of",
+        "succession",
+        "few",
+        "examples"
+      ],
+      "available": true,
+      "skill": "../mmi-ch11-learning-from-little/SKILL.md",
+      "reader": "../mmi-ch11-learning-from-little/assets/reader.html",
+      "demonstrations": [
+        "C11-D01",
+        "C11-D02",
+        "C11-D03",
+        "C11-D04",
+        "C11-D05",
+        "C11-D06",
+        "C11-D07",
+        "C11-D08"
+      ],
+      "prerequisites": [
+        "Odds and probability as a ratio and a share",
+        "The idea of a prior from Chapters 2 and 4",
+        "Reading a bar of errors in percent"
+      ]
+    },
+    {
+      "question": "How can something new be built from what is already held?",
+      "chapter": 12,
+      "title": "Imagining Something New",
+      "topic": "Imagining something new",
+      "keywords": [
+        "imagination",
+        "composition",
+        "generation",
+        "novelty"
+      ],
+      "available": true,
+      "skill": "../mmi-ch12-imagining-new/SKILL.md",
+      "reader": "../mmi-ch12-imagining-new/assets/reader.html",
+      "demonstrations": [
+        "C12-D01",
+        "C12-D02",
+        "C12-D03",
+        "C12-D04",
+        "C12-D05",
+        "C12-D06",
+        "C12-D07"
+      ],
+      "prerequisites": [
+        "Probability of at least one success in repeated tries",
+        "Weighted averages and simple spread (standard deviation)"
+      ]
+    },
+    {
+      "question": "What would a machine need to decide what matters?",
+      "chapter": 13,
+      "title": "What Matters to a Mind?",
+      "topic": "Value and preference",
+      "keywords": [
+        "value",
+        "utility",
+        "preference",
+        "logarithm"
+      ],
+      "available": true,
+      "skill": "../mmi-ch13-what-matters/SKILL.md",
+      "reader": "../mmi-ch13-what-matters/assets/reader.html",
+      "demonstrations": [
+        "C13-D01",
+        "C13-D02",
+        "C13-D03",
+        "C13-D04",
+        "C13-D05"
+      ],
+      "prerequisites": [
+        "Logarithms and square roots",
+        "Averages weighted by chances",
+        "Exponentials and the idea of a probability"
+      ]
+    },
+    {
+      "question": "How does the gap between expected and received teach?",
+      "chapter": 14,
+      "title": "Learning from Consequences",
+      "topic": "Learning from consequences",
+      "keywords": [
+        "reward",
+        "prediction",
+        "error",
+        "temporal",
+        "difference",
+        "q",
+        "learning"
+      ],
+      "available": true,
+      "skill": "../mmi-ch14-learning-consequences/SKILL.md",
+      "reader": "../mmi-ch14-learning-consequences/assets/reader.html",
+      "demonstrations": [
+        "C14-D01",
+        "C14-D02",
+        "C14-D03",
+        "C14-D04",
+        "C14-D05",
+        "C14-D06",
+        "C14-D07"
+      ],
+      "prerequisites": [
+        "Averages and weighted averages",
+        "Reading a line graph"
+      ]
+    },
+    {
+      "question": "How is it decided that waiting has gone on long enough?",
+      "chapter": 15,
+      "title": "When to Decide",
+      "topic": "When to decide",
+      "keywords": [
+        "stopping",
+        "evidence",
+        "reward",
+        "rate",
+        "deadline"
+      ],
+      "available": true,
+      "skill": "../mmi-ch15-when-to-decide/SKILL.md",
+      "reader": "../mmi-ch15-when-to-decide/assets/reader.html",
+      "demonstrations": [
+        "C15-D01",
+        "C15-D02",
+        "C15-D03",
+        "C15-D04",
+        "C15-D05",
+        "C15-D06",
+        "C15-D07"
+      ],
+      "prerequisites": [
+        "Probability and conditional probability",
+        "Bayes' rule (Chapter 11)",
+        "The normal bell curve and cumulative areas"
+      ]
+    },
+    {
+      "question": "How can I tell what a thing does when set, not only what it goes with?",
+      "chapter": 16,
+      "title": "Discovering What Causes What",
+      "topic": "Causes",
+      "keywords": [
+        "causal",
+        "intervention",
+        "do",
+        "back",
+        "door",
+        "confounding"
+      ],
+      "available": true,
+      "skill": "../mmi-ch16-discovering-causes/SKILL.md",
+      "reader": "../mmi-ch16-discovering-causes/assets/reader.html",
+      "demonstrations": [
+        "C16-D01",
+        "C16-D02",
+        "C16-D03",
+        "C16-D04",
+        "C16-D05",
+        "C16-D06"
+      ],
+      "prerequisites": [
+        "Chances and conditional chances",
+        "Weighted averages"
+      ]
+    },
+    {
+      "question": "How do I weigh what would happen before I move?",
+      "chapter": 17,
+      "title": "Considering a Future",
+      "topic": "Considering a future",
+      "keywords": [
+        "planning",
+        "search",
+        "cheapest",
+        "route",
+        "a",
+        "star",
+        "future"
+      ],
+      "available": true,
+      "skill": "../mmi-ch17-considering-future/SKILL.md",
+      "reader": "../mmi-ch17-considering-future/assets/reader.html",
+      "demonstrations": [
+        "C17-D01",
+        "C17-D02",
+        "C17-D03",
+        "C17-D04",
+        "C17-D05",
+        "C17-D06"
+      ],
+      "prerequisites": [
+        "Sums and weighted averages",
+        "Powers and logarithms"
+      ]
+    },
+    {
+      "question": "Build an answer piece by piece, or settle a rough whole and sharpen?",
+      "chapter": 18,
+      "title": "Sketching Before Detail",
+      "topic": "Sketch then detail",
+      "keywords": [
+        "refinement",
+        "correction",
+        "coarse",
+        "to",
+        "fine"
+      ],
+      "available": true,
+      "skill": "../mmi-ch18-sketching-before-detail/SKILL.md",
+      "reader": "../mmi-ch18-sketching-before-detail/assets/reader.html",
+      "demonstrations": [
+        "C18-D01",
+        "C18-D02",
+        "C18-D03",
+        "C18-D04",
+        "C18-D05",
+        "C18-D06"
+      ],
+      "prerequisites": [
+        "Sums and running totals",
+        "Counting and binomial chances"
+      ]
+    },
+    {
+      "question": "Is another look worth its price?",
+      "chapter": 19,
+      "title": "Spending Thought Wisely",
+      "topic": "Spending thought",
+      "keywords": [
+        "value",
+        "of",
+        "information",
+        "cost",
+        "thinking",
+        "effort"
+      ],
+      "available": true,
+      "skill": "../mmi-ch19-spending-thought-wisely/SKILL.md",
+      "reader": "../mmi-ch19-spending-thought-wisely/assets/reader.html",
+      "demonstrations": [
+        "C19-D01",
+        "C19-D02",
+        "C19-D03",
+        "C19-D04",
+        "C19-D05",
+        "C19-D06"
+      ],
+      "prerequisites": [
+        "Expected values",
+        "Conditional chances and Bayes' rule"
+      ]
+    },
+    {
+      "question": "How is a body moved when feedback arrives late?",
+      "chapter": 20,
+      "title": "Acting Through a Body",
+      "topic": "Acting through a body",
+      "keywords": [
+        "control",
+        "feedback",
+        "delay",
+        "motor"
+      ],
+      "available": true,
+      "skill": "../mmi-ch20-acting-through-body/SKILL.md",
+      "reader": "../mmi-ch20-acting-through-body/assets/reader.html",
+      "demonstrations": [
+        "C20-D01",
+        "C20-D02",
+        "C20-D03",
+        "C20-D04",
+        "C20-D05",
+        "C20-D06"
+      ],
+      "prerequisites": [
+        "Vectors as pairs of numbers",
+        "Averages and spread (variance)",
+        "Powers and the exponential function"
+      ]
+    },
+    {
+      "question": "How likely is my own answer to be right?",
+      "chapter": 21,
+      "title": "Knowing What You Know",
+      "topic": "Knowing what you know",
+      "keywords": [
+        "confidence",
+        "evidence",
+        "calibration",
+        "metacognition"
+      ],
+      "available": true,
+      "skill": "../mmi-ch21-knowing-what-you-know/SKILL.md",
+      "reader": "../mmi-ch21-knowing-what-you-know/assets/reader.html",
+      "demonstrations": [
+        "C21-D01",
+        "C21-D02",
+        "C21-D03",
+        "C21-D04",
+        "C21-D05",
+        "C21-D06"
+      ],
+      "prerequisites": [
+        "Probability as a share of cases",
+        "The logistic curve",
+        "Averages and squared differences"
+      ]
+    },
+    {
+      "question": "What is someone else after, judging only from their steps?",
+      "chapter": 22,
+      "title": "Understanding Another Mind",
+      "topic": "Another mind",
+      "keywords": [
+        "goal",
+        "inference",
+        "softmax",
+        "choice",
+        "observed",
+        "steps"
+      ],
+      "available": true,
+      "skill": "../mmi-ch22-another-mind/SKILL.md",
+      "reader": "../mmi-ch22-another-mind/assets/reader.html",
+      "demonstrations": [
+        "C22-D01",
+        "C22-D02",
+        "C22-D03",
+        "C22-D04",
+        "C22-D05",
+        "C22-D06"
+      ],
+      "prerequisites": [
+        "Probabilities and products of probabilities",
+        "The exponential function",
+        "Binomial counting (combinations)"
+      ]
+    },
+    {
+      "question": "When does asking many beat asking the best one?",
+      "chapter": 23,
+      "title": "When Several Minds Help",
+      "topic": "Several minds",
+      "keywords": [
+        "panel",
+        "crowd",
+        "diversity",
+        "effective",
+        "size",
+        "shared",
+        "error"
+      ],
+      "available": true,
+      "skill": "../mmi-ch23-several-minds-help/SKILL.md",
+      "reader": "../mmi-ch23-several-minds-help/assets/reader.html",
+      "demonstrations": [
+        "C23-D01",
+        "C23-D02",
+        "C23-D03",
+        "C23-D04",
+        "C23-D05",
+        "C23-D06",
+        "C23-D07"
+      ],
+      "prerequisites": [
+        "Averages and variance",
+        "Correlation as how closely two errors move together"
+      ]
+    },
+    {
+      "question": "What survives when knowledge passes down a chain of learners?",
+      "chapter": 24,
+      "title": "Learning Across Generations",
+      "topic": "Across generations",
+      "keywords": [
+        "transmission",
+        "chain",
+        "iterated",
+        "learning",
+        "loss"
+      ],
+      "available": true,
+      "skill": "../mmi-ch24-learning-across-generations/SKILL.md",
+      "reader": "../mmi-ch24-learning-across-generations/assets/reader.html",
+      "demonstrations": [
+        "C24-D01",
+        "C24-D02",
+        "C24-D03",
+        "C24-D04",
+        "C24-D05",
+        "C24-D06"
+      ],
+      "prerequisites": [
+        "Probabilities of independent events",
+        "Bayes' rule as a weighted share"
+      ]
+    },
+    {
+      "question": "How should a person and machine share a task so the pair beats the better one?",
+      "chapter": 25,
+      "title": "Designing a Joint Intelligence",
+      "topic": "A joint intelligence",
+      "keywords": [
+        "partnership",
+        "override",
+        "disagreement",
+        "pair",
+        "design",
+        "comparison"
+      ],
+      "available": true,
+      "skill": "../mmi-ch25-designing-joint-intelligence/SKILL.md",
+      "reader": "../mmi-ch25-designing-joint-intelligence/assets/reader.html",
+      "demonstrations": [
+        "C25-D01",
+        "C25-D02",
+        "C25-D03",
+        "C25-D04",
+        "C25-D05",
+        "C25-D06"
+      ],
+      "prerequisites": [
+        "Averages and proportions",
+        "Reading a correlation"
+      ]
+    },
+    {
+      "question": "Where can a starting design come from?",
+      "chapter": 26,
+      "title": "Where the Starting Structure Comes From",
+      "topic": "Starting structure",
+      "keywords": [
+        "evolution",
+        "search",
+        "replicator",
+        "design"
+      ],
+      "available": true,
+      "skill": "../mmi-ch26-starting-structure/SKILL.md",
+      "reader": "../mmi-ch26-starting-structure/assets/reader.html",
+      "demonstrations": [
+        "C26-D01",
+        "C26-D02",
+        "C26-D03",
+        "C26-D04",
+        "C26-D05",
+        "C26-D06"
+      ],
+      "prerequisites": [
+        "Probabilities of independent tries",
+        "Weighted averages and shares"
+      ]
+    },
+    {
+      "question": "How does learning continue after the first training?",
+      "chapter": 27,
+      "title": "Learning After Training",
+      "topic": "Learning after training",
+      "keywords": [
+        "low",
+        "rank",
+        "adaptation",
+        "lora",
+        "penalty",
+        "forgetting"
+      ],
+      "available": true,
+      "skill": "../mmi-ch27-learning-after-training/SKILL.md",
+      "reader": "../mmi-ch27-learning-after-training/assets/reader.html",
+      "demonstrations": [
+        "C27-D01",
+        "C27-D02",
+        "C27-D03",
+        "C27-D04",
+        "C27-D05"
+      ],
+      "prerequisites": [
+        "Matrix multiplication of a column by a row",
+        "Weighted averages"
+      ]
+    },
+    {
+      "question": "Can a learned mind be edited by changing connections directly?",
+      "chapter": 28,
+      "title": "Editing a Learned Mind",
+      "topic": "Editing",
+      "keywords": [
+        "model",
+        "editing",
+        "rank",
+        "one",
+        "weights"
+      ],
+      "available": true,
+      "skill": "../mmi-ch28-editing-learned-mind/SKILL.md",
+      "reader": "../mmi-ch28-editing-learned-mind/assets/reader.html",
+      "demonstrations": [
+        "C28-D01",
+        "C28-D02",
+        "C28-D03",
+        "C28-D04",
+        "C28-D05",
+        "C28-D06",
+        "C28-D07"
+      ],
+      "prerequisites": [
+        "Chapter 6, storing patterns in connections",
+        "Chapter 7, overlap of two lists (dot product)"
+      ]
+    },
+    {
+      "question": "Does an explanation of a choice describe what caused it?",
+      "chapter": 29,
+      "title": "The Interpreter",
+      "topic": "The interpreter",
+      "keywords": [
+        "explanation",
+        "faithful",
+        "hint",
+        "report",
+        "cause"
+      ],
+      "available": true,
+      "skill": "../mmi-ch29-interpreter/SKILL.md",
+      "reader": "../mmi-ch29-interpreter/assets/reader.html",
+      "demonstrations": [
+        "C29-D01",
+        "C29-D02",
+        "C29-D03",
+        "C29-D04",
+        "C29-D05",
+        "C29-D06"
+      ],
+      "prerequisites": [
+        "Chapter 16, setting a variable with the word do",
+        "Chapter 21, confidence against accuracy"
+      ]
+    },
+    {
+      "question": "How does a system tell what it did from what merely happened?",
+      "chapter": 30,
+      "title": "Modeling Yourself",
+      "topic": "Modeling yourself",
+      "keywords": [
+        "self",
+        "model",
+        "agency",
+        "action",
+        "effect"
+      ],
+      "available": true,
+      "skill": "../mmi-ch30-modeling-yourself/SKILL.md",
+      "reader": "../mmi-ch30-modeling-yourself/assets/reader.html",
+      "demonstrations": [
+        "C30-D01",
+        "C30-D02",
+        "C30-D03",
+        "C30-D04",
+        "C30-D05",
+        "C30-D06"
+      ],
+      "prerequisites": [
+        "Chapter 2, the precision-weighted blend and the Kalman correction",
+        "Chapter 20, the question of an unexpected sensation"
+      ]
+    },
+    {
+      "question": "How does one piece of information reach memory, speech and action at once?",
+      "chapter": 31,
+      "title": "Making Information Available",
+      "topic": "Making information available",
+      "keywords": [
+        "broadcast",
+        "availability",
+        "report",
+        "access"
+      ],
+      "available": true,
+      "skill": "../mmi-ch31-making-information-available/SKILL.md",
+      "reader": "../mmi-ch31-making-information-available/assets/reader.html",
+      "demonstrations": [
+        "C31-D01",
+        "C31-D02",
+        "C31-D03",
+        "C31-D04",
+        "C31-D05"
+      ],
+      "prerequisites": [
+        "Chapter 21, confidence against accuracy",
+        "Chapter 29, a report against a measured change"
+      ]
+    },
+    {
+      "question": "What could show that another system has experience?",
+      "chapter": 32,
+      "title": "The Question of Experience",
+      "topic": "The question of experience",
+      "keywords": [
+        "experience",
+        "consciousness",
+        "complexity",
+        "evidence"
+      ],
+      "available": true,
+      "skill": "../mmi-ch32-question-experience/SKILL.md",
+      "reader": "../mmi-ch32-question-experience/assets/reader.html",
+      "demonstrations": [
+        "C32-D01",
+        "C32-D02",
+        "C32-D03",
+        "C32-D04",
+        "C32-D05",
+        "C32-D06",
+        "C32-D07"
+      ],
+      "prerequisites": [
+        "Probability as a share",
+        "Logarithms base two"
+      ]
+    },
+    {
+      "question": "What does a test of intelligence reveal, and what does it leave out?",
+      "chapter": 33,
+      "title": "What Counts as Intelligence?",
+      "topic": "What counts as intelligence",
+      "keywords": [
+        "test",
+        "measurement",
+        "benchmark",
+        "intelligence"
+      ],
+      "available": true,
+      "skill": "../mmi-ch33-what-counts/SKILL.md",
+      "reader": "../mmi-ch33-what-counts/assets/reader.html",
+      "demonstrations": [
+        "C33-D01",
+        "C33-D02",
+        "C33-D03",
+        "C33-D04",
+        "C33-D05",
+        "C33-D06"
+      ],
+      "prerequisites": [
+        "Averages and weighted averages",
+        "Correlation as scores moving together"
+      ]
+    },
+    {
+      "question": "What can the abilities do together?",
+      "chapter": 34,
+      "title": "How the Abilities Work Together",
+      "topic": "The abilities together",
+      "keywords": [
+        "integration",
+        "synthesis",
+        "partnership"
+      ],
+      "available": true,
+      "skill": "../mmi-ch34-abilities-work-together/SKILL.md",
+      "reader": "../mmi-ch34-abilities-work-together/assets/reader.html",
+      "demonstrations": [
+        "C34-D01",
+        "C34-D02",
+        "C34-D03",
+        "C34-D04",
+        "C34-D05",
+        "C34-D06"
+      ],
+      "prerequisites": [
+        "Probability as weights that total one",
+        "Averages and weighted averages"
+      ]
+    }
+  ]
+}

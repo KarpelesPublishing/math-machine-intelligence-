@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A test finds 79.2 percent of cancers, flags 9.6 percent of benign cases, and the prior is 1 percent. What is the chance of cancer after a positive report?",
+    "expected_behavior": "About 7.7 percent: 0.00792 / (0.00792 + 0.09504). Count it as about 8 real alarms among about 103 in 1,000 women, and say the figures are Eddy's example, not advice for an individual."
+  },
+  {
+    "prompt": "A miss costs 9 times a false alarm and my classifier's probabilities are calibrated. Where is the cutoff?",
+    "expected_behavior": "Say yes above a chance of 1 in 10 (1/(1 + 9)). Note the assumptions: calibrated probabilities and correct calls costing nothing, and ask who set the 9."
+  },
+  {
+    "prompt": "Careful takes 1.2 s with 5 percent errors, quick takes 0.6 s with 15 percent errors, fixed time 0.3 s. Which earns more at a 2 s delay, and at 6 s?",
+    "expected_behavior": "Careful 0.95/3.5 = 0.271 against quick 0.85/2.9 = 0.293 at 2 s, so quick; at 6 s careful 0.127 against quick 0.123, so careful. They tie at a delay of 4.2 s with no time-out."
+  }
+]

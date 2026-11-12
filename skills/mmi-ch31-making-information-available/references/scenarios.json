@@ -1,0 +1,10 @@
+[
+  {
+    "prompt": "None of 655 electrodes matched. Does that refute the theory?",
+    "expected_behavior": "Says no: the paper called the prediction challenged, the zero belongs to one preregistered analysis, other analyses found a few matches, and the companion's check says a zero rejects detected-match rates above about 0.5 percent only if electrodes are independent."
+  },
+  {
+    "prompt": "A model's exact-match score jumped from 0.001 to 0.349. Did it gain an ability?",
+    "expected_behavior": "Says per-token accuracy rose from 0.5 to 0.9, and p to the power 10 explains the leap under independent tokens; a smoother score may show steady improvement; the paper does not claim real jumps never happen."
+  }
+]

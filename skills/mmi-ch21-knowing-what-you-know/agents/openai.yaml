@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Knowing What You Know"
+  short_description: "Explore and apply Chapter 21 of the book."
+  default_prompt: "Use $mmi-ch21-knowing-what-you-know to help me understand or apply this idea: "

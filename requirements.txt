@@ -1,0 +1,8 @@
+numpy>=1.26
+matplotlib>=3.8
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6.29
+jinja2>=3.1
+# Not a Python package: pandoc (command line) renders the equations to MathML.
+# Node 18 or later is needed only for quality/check_reader_controls.js.

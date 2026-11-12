@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A rare answer has a 1 in 100 chance on each draw, and the next model trains on 100 draws. How likely is the answer to be missing?",
+    "expected_behavior": "0.99 multiplied by itself 100 times, about 0.37; say it is gone for a copier that can only produce what it saw."
+  },
+  {
+    "prompt": "Prior 0.2 that a writer held a clause, fidelity 0.7, false-positive rate 0.3. What does a best-guess reader do with a page that carries the clause?",
+    "expected_behavior": "Weights 0.14 and 0.24, share 0.14 / 0.38 = 0.37, so the best-guess reader drops it; a sampling reader keeps it about 4 times in 10."
+  },
+  {
+    "prompt": "28 of 32 student chains ended on a rising line. Is that strong evidence of a pull toward it?",
+    "expected_behavior": "Eight began on one, so at least 20 of the 24 that began elsewhere ended there; the authors did not fit a model and say more data would be needed to confirm convergence."
+  }
+]

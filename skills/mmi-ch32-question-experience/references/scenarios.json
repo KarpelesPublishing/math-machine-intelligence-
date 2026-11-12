@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A 32-cell response has 6 new patterns and 8 cells on. What is its score?",
+    "expected_behavior": "p = 0.25, entropy 0.811 bits, score 6 x 5 / (32 x 0.811) = 1.16. Say the counts are constructed and the score is not a measurement of experience."
+  },
+  {
+    "prompt": "A test flags 10 of 100 cases and catches half of the cases with the property. What share of its negatives have the property?",
+    "expected_behavior": "20 cases have it, 10 are missed among 90 negatives, so 10/90 = 0.111. Note the assumption that the test never flags a case without the property."
+  },
+  {
+    "prompt": "A decoder got 48 of 48 answers right. Is its accuracy 100 percent?",
+    "expected_behavior": "No. An accuracy of 0.94 still gives 48 of 48 with chance 5 percent. The record rules out low accuracy but not moderate error, and it assumes independent answers."
+  }
+]

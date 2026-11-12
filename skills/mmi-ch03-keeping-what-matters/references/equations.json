@@ -1,0 +1,634 @@
+{
+  "chapter": 3,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-03.md",
+  "source_sha256": "d49cb20cda72723b0922a13bb2faa731b4bb1f79bee9ac0bd6e60d28447b2950",
+  "calculation_sha256": "b1ff5eb41d2a87ab28682fe476686206b16b5b02f52b70947f0d80d28bb0c85d",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C03-D01",
+      "title": "How many bits can ten steps carry, and when do they carry them all?",
+      "question": "A cell can signal ten distinguishable levels. If most readings crowd into a narrow band, how much of the 3.32 bits does an evenly spaced layout waste?",
+      "equations": [
+        "H_{\\max}=\\log_2 M,\\qquad H=-\\sum_{i=1}^{M}p_i\\log_2 p_i\\le\\log_2 M"
+      ],
+      "symbols_list": [
+        {
+          "sym": "M",
+          "meaning": "number of distinguishable levels (10 here)"
+        },
+        {
+          "sym": "p_i",
+          "meaning": "share of readings that land in level i"
+        },
+        {
+          "sym": "H",
+          "meaning": "bits actually carried per signal, on average"
+        },
+        {
+          "sym": "H_max",
+          "meaning": "the most any use of M levels can carry, reached when all p_i equal 1/M"
+        }
+      ],
+      "source_anchor": "a-cell-spent-its-few-steps-where-the-world-was-crowded",
+      "source_section": "A cell spent its few steps where the world was crowded",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-4-entropy-and-cumulative-response-chapter-3"
+      ],
+      "provenance": "Book formula and the chapter's constructed 1,000-reading example (800 in a narrow band, 100 in each tail). Laughlin did not count ten steps in a real cell; the ten levels are an illustration. Spreading band and tail readings evenly inside their steps is this companion's simplification.",
+      "kind": "formula",
+      "assumptions": "Ten equally distinguishable levels, no noise, and readings spread evenly within the band steps and within the tail steps. This is the capacity of an idealized signal, not a measurement of the fly cell.",
+      "prediction": "With 800 of 1,000 readings in a band that evenly spaced steps cover with only 2 of the 10 steps, predict to the nearest bit how many of the 3.32 possible bits the signal carries.",
+      "reveal": {
+        "state": {
+          "band_steps": 8,
+          "band_readings": 800
+        },
+        "text": "With eight fine steps in the band and one in each tail, every step holds 100 of the 1,000 readings and the signal carries log2 10 = 3.32 bits. Compare the default, where two steps hold the band and the signal carries 2.12."
+      },
+      "takeaway": "Ten levels can carry 3.32 bits only if they are used equally often; crowding the readings into a few of them wastes the rest.",
+      "why_it_matters": "A sensor or code with a fixed number of levels has a ceiling set by its level count and a shortfall set by how its levels are placed. Placement is the part a designer or a cell can change.",
+      "sides": {
+        "brain": "Laughlin measured contrast in outdoor scenes and the response of fly cells; the ten-level drawing in his note is an illustration, and no bits were counted in a real cell.",
+        "machine": "Any quantizer or code with M levels has the same ceiling, log2 M bits, and reaches it only when its levels are used equally often."
+      },
+      "explanation": "A level that is used rarely adds little to what the signal can tell you, and a level that is used all the time cannot tell you which of the crowded readings occurred. Entropy averages the surprise of each level weighted by its share, and it is largest when the shares are equal. The ceiling log2 M is therefore a statement about use, not about how many levels there are.",
+      "check": "How many bits can 16 equally used levels carry, and how many levels do 5 bits need?",
+      "answer": "log2 16 = 4 bits. Five bits need 2^5 = 32 equally used levels.",
+      "controls": [
+        {
+          "key": "band_steps",
+          "label": "Steps covering the narrow band",
+          "values": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "band_readings",
+          "label": "Readings in the band (of 1,000)",
+          "values": [
+            500,
+            800,
+            950
+          ],
+          "default": 800
+        }
+      ],
+      "function": "bits_picture",
+      "alt": "Bars of the share of readings in each of ten steps, and a curve of bits carried against the number of steps covering the band.",
+      "symbols": "M: number of distinguishable levels (10 here); p_i: share of readings that land in level i; H: bits actually carried per signal, on average; H_max: the most any use of M levels can carry, reached when all p_i equal 1/M",
+      "application": "A sensor or code with a fixed number of levels has a ceiling set by its level count and a shortfall set by how its levels are placed. Placement is the part a designer or a cell can change.",
+      "default_parameters": "Steps covering the narrow band: 2 · Readings in the band (of 1,000): 800",
+      "worked_example": {
+        "Bits carried": "2.12",
+        "Most possible, log2 10": "3.32",
+        "Share of the most": "64 percent",
+        "Busiest step": "40 percent of readings"
+      },
+      "worked_interpretation": "With the band covering 2 steps, the busiest step holds 40 percent of the readings and the ten levels carry 2.12 of a possible 3.32 bits. Placement of the steps, not their number, set the shortfall.",
+      "reader_anchor": "C03-D01"
+    },
+    {
+      "id": "C03-D02",
+      "title": "What does the share-at-or-below rule buy over evenly spaced steps?",
+      "question": "If contrast is mostly small, how does a response built from the share of readings at or below each contrast compare with one spaced evenly across the range?",
+      "equations": [
+        "r(c)=r_{\\max}\\,F(c),\\qquad F(c)=P(C\\le c)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "c",
+          "meaning": "one contrast, a change as a fraction of its surroundings"
+        },
+        {
+          "sym": "C",
+          "meaning": "the contrast the world hands the cell at random"
+        },
+        {
+          "sym": "F(c)",
+          "meaning": "share of readings at or below c, a number from 0 to 1"
+        },
+        {
+          "sym": "r_max, r(c)",
+          "meaning": "the top response, and the response to contrast c"
+        }
+      ],
+      "source_anchor": "a-cell-spent-its-few-steps-where-the-world-was-crowded",
+      "source_section": "A cell spent its few steps where the world was crowded",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-4-entropy-and-cumulative-response-chapter-3"
+      ],
+      "provenance": "Book formula. The world here is a constructed Laplace distribution of contrast with scale 1 (the shape the chapter uses for a later example), not Laughlin's 15,000 readings, which the chapter does not tabulate. The evenly spaced comparison is the companion's own.",
+      "kind": "constructed example",
+      "assumptions": "Continuous input, zero response floor, equal-sized response steps, equally steady response at every level and information as the only goal; these are the rule's assumptions, not findings of Laughlin's. The linear comparison clips contrasts beyond its half-range into the end steps.",
+      "prediction": "An evenly spaced response clips the extremes if its range is too narrow and leaves its end steps idle if too wide. Predict which half-range, from 0.5 to 8, carries the most bits.",
+      "reveal": {
+        "state": {
+          "half_range": 0.5,
+          "levels": 10
+        },
+        "text": "A half-range of 0.5 clips about 61 percent of readings into the end steps and carries 2.57 bits. The best evenly spaced range here is 2 (3.21 bits); only the share-at-or-below curve reaches 3.32 whatever the scale of the world."
+      },
+      "takeaway": "Making the response follow the share of readings at or below each contrast uses every step equally often, so it carries log2 M bits for any scale of world; an evenly spaced response must be tuned to the scale and still falls short.",
+      "why_it_matters": "The rule turns a measured world into a predicted response curve, which Laughlin could then check against a cell. A machine can do the same with a measured input distribution, which is how a photo's brightness values are spread across the available range.",
+      "sides": {
+        "brain": "Laughlin's cell curve and his cumulative curve were both S shapes that matched by eye in six cells of one class; no fit statistic or bits were reported.",
+        "machine": "Histogram equalization applies the same share-at-or-below curve to spread an image's brightness values. The match is in the curve alone, and it does not mean the cell computes like an image program."
+      },
+      "explanation": "Where readings crowd, a small change in contrast passes many readings, so the share at or below climbs fast and the response with it. Each response step then catches the same share of readings. A straight-line response gives the middle of the range the same number of steps as the far tails, which almost nothing visits.",
+      "check": "For F(c) = c^2 on the unit interval, what share of readings fall in each of four equal response steps?",
+      "answer": "Each step has probability 1/4, so 0.25 each and entropy 2 bits. A response r = rmax F(C) is uniform whatever F is, as long as F is the input's own cumulative curve.",
+      "controls": [
+        {
+          "key": "half_range",
+          "label": "Half-range of the evenly spaced response",
+          "values": [
+            0.5,
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          "default": 3,
+          "widget": "slider"
+        },
+        {
+          "key": "levels",
+          "label": "Number of response steps",
+          "values": [
+            4,
+            10,
+            16
+          ],
+          "default": 10
+        }
+      ],
+      "function": "cumulative_rule_picture",
+      "alt": "Share-at-or-below and straight-line response curves over a gold contrast density, and bits carried against the straight-line half-range.",
+      "symbols": "c: one contrast, a change as a fraction of its surroundings; C: the contrast the world hands the cell at random; F(c): share of readings at or below c, a number from 0 to 1; r_max, r(c): the top response, and the response to contrast c",
+      "application": "The rule turns a measured world into a predicted response curve, which Laughlin could then check against a cell. A machine can do the same with a measured input distribution, which is how a photo's brightness values are spread across the available range.",
+      "default_parameters": "Half-range of the evenly spaced response: 3 · Number of response steps: 10",
+      "worked_example": {
+        "Bits, evenly spaced": "3",
+        "Bits, share rule": "3.32",
+        "Readings clipped at an end": "5 percent",
+        "Levels": 10
+      },
+      "worked_interpretation": "With a half-range of 3 the evenly spaced response carries 3 of 3.32 bits and is a middling compromise. The share-at-or-below curve uses every step 10 percent of the time for any scale of world.",
+      "reader_anchor": "C03-D02"
+    },
+    {
+      "id": "C03-D03",
+      "title": "Does telling inputs apart give the same layout as rebuilding them?",
+      "question": "If a later stage must rebuild each contrast closely, where should the step boundaries go compared with the equal-use layout?",
+      "equations": [
+        "\\text{equal use: } b_k=F^{-1}(k/M),\\qquad \\text{rebuild: } \\min \\sum_{i}\\int_{\\text{step } i}(c-q_i)^2 f(c)\\,dc"
+      ],
+      "symbols_list": [
+        {
+          "sym": "b_k",
+          "meaning": "the k-th boundary between steps, chosen so each step holds 1/M of the readings"
+        },
+        {
+          "sym": "q_i",
+          "meaning": "the contrast the receiver assumes when step i is signaled"
+        },
+        {
+          "sym": "f(c)",
+          "meaning": "the input density; here Laplace with scale 1, f(c) = exp(-|c|) / 2"
+        },
+        {
+          "sym": "M",
+          "meaning": "number of steps"
+        }
+      ],
+      "source_anchor": "counting-information-says-nothing-about-what-the-fly-needs",
+      "source_section": "Counting information says nothing about what the fly needs",
+      "provenance": "The chapter's own ten-step Laplace example: equal-use boundaries at plus or minus 0.22, 0.51, 0.92 and 1.61 and squared-error boundaries at plus or minus 0.60, 1.35, 2.37 and 3.97. The companion recomputes these and adds other step counts. The chapter calls the comparison this book's calculation for one distribution and one cost.",
+      "kind": "constructed example",
+      "assumptions": "Laplace contrast with scale 1, squared error as the cost, and each step's rebuilt value set to the mean of the readings in it. The result is not claimed for other distributions or costs, and it says nothing about what a fly's later stages need.",
+      "prediction": "Predict whether squared-error boundaries sit nearer to the middle or farther out than the equal-use boundaries, and by about how much the squared error of a ten-step code changes.",
+      "reveal": {
+        "state": {
+          "levels": 10,
+          "design": "squared error"
+        },
+        "text": "The squared-error layout reaches out to 3.97 where equal use stops at 1.61, and the two end steps hold under 1 percent each. Its squared error is 0.0731 against 0.213, about 2.9 times smaller, at a cost of 0.47 bits (2.85 against 3.32)."
+      },
+      "takeaway": "Telling inputs apart and rebuilding them closely are two goals, and they give two layouts; a third goal, serving a task, would need its own cost.",
+      "why_it_matters": "A code is good or bad relative to what the next stage does with it. Equal use maximizes information; it does not minimize the cost of a large miss.",
+      "sides": {
+        "brain": "The note does not say what a fly's later stages need, so nothing here says which layout the fly uses.",
+        "machine": "A quantizer designer picks the layout by the cost to be minimized: equal use for telling inputs apart, squared-error design for rebuilding them."
+      },
+      "explanation": "When a miss costs its size squared, a rare large contrast that lands in a wide step is expensive, so the layout gives it finer steps than equal use would. The cost is that the middle steps get wider than they need to be to tell commonplace readings apart, and the code carries fewer bits.",
+      "check": "For four equal-use steps on a Laplace density with scale 1, what are the three boundaries? Use F^-1(u) = ln(2u) for u below 0.5.",
+      "answer": "The quantiles at 0.25, 0.5 and 0.75: ln(0.5) = -0.693, 0, and 0.693.",
+      "controls": [
+        {
+          "key": "levels",
+          "label": "Number of steps",
+          "values": [
+            4,
+            6,
+            8,
+            10,
+            12,
+            16
+          ],
+          "default": 10,
+          "widget": "slider"
+        },
+        {
+          "key": "design",
+          "label": "Layout highlighted",
+          "values": [
+            "equal use",
+            "squared error"
+          ],
+          "default": "equal use"
+        }
+      ],
+      "function": "quantizer_picture",
+      "alt": "Step boundaries for equal-use and squared-error layouts under a Laplace density, and squared error of each layout against the number of steps.",
+      "symbols": "b_k: the k-th boundary between steps, chosen so each step holds 1/M of the readings; q_i: the contrast the receiver assumes when step i is signaled; f(c): the input density; here Laplace with scale 1, f(c) = exp(-|c|) / 2; M: number of steps",
+      "application": "A code is good or bad relative to what the next stage does with it. Equal use maximizes information; it does not minimize the cost of a large miss.",
+      "default_parameters": "Number of steps: 10 · Layout highlighted: equal use",
+      "worked_example": {
+        "Outermost boundary": "1.61",
+        "Bits carried": "3.32",
+        "Squared error": "0.213",
+        "Squared error of the other layout": "0.0731"
+      },
+      "worked_interpretation": "With 10 steps, the equal use layout puts its outermost boundary at 1.61 and has squared error 0.213, against 0.0731 for the other layout. Equal use carries 3.32 bits; the squared-error layout trades some of that for a smaller miss on large contrasts.",
+      "reader_anchor": "C03-D03"
+    },
+    {
+      "id": "C03-D04",
+      "title": "Why must a response curve stretch when the spread of its input changes?",
+      "question": "If a cell's velocity input doubles in spread, what does it do to a curve that was best before?",
+      "equations": [
+        "p_k=\\Phi\\!\\left(\\frac{w\\,\\ln\\frac{k}{M-k}}{\\sigma}\\right)-\\Phi\\!\\left(\\frac{w\\,\\ln\\frac{k-1}{M-k+1}}{\\sigma}\\right),\\qquad H=-\\sum_k p_k\\log_2 p_k"
+      ],
+      "symbols_list": [
+        {
+          "sym": "sigma",
+          "meaning": "spread of the input velocity (normal, mean 0)"
+        },
+        {
+          "sym": "w",
+          "meaning": "width of the cell's S-shaped curve, in velocity units"
+        },
+        {
+          "sym": "p_k",
+          "meaning": "share of the time response step k is used, for M = 10 equal response steps"
+        },
+        {
+          "sym": "Phi",
+          "meaning": "the standard normal cumulative curve"
+        },
+        {
+          "sym": "H",
+          "meaning": "bits carried per signal; it depends only on w / sigma"
+        }
+      ],
+      "source_anchor": "a-motion-cell-stretched-its-curve-when-motion-changed",
+      "source_section": "A motion cell stretched its curve when motion changed",
+      "provenance": "Companion calculation in the spirit of the chapter's description of Brenner and colleagues (2000). The chapter reports no formula, no curve family and no bit values; the logistic curve, the normal velocity and the ten equal response steps are made up here.",
+      "kind": "model",
+      "assumptions": "Noiseless response read out in ten equal steps, normal velocity with mean zero, and a logistic curve family. The paper's own information test was a calculation on the measured H1 curve for the measured input, not this one, and the other stretches were simulated, not recorded. The paper reports the rescaling broke down at very large spreads.",
+      "prediction": "A curve of width 2 is close to best when the velocity spread is 4. If the spread doubles to 8 and the curve stays put, predict whether it loses a little or a lot of the 3.32 bits.",
+      "reveal": {
+        "state": {
+          "spread": 8,
+          "width": 2
+        },
+        "text": "At spread 8 a curve of width 2 carries 2.80 bits, about 0.52 below the 3.32 reached at the best width, 4.73. The best width is 0.59 times the spread, so doubling the spread doubles the best width."
+      },
+      "takeaway": "Only the ratio of curve width to input spread matters, so keeping information high across spreads means stretching the curve in proportion, which is what H1 was reported to do.",
+      "why_it_matters": "A code fitted to one spread is mismatched when the spread changes, and the fix is to rescale it. A machine whose inputs change scale faces the same question; the chapter notes that neither the sparse-coding model nor the mammography software was tested for it.",
+      "sides": {
+        "brain": "H1, a blowfly motion cell that fires spikes, widened its response curve when the velocity spread widened; curves nearly coincided once velocity was in units of its spread. This is one cell type in one species.",
+        "machine": "Normalizing an input by its own spread before a fixed code is the machine counterpart of a curve that stretches; this is an engineering practice, not a claim about cells."
+      },
+      "explanation": "Stretching the input and the curve together changes nothing about which response step each reading lands in. So the bits carried are a function of one number, the width divided by the spread, and the best width scales with the spread. The three curves on the right lie exactly on top of each other for that reason.",
+      "check": "The best width is about 2.37 at spread 4. What is the best width at spread 8, and at spread 2?",
+      "answer": "Best width / spread is fixed at about 0.59, so the best widths are about 4.73 at spread 8 and 1.18 at spread 2: they scale with the spread.",
+      "controls": [
+        {
+          "key": "spread",
+          "label": "Velocity spread",
+          "values": [
+            2,
+            4,
+            8
+          ],
+          "default": 4
+        },
+        {
+          "key": "width",
+          "label": "Width of the cell's curve",
+          "values": [
+            0.5,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            12
+          ],
+          "default": 2,
+          "widget": "slider"
+        }
+      ],
+      "function": "rescaling_picture",
+      "alt": "Response curves over a gold velocity density, and bits carried against curve width over spread, with three spreads lying on one curve.",
+      "symbols": "sigma: spread of the input velocity (normal, mean 0); w: width of the cell's S-shaped curve, in velocity units; p_k: share of the time response step k is used, for M = 10 equal response steps; Phi: the standard normal cumulative curve; H: bits carried per signal; it depends only on w / sigma",
+      "application": "A code fitted to one spread is mismatched when the spread changes, and the fix is to rescale it. A machine whose inputs change scale faces the same question; the chapter notes that neither the sparse-coding model nor the mammography software was tested for it.",
+      "default_parameters": "Velocity spread: 4 · Width of the cell's curve: 2",
+      "worked_example": {
+        "Bits carried": "3.29",
+        "Bits at the best width": "3.32",
+        "Width / spread": "0.5",
+        "Best width / spread": "0.592"
+      },
+      "worked_interpretation": "At spread 4 a curve of width 2 carries 3.29 bits, against 3.32 at the best width, 2.37. The best width is 0.592 times the spread whatever the spread, so the curve must stretch in proportion.",
+      "reader_anchor": "C03-D04"
+    },
+    {
+      "id": "C03-D05",
+      "title": "When does a less exact rebuild beat a more exact one?",
+      "question": "One code rebuilds a patch more exactly but uses many elements; another is less exact but sparse. Which does the objective prefer?",
+      "equations": [
+        "E=\\left\\|I-\\sum_i a_i\\phi_i\\right\\|^2+\\lambda\\sum_i S(a_i)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "I",
+          "meaning": "the image patch"
+        },
+        {
+          "sym": "phi_i, a_i",
+          "meaning": "learned image element i and how strongly it is used"
+        },
+        {
+          "sym": "S",
+          "meaning": "the penalty on element use"
+        },
+        {
+          "sym": "lambda",
+          "meaning": "nonnegative weight on the penalty"
+        }
+      ],
+      "source_anchor": "a-model-told-to-use-few-elements-grew-detectors-like-those-in-cortex",
+      "source_section": "A model told to use few elements grew detectors like those in cortex",
+      "provenance": "The chapter's constructed comparison: squared error 1 with penalty 4 against squared error 2 with penalty 1, costs 5 and 3 at lambda 1. The companion adds other lambda values and other errors for the sparse code. The equation is a simplified form of the model's objective, not an established equation for cortex.",
+      "kind": "constructed example",
+      "assumptions": "Two made-up codes with stated squared errors and penalties. Olshausen and Field set the balance between the two terms themselves, and the paper had no new recordings from cortex.",
+      "prediction": "At lambda 0 the exact rebuild wins. Predict the value of lambda above which the sparse rebuild (error 2, penalty 1) starts to win.",
+      "reveal": {
+        "state": {
+          "lam": 1,
+          "sparse_error": 2
+        },
+        "text": "At lambda 1 the costs are 5 and 3, so the model prefers the less exact, sparse rebuild. They tie at lambda = 1/3; at lambda 0 the exact rebuild wins."
+      },
+      "takeaway": "Changing the weight on the penalty changes which code the same arithmetic favors.",
+      "why_it_matters": "Any objective that mixes accuracy with a cost on complexity has a weight that decides what counts as good. That weight is a design choice, not a measurement.",
+      "sides": {
+        "brain": "In the study, a demand to be accurate and sparse was enough to make learned elements that looked like simple cells, judged by eye and by two averages; this is partial evidence that such a demand could shape the cells, not proof that it does.",
+        "machine": "The arithmetic is dictionary learning: a set of elements is built from data under a cost like E. The model's objective is a specification, not a model of behavior."
+      },
+      "explanation": "The first term wants an exact rebuild, and the second wants few or weak elements. A code that is cheap on one is dear on the other, so the weight lambda decides. With a lambda of zero the second term vanishes, and the more exact code wins.",
+      "check": "With sparse error 2 and penalty 1, and exact error 1 and penalty 4, which code wins at lambda 0.25?",
+      "answer": "Exact: 1 + 0.25 x 4 = 2. Sparse: 2 + 0.25 x 1 = 2.25. The exact rebuild still wins because 0.25 is below the crossover 1/3.",
+      "controls": [
+        {
+          "key": "lam",
+          "label": "Penalty weight lambda",
+          "values": [
+            0,
+            0.1,
+            0.25,
+            0.5,
+            1,
+            2,
+            4
+          ],
+          "default": 1,
+          "widget": "slider"
+        },
+        {
+          "key": "sparse_error",
+          "label": "Squared error of the sparse code",
+          "values": [
+            2,
+            3,
+            4
+          ],
+          "default": 2
+        }
+      ],
+      "function": "sparse_cost_picture",
+      "alt": "Stacked cost bars for the exact and sparse rebuilds, and two cost lines against lambda crossing at one third.",
+      "symbols": "I: the image patch; phi_i, a_i: learned image element i and how strongly it is used; S: the penalty on element use; lambda: nonnegative weight on the penalty",
+      "application": "Any objective that mixes accuracy with a cost on complexity has a weight that decides what counts as good. That weight is a design choice, not a measurement.",
+      "default_parameters": "Penalty weight lambda: 1 · Squared error of the sparse code: 2",
+      "worked_example": {
+        "Cost, exact rebuild": "5",
+        "Cost, sparse rebuild": "3",
+        "Cheaper": "sparse rebuild",
+        "Crossover lambda": "0.333"
+      },
+      "worked_interpretation": "At lambda 1 the exact rebuild costs 5 and the sparse rebuild costs 3, so the model prefers the sparse rebuild. The two cost the same at lambda = 0.333; the less exact code wins above that.",
+      "reader_anchor": "C03-D05"
+    },
+    {
+      "id": "C03-D06",
+      "title": "What does the sparsity penalty do to a patch's coefficients?",
+      "question": "Given the strength each element would need to rebuild a patch exactly, how many elements stay active as the penalty grows?",
+      "equations": [
+        "a_i=\\operatorname{sign}(c_i)\\max\\!\\left(|c_i|-\\tfrac{\\lambda}{2},\\,0\\right)\\ \\text{for}\\ S(a)=|a|,\\qquad a_i=\\frac{c_i}{1+\\lambda}\\ \\text{for}\\ S(a)=a^2"
+      ],
+      "symbols_list": [
+        {
+          "sym": "c_i",
+          "meaning": "strength element i needs to rebuild the patch exactly (made-up values)"
+        },
+        {
+          "sym": "a_i",
+          "meaning": "strength the code actually uses"
+        },
+        {
+          "sym": "lambda",
+          "meaning": "weight on the penalty"
+        },
+        {
+          "sym": "S",
+          "meaning": "the penalty shape, absolute value or square"
+        }
+      ],
+      "source_anchor": "a-model-told-to-use-few-elements-grew-detectors-like-those-in-cortex",
+      "source_section": "A model told to use few elements grew detectors like those in cortex",
+      "provenance": "The companion's own toy built on the chapter's objective. The chapter does not state a penalty shape and does not give this closed form. The eight coefficients are made up, and the dictionary is taken as orthonormal so the elements do not overlap. No learning of elements is done here, only the coding step.",
+      "kind": "model",
+      "assumptions": "A fixed orthonormal dictionary, so minimizing E splits into one-number problems. The paper's elements were learned from 16 by 16 patches of natural images with a different penalty function and without an orthonormality constraint, and the paper did not require other coefficients to be exactly zero.",
+      "prediction": "With the absolute-value penalty, predict how many of the eight elements stay active at lambda 2, and which ones.",
+      "reveal": {
+        "state": {
+          "lam": 2,
+          "penalty": "absolute value"
+        },
+        "text": "Every coefficient below lambda/2 = 1 is dropped, so three of eight stay (3.0, -2.2 and 1.4, each shrunk by 1 to 2.0, -1.2 and 0.4) at a squared error of 4.34. With the square penalty all eight stay at any lambda."
+      },
+      "takeaway": "A penalty that treats small strengths harshly zeroes them out, and a penalty that grows with the square only shrinks them, so the shape of the penalty decides whether the code is sparse.",
+      "why_it_matters": "Few active elements is a goal that has to be written into the cost. Which shape of penalty is used decides whether the result has exact zeros or only small values.",
+      "sides": {
+        "brain": "Most learned elements in the study sat in one place, ran along one direction and picked one size of detail, as simple cortical cells do; the likeness was judged by looking, and the model's elements were about 1.3 times longer than wide against about 2 for the cited cells.",
+        "machine": "The toy is the coding step of dictionary learning with a fixed dictionary: a specification, not a model of any trained system."
+      },
+      "explanation": "With an orthonormal dictionary, each coefficient can be chosen on its own. The derivative of (c - a)^2 + lambda |a| is zero at a = c - lambda/2 for a positive c, so a coefficient smaller than lambda/2 is best set to zero and a larger one shrinks by lambda/2. The squared penalty has a derivative that vanishes at zero, so it never forces zeros.",
+      "check": "With the absolute-value penalty and lambda 4, which coefficients of 3.0, -2.2, 1.4 survive and how strong are they?",
+      "answer": "The threshold is lambda/2 = 2, so 3.0 becomes 1.0 and -2.2 becomes -0.2, and 1.4 is dropped: two of the three survive.",
+      "controls": [
+        {
+          "key": "lam",
+          "label": "Penalty weight lambda",
+          "values": [
+            0,
+            0.5,
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            10
+          ],
+          "default": 2,
+          "widget": "slider"
+        },
+        {
+          "key": "penalty",
+          "label": "Penalty shape S",
+          "values": [
+            "absolute value",
+            "square"
+          ],
+          "default": "absolute value"
+        }
+      ],
+      "function": "sparse_toy_picture",
+      "alt": "Bars of needed and used coefficients for eight elements, and squared error against number of elements in use for two penalty shapes.",
+      "symbols": "c_i: strength element i needs to rebuild the patch exactly (made-up values); a_i: strength the code actually uses; lambda: weight on the penalty; S: the penalty shape, absolute value or square",
+      "application": "Few active elements is a goal that has to be written into the cost. Which shape of penalty is used decides whether the result has exact zeros or only small values.",
+      "default_parameters": "Penalty weight lambda: 2 · Penalty shape S: absolute value",
+      "worked_example": {
+        "Elements active": 3,
+        "Squared error": "4.34",
+        "Total cost E": "11.5",
+        "Energy in the patch": "17.1"
+      },
+      "worked_interpretation": "With the absolute-value penalty and lambda 2, every coefficient smaller than lambda/2 = 1 is dropped and the rest shrink by that amount. 3 of 8 elements stay active at a squared error of 4.34.",
+      "reader_anchor": "C03-D06"
+    },
+    {
+      "id": "C03-D07",
+      "title": "What do reported sensitivity and specificity mean in counts?",
+      "question": "If marks on a mammogram change sensitivity by 2 points and specificity by 3, how many cancers and how many recalls change per 100,000 exams?",
+      "equations": [
+        "\\text{found}=N\\,\\pi\\,s_e,\\qquad \\text{no-cancer recalls}=N\\,(1-\\pi)\\,(1-s_p)"
+      ],
+      "symbols_list": [
+        {
+          "sym": "N",
+          "meaning": "number of screening exams (100,000 here)"
+        },
+        {
+          "sym": "pi",
+          "meaning": "cancer rate, 3,159 of 625,625 = 0.00505, from the chapter's counts"
+        },
+        {
+          "sym": "s_e",
+          "meaning": "sensitivity, the share of cancers a reading finds"
+        },
+        {
+          "sym": "s_p",
+          "meaning": "specificity, the share of examinations without a cancer diagnosis whose reading was negative"
+        }
+      ],
+      "source_anchor": "software-marks-on-mammograms-of-300000-women-were-not-linked-to-better-readings",
+      "source_section": "Software marks on mammograms of 300,000 women were not linked to better readings",
+      "provenance": "Rates from Lehman and colleagues (2015): sensitivity 85.3 percent with the software and 87.3 without, specificity about 91 percent either way, 3,159 cancers in 625,625 exams. Specificity values 87.2 and 90.2 are Fenton and colleagues' (2007), a different study; the values 80, 90 and 93 are dial settings chosen here. The counts are arithmetic, not results from either study.",
+      "kind": "reported result",
+      "assumptions": "The rates are observational, model-derived estimates from two studies that differ in years and design and are not pooled. Applying one study's cancer rate to the other's specificity is arithmetic for illustration. The studies do not show why marks did not help, and this is not advice about any screening decision.",
+      "prediction": "Lehman's sensitivity gap is 2 points. Predict whether it is worth more cancers or fewer than 100 per 100,000 exams, and how it compares with the recall change from Fenton's specificity drop of 3 points.",
+      "reveal": {
+        "state": {
+          "sensitivity": 87.3,
+          "specificity": 87.2
+        },
+        "text": "Holding sensitivity at 87.3 and dropping specificity from 91 to 87.2 leaves finds unchanged and adds about 3,781 recalls of women without cancer per 100,000 exams. Two points of sensitivity are only about 10 cancers; the recall rate rises from 9.4 to 13.2 percent."
+      },
+      "takeaway": "A few points of sensitivity move counts of cancers by tens per 100,000 exams, while a few points of specificity move recalls by thousands, because exams without cancer vastly outnumber the rest.",
+      "why_it_matters": "A rate that looks small can be a large count, and a mark that asks for a second look costs attention whether or not it helps. The chapter's studies did not measure that cost; it is an inference.",
+      "sides": {
+        "brain": "The reader is the brain side: a radiologist who must review and dismiss marks, with limited attention. The studies did not measure attention.",
+        "machine": "The software is the machine side: marks built to flag what a reader might drop. In Lehman's data they were not linked to better accuracy overall."
+      },
+      "explanation": "Sensitivity applies to the small group with cancer, and specificity applies to the large group without. A 2-point change on about 505 cancers is about 10; a 3-point change on about 99,495 exams without cancer is about 2,985. With the Lehman cancer rate and sensitivity 87.3, the arithmetic recall rates at specificity 90.2 and 87.2 are 10.2 and 13.2 percent, close to Fenton's reported 10.1 and 13.2.",
+      "check": "At a cancer rate of 3,159 per 625,625, about how many cancers are there per 100,000 exams, and how many does a sensitivity of 85.3 percent find?",
+      "answer": "3,159 / 625,625 x 100,000 = 505 cancers per 100,000 exams. At 85.3 percent, about 431 are found and 74 are missed.",
+      "controls": [
+        {
+          "key": "sensitivity",
+          "label": "Sensitivity (percent)",
+          "values": [
+            80.0,
+            85.3,
+            87.3,
+            90.0
+          ],
+          "default": 85.3
+        },
+        {
+          "key": "specificity",
+          "label": "Specificity (percent)",
+          "values": [
+            87.2,
+            90.2,
+            91.0,
+            93.0
+          ],
+          "default": 91.0
+        }
+      ],
+      "function": "screening_picture",
+      "alt": "Bars of cancers found, missed and recalled without cancer per 100,000 exams, and a scatter of changes in finds against changes in recalls.",
+      "symbols": "N: number of screening exams (100,000 here); pi: cancer rate, 3,159 of 625,625 = 0.00505, from the chapter's counts; s_e: sensitivity, the share of cancers a reading finds; s_p: specificity, the share of examinations without a cancer diagnosis whose reading was negative",
+      "application": "A rate that looks small can be a large count, and a mark that asks for a second look costs attention whether or not it helps. The chapter's studies did not measure that cost; it is an inference.",
+      "default_parameters": "Sensitivity (percent): 85.3 · Specificity (percent): 91.0",
+      "worked_example": {
+        "Cancers found": "431",
+        "Cancers missed": "74",
+        "Recalled with no cancer": "8,955",
+        "Recall rate": "9.4 percent"
+      },
+      "worked_interpretation": "At sensitivity 85.3 and specificity 91 the arithmetic gives about 431 cancers found and 8,955 no-cancer recalls per 100,000 exams, a recall rate of 9.4 percent. Against the baseline, finds change by -10 and no-cancer recalls by +0.",
+      "reader_anchor": "C03-D07"
+    }
+  ]
+}

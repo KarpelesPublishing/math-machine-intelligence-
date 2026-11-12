@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Measure how one lesson disturbs another, what mixing old and new buys, and what savings and competing expectations say about forgetting. An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 7 · Learning Without Losing Everything</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="#main">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="#main">Chapter illustrations</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 7</p><h1>Learning Without Losing Everything</h1><p class="cmp-lead">Measure how one lesson disturbs another, what mixing old and new buys, and what savings and competing expectations say about forgetting.</p><p class="cmp-summary">5 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C07-D01">1. How far does one lesson on a new item shift an old answer?</a><a href="#C07-D02">2. What does overlap cost an old item and give a neighbor?</a><a href="#C07-D03">3. What does mixing old examples in buy, and what does it cost?</a><a href="#C07-D04">4. How much of the first effort did relearning save?</a><a href="#C07-D05">5. Can a prediction change without erasing an old expectation?</a></nav>
+<div class="intro"><p>Ask which old items share features with the new lesson, how large the step and the new error are, and whether the old answer actually became worse against its own target. Use the interference card for one step, the three-item card for the price and the point of overlap, the schedule card for focused against mixed training in a toy, the savings card to ask whether apparent loss is cheap to restore, and the mixture card for keeping competing expectations. Say that none of these is a measurement of a brain or of a deep network.</p><div class="callout"><span class="small">Try asking the chapter skill</span><p style="margin:8px 0 0">“A team trains an assistant further on one correction to a library&#39;s lending rules. How would I tell whether the correction damaged the answers for reference books, and what would mixing old examples in cost?”</p><p class="small" style="margin:10px 0 0">Use <code>mmi-ch07-learning-without-losing</code> with the companion's AI skill package. The illustrations below also work on their own.</p></div></div>
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C07-D01" aria-labelledby="title-C07-D01">
+<div class="demo-title"><span class="chapter-number">01 / 05</span><h2 id="title-C07-D01">How far does one lesson on a new item shift an old answer?</h2></div>
+<p class="source-line small">From Chapter 7, A network that learned a second list lost the first</p>
+<p class="question">If a linear learner takes one update on a new item B, how far does its answer for an old item A move?</p><p>The update subtracts step x error x B&#39;s features from the weights. A&#39;s answer is the weights dotted with A&#39;s features, so the change in A&#39;s answer is that same subtraction dotted with A&#39;s features: step x error x the overlap of A and B, with a minus sign.</p>
+<p class="prediction"><strong>Predict first:</strong> The step is 0.5, the new item&#39;s error is 2 and the overlap is 0.5. Predict how far A&#39;s answer moves and in which direction.</p>
+<div class="controls" role="group" aria-label="Controls for How far does one lesson on a new item shift an old answer?">
+<div class="control"><label for="C07-D01-eta">Step size</label><select id="C07-D01-eta" data-control="eta"><option value="0">0.1</option><option value="1">0.25</option><option value="2" selected>0.5</option><option value="3">1.0</option></select></div><div class="control"><label for="C07-D01-overlap">Overlap of A and B: <output class="slider-value" data-for="overlap">0.5</output></label><input type="range" id="C07-D01-overlap" data-control="overlap" min="0" max="4" step="1" value="3" aria-valuetext="0.5"><div class="slider-ends small"><span>-1</span><span>1</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C07-D01/13.svg" alt="A&#39;s answer before and after one update on a new item, and the change in A&#39;s answer against overlap for four step sizes." width="960" height="540"><figcaption><strong class="takeaway">The shift is the step size times the new error times the overlap, so items that share nothing with the new lesson are left alone and items that share more are moved more.</strong><br><span class="selected-parameters">Step size: 0.5 · Overlap of A and B: 0.5</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> A&#39;s answer moves by -0.5, a quarter of the new error of 2, in the opposite direction from the error. With an overlap of 0 it does not move at all, and with an overlap of -1 it moves up by 1.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">One update on a new item whose error is 2, with step 0.5 and overlap 0.5, moves A&#39;s answer from 1 to 0.5, a change of -0.5. With an overlap of 0 the change would be 0. This is a linear learner and one step, and a change is not yet forgetting.</p>
+<dl class="metrics"><div class="metric"><dt>A&#39;s answer before</dt><dd>1</dd></div><div class="metric"><dt>A&#39;s answer after</dt><dd>0.5</dd></div><div class="metric"><dt>Change in A&#39;s answer</dt><dd>-0.5</dd></div><div class="metric"><dt>Change as a share of the new error</dt><dd>-0.25</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This is the smallest picture of how learning one thing can disturb another: the same weights answer both, so a push on one item reaches the other through the features they share.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>H.M. showed the trouble from the other side: he could not form new memories of the events of a day while much older knowledge stayed. The toy does not reproduce his condition, and the chapter does not say a brain updates by this rule.</p></div><div class="note"><strong>In machines</strong><p>In a network the same weights serve every item, so an update aimed at one item reaches the others through shared features. The identity is shown only for a linear learner and one step.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Change = -step x error x overlap = -0.5 x 2 x (0.5) = -0.5. A real update of the weights gives the same -0.5.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>A</mi></msub><mo>=</mo><mi>−</mi><mi>η</mi><mspace width="0.167em"></mspace><msub><mi>e</mi><mi>B</mi></msub><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><msub><mi mathvariant="bold-italic">𝒙</mi><mi>A</mi></msub><mo>⋅</mo><msub><mi mathvariant="bold-italic">𝒙</mi><mi>B</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\Delta\hat y_A=-\eta\,e_B\,(\mathbf x_A\cdot\mathbf x_B)
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold-italic">𝒘</mi><mtext mathvariant="normal">new</mtext></msub><mo>=</mo><mi mathvariant="bold-italic">𝒘</mi><mo>−</mo><mi>η</mi><mspace width="0.167em"></mspace><msub><mi>e</mi><mi>B</mi></msub><mspace width="0.167em"></mspace><msub><mi mathvariant="bold-italic">𝒙</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">
+\mathbf w_{\text{new}}=\mathbf w-\eta\,e_B\,\mathbf x_B
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>Delta y_A</dt><dd>the change in the learner&#39;s answer for old item A</dd><dt>eta</dt><dd>the step size, how far one update moves the weights</dd><dt>e_B</dt><dd>the new item&#39;s error before the update: the learner&#39;s answer minus the right answer (2 here)</dd><dt>x_A . x_B</dt><dd>the overlap: the dot product of A&#39;s and B&#39;s feature lists, between -1 and 1 for unit-length lists</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A linear learner, one gradient step on half the squared miss, and unit-length feature lists so that the dot product is the overlap. Nonlinear models and repeated updates can behave differently. A shift in A&#39;s answer is not forgetting until A&#39;s own target says the answer got worse.</p></div></div>
+<details><summary>Check your understanding: The step is 0.1 and the new error is 2. What is the change in A&#39;s answer when the overlap is 1, 0 and -1?</summary><div class="answer">-0.1 x 2 x 1 = -0.2 for an overlap of 1, 0 for an overlap of 0, and +0.2 for an overlap of -1.</div></details>
+<p class="source small">Book source: Chapter 7, A network that learned a second list lost the first. <span title="a-network-that-learned-a-second-list-lost-the-first">Illustration C07-D01</span>. Formula. The chapter&#39;s toy linear learner and its derivation in the back matter, which the chapter says is its own toy and not taken from McClelland and colleagues. The two weights, the new-item error of 2 and the step sizes are made up. The chapter&#39;s numeric check is step 0.1, error 2 and overlaps 1, 0 and -1, giving changes of -0.2, 0 and 0.2.</p>
+</section>
+<section class="demo" id="C07-D02" aria-labelledby="title-C07-D02">
+<div class="demo-title"><span class="chapter-number">02 / 05</span><h2 id="title-C07-D02">What does overlap cost an old item and give a neighbor?</h2></div>
+<p class="source-line small">From Chapter 7, A network taught only about penguins damaged what it knew about other birds</p>
+<p class="question">A learner knows only A. One update teaches a new item B. How far is A pushed off its answer, and how much did sharing with A already help a neighbor C?</p><p>B&#39;s error before the update is o + 1, since the learner answers o and the right answer is -1. The update lowers every answer in proportion to its overlap with B, so A falls by eta x (1 + o) x o. C&#39;s head start is the same sharing, seen from the other side: it answers o without ever being taught.</p>
+<p class="prediction"><strong>Predict first:</strong> A shares half its features with B and with C, and one update teaches B exactly. Predict A&#39;s answer afterward and C&#39;s error before the update.</p>
+<div class="controls" role="group" aria-label="Controls for What does overlap cost an old item and give a neighbor?">
+<div class="control"><label for="C07-D02-overlap">Overlap of A with B and with C: <output class="slider-value" data-for="overlap">0.5</output></label><input type="range" id="C07-D02-overlap" data-control="overlap" min="0" max="3" step="1" value="2" aria-valuetext="0.5"><div class="slider-ends small"><span>0</span><span>0.75</span></div></div><div class="control"><label for="C07-D02-step">Step size</label><select id="C07-D02-step" data-control="step"><option value="0">0.25</option><option value="1">0.5</option><option value="2" selected>1.0</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C07-D02/08.svg" alt="Answers for items A, B and C before and after one update on B, and A&#39;s error and C&#39;s starting error against overlap." width="960" height="540"><figcaption><strong class="takeaway">Overlap is both the price and the point: the same sharing that drags an old answer off its value is what lets a neighbor borrow from it.</strong><br><span class="selected-parameters">Overlap of A with B and with C: 0.5 · Step size: 1.0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> A&#39;s answer drops from 1 to 0.25, an error of 0.75. C already answers 0.5, an error of 0.5 instead of 1, because it shares half of A. With an overlap of 0, A is untouched but C gets no help from A.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">At overlap 0.5 and step 1, one update on B moves A&#39;s answer from 1 to 0.25, an error of 0.75. C starts 0.5 from its right answer, not 1, because it shares with A. C&#39;s change after the update is left open, as in the chapter.</p>
+<dl class="metrics"><div class="metric"><dt>A&#39;s answer after</dt><dd>0.25</dd></div><div class="metric"><dt>A&#39;s error after</dt><dd>0.75</dd></div><div class="metric"><dt>C&#39;s answer before any update</dt><dd>0.5</dd></div><div class="metric"><dt>C&#39;s error before any update</dt><dd>0.5</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>Keeping overlap low protects old answers but leaves items unable to teach each other. That is the trade behind mixing examples and behind the proposal that two memory systems code overlap differently.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>McClelland and colleagues cite recordings in which fewer hippocampal cells fire than cells in the area feeding them. Sparse codes could let similar situations overlap little, with the neocortex as the slow learner that uses overlap. The paper marks this as a proposal, and the toy does not test it.</p></div><div class="note"><strong>In machines</strong><p>As McClelland and colleagues report French&#39;s 1991 work, keeping overlap low reduces interference, at the cost of &#39;a dramatic reduction in the exploitation of shared structure&#39;. The toy shows the trade in one step for three constructed items.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">B&#39;s error before = 0.5 + 1 = 1.5. A&#39;s answer after = 1 - 1 x 1.5 x 0.5 = 0.25. C&#39;s starting answer = 0.5, so its error is 1 - 0.5 = 0.5.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>A</mi><mtext mathvariant="normal">after</mtext></msubsup><mo>=</mo><mn>1</mn><mo>−</mo><mi>η</mi><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>o</mi><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><mi>o</mi><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>C</mi><mtext mathvariant="normal">before</mtext></msubsup><mo>=</mo><mi>o</mi></mrow><annotation encoding="application/x-tex">
+\hat y_A^{\text{after}}=1-\eta\,(1+o)\,o,\qquad \hat y_C^{\text{before}}=o
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>o</dt><dd>the overlap of A with B and also of A with C (the chapter sets both to 0.5)</dd><dt>eta</dt><dd>the step size; 1 is just far enough to answer -1 for B</dd><dt>1 + o</dt><dd>B&#39;s error before the update: the learner answers o and the right answer is -1</dd><dt>y_C</dt><dd>the learner&#39;s answer for C, whose right answer is 1</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A linear learner with unit-length feature lists whose weights start equal to A&#39;s features. C&#39;s answer after the update is not computed, because it depends on how C and B overlap and the chapter leaves that open. Steps below 1 leave B only partly learned.</p></div></div>
+<details><summary>Check your understanding: The overlap is 0.5 and the step is 1. What are A&#39;s answer and B&#39;s answer after the update?</summary><div class="answer">B&#39;s error is 1.5, so B&#39;s answer moves from 0.5 to 0.5 - 1.5 = -1. A&#39;s answer is 1 - 1 x 1.5 x 0.5 = 0.25.</div></details>
+<p class="source small">Book source: Chapter 7, A network taught only about penguins damaged what it knew about other birds. <span title="a-network-taught-only-about-penguins-damaged-what-it-knew-about-other-birds">Illustration C07-D02</span>. Constructed example. The chapter&#39;s constructed three-item toy: A answers 1, B&#39;s right answer is -1, C follows A&#39;s rule, all feature lists have length 1 and both overlaps are 0.5, so A falls from 1 to one quarter. The other overlaps and step sizes are the companion&#39;s. Figure 7.1 in the chapter is the same picture. Constructed, not data.</p>
+</section>
+<section class="demo" id="C07-D03" aria-labelledby="title-C07-D03">
+<div class="demo-title"><span class="chapter-number">03 / 05</span><h2 id="title-C07-D03">What does mixing old examples in buy, and what does it cost?</h2></div>
+<p class="source-line small">From Chapter 7, A network taught only about penguins damaged what it knew about other birds</p>
+<p class="question">In a two-item toy, what happens to the old item A when the learner trains on the new item B alone, and what when old and new alternate?</p><p>With unit-length features each focused update on B shrinks B&#39;s error by the factor 1 - rate, and it drags A along by the overlap, so A ends off by overlap x (1 + overlap). Alternating updates are a projection method: they settle at the one weight list that answers both items exactly, which exists whenever the two feature lists differ.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict, for overlap 0.5 and rate 0.25, which schedule leaves A with the smaller error after 40 updates and which gets B below an error of 0.1 sooner.</p>
+<div class="controls" role="group" aria-label="Controls for What does mixing old examples in buy, and what does it cost?">
+<div class="control"><label for="C07-D03-schedule">Training schedule</label><select id="C07-D03-schedule" data-control="schedule"><option value="0" selected>focused</option><option value="1">interleaved</option></select></div><div class="control"><label for="C07-D03-overlap">Overlap of A and B: <output class="slider-value" data-for="overlap">0.5</output></label><input type="range" id="C07-D03-overlap" data-control="overlap" min="0" max="2" step="1" value="1" aria-valuetext="0.5"><div class="slider-ends small"><span>0.25</span><span>0.75</span></div></div><div class="control"><label for="C07-D03-rate">Rate</label><select id="C07-D03-rate" data-control="rate"><option value="0">0.1</option><option value="1" selected>0.25</option><option value="2">0.5</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C07-D03/04.svg" alt="Error on the new item and on the old item over 60 updates for focused and for interleaved training in a two-item toy." width="960" height="540"><figcaption><strong class="takeaway">In the toy, training on the new item alone learns it fastest and harms the old item most, while mixing in the old item is slower per update and leaves very little harm.</strong><br><span class="selected-parameters">Training schedule: focused · Overlap of A and B: 0.5 · Rate: 0.25</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Focused training gets B under 0.1 after 10 updates but leaves A off by 0.75. Interleaved training takes 27 updates to get B under 0.1, and A&#39;s error is only 0.037 after 40 updates. Faster for the new item, worse for the old one.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">In this two-item toy with overlap 0.5 and rate 0.25, focused training: B is learned fast and A is left with an error of 0.75. It is a companion toy for the trade in the penguin network, not a copy of that network.</p>
+<dl class="metrics"><div class="metric"><dt>B error after 40 updates</dt><dd>1.51e-05</dd></div><div class="metric"><dt>A error after 40 updates</dt><dd>0.75</dd></div><div class="metric"><dt>Updates until B error is under 0.1</dt><dd>10</dd></div><div class="metric"><dt>Largest A error in 60 updates</dt><dd>0.75</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This is the same trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The two-store proposal suggests that renewed activity from past events could give a slow learner mixed examples. Wilson and McNaughton found that pairs of cells that fired together awake fired together more in later sleep, and the 2010 ripple study cut ripples short; neither shows replay teaching a slow system.</p></div><div class="note"><strong>In machines</strong><p>McClelland and colleagues report that focused penguin training learned the new facts much more rapidly but treated all animals as swimmers that cannot fly, while mixed teaching was slower and caused very little harm. This toy only echoes that contrast.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Each update subtracts rate x error x the item&#39;s features from the weights. Focused, with unit-length features, shrinks B&#39;s error by (1 - 0.25) each update and leaves A at 0.75 off in the limit. Interleaved settles at the weights that answer both exactly.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">𝒘</mi><mo>←</mo><mi mathvariant="bold-italic">𝒘</mi><mo>−</mo><mi>η</mi><mspace width="0.167em"></mspace><mo stretchy="false" form="prefix">(</mo><mi mathvariant="bold-italic">𝒘</mi><mo>⋅</mo><msub><mi mathvariant="bold-italic">𝒙</mi><mi>i</mi></msub><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><msub><mi mathvariant="bold-italic">𝒙</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
+\mathbf w\leftarrow\mathbf w-\eta\,(\mathbf w\cdot\mathbf x_i-y_i)\,\mathbf x_i
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>w</dt><dd>the learner&#39;s weights</dd><dt>x_i, y_i</dt><dd>the features and right answer of the item being trained on, A or B</dd><dt>eta</dt><dd>the step size, called the rate here</dd><dt>overlap</dt><dd>the dot product of A&#39;s and B&#39;s features, as in the previous card</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A linear learner with unit-length features that starts exactly right on A. Focused training updates only on B. Interleaved training alternates B and A, so half its updates go to the old item and its progress is counted in updates of every kind. The chapter&#39;s network is nonlinear and far larger.</p></div></div>
+<details><summary>Check your understanding: With overlap 0.5 and rate 1, how far off is A after a single focused update on B, and after enough interleaved updates?</summary><div class="answer">A single full focused update leaves A at an error of 0.5 x 1.5 = 0.75. After enough interleaved updates both errors approach 0, because the weights approach the exact solution for A and B.</div></details>
+<p class="source small">Book source: Chapter 7, A network taught only about penguins damaged what it knew about other birds. <span title="a-network-taught-only-about-penguins-damaged-what-it-knew-about-other-birds">Illustration C07-D03</span>. Simulation. A companion toy that uses the same A and B as the previous card to mimic the chapter&#39;s contrast between focused and interleaved training. The chapter reports McClelland and colleagues&#39; penguin network in words only, with no numbers, so none of its results are reproduced. The overlaps, rates and the 60 updates are made up and nothing is random.</p>
+</section>
+<section class="demo" id="C07-D04" aria-labelledby="title-C07-D04">
+<div class="demo-title"><span class="chapter-number">04 / 05</span><h2 id="title-C07-D04">How much of the first effort did relearning save?</h2></div>
+<p class="source-line small">From Chapter 7, Forgotten lists were still relearned faster</p>
+<p class="question">If learning took one amount of effort and relearning took another, what share of the first effort was saved?</p><p>The numerator is the effort relearning did not need, L0 minus Lt. Dividing by L0 turns it into a share of the first effort: 0 when relearning takes as long as learning did, 1 when it takes none.</p>
+<p class="prediction"><strong>Predict first:</strong> Learning a list took 25 repetitions and relearning it took 20. Predict the savings, and then the savings for a failed model that recovers with one twentieth of the original training.</p>
+<div class="controls" role="group" aria-label="Controls for How much of the first effort did relearning save?">
+<div class="control"><label for="C07-D04-case">Case</label><select id="C07-D04-case" data-control="case"><option value="0" selected>chapter example</option><option value="1">Ebbinghaus minutes</option><option value="2">Ebbinghaus one month</option><option value="3">Murre-Dros 31 days</option><option value="4">Murre-Dros adjusted</option><option value="5">one twentieth</option></select></div><div class="control"><label for="C07-D04-l0">Effort of the first learning: <output class="slider-value" data-for="l0">25</output></label><input type="range" id="C07-D04-l0" data-control="l0" min="0" max="3" step="1" value="1" aria-valuetext="25"><div class="slider-ends small"><span>10</span><span>100</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C07-D04/01.svg" alt="Bars for first learning effort and relearning effort with the saved part marked, and savings against relearning effort for six cases." width="960" height="540"><figcaption><strong class="takeaway">Savings counts the effort that relearning did not need, so a list that seems forgotten can still leave a large saving: forgetting need not be erasure.</strong><br><span class="selected-parameters">Case: chapter example · Effort of the first learning: 25</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus&#39;s 0.58 and 0.21 and Murre and Dros&#39;s 0.04 and 0.14.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values, the efforts are the companion&#39;s scaling, not data.</p>
+<dl class="metrics"><div class="metric"><dt>Savings S</dt><dd>0.2</dd></div><div class="metric"><dt>Effort to learn first time</dt><dd>25</dd></div><div class="metric"><dt>Effort to relearn</dt><dd>20</dd></div><div class="metric"><dt>Effort saved</dt><dd>5</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A system that fails an exact-answer test may still be quick to restore. Savings asks how much of the first effort survived, which a recall test alone does not.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Ebbinghaus tested only himself, in 163 double tests in 1879 and 1880. Murre and Dros repeated the work with one subject, the second author, concluded the curve was replicated, and found far lower 31-day savings: about 0.04, or about 0.14 adjusted for a rise in learning time.</p></div><div class="note"><strong>In machines</strong><p>French&#39;s review reports that Hetherington and Seidenberg applied a savings measure to networks and found that a network that seemed to have forgotten could often be retrained quickly, though later work showed not all catastrophic forgetting is this shallow. No figures are given.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">S = (L0 - Lt) / L0 = (25 - 20) / 25 = 0.2. Equivalently Lt = L0 x (1 - S) = 25 x 0.8 = 20.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><msub><mi>L</mi><mn>0</mn></msub><mo>−</mo><msub><mi>L</mi><mi>t</mi></msub></mrow><msub><mi>L</mi><mn>0</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">
+S(t)=\frac{L_0-L_t}{L_0}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>S(t)</dt><dd>savings after a delay t: the share of the first learning effort that relearning saved</dd><dt>L_0</dt><dd>the effort to learn the list the first time</dd><dt>L_t</dt><dd>the effort to relearn it after the delay, on the same material and the same stopping standard</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Both efforts are in the same units, on the same material and with the same stopping standard. The six cases are separate points and not a forgetting curve; the chapter gives only two of Ebbinghaus&#39;s values, so nothing is drawn between them. The one-twentieth model is the chapter&#39;s illustration, not a reported result. Savings alone does not show what a model&#39;s weights retain.</p></div></div>
+<details><summary>Check your understanding: A failed model recovers with one twentieth of its original training. What are the savings?</summary><div class="answer">L_t is one twentieth of L_0, so S = (1 - 1/20) = 0.95.</div></details>
+<p class="source small">Book source: Chapter 7, Forgotten lists were still relearned faster. <span title="forgotten-lists-were-still-relearned-faster">Illustration C07-D04</span>. Formula. The chapter&#39;s savings formula and worked example (25 repetitions, 20 on relearning). Ebbinghaus&#39;s 0.58 after minutes and 0.21 after a month, Murre and Dros&#39;s one-subject 31-day savings of about 0.04 (about 0.14 adjusted) and the one-twentieth model are as the chapter reports them. Ebbinghaus used his own formula, not the plain ratio, so the efforts shown for the reported savings are the companion&#39;s scaling to the chosen first effort, not data.</p>
+</section>
+<section class="demo" id="C07-D05" aria-labelledby="title-C07-D05">
+<div class="demo-title"><span class="chapter-number">05 / 05</span><h2 id="title-C07-D05">Can a prediction change without erasing an old expectation?</h2></div>
+<p class="source-line small">From Chapter 7, A quiet response can hide an older memory</p>
+<p class="question">If a learner keeps two expectations, one from the old cause and one from a new cause, how does the combined prediction move when the weights change?</p><p>The combined prediction is a weighted average of the two causes&#39; own predictions. The weights are the learner&#39;s current belief about which cause is active, so a change of setting that shifts the belief shifts the average, and the causes&#39; expectations are untouched.</p>
+<p class="prediction"><strong>Predict first:</strong> The old cause has weight 0.8 and predicts shock with probability 1; the new cause has weight 0.2 and predicts 0. Predict the combined prediction, and then what happens if the weights swap.</p>
+<div class="controls" role="group" aria-label="Controls for Can a prediction change without erasing an old expectation?">
+<div class="control"><label for="C07-D05-weight_old">Weight on the old cause: <output class="slider-value" data-for="weight_old">0.8</output></label><input type="range" id="C07-D05-weight_old" data-control="weight_old" min="0" max="4" step="1" value="3" aria-valuetext="0.8"><div class="slider-ends small"><span>0</span><span>1</span></div></div><div class="control"><label for="C07-D05-new_predicts">New cause&#39;s chance of shock</label><select id="C07-D05-new_predicts" data-control="new_predicts"><option value="0" selected>0</option><option value="1">0.1</option><option value="2">0.25</option><option value="3">0.5</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C07-D05/12.svg" alt="Old, new and combined predictions of shock, and the combined prediction against the weight on the old cause for four new-cause values." width="960" height="540"><figcaption><strong class="takeaway">A change in which cause is thought to be active can move the prediction a long way without deleting either stored expectation.</strong><br><span class="selected-parameters">Weight on the old cause: 0.8 · New cause&#39;s chance of shock: 0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> 0.8 x 1 + 0.2 x 0 = 0.8. With the weights swapped, 0.2 on the old cause, the prediction is 0.2. Neither expectation was deleted or changed, only the weights.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With weight 0.8 on the old cause, which predicts shock with probability 1, and 0.2 on a new cause that predicts 0, the combined prediction is 0.8. Changing the weights moves the prediction without changing either cause&#39;s own expectation. The weights are set by hand here, not inferred.</p>
+<dl class="metrics"><div class="metric"><dt>Weight on the old cause</dt><dd>0.8</dd></div><div class="metric"><dt>Weight on the new cause</dt><dd>0.2</dd></div><div class="metric"><dt>Combined prediction</dt><dd>0.8</dd></div><div class="metric"><dt>New cause&#39;s own prediction</dt><dd>0</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This is a different answer to interference from overwriting shared connections: keep competing predictions and let evidence about the situation weigh them. Renewal after extinction is the kind of result it is meant to fit.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Bouton and Bolles&#39;s rats suppressed activity and bar pressing for a cue paired with shock, the response fell when the cue came without shock in another setting, and it returned when the rats went back to the first setting. One interpretation is that extinction adds learning that competes with the original; the result does not prove two separate physical memories.</p></div><div class="note"><strong>In machines</strong><p>A machine could preserve competing predictions and use evidence about the situation to weigh them. The chapter calls this an analogy, not a result from the rat experiment.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">0.8 x 1 + 0.2 x 0 = 0.8.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>p</mi><mo accent="true">̂</mo></mover><mo>=</mo><msub><mi>w</mi><mtext mathvariant="normal">old</mtext></msub><mspace width="0.167em"></mspace><msub><mi>p</mi><mtext mathvariant="normal">old</mtext></msub><mo>+</mo><msub><mi>w</mi><mtext mathvariant="normal">new</mtext></msub><mspace width="0.167em"></mspace><msub><mi>p</mi><mtext mathvariant="normal">new</mtext></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>w</mi><mtext mathvariant="normal">old</mtext></msub><mo>+</mo><msub><mi>w</mi><mtext mathvariant="normal">new</mtext></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
+\hat p=w_{\text{old}}\,p_{\text{old}}+w_{\text{new}}\,p_{\text{new}},\qquad w_{\text{old}}+w_{\text{new}}=1
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>w_old, w_new</dt><dd>the weights on the old and the new hidden cause, adding to 1</dd><dt>p_old</dt><dd>the old cause&#39;s chance of shock (1 here)</dd><dt>p_new</dt><dd>the new cause&#39;s chance of shock (0 in the chapter)</dd><dt>p_hat</dt><dd>the combined predicted chance of shock</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Two causes with fixed expectations and weights set by hand. This is a model of inference, not a measurement of the rat&#39;s thoughts, and the example does not prove that two separate physical memories exist or that the old memory never changes.</p></div></div>
+<details><summary>Check your understanding: The old cause has weight 0.7 and predicts shock with probability 1. The new cause predicts 0.1. What is the combined prediction?</summary><div class="answer">0.7 x 1 + 0.3 x 0.1 = 0.7 + 0.03 = 0.73.</div></details>
+<p class="source small">Book source: Chapter 7, A quiet response can hide an older memory. <span title="a-quiet-response-can-hide-an-older-memory">Illustration C07-D05</span>. Constructed example. The chapter&#39;s constructed example of the latent-cause model&#39;s logic: weights 0.8 and 0.2, causes that predict shock with probabilities 1 and 0, and a combined prediction of 0.8. Gershman and colleagues&#39; model infers the weights from the observations and their timing; here they are set by hand. The other values of the new cause&#39;s prediction are the companion&#39;s. Constructed, not data.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="#main">Chapter illustrations</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":7,"demos":[{"id":"C07-D01","title":"How far does one lesson on a new item shift an old answer?","alt":"A's answer before and after one update on a new item, and the change in A's answer against overlap for four step sizes.","controls":[{"key":"eta","label":"Step size","values":[0.1,0.25,0.5,1.0],"default":0.5},{"key":"overlap","label":"Overlap of A and B","values":[-1,-0.5,0,0.5,1],"default":0.5,"widget":"slider"}],"default_key":"[0.5,0.5]","reveal_key":"[0.5,0.5]","reveal_text":"A's answer moves by -0.5, a quarter of the new error of 2, in the opposite direction from the error. With an overlap of 0 it does not move at all, and with an overlap of -1 it moves up by 1.","states":{"[0.5,0.5]":{"image":"states/C07-D01/13.svg","metrics":{"A's answer before":"1","A's answer after":"0.5","Change in A's answer":"-0.5","Change as a share of the new error":"-0.25"},"interpretation":"One update on a new item whose error is 2, with step 0.5 and overlap 0.5, moves A's answer from 1 to 0.5, a change of -0.5. With an overlap of 0 the change would be 0. This is a linear learner and one step, and a change is not yet forgetting.","calculation":"Change = -step x error x overlap = -0.5 x 2 x (0.5) = -0.5. A real update of the weights gives the same -0.5."}}},{"id":"C07-D02","title":"What does overlap cost an old item and give a neighbor?","alt":"Answers for items A, B and C before and after one update on B, and A's error and C's starting error against overlap.","controls":[{"key":"overlap","label":"Overlap of A with B and with C","values":[0,0.25,0.5,0.75],"default":0.5,"widget":"slider"},{"key":"step","label":"Step size","values":[0.25,0.5,1.0],"default":1.0}],"default_key":"[0.5,1]","reveal_key":"[0.5,1]","reveal_text":"A's answer drops from 1 to 0.25, an error of 0.75. C already answers 0.5, an error of 0.5 instead of 1, because it shares half of A. With an overlap of 0, A is untouched but C gets no help from A.","states":{"[0.5,1]":{"image":"states/C07-D02/08.svg","metrics":{"A's answer after":"0.25","A's error after":"0.75","C's answer before any update":"0.5","C's error before any update":"0.5"},"interpretation":"At overlap 0.5 and step 1, one update on B moves A's answer from 1 to 0.25, an error of 0.75. C starts 0.5 from its right answer, not 1, because it shares with A. C's change after the update is left open, as in the chapter.","calculation":"B's error before = 0.5 + 1 = 1.5. A's answer after = 1 - 1 x 1.5 x 0.5 = 0.25. C's starting answer = 0.5, so its error is 1 - 0.5 = 0.5."}}},{"id":"C07-D03","title":"What does mixing old examples in buy, and what does it cost?","alt":"Error on the new item and on the old item over 60 updates for focused and for interleaved training in a two-item toy.","controls":[{"key":"schedule","label":"Training schedule","values":["focused","interleaved"],"default":"focused"},{"key":"overlap","label":"Overlap of A and B","values":[0.25,0.5,0.75],"default":0.5,"widget":"slider"},{"key":"rate","label":"Rate","values":[0.1,0.25,0.5],"default":0.25}],"default_key":"[\"focused\",0.5,0.25]","reveal_key":"[\"focused\",0.5,0.25]","reveal_text":"Focused training gets B under 0.1 after 10 updates but leaves A off by 0.75. Interleaved training takes 27 updates to get B under 0.1, and A's error is only 0.037 after 40 updates. Faster for the new item, worse for the old one.","states":{"[\"focused\",0.5,0.25]":{"image":"states/C07-D03/04.svg","metrics":{"B error after 40 updates":"1.51e-05","A error after 40 updates":"0.75","Updates until B error is under 0.1":"10","Largest A error in 60 updates":"0.75"},"interpretation":"In this two-item toy with overlap 0.5 and rate 0.25, focused training: B is learned fast and A is left with an error of 0.75. It is a companion toy for the trade in the penguin network, not a copy of that network.","calculation":"Each update subtracts rate x error x the item's features from the weights. Focused, with unit-length features, shrinks B's error by (1 - 0.25) each update and leaves A at 0.75 off in the limit. Interleaved settles at the weights that answer both exactly."}}},{"id":"C07-D04","title":"How much of the first effort did relearning save?","alt":"Bars for first learning effort and relearning effort with the saved part marked, and savings against relearning effort for six cases.","controls":[{"key":"case","label":"Case","values":["chapter example","Ebbinghaus minutes","Ebbinghaus one month","Murre-Dros 31 days","Murre-Dros adjusted","one twentieth"],"default":"chapter example"},{"key":"l0","label":"Effort of the first learning","values":[10,25,50,100],"default":25,"widget":"slider"}],"default_key":"[\"chapter example\",25]","reveal_key":"[\"chapter example\",25]","reveal_text":"Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus's 0.58 and 0.21 and Murre and Dros's 0.04 and 0.14.","states":{"[\"chapter example\",25]":{"image":"states/C07-D04/01.svg","metrics":{"Savings S":"0.2","Effort to learn first time":"25","Effort to relearn":"20","Effort saved":"5"},"interpretation":"With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values, the efforts are the companion's scaling, not data.","calculation":"S = (L0 - Lt) / L0 = (25 - 20) / 25 = 0.2. Equivalently Lt = L0 x (1 - S) = 25 x 0.8 = 20."}}},{"id":"C07-D05","title":"Can a prediction change without erasing an old expectation?","alt":"Old, new and combined predictions of shock, and the combined prediction against the weight on the old cause for four new-cause values.","controls":[{"key":"weight_old","label":"Weight on the old cause","values":[0,0.2,0.5,0.8,1],"default":0.8,"widget":"slider"},{"key":"new_predicts","label":"New cause's chance of shock","values":[0,0.1,0.25,0.5],"default":0}],"default_key":"[0.8,0]","reveal_key":"[0.8,0]","reveal_text":"0.8 x 1 + 0.2 x 0 = 0.8. With the weights swapped, 0.2 on the old cause, the prediction is 0.2. Neither expectation was deleted or changed, only the weights.","states":{"[0.8,0]":{"image":"states/C07-D05/12.svg","metrics":{"Weight on the old cause":"0.8","Weight on the new cause":"0.2","Combined prediction":"0.8","New cause's own prediction":"0"},"interpretation":"With weight 0.8 on the old cause, which predicts shock with probability 1, and 0.2 on a new cause that predicts 0, the combined prediction is 0.8. Changing the weights moves the prediction without changing either cause's own expectation. The weights are set by hand here, not inferred.","calculation":"0.8 x 1 + 0.2 x 0 = 0.8."}}}]}</script><script src="states/C07-D01.js"></script><script src="states/C07-D02.js"></script><script src="states/C07-D03.js"></script><script src="states/C07-D04.js"></script><script src="states/C07-D05.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

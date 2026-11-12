@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Block B alone did nothing and block A alone lit the machine. Which of the four explanations survive, and which block should come off?",
+    "expected_behavior": "Only 'A triggers and B does not' survives, so remove A. This is the toy tally, not a claim about how children reason."
+  },
+  {
+    "prompt": "Carriers are 3 in 10, 20 and 10 percent of carrier smokers and nonsmokers get cancer, and 4 and 2 percent of noncarriers do. What is the adjusted ratio?",
+    "expected_behavior": "8.8 against 4.4 percent, a ratio of 2, from weighting carriers 0.3 and noncarriers 0.7."
+  },
+  {
+    "prompt": "A risk ratio of 9 is claimed to come from a hidden trait present in 1 in 20 nonsmokers. How common must it be among smokers?",
+    "expected_behavior": "At least 9 in 20, from nine times 0.05."
+  }
+]

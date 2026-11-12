@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Making Information Available"
+  short_description: "Explore and apply Chapter 31 of the book."
+  default_prompt: "Use $mmi-ch31-making-information-available to help me understand or apply this idea: "

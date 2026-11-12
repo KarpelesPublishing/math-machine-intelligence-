@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Choosing What to Notice"
+  short_description: "Explore and apply Chapter 5 of the book."
+  default_prompt: "Use $mmi-ch05-what-to-notice to help me understand or apply this idea: "

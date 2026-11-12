@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Understanding Another Mind"
+  short_description: "Explore and apply Chapter 22 of the book."
+  default_prompt: "Use $mmi-ch22-another-mind to help me understand or apply this idea: "

@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "W is the 3 by 3 grid with top row (1, 2, 3), B is the column (1, 2, 0) and A is the row (1, 0, -1). What is the top row of W plus B A?",
+    "expected_behavior": "B A has top row (1, 0, -1), so W plus B A has top row (2, 2, 2); the change has rank one and the adapter holds 6 numbers against 9."
+  },
+  {
+    "prompt": "Both weights sit at 2 after task A. Task B pulls both to 0. Fisher numbers are 4 and 0.25 and lambda is 1. Where do the weights settle?",
+    "expected_behavior": "Weighted averages of 0 and 2: 8 over 5, which is 1.6, and 0.5 over 1.25, which is 0.4."
+  },
+  {
+    "prompt": "A 4,096 by 4,096 layer gets a rank-8 adapter. How big is the adapter relative to the layer?",
+    "expected_behavior": "65,536 against 16,777,216 numbers, about 0.39 percent, or 1 in 256."
+  }
+]

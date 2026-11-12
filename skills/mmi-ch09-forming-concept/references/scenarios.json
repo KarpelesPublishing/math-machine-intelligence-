@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Category A has matches of 0.6 and 0.2 and category B has one match of 0.4. What share belongs to A, and what if B's match rises to 0.8?",
+    "expected_behavior": "Totals 0.8 and 0.4, share 0.8/1.2 = about 0.67; with B at 0.8 the totals tie and A's share is 1/2; state that the example is constructed."
+  },
+  {
+    "prompt": "In the shape and color toy, the target is shape and the weight is 1. Which summaries score lowest?",
+    "expected_behavior": "Scores are 1 for keep both, 0 for shape only, 1 for color only and 0 for nothing, so shape only and nothing tie; the rule alone does not break the tie."
+  },
+  {
+    "prompt": "Do students rating 3 as a better odd number than 447 show that people store a prototype of odd?",
+    "expected_behavior": "No. The ratings are graded although the rule is flat, but the study compared no storage models and measured behavior, not brain activity."
+  }
+]

@@ -1,0 +1,598 @@
+{
+  "chapter": 32,
+  "companion_version": "0.1.0-pilot",
+  "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
+  "source_file": "chapter-32.md",
+  "source_sha256": "ddcc1a7c15c70fd784b6d819a08370bb57437c7be44efd96cdbe1a63aff18b49",
+  "calculation_sha256": "cbb5c36be385143b9b325caa17728a11837e52bcc8f0e4c7c058e374d838394e",
+  "edition": "review copy, brain-computer partnership revision of 1 November 2026",
+  "demonstrations": [
+    {
+      "id": "C32-D01",
+      "title": "How does a count of new patterns become a score?",
+      "question": "A response is a grid of 32 on-or-off entries. How do the count of new patterns and the mix of ones and zeros set its score?",
+      "equations": [
+        "H(p)=-p\\log_2 p-(1-p)\\log_2(1-p),\\qquad C=\\frac{c\\,\\log_2 n}{n\\,H(p)}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "p",
+          "meaning": "the share of cells that are on; it must lie strictly between 0 and 1 for the score"
+        },
+        {
+          "sym": "H(p)",
+          "meaning": "entropy of one cell in bits; 1 bit at p = 1/2, and 0 when every cell is the same"
+        },
+        {
+          "sym": "c",
+          "meaning": "the number of new patterns counted in the string"
+        },
+        {
+          "sym": "n",
+          "meaning": "the length of the string; 32 here, so log2 n = 5"
+        },
+        {
+          "sym": "C",
+          "meaning": "the score"
+        }
+      ],
+      "source_anchor": "nine-of-43-patients-with-only-reflexive-behavior-gave-complex-responses-to-magnetic-pulses",
+      "source_section": "Nine of 43 patients with only reflexive behavior gave complex responses to magnetic pulses",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-27-binary-entropy-chapter-32"
+      ],
+      "provenance": "Book formulas (the index of Casali and colleagues, as the chapter presents it). The two pattern counts, 4 and 7, are the chapter's hypothetical examples, not patient data and not counted from specified strings. The count c is typed in here; some combinations of c and p could not occur in a real 32-cell string.",
+      "kind": "formula",
+      "assumptions": "Cells are binary, the string is long enough for the normalization to make sense (the chapter says short strings can score above 1), and p is strictly between 0 and 1. The score is an index of a recorded response, not a measure of experience.",
+      "prediction": "Before moving anything, predict whether a 32-cell response with 7 new patterns and half its cells on scores above 1, and by roughly how much.",
+      "reveal": {
+        "state": {
+          "new_patterns": 7,
+          "on_cells": 16
+        },
+        "text": "With half the cells on the entropy is 1 bit, and the score is 7 x 5 / 32 = 1.09, the chapter's 'about 1.1'. Four patterns at the same mix gives 0.625. Set on cells to 0 to see an undefined score."
+      },
+      "takeaway": "More new patterns raise the score, and a lopsided mix of ones and zeros lowers the entropy in the denominator, which raises the score for the same count.",
+      "why_it_matters": "A single number from a recording hides the counting rules behind it. Knowing the formula shows what moves the number and where it stops being defined.",
+      "sides": {
+        "brain": "The index is computed from EEG responses to magnetic pulses, with grid entries marked on or off for significant activity. The entries are not individual neurons, and the cutoff the chapter reports, 0.31, is an operational threshold, not a boundary found in nature.",
+        "machine": "The formula can be applied to any binary string, including a machine's activity. No such score has been validated against reports of experience for any machine, so the arithmetic carries no claim about one."
+      },
+      "explanation": "Entropy measures how mixed the ones and zeros are. The count of new patterns says how much the response keeps changing, but a random string also produces many new patterns, so the count is divided by what a random string with the same mix would need. A repetitive response has few new patterns and scores low, and a varied one scores higher.",
+      "check": "A response of 32 cells has 6 new patterns and 8 cells on. Find the entropy and the score.",
+      "answer": "p = 8/32 = 0.25 and H = 0.811 bits. C = 6 x 5 / (32 x 0.811) = 1.16.",
+      "controls": [
+        {
+          "key": "new_patterns",
+          "label": "New patterns counted (c)",
+          "values": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            12
+          ],
+          "default": 4,
+          "widget": "slider"
+        },
+        {
+          "key": "on_cells",
+          "label": "Cells that are on, out of 32",
+          "values": [
+            0,
+            8,
+            16
+          ],
+          "default": 16
+        }
+      ],
+      "function": "pci_picture",
+      "alt": "Bars for two hypothetical responses and a chosen one, and curves of the score against the count of new patterns for two mixes of cells.",
+      "symbols": "p: the share of cells that are on; it must lie strictly between 0 and 1 for the score; H(p): entropy of one cell in bits; 1 bit at p = 1/2, and 0 when every cell is the same; c: the number of new patterns counted in the string; n: the length of the string; 32 here, so log2 n = 5; C: the score",
+      "application": "A single number from a recording hides the counting rules behind it. Knowing the formula shows what moves the number and where it stops being defined.",
+      "default_parameters": "New patterns counted (c): 4 · Cells that are on, out of 32: 16",
+      "worked_example": {
+        "Share of cells on": "0.5",
+        "Entropy H(p) (bits)": "1",
+        "Score C": "0.625",
+        "New patterns for a score of 1": "6.4"
+      },
+      "worked_interpretation": "With 4 new patterns and 16 of 32 cells on, the entropy is 1 bit and the score is 0.625. At this mix, a score of 1 would take 6.4 new patterns.",
+      "reader_anchor": "C32-D01"
+    },
+    {
+      "id": "C32-D02",
+      "title": "Why divide by what a random string would need?",
+      "question": "How do real counts of new patterns behave for random strings of different lengths, and for a string that just repeats?",
+      "equations": [
+        "C=\\frac{c_L\\,\\log_2 n}{n\\,H(p)},\\qquad c_L\\approx\\frac{n\\,H(p)}{\\log_2 n}\\ \\text{for long random strings}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "c_L",
+          "meaning": "the Lempel-Ziv count of new patterns, found by the exhaustive parse of the string"
+        },
+        {
+          "sym": "n",
+          "meaning": "string length in cells"
+        },
+        {
+          "sym": "p",
+          "meaning": "the string's share of cells that are on"
+        },
+        {
+          "sym": "C",
+          "meaning": "the score; near 1 for a long random string"
+        }
+      ],
+      "source_anchor": "nine-of-43-patients-with-only-reflexive-behavior-gave-complex-responses-to-magnetic-pulses",
+      "source_section": "Nine of 43 patients with only reflexive behavior gave complex responses to magnetic pulses",
+      "provenance": "Simulation by the companion, with disclosed seeds, 200 random strings per setting. The chapter states that the normalization approaches 1 for long random strings and that short strings can score above 1; it does not give these simulated values. The count is the Lempel-Ziv 1976 exhaustive parse that the chapter's source note names. No patient data are used.",
+      "kind": "simulation",
+      "assumptions": "Strings are independent random bits with a fixed chance of a one, which is a toy stand-in for noise. Strings with no mix of ones and zeros are skipped (their score is undefined). The spread shown is the middle 80 percent of 200 seeded strings, not a confidence interval. At very short lengths the repeating string need not score lower: at 8 cells with a 0.2 chance of a one, it scores above the random average.",
+      "prediction": "Predict whether random 32-cell strings average a score below 1, near 1 or above 1, and whether a string that repeats a fixed rhythm scores higher or lower than they do.",
+      "reveal": {
+        "state": {
+          "length": 32,
+          "share": 0.5
+        },
+        "text": "Random 32-cell strings average about 1.34, above 1, which fits the chapter's warning about short strings. The repeating string 0101... scores 0.469. At 1024 cells the random average has fallen only to about 1.06 while the repeating string scores 0.029."
+      },
+      "takeaway": "For strings of a reasonable length the division makes repetition score far below noise, but short random strings overshoot 1 and the approach to 1 is slow.",
+      "why_it_matters": "A cutoff on a score means little if the score depends on string length. Knowing how the benchmark behaves for noise tells a reader what a high or low score does and does not rule out.",
+      "sides": {
+        "brain": "In the chapter's index, noise and muscle activity are meant to be kept from inflating the score by this normalization. This simulation uses random bits only; it is not a model of EEG.",
+        "machine": "A machine's binary activity can be scored the same way. The normalization behaves the same for any binary string, which says nothing about experience."
+      },
+      "explanation": "The Lempel-Ziv count grows with the length of the string even for pure noise, so a raw count could not tell structure from randomness. Dividing by the count a random string with the same mix would need gives noise a score near 1 and repetition a score below it. Short strings do not follow the large-string rule closely, so their scores overshoot.",
+      "check": "In the left panel, does the mean score for 8-cell random strings sit above or below the mean for 1024-cell strings, at a mix of half the cells on?",
+      "answer": "Above. The mean is about 1.65 at 8 cells and about 1.06 at 1024 cells, so scores from short strings are not comparable with scores from long ones.",
+      "controls": [
+        {
+          "key": "length",
+          "label": "String length (cells)",
+          "values": [
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024
+          ],
+          "default": 32,
+          "widget": "slider"
+        },
+        {
+          "key": "share",
+          "label": "Chance a cell is on",
+          "values": [
+            0.5,
+            0.2
+          ],
+          "default": 0.5
+        }
+      ],
+      "function": "lz_picture",
+      "alt": "Mean score of random strings against string length for two mixes, and a histogram of 200 scores with the repeating string marked.",
+      "symbols": "c_L: the Lempel-Ziv count of new patterns, found by the exhaustive parse of the string; n: string length in cells; p: the string's share of cells that are on; C: the score; near 1 for a long random string",
+      "application": "A cutoff on a score means little if the score depends on string length. Knowing how the benchmark behaves for noise tells a reader what a high or low score does and does not rule out.",
+      "default_parameters": "String length (cells): 32 · Chance a cell is on: 0.5",
+      "worked_example": {
+        "Mean score, random strings": "1.34",
+        "Middle 80 percent of scores": "1.14 to 1.47",
+        "Score of a repeating string": "0.469",
+        "Share of random strings scoring above 1": "0.995"
+      },
+      "worked_interpretation": "At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings average a score of 1.34; the repeating string scores 0.469. Short random strings score above 1, and the average falls toward 1 only slowly as strings lengthen.",
+      "reader_anchor": "C32-D02"
+    },
+    {
+      "id": "C32-D03",
+      "title": "What do the reported counts say, and how much doubt do they carry?",
+      "question": "How large are the shares behind the chapter's three reported studies, and how different are their sample sizes?",
+      "equations": [
+        "\\hat p=\\frac{k}{n},\\qquad \\text{Wilson interval}=\\frac{\\hat p+\\frac{z^2}{2n}\\pm z\\sqrt{\\frac{\\hat p(1-\\hat p)}{n}+\\frac{z^2}{4n^2}}}{1+\\frac{z^2}{n}}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "k, n",
+          "meaning": "the reported count and the group size"
+        },
+        {
+          "sym": "p-hat",
+          "meaning": "the share k divided by n"
+        },
+        {
+          "sym": "z",
+          "meaning": "1.645, 1.96 or 2.576 for 90, 95 or 99 percent"
+        }
+      ],
+      "source_anchor": "only-43-of-112-who-followed-commands-at-the-bedside-also-responded-on-fmri-or-eeg",
+      "source_section": "Only 43 of 112 who followed commands at the bedside also responded on fMRI or EEG",
+      "provenance": "Counts quoted from the chapter: Casarotto and colleagues (9 of 43 with a complex response; 36 of 38 minimally conscious patients above the 0.31 cutoff), Bodien and colleagues (60 of 241 and 43 of 112, a convenience sample of 353 adults), Monti and colleagues (5 of 54 who could modulate brain activity; 48 of 48 healthy answers decoded). The Wilson intervals are the companion's own, not reported by any study.",
+      "kind": "reported result",
+      "assumptions": "The intervals treat each person or answer as an independent draw from one population with a fixed share. These samples were not random: Bodien's was a convenience sample, the 48 answers came from 16 volunteers, and the groups differ in diagnosis, centre and method. The interval therefore describes sampling noise under that assumption only.",
+      "prediction": "Predict which of the six reported shares has the widest interval, before changing the study or the level.",
+      "reveal": {
+        "state": {
+          "study": "Monti and colleagues",
+          "level": 0.95
+        },
+        "text": "The 5 of 54 and the 48 of 48 sit at opposite ends of the scale. The 48 of 48 is a share of 1, yet its 95 percent interval reaches down to about 0.93: a perfect record is not a proof of perfection."
+      },
+      "takeaway": "Shares from small groups carry wide intervals, and a count of 48 of 48 still leaves room below 1. The studies could not show what any group experienced.",
+      "why_it_matters": "The chapter's argument depends on counts such as 9 of 43 and 60 of 241. Seeing how large the groups are shows how much weight a share can bear, and what the studies did not report.",
+      "sides": {
+        "brain": "Each share counts people whose recorded responses met a study's rule. A response is a pattern in a scan or EEG, not a report of experience, and the counts do not show what any person experienced.",
+        "machine": "No machine appears in these counts. The chapter says no test of experience has been validated against reports for any machine."
+      },
+      "explanation": "A share such as 9 of 43 is one sample of a possibly different true rate, and a different sample could have given a somewhat different share. The Wilson interval shows how far a share could move under simple sampling noise. Bigger groups give narrower intervals. The interval cannot correct for how people were chosen, how a diagnosis was made or what a test misses.",
+      "check": "Which has the wider 95 percent interval, 9 of 43 or 60 of 241, and why?",
+      "answer": "9 of 43 spans about 0.11 to 0.35, a width of 0.24, and 60 of 241 spans about 0.20 to 0.31, a width of 0.11. The larger group gives the narrower interval.",
+      "controls": [
+        {
+          "key": "study",
+          "label": "Study",
+          "values": [
+            "Casarotto and colleagues",
+            "Bodien and colleagues",
+            "Monti and colleagues"
+          ],
+          "default": "Casarotto and colleagues"
+        },
+        {
+          "key": "level",
+          "label": "Interval level",
+          "values": [
+            0.9,
+            0.95,
+            0.99
+          ],
+          "default": 0.95
+        }
+      ],
+      "function": "counts_picture",
+      "alt": "Stacked bars of the reported counts for the chosen study, and shares with Wilson intervals for all six reported groups.",
+      "symbols": "k, n: the reported count and the group size; p-hat: the share k divided by n; z: 1.645, 1.96 or 2.576 for 90, 95 or 99 percent",
+      "application": "The chapter's argument depends on counts such as 9 of 43 and 60 of 241. Seeing how large the groups are shows how much weight a share can bear, and what the studies did not report.",
+      "default_parameters": "Study: Casarotto and colleagues · Interval level: 0.95",
+      "worked_example": {
+        "Share, Casarotto: 9/43": "0.209",
+        "Interval, Casarotto: 9/43": "0.114 to 0.352",
+        "Share, Casarotto: 36/38": "0.947",
+        "Interval, Casarotto: 36/38": "0.827 to 0.985"
+      },
+      "worked_interpretation": "Casarotto: 9/43 is a share of 0.209 with an interval of 0.114 to 0.352; Casarotto: 36/38 is 0.947, interval 0.827 to 0.985. The interval is the companion's own and covers sampling noise only, under an independence assumption these samples do not meet.",
+      "reader_anchor": "C32-D03"
+    },
+    {
+      "id": "C32-D04",
+      "title": "How fast does a theory's score become impossible to compute?",
+      "question": "Rings of simple gates took about 1 second, 16 seconds and 2.75 hours as they grew from 3 to 5 to 7 gates. What does that say about a system as large as a brain?",
+      "equations": [
+        "\\text{cost}(n)\\sim n^{5}\\,3^{n}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "n",
+          "meaning": "the number of nodes (gates) in the system"
+        },
+        {
+          "sym": "cost(n)",
+          "meaning": "the order of the algorithm's work, in relative units; it is not a number of seconds"
+        }
+      ],
+      "source_anchor": "a-theorys-score-took-275-hours-for-seven-gates",
+      "source_section": "A theory's score took 2.75 hours for seven gates",
+      "provenance": "The three run times are those reported for rings of stochastic majority gates on 32 processor cores. The order n^5 3^n and the practical limit of about 10 to 12 nodes are from the chapter's source note on the same paper, which says execution times were substantially variable. The formula gives relative cost only; the companion extrapolates no times.",
+      "kind": "reported result",
+      "assumptions": "Only three ring sizes were reported, on one benchmark family and one machine. An order formula drops constants and says nothing about which times to expect. The comparison of the formula with the timings is the companion's own.",
+      "prediction": "Predict how many times longer 7 gates took than 5 gates, given that 5 gates took about 16 times as long as 3.",
+      "reveal": {
+        "state": {
+          "gates": 7
+        },
+        "text": "Seven gates took about 2.75 hours, roughly 600 times the 16 seconds for five. The order formula gives only about 48 times for that step, so the two do not track each other step by step."
+      },
+      "takeaway": "Adding two gates multiplied the time by about 16 and then by about 600, and a brain has billions of neurons, so the score cannot be directly computed there.",
+      "why_it_matters": "A test of experience has to be checkable against known cases. A score that cannot be computed for a system of the relevant size cannot be checked there, although other predictions or proxies may still be tested.",
+      "sides": {
+        "brain": "The theory ties experience to integration, and the score asks how much a cut into two parts destroys. This is a theory's quantity computed on a toy system, not a measurement of anyone's experience.",
+        "machine": "The runs are of software on simple gates. The cost of the algorithm says nothing about whether a machine has experience."
+      },
+      "explanation": "The score depends on trying many ways to cut the system into parts. The number of ways to cut, and the work to evaluate each, grows steeply with the number of nodes. The reported times show that growth for rings of 3, 5 and 7 gates, and the authors put the practical limit at about 10 to 12 nodes.",
+      "check": "How many times longer did the 7-gate ring take than the 3-gate ring, using the reported times?",
+      "answer": "2.75 hours is 9900 seconds, against 1 second, so about 9900 times as long.",
+      "controls": [
+        {
+          "key": "gates",
+          "label": "Gates in the ring",
+          "values": [
+            3,
+            5,
+            7
+          ],
+          "default": 7,
+          "widget": "slider"
+        }
+      ],
+      "function": "iit_time_picture",
+      "alt": "Bars of reported run times for 3, 5 and 7 gates on a log scale, and a log curve of relative cost against gates with the reported times marked.",
+      "symbols": "n: the number of nodes (gates) in the system; cost(n): the order of the algorithm's work, in relative units; it is not a number of seconds",
+      "application": "A test of experience has to be checkable against known cases. A score that cannot be computed for a system of the relevant size cannot be checked there, although other predictions or proxies may still be tested.",
+      "default_parameters": "Gates in the ring: 7",
+      "worked_example": {
+        "Reported time": "2.75 hours",
+        "Times longer than the previous ring": "619",
+        "Order formula's growth over the previous ring": "48.4",
+        "Reported time in seconds": "9900"
+      },
+      "worked_interpretation": "A ring of 7 gates took about 2.75 hours, 619 times the 5-gate time. The order formula n^5 3^n gives 48.4 times for the same step, so the formula and the timings differ step by step.",
+      "reader_anchor": "C32-D04"
+    },
+    {
+      "id": "C32-D05",
+      "title": "Can two machines give the same answers and be wired differently?",
+      "question": "A recurrent adder keeps a running total. An unrolled chain does the same with one unit per input. Do their outputs ever differ?",
+      "equations": [
+        "h_t=h_{t-1}+x_t,\\qquad y=h_4\\qquad \\text{versus}\\qquad y=\\big(((x_1)+x_2)+x_3\\big)+x_4"
+      ],
+      "symbols_list": [
+        {
+          "sym": "x_t",
+          "meaning": "the input at step t, 0 or 1"
+        },
+        {
+          "sym": "h_t",
+          "meaning": "the running total after step t, held by the feedback unit"
+        },
+        {
+          "sym": "y",
+          "meaning": "the output, the total after four inputs"
+        }
+      ],
+      "source_anchor": "same-outputs-different-insides-what-a-matching-machine-does-and-does-not-show",
+      "source_section": "Same outputs, different insides: what a matching machine does and does not show",
+      "provenance": "The chapter's constructed toy, which the source note says is not in the cited paper: inputs 1, 0, 1, 1 give totals 1, 1, 2, 3, and the two versions agree on all 16 input sequences. The unfolding argument itself is Doerig and colleagues (2019); critics replied that brain measures can still test such theories.",
+      "kind": "constructed example",
+      "assumptions": "A fixed number of steps, binary inputs and a readout that reports the total. The equivalence holds over the fixed number of steps; it is a statement about this toy, not a proof about brains or about any real model.",
+      "prediction": "For the sequence 1, 0, 1, 1, predict the output of each wiring, and whether any of the 16 sequences makes them differ.",
+      "reveal": {
+        "state": {
+          "sequence": 11
+        },
+        "text": "Sequence 11 is the chapter's 1, 0, 1, 1. Both versions give 3, with totals 1, 1, 2, 3. Try any other sequence: the outputs never differ, though one design has one unit and a feedback wire and the other has four units in a row."
+      },
+      "takeaway": "Identical outputs on every input do not reveal the wiring, so a theory that ties experience to wiring cannot be tested by behavior alone, which is the point of the argument.",
+      "why_it_matters": "If a machine's words about itself came from one circuit or the other, the words alone would not say which. The chapter treats matching behavior as weak evidence about a system's insides.",
+      "sides": {
+        "brain": "The unfolding argument applies to theories that tie experience to a system's internal causal structure. Critics replied that measurements of brain activity can still test them.",
+        "machine": "Both adders are exact specifications, not models of behavior. A talking machine's replies would be like these outputs: the same whichever circuit produced them."
+      },
+      "explanation": "The recurrent unit feeds its output back into itself at each step, and the chain passes its total forward through separate units. Over a fixed four steps, each step of the loop corresponds to one unit of the chain, so the totals match at every step. The two differ only in how they are built, which behavior cannot show.",
+      "check": "For inputs 0, 1, 1, 0, what are the running totals and the output of each wiring?",
+      "answer": "The totals are 0, 1, 2, 2 and both wirings output 2.",
+      "controls": [
+        {
+          "key": "sequence",
+          "label": "Input sequence (binary number, first input is the leading bit)",
+          "values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default": 11,
+          "widget": "slider"
+        }
+      ],
+      "function": "unfolding_picture",
+      "alt": "Two wirings of an adder with the same inputs and totals, and bars counting the 16 input sequences by output, identical for both wirings.",
+      "symbols": "x_t: the input at step t, 0 or 1; h_t: the running total after step t, held by the feedback unit; y: the output, the total after four inputs",
+      "application": "If a machine's words about itself came from one circuit or the other, the words alone would not say which. The chapter treats matching behavior as weak evidence about a system's insides.",
+      "default_parameters": "Input sequence (binary number, first input is the leading bit): 11",
+      "worked_example": {
+        "Inputs": "1 0 1 1",
+        "Output, one unit with feedback": 3,
+        "Output, chain of four": 3,
+        "Sequences where they agree": "16 of 16"
+      },
+      "worked_interpretation": "For inputs 1 0 1 1 the feedback unit's total runs 1, 1, 2, 3 and the chain gives the same, ending at 3. The two agree on all 16 of 16 sequences, yet one has a single unit and a feedback wire and the other has four units in a row.",
+      "reader_anchor": "C32-D05"
+    },
+    {
+      "id": "C32-D06",
+      "title": "How much does a negative leave open?",
+      "question": "A test flags some share of cases and catches some share of those with the property. What share of its negatives still has the property?",
+      "equations": [
+        "m=\\frac{r\\,(1-s)}{s\\,(1-r)}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "r",
+          "meaning": "the flag rate: the share of all cases the test marks positive; 0 < r < 1"
+        },
+        {
+          "sym": "s",
+          "meaning": "the sensitivity: the share of cases with the property that the test catches; s above 0 and at least r"
+        },
+        {
+          "sym": "m",
+          "meaning": "the share of negatives that have the property"
+        }
+      ],
+      "source_anchor": "only-43-of-112-who-followed-commands-at-the-bedside-also-responded-on-fmri-or-eeg",
+      "source_section": "Only 43 of 112 who followed commands at the bedside also responded on fMRI or EEG",
+      "matter_anchor": [
+        "90-derivations.md",
+        "derivation-28-property-among-negative-results-chapter-32"
+      ],
+      "provenance": "Book formula. The 100-case detector with 10 flagged and half caught is the chapter's constructed illustration, not patient counts. The flag rate of 0.25 matches the chapter's reading of 60 of 241 (about 0.25); the paper reports no sensitivity for that group, so the miss rate for those patients is unknown.",
+      "kind": "formula",
+      "assumptions": "The test never flags a case that lacks the property (no false positives), s is above zero, r is between zero and one, and r is no larger than s. The formula describes an assumed detector, not a measured property of any real test or machine.",
+      "prediction": "At a flag rate of 0.1 and a sensitivity of 0.5, predict how many of the 90 negatives out of 100 still have the property.",
+      "reveal": {
+        "state": {
+          "flag_rate": 0.1,
+          "sensitivity": 0.5
+        },
+        "text": "Twenty cases have the property and 10 are flagged, so 10 are missed among the 90 negatives: m = 10/90 = 0.111. Raise the flag rate to 0.25 with a low sensitivity and the negatives become much less reassuring."
+      },
+      "takeaway": "A negative result cannot be read without the test's sensitivity. A modest flag rate with a modest sensitivity can leave a large share of the negatives with the property.",
+      "why_it_matters": "A silent scan is not an empty answer. The chapter's patients with no bedside response were flagged at about a quarter on fMRI or EEG, and without a sensitivity the miss rate cannot be stated.",
+      "sides": {
+        "brain": "A brain-based task that finds no response means only that the task found no response. Bodien's counts show tasks missing responses that were already observable at the bedside.",
+        "machine": "A detector of some property in a model's activity has the same bookkeeping. A negative result is only as informative as the detector's measured sensitivity."
+      },
+      "explanation": "The flagged cases are a share r of all cases, and they are a share s of the cases that have the property, so the property is in r / s of all cases. The rest of those, r / s - r, were not flagged, and they all sit among the 1 - r negatives. Dividing gives the formula. A low sensitivity makes the property common among the negatives.",
+      "check": "A test flags 25 of 100 cases and catches 90 percent of the cases with the property. What share of its negatives have the property?",
+      "answer": "m = 0.25 x 0.1 / (0.9 x 0.75) = 0.037, about 4 percent. With a sensitivity of 0.5 instead, m would be 0.333.",
+      "controls": [
+        {
+          "key": "flag_rate",
+          "label": "Flag rate (r)",
+          "values": [
+            0.05,
+            0.1,
+            0.25,
+            0.5
+          ],
+          "default": 0.1
+        },
+        {
+          "key": "sensitivity",
+          "label": "Sensitivity (s)",
+          "values": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            0.9,
+            1.0
+          ],
+          "default": 0.5,
+          "widget": "slider"
+        }
+      ],
+      "function": "miss_picture",
+      "alt": "A stacked bar of 100 cases split into flagged, missed and without the property, and curves of the missed share against sensitivity.",
+      "symbols": "r: the flag rate: the share of all cases the test marks positive; 0 < r < 1; s: the sensitivity: the share of cases with the property that the test catches; s above 0 and at least r; m: the share of negatives that have the property",
+      "application": "A silent scan is not an empty answer. The chapter's patients with no bedside response were flagged at about a quarter on fMRI or EEG, and without a sensitivity the miss rate cannot be stated.",
+      "default_parameters": "Flag rate (r): 0.1 · Sensitivity (s): 0.5",
+      "worked_example": {
+        "Cases with the property (of 100)": "20",
+        "Missed by the test": "10",
+        "Negatives": "90",
+        "Share of negatives that have it (m)": "0.111"
+      },
+      "worked_interpretation": "A test that flags 10 of 100 cases and catches a share 0.5 of the cases with the property must meet 20 such cases, so it misses 10, all among its 90 negatives. That is a share m of 0.111.",
+      "reader_anchor": "C32-D06"
+    },
+    {
+      "id": "C32-D07",
+      "title": "What does 48 of 48 correct leave open?",
+      "question": "A decoding method read 48 of 48 answers from healthy volunteers correctly, and 5 of 5 decodable answers from one patient. Does a perfect record mean a perfect method?",
+      "equations": [
+        "P(\\text{all } k\\text{ correct})=a^{k},\\qquad a_{5\\%}=0.05^{1/k}"
+      ],
+      "symbols_list": [
+        {
+          "sym": "a",
+          "meaning": "the chance that any one answer is decoded correctly"
+        },
+        {
+          "sym": "k",
+          "meaning": "the number of answers, all correct (5 or 48)"
+        },
+        {
+          "sym": "a_5%",
+          "meaning": "the lowest accuracy for which a perfect record still has at least a 5 percent chance"
+        }
+      ],
+      "source_anchor": "tennis-for-yes-what-a-scan-needs-before-it-can-be-an-answer",
+      "source_section": "Tennis for yes: what a scan needs before it can be an answer",
+      "provenance": "The counts 48 of 48 (16 healthy volunteers, 48 questions) and 5 of 5 decodable patient answers are the chapter's. The probability calculation is the companion's own and is not in the chapter or the paper.",
+      "kind": "formula",
+      "assumptions": "Each answer is correct independently with the same chance a. That is a simplification: the 48 answers came from 16 volunteers, three each, and the patient's answers came from one person in one session. The calculation does not estimate the method's real accuracy.",
+      "prediction": "Predict the lowest per-answer accuracy that would still give 48 of 48 at least one time in twenty.",
+      "reveal": {
+        "state": {
+          "accuracy": 0.95,
+          "answers": 48
+        },
+        "text": "At 0.95 a perfect record of 48 comes up about 8.5 percent of the time. The accuracy at which it falls to 5 percent is about 0.94, so a method with 6 percent errors would still show a perfect record about one time in twenty."
+      },
+      "takeaway": "A short perfect record is compatible with a method that makes occasional errors, and a record of 5 leaves room for much more.",
+      "why_it_matters": "The chapter leans on the 48 of 48 behind the yes in the scanner. Seeing how much accuracy that record excludes shows how strong the evidence is, and that it supports an answer about a name, not what the patient felt.",
+      "sides": {
+        "brain": "The decoder compared each scan with two reference scans. A correct decoding of a yes-or-no question about a name is a match to a checkable fact, not evidence of what the patient experienced.",
+        "machine": "Any classifier with a short perfect record has the same limit: a perfect record shows low error only up to what the number of trials can resolve."
+      },
+      "explanation": "If each answer is right with chance a, all k are right with chance a to the power k. For 48 answers this falls quickly as a drops, but it stays above 5 percent down to about 0.94. So the record shows the error rate is probably well below 20 percent, not that it is zero.",
+      "check": "A method is right 90 percent of the time per answer. How likely is a perfect record of 5, and of 48?",
+      "answer": "0.9^5 = 0.59, so a perfect record of 5 is likely. 0.9^48 = 0.0064, so a perfect record of 48 would be rare at that accuracy.",
+      "controls": [
+        {
+          "key": "accuracy",
+          "label": "Chance each answer is correct",
+          "values": [
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.85,
+            0.9,
+            0.93,
+            0.95,
+            0.97,
+            0.98,
+            0.99,
+            0.995
+          ],
+          "default": 0.9,
+          "widget": "slider"
+        },
+        {
+          "key": "answers",
+          "label": "Answers in the record",
+          "values": [
+            5,
+            48
+          ],
+          "default": 48
+        }
+      ],
+      "function": "all_correct_picture",
+      "alt": "Bars for the chance of a perfect record of 5 and of 48 answers, and curves of that chance against per-answer accuracy.",
+      "symbols": "a: the chance that any one answer is decoded correctly; k: the number of answers, all correct (5 or 48); a_5%: the lowest accuracy for which a perfect record still has at least a 5 percent chance",
+      "application": "The chapter leans on the 48 of 48 behind the yes in the scanner. Seeing how much accuracy that record excludes shows how strong the evidence is, and that it supports an answer about a name, not what the patient felt.",
+      "default_parameters": "Chance each answer is correct: 0.9 · Answers in the record: 48",
+      "worked_example": {
+        "Chance all answers are correct": "0.00636",
+        "Expected wrong answers": "4.8",
+        "Lowest accuracy still giving this record 5 percent of the time": "0.939",
+        "Answers in the record": 48
+      },
+      "worked_interpretation": "If each of 48 answers were right with chance 0.9, a perfect record would come up 0.00636 of the time. A perfect record at 5 percent or more is consistent with any accuracy from 0.939 up, so it does not show the method is perfect.",
+      "reader_anchor": "C32-D07"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A linear learner takes one update with step 0.1 on a new item whose error is 2. What happens to the answers for old items with overlaps 1, 0 and -1?",
+    "expected_behavior": "The changes are -0.2, 0 and +0.2, since the change is -step x error x overlap. Say it is a linear learner and one step, and that a change is not forgetting until it is checked against the old item's own target."
+  },
+  {
+    "prompt": "A learner answers 1 for old item A. A new item B has overlap 0.5 with A and the right answer -1. After one full update on B, where is A's answer?",
+    "expected_behavior": "B's error before is 1.5, so A's answer falls to 1 - 1.5 x 0.5 = 0.25, an error of 0.75. Say this is a constructed example, not data, and that the neighbor C's change is left open."
+  },
+  {
+    "prompt": "Learning a list took 25 repetitions and relearning it took 20. What are the savings, and what do they show?",
+    "expected_behavior": "S = (25 - 20) / 25 = 0.2: a fifth of the first effort was saved. Say it measures effort saved, that Ebbinghaus's own formula differed, and that savings alone does not show what a model's weights retain."
+  }
+]

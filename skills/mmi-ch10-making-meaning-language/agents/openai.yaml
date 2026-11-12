@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Making Meaning with Language"
+  short_description: "Explore and apply Chapter 10 of the book."
+  default_prompt: "Use $mmi-ch10-making-meaning-language to help me understand or apply this idea: "

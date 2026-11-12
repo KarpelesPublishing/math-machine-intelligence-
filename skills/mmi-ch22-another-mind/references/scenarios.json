@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Two goals start equally likely. A step has chance 0.8 under the first and 0.2 under the second. What is the first goal's chance, and after three such steps?",
+    "expected_behavior": "0.8 after one step; after three, 0.5 x 0.512 / (0.5 x 0.512 + 0.5 x 0.008) = 0.985. State the prior and independent-step assumptions."
+  },
+  {
+    "prompt": "In the invented fleet, Express and Arterial both cost 4.8 but Express draws 26 trips per 100 and Arterial 57. Do drivers dislike tolls?",
+    "expected_behavior": "Not necessarily: 40 percent never heard of Express. An analyst assuming full knowledge would read a toll weight of 0.66 instead of 0.40 and an hour worth 18.2 dollars instead of 30. Ask what each driver knew."
+  },
+  {
+    "prompt": "A chimp picks the right photograph 21 times in 24. Does that prove it reads goals?",
+    "expected_behavior": "It rejects guessing (chance of 21 or more at 0.5 is about 0.00014) but three rival readings remain; a test where the readings predict different outcomes is needed. A pass moves belief only by the ratio of pass rates."
+  }
+]

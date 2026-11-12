@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Imagining Something New"
+  short_description: "Explore and apply Chapter 12 of the book."
+  default_prompt: "Use $mmi-ch12-imagining-new to help me understand or apply this idea: "

@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Four earlier tokens all score -30 against the current one. What does plain softmax give each, and what would a spare slot do?",
+    "expected_behavior": "Plain softmax gives each 0.25 whatever the common score, a total of 1. With a spare slot of score 0 each gets about e^-30 / (1 + 4 e^-30), essentially 0, and the total is essentially 0; say it is arithmetic, not a measurement of a trained model."
+  },
+  {
+    "prompt": "Two inputs have drives 4 and 1 and sigma is 1. What happens when attention puts a gain of 4 on the second?",
+    "expected_behavior": "Without attention the responses are 2/3 and 1/6. With the gain both are 4/9: the attended input rises and its rival falls; the constant keeps the total below 1."
+  },
+  {
+    "prompt": "A passage that holds the answer scores 2 above each of 8 look-alikes. How much weight does the answer keep?",
+    "expected_behavior": "1 / (1 + 8 e^-2) = 0.48. Say the weight is a share within one softmax and not a probability that the passage is true, and that the study did not test this explanation."
+  }
+]

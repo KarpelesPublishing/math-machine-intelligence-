@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "The remembered second target is at (10, 8), the first jump was 10 across, and 19 percent of the first-jump signal is lost. Where is the second jump aimed and how far does it miss?",
+    "expected_behavior": "Estimate 8.1, planned jump (1.9, 8) against the needed (0, 8), so the end point misses by 1.9 units: the loss share times the first jump."
+  },
+  {
+    "prompt": "Sensed feedback is 8 and the predicted feedback is 6. Was there an outside push?",
+    "expected_behavior": "The residual is 2, and it fits a push of 2 with a perfect prediction, no push with a prediction miss of 2, or any mix; more information is needed."
+  },
+  {
+    "prompt": "A walking robot succeeded on 2 of 10 trials. Can we say its success rate is 20 percent?",
+    "expected_behavior": "The share is 0.2 but the exact 95 percent range runs from about 0.025 to 0.556; ten trials cannot pin the rate down."
+  }
+]

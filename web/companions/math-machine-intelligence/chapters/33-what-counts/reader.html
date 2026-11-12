@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Take a benchmark score apart, and see what one number carries and what has to travel with it. An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 33 · What Counts as Intelligence?</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="../../index.html">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="../../index.html">All chapters</a><a href="notebook.ipynb" download>Notebook</a><a href="../32-question-experience/reader.html" rel="prev">&larr; Previous chapter</a><a href="../34-abilities-work-together/reader.html" rel="next">Next chapter &rarr;</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 33</p><h1>What Counts as Intelligence?</h1><p class="cmp-lead">Take a benchmark score apart, and see what one number carries and what has to travel with it.</p><p class="cmp-summary">6 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C33-D01">1. What does a level score reward?</a><a href="#C33-D02">2. Why is an environment score the smaller of two averages?</a><a href="#C33-D03">3. Can one model have two scores on the same set?</a><a href="#C33-D04">4. Can the order of two children flip with no change in their scores?</a><a href="#C33-D05">5. Can a one-factor table arise with no shared die?</a><a href="#C33-D06">6. What does a classifier that never read the premise reveal?</a></nav>
+
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C33-D01" aria-labelledby="title-C33-D01">
+<div class="demo-title"><span class="chapter-number">01 / 06</span><h2 id="title-C33-D01">What does a level score reward?</h2></div>
+<p class="source-line small">From Chapter 33, 99.95 percent combines completion and move efficiency</p>
+<p class="question">If a human baseline is 20 moves on a level, how does the agent&#39;s move count set its level score?</p><p>The ratio of human moves to agent moves is squared, so taking twice the moves costs three quarters of the score and taking three times costs eight ninths. The cap at 1.15 means that finishing in fewer moves than the baseline earns a little extra but no more. A level not finished scores zero however few moves were used.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict the level score when the agent takes twice the human baseline, and when it takes fewer moves than the baseline.</p>
+<div class="controls" role="group" aria-label="Controls for What does a level score reward?">
+<div class="control"><label for="C33-D01-agent_moves">Agent&#39;s moves on the level: <output class="slider-value" data-for="agent_moves">40</output></label><input type="range" id="C33-D01-agent_moves" data-control="agent_moves" min="0" max="8" step="1" value="6" aria-valuetext="40"><div class="slider-ends small"><span>10</span><span>80</span></div></div><div class="control"><label for="C33-D01-status">Did the agent finish the level?</label><select id="C33-D01-status" data-control="status"><option value="0" selected>finished</option><option value="1">not finished</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D01/12.svg" alt="Bars of agent moves against the human baseline, and a curve of level score against the move ratio, capped at 115 percent." width="960" height="540"><figcaption><strong class="takeaway">The squared ratio punishes extra moves quickly, and the cap stops fewer moves from buying an unlimited bonus.</strong><br><span class="selected-parameters">Agent&#39;s moves on the level: 40 · Did the agent finish the level?: finished</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Twice the baseline gives (1/2)^2, a quarter, so 25 percent. Try 15 moves: the squared ratio is 1.78, but the cap holds it at 115 percent, and anything under about 18.7 moves is capped the same.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With 40 moves against a human baseline of 20, the squared ratio is 0.25 and the level scores 25 percent.</p>
+<dl class="metrics"><div class="metric"><dt>Agent moves</dt><dd>40</dd></div><div class="metric"><dt>Moves divided by human baseline</dt><dd>2</dd></div><div class="metric"><dt>Squared ratio (h/a)^2</dt><dd>0.25</dd></div><div class="metric"><dt>Level score (percent)</dt><dd>25</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A benchmark score is a rule applied to move counts. Reading the rule shows what a number such as 99.95 percent rewards: completing levels and doing it efficiently.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The baseline is the upper-median move count of people who finished the level. About 500 members of the public were tested, and an environment was kept only if at least two of them solved every level on first exposure, which is a selection rule, not a finding that any person solves any environment.</p></div><div class="note"><strong>In machines</strong><p>The agent&#39;s move count comes from one run of the harness and model. The score compares counts of actions and says nothing about how the agent decided them.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">s = min((h/a)^2, 1.15) = min((20/40)^2, 1.15) = min(0.25, 1.15) = 0.25.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>l</mi></msub><mo>=</mo><mrow><mi mathvariant="normal">min</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">[</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>h</mi><mi>l</mi></msub><msub><mi>a</mi><mi>l</mi></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>,</mo><mspace width="0.167em"></mspace><mn>1.15</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">
+s_l=\min\!\left[\left(\frac{h_l}{a_l}\right)^{2},\,1.15\right]
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>s_l</dt><dd>the score for level l, as a fraction; zero if the agent does not finish the level</dd><dt>h_l</dt><dd>the human baseline move count for the level (20 here); it must be positive</dd><dt>a_l</dt><dd>the agent&#39;s move count; it must be positive</dd><dt>1.15</dt><dd>the cap: no level scores above 115 percent</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The score depends on move counts alone, the human baseline is the upper median of the people who finished that level, and a level the agent does not finish scores zero. The benchmark total also depends on weights and a completion term, shown in the next demonstration.</p></div></div>
+<details><summary>Check your understanding: The baseline is 20 moves and an agent takes 25. What is the level score?</summary><div class="answer">(20/25)^2 = 0.64, so 64 percent.</div></details>
+<p class="source small">Book source: Chapter 33, 99.95 percent combines completion and move efficiency. <span title="9995-percent-combines-completion-and-move-efficiency">Illustration C33-D01</span>. Formula. Book formula, the per-level score the chapter gives for ARC-AGI-3. The chapter notes that the technical report prints the cap in a different place from its prose and an inspected software version; this follows the chapter&#39;s formula. The 20-move baseline is a constructed number: the score depends only on the ratio.</p>
+</section>
+<section class="demo" id="C33-D02" aria-labelledby="title-C33-D02">
+<div class="demo-title"><span class="chapter-number">02 / 06</span><h2 id="title-C33-D02">Why is an environment score the smaller of two averages?</h2></div>
+<p class="source-line small">From Chapter 33, 99.95 percent combines completion and move efficiency</p>
+<p class="question">In a five-level environment weighted by level number, how do finishing fewer levels and using fewer moves combine?</p><p>Each finished level scores by its move ratio, capped; each unfinished level scores zero. The two averages weight levels by their number, so later levels matter more. Completion is the share of that weight finished. Efficiency can exceed completion only through the bonus above 100 percent, and taking the smaller removes that bonus.</p>
+<p class="prediction"><strong>Predict first:</strong> An agent finishes only levels 1 and 2 of 5, using fewer moves than the human baseline on both. Predict whether its efficiency bonus raises its environment score above the completed share.</p>
+<div class="controls" role="group" aria-label="Controls for Why is an environment score the smaller of two averages?">
+<div class="control"><label for="C33-D02-levels_done">Levels finished (from level 1 up): <output class="slider-value" data-for="levels_done">3</output></label><input type="range" id="C33-D02-levels_done" data-control="levels_done" min="0" max="5" step="1" value="3" aria-valuetext="3"><div class="slider-ends small"><span>0</span><span>5</span></div></div><div class="control"><label for="C33-D02-move_ratio">Agent moves divided by human moves</label><select id="C33-D02-move_ratio" data-control="move_ratio"><option value="0">0.8</option><option value="1" selected>1.0</option><option value="2">1.5</option><option value="3">2.0</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D02/13.svg" alt="Bars of per-level scores in a five-level environment, and curves of completion, efficiency and their minimum against levels finished." width="960" height="540"><figcaption><strong class="takeaway">The smaller of the two averages means finished levels count at full weight, and the cap prevents a bonus on the early levels from standing in for the later ones.</strong><br><span class="selected-parameters">Levels finished (from level 1 up): 3 · Agent moves divided by human moves: 1.0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At 0.8 times the human moves each finished level scores 1.15, so efficiency averages 23 percent. Completion is 3/15, 20 percent, and the environment score takes the smaller, 20. Efficiency cannot buy credit for levels never finished.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">Finishing 3 of 5 levels at 1 of the human move count, each finished level scores 1. Efficiency averages 40 percent and completion 40 percent, so the environment scores 40.</p>
+<dl class="metrics"><div class="metric"><dt>Weighted efficiency average (percent)</dt><dd>40</dd></div><div class="metric"><dt>Weighted completion (percent)</dt><dd>40</dd></div><div class="metric"><dt>Environment score (percent)</dt><dd>40</dd></div><div class="metric"><dt>Which is smaller</dt><dd>neither (equal)</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A headline total hides how completion and efficiency were combined. Knowing the rule shows why 99.95 percent needs nearly every level finished, and finished efficiently.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Later levels count more because early levels should contribute less. That choice is the designers&#39;, not a finding about human skill.</p></div><div class="note"><strong>In machines</strong><p>The score is computed from the agent&#39;s recorded runs. It is a specification of the scoring rule applied to action counts, not a model of how the agent works.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Weights are the level numbers over 15. Efficiency = sum of weight x level score = 0.4. Completion = sum of weight x finished = 0.4. Score = min(0.4, 0.4) = 0.4.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">score</mtext><mo>=</mo><mrow><mi mathvariant="normal">min</mi><mo>&#8289;</mo></mrow><mspace width="-0.167em"></mspace><mo minsize="180%" maxsize="180%" stretchy="true" form="prefix">(</mo><munder><mo>∑</mo><mi>l</mi></munder><msub><mi>w</mi><mi>l</mi></msub><mspace width="0.167em"></mspace><msub><mi>s</mi><mi>l</mi></msub><mo>,</mo><mspace width="0.222em"></mspace><munder><mo>∑</mo><mi>l</mi></munder><msub><mi>w</mi><mi>l</mi></msub><mspace width="0.167em"></mspace><msub><mi>c</mi><mi>l</mi></msub><mo minsize="180%" maxsize="180%" stretchy="true" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>w</mi><mi>l</mi></msub><mo>=</mo><mfrac><mi>l</mi><mrow><munder><mo>∑</mo><mi>k</mi></munder><mi>k</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\text{score}=\min\!\Big(\sum_l w_l\,s_l,\ \sum_l w_l\,c_l\Big),\qquad w_l=\frac{l}{\sum_k k}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>w_l</dt><dd>the weight of level l: its level number divided by the sum of level numbers (15 for five levels)</dd><dt>s_l</dt><dd>the level score from the previous demonstration, zero if not finished</dd><dt>c_l</dt><dd>1 if the agent finished level l, otherwise 0</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Five levels, the agent finishes levels 1 up to k, and every finished level uses the same move ratio. The benchmark total then averages such environment scores, which is not shown. The cap placement follows the chapter&#39;s formula.</p></div></div>
+<details><summary>Check your understanding: An agent finishes levels 1 to 3 of 5 at exactly the human move count. What is its environment score?</summary><div class="answer">Each finished level scores 1, so efficiency and completion are both (1 + 2 + 3)/15 = 0.4, and the score is 40 percent.</div></details>
+<p class="source small">Book source: Chapter 33, 99.95 percent combines completion and move efficiency. <span title="9995-percent-combines-completion-and-move-efficiency">Illustration C33-D02</span>. Constructed example. The environment score and level weights are the chapter&#39;s rule: the smaller of the weighted efficiency average and the weighted fraction of levels completed, with the level number as the weight. The chapter does not say how many levels an environment has; the five-level environment and the common move ratio on every finished level are constructed here.</p>
+</section>
+<section class="demo" id="C33-D03" aria-labelledby="title-C33-D03">
+<div class="demo-title"><span class="chapter-number">03 / 06</span><h2 id="title-C33-D03">Can one model have two scores on the same set?</h2></div>
+<p class="source-line small">From Chapter 33, 99.95 percent combines completion and move efficiency</p>
+<p class="question">GPT-6 Astra scored 62.7 and 99.95 percent on the same set. How do the harness and the effort setting each enter?</p><p>The same model was run under two wrappers at six effort settings. The Standard harness score depends strongly on effort, and is not even steady across settings, since none beats low. The Adapter scores sit between 96.7 and 99.95 throughout. Comparing the two at each setting, as the right panel does, removes the effort mismatch of the two best entries.</p>
+<p class="prediction"><strong>Predict first:</strong> The chapter&#39;s two best entries are at different effort levels (max for Standard, high for Adapter). Predict whether the Provider Adapter would still lead at every effort setting.</p>
+<div class="controls" role="group" aria-label="Controls for Can one model have two scores on the same set?">
+<div class="control"><label for="C33-D03-effort">Effort setting</label><select id="C33-D03-effort" data-control="effort"><option value="0">none</option><option value="1">low</option><option value="2">medium</option><option value="3" selected>high</option><option value="4">xhigh</option><option value="5">max</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D03/03.svg" alt="Bars of two harness scores at one effort setting, and lines of both harness scores across the six effort settings." width="960" height="540"><figcaption><strong class="takeaway">The Adapter leads at every effort setting, so the 99.95 versus 62.7 headline is not only an effort effect, but a number still has to travel with its harness, set and date.</strong><br><span class="selected-parameters">Effort setting: high</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At max effort the Standard harness scored 62.7 and the Provider Adapter 98.6, a gap of 35.9 points. The Adapter is higher at all six settings, and the Standard scores range from 17.5 to 62.7 while the Adapter never fell below 96.7.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, a gap of 45.15 points. The Adapter is higher at all six settings, and each entry is a single run on one date, so a score needs its harness, set and effort.</p>
+<dl class="metrics"><div class="metric"><dt>Standard harness (percent)</dt><dd>54.8</dd></div><div class="metric"><dt>Provider Adapter harness (percent)</dt><dd>99.95</dd></div><div class="metric"><dt>Gap at this effort (points)</dt><dd>45.15</dd></div><div class="metric"><dt>Adapter higher at all six settings</dt><dd>yes</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A single score can describe the model together with its software. The foundation treats the two harnesses as separate questions, so quoting one without the other can mislead.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The human baseline behind both scores came from about 500 members of the public, not chosen for puzzle-solving skill. A score near 100 indicates high completion and action efficiency under this scoring rule.</p></div><div class="note"><strong>In machines</strong><p>The harness decides what the model carries from step to step. In the Standard harness it carries notes it chose to write; the Provider Adapter uses the provider&#39;s own memory features. The effort level is a dial the tester sets.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Gap = 99.95 - 54.8 = 45.15 points. The best entries differ in effort: Standard 62.7 at max, Adapter 99.95 at high, a gap of 37.25 that mixes the harness effect with the effort setting.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">gap</mtext><mo stretchy="false" form="prefix">(</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>S</mi><mtext mathvariant="normal">Adapter</mtext></msub><mo stretchy="false" form="prefix">(</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>S</mi><mtext mathvariant="normal">Standard</mtext></msub><mo stretchy="false" form="prefix">(</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
+\text{gap}(e)=S_{\text{Adapter}}(e)-S_{\text{Standard}}(e)
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>e</dt><dd>the effort setting: none, low, medium, high, xhigh or max</dd><dt>S_Standard(e), S_Adapter(e)</dt><dd>the best entry&#39;s score under each harness at effort e, in percent</dd><dt>gap(e)</dt><dd>the difference in points at the same effort</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>The numbers are the chapter&#39;s as of 2 November 2026. Each is one run, so no spread is available. The gap at the same effort isolates the harness more than the headline pair does, but it does not show why the harness matters.</p></div></div>
+<details><summary>Check your understanding: At which effort setting is the gap between the harnesses largest, and how large is it?</summary><div class="answer">At low effort: 98.0 minus 17.5 is 80.5 points. The smallest gap is at max effort, 35.9 points.</div></details>
+<p class="source small">Book source: Chapter 33, 99.95 percent combines completion and move efficiency. <span title="9995-percent-combines-completion-and-move-efficiency">Illustration C33-D03</span>. Reported result. The twelve scores are those in the chapter&#39;s source note, from the foundation&#39;s leaderboard data file of 2 November 2026: each entry is the best of its harness at that effort, on the semi-private set, a single run. The web page shows the 99.95 entry as 99.9 (data value 0.99946). The companion did not check them against the live leaderboard; standings move.</p>
+</section>
+<section class="demo" id="C33-D04" aria-labelledby="title-C33-D04">
+<div class="demo-title"><span class="chapter-number">04 / 06</span><h2 id="title-C33-D04">Can the order of two children flip with no change in their scores?</h2></div>
+<p class="source-line small">From Chapter 33, A total is a weighted average</p>
+<p class="question">Two children, P and Q, have made-up scores on two groups of tasks. How does the weight on each group decide who leads?</p><p>The weighted average is a straight line in the weight. P&#39;s line starts at 35 and ends at 85, Q&#39;s starts at 75 and ends at 45, so the lines cross exactly where the weight is one half. Left of the crossing Q leads, and right of it P leads. The scores themselves never move.</p>
+<p class="prediction"><strong>Predict first:</strong> With equal weights both children average 60. Predict who leads if the first group counts four times as much, and the weight at which the order flips.</p>
+<div class="controls" role="group" aria-label="Controls for Can the order of two children flip with no change in their scores?">
+<div class="control"><label for="C33-D04-weight_first">Weight on the first group: <output class="slider-value" data-for="weight_first">0.5</output></label><input type="range" id="C33-D04-weight_first" data-control="weight_first" min="0" max="8" step="1" value="4" aria-valuetext="0.5"><div class="slider-ends small"><span>0.1</span><span>0.9</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D04/04.svg" alt="Bars of two children&#39;s scores with weighted averages as lines, and two lines of weighted average against weight that cross at one half." width="960" height="540"><figcaption><strong class="takeaway">Neither average is wrong. The weights record which question was asked, and changing them can reverse a ranking.</strong><br><span class="selected-parameters">Weight on the first group: 0.5</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> With 0.8 on the first group P averages 75 and Q 51, as in the chapter. At 0.5 they tie at 60, and below 0.5 Q leads: at 0.2 Q has 69 and P 45.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With weight 0.5 on the first group and 0.5 on the second, P averages 60 and Q 60. The separate scores never change; the weights decide the order, because they record which question was asked.</p>
+<dl class="metrics"><div class="metric"><dt>P weighted average</dt><dd>60</dd></div><div class="metric"><dt>Q weighted average</dt><dd>60</dd></div><div class="metric"><dt>Ahead</dt><dd>neither (tie)</dd></div><div class="metric"><dt>Weight on the second group</dt><dd>0.5</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A leaderboard is a ranked table of weighted averages. When two systems have different profiles, their order depends on weights someone chose, so the profile should travel with the total.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>A person&#39;s test total is a weighted sum of results on separate tasks. Two people can have the same total and different profiles; the numbers here are made up.</p></div><div class="note"><strong>In machines</strong><p>A benchmark such as ARC-AGI-3 states its weights openly: level 3 counts three times level 1. Changing the weights could change the order of systems.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">P = 0.5 x 85 + 0.5 x 35 = 60. Q = 0.5 x 45 + 0.5 x 75 = 60. The difference is 80 x w - 40 = 0, which is zero at w = 0.5.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>w</mi><mi>t</mi></msub><msub><mi>r</mi><mi>t</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
+S=\sum_{t=1}^{N}w_t r_t,\qquad \sum_{t=1}^{N}w_t=1
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>r_t</dt><dd>the score on task group t</dd><dt>w_t</dt><dd>its weight, nonnegative</dd><dt>N</dt><dd>the number of groups (two here)</dd><dt>S</dt><dd>the weighted average</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Two groups on a common scale, nonnegative weights that sum to one. The scores are made up and say nothing about any child.</p></div></div>
+<details><summary>Check your understanding: With weight 0.6 on the first group, what do P and Q average, and who leads?</summary><div class="answer">P = 0.6 x 85 + 0.4 x 35 = 65 and Q = 0.6 x 45 + 0.4 x 75 = 57. P leads by 8.</div></details>
+<p class="source small">Book source: Chapter 33, A total is a weighted average. <span title="a-total-is-a-weighted-average">Illustration C33-D04</span>. Constructed example. The chapter&#39;s illustration with made-up scores: P scores 85 and 35, Q scores 45 and 75. The averages 60 and 60, 75 and 51, 45 and 69 are the chapter&#39;s.</p>
+</section>
+<section class="demo" id="C33-D05" aria-labelledby="title-C33-D05">
+<div class="demo-title"><span class="chapter-number">05 / 06</span><h2 id="title-C33-D05">Can a one-factor table arise with no shared die?</h2></div>
+<p class="source-line small">From Chapter 33, Thomson&#39;s dice: a one-factor table with no shared die</p>
+<p class="question">Tests that are sums of overlapping dice correlate. Can the correlations look like one common factor even when no die is common to every test?</p><p>Each die adds to every test that uses it, so two tests correlate in proportion to the dice they share. When tests use different shares of a large pool, the pattern of correlations has the same shape as a one-factor table, where the correlation is a product of two loadings. The fit improves as the pool grows and the random wobble shrinks.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict whether ten tests built with no die shared by all of them can have a correlation table that a single common factor fits closely, and what happens as the pool of dice grows.</p>
+<div class="controls" role="group" aria-label="Controls for Can a one-factor table arise with no shared die?">
+<div class="control"><label for="C33-D05-dice">Random dice in the pool: <output class="slider-value" data-for="dice">145</output></label><input type="range" id="C33-D05-dice" data-control="dice" min="0" max="5" step="1" value="2" aria-valuetext="145"><div class="slider-ends small"><span>40</span><span>5000</span></div></div><div class="control"><label for="C33-D05-shared">Dice shared by all ten tests</label><select id="C33-D05-shared" data-control="shared"><option value="0" selected>0</option><option value="1">19</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D05/04.svg" alt="A heat map of correlations among ten dice-sum tests, and curves of the gap from a one-factor table against the number of dice." width="960" height="540"><figcaption><strong class="takeaway">A one-factor fit is a summary of the correlations, not a finding that a common cause lies behind them.</strong><br><span class="selected-parameters">Random dice in the pool: 145 · Dice shared by all ten tests: 0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> With 5000 random dice and none shared by all tests, no die enters all ten, the correlations are all positive, and a one-factor table fits them within about 0.03. The shared-dice case is nearly as close, so the fit does not tell the two apart.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlation is 0.296, and the best one-factor table misses by at most 0.108. A one-factor table summarizes these correlations although no die is common to all tests.</p>
+<dl class="metrics"><div class="metric"><dt>Dice entering all ten tests</dt><dd>0</dd></div><div class="metric"><dt>Most tests any one die enters</dt><dd>8</dd></div><div class="metric"><dt>Mean correlation between tests</dt><dd>0.296</dd></div><div class="metric"><dt>Largest gap from a one-factor table</dt><dd>0.108</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A single factor from scores that rise together can come from a shared cause, from overlapping causes, or from skills that help each other. The data alone, as Thomson showed, did not separate the first two.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Spearman reported positive correlations among all nine pairs of senses and gradings in 24 schoolchildren, the smallest 0.25 and the average 0.38. His 1904 argument is a proposal of a common factor, and he called it rough.</p></div><div class="note"><strong>In machines</strong><p>Language models that share training material and fail together could show a common factor from shared exposure. Kim and colleagues found two wrong models picked the same wrong option about 60 percent of the time, against one third for independent choices, and the cause is not established.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Test i uses each die with chance 0.15 to 0.45 (ten values). Correlation = shared dice / sqrt(dice in one x dice in the other). A one-factor table has correlation = loading i x loading j; the best fit leaves a largest gap of 0.108 (seeded draw).</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>X</mi><mi>i</mi></msub><mo>=</mo><msub><mi>λ</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mi>g</mi><mo>+</mo><msub><mi>ϵ</mi><mi>i</mi></msub><mspace width="0.222em"></mspace><mo>⇒</mo><mspace width="0.222em"></mspace><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msub><mi>λ</mi><mi>i</mi></msub><msub><mi>λ</mi><mi>j</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>r</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>n</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msqrt><mrow><msub><mi>n</mi><mi>i</mi></msub><msub><mi>n</mi><mi>j</mi></msub></mrow></msqrt></mfrac><mspace width="0.222em"></mspace><mtext mathvariant="normal">for sums of dice</mtext></mrow><annotation encoding="application/x-tex">
+X_i=\lambda_i\,g+\epsilon_i\ \Rightarrow\ r_{ij}=\lambda_i\lambda_j,\qquad r_{ij}=\frac{n_{ij}}{\sqrt{n_i n_j}}\ \text{for sums of dice}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>X_i</dt><dd>the score on test i</dd><dt>lambda_i</dt><dd>the loading of test i on the common factor g</dd><dt>n_i</dt><dd>the number of dice in test i</dd><dt>n_ij</dt><dd>the number of dice that tests i and j share</dd><dt>r_ij</dt><dd>the correlation between tests i and j</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Independent fair dice that add in each test, which the chapter says psychological factors need not do. The simulation shows only that a table of positive correlations can be summarized by one factor without a common cause. It does not say anything about intelligence, and the chapter lists a common factor, overlapping causes and mutual benefit as three accounts that fit the same data.</p></div></div>
+<details><summary>Check your understanding: In the left panel, does a correlation between two tests tell you which dice they share, or only how many?</summary><div class="answer">Only how many: the correlation is the number of shared dice divided by the square root of the product of the two test sizes. Many different assignments of dice give the same table.</div></details>
+<p class="source small">Book source: Chapter 33, Thomson&#39;s dice: a one-factor table with no shared die. <span title="thomsons-dice-a-one-factor-table-with-no-shared-die">Illustration C33-D05</span>. Simulation. A constructed simulation in the spirit of the chapter&#39;s Thomson example, with disclosed seeds. It is not Thomson&#39;s table: each die enters each of ten tests with a chance between 0.15 and 0.45, and the 19 shared dice and 145 dice echo the numbers in the chapter and its source note. The one-factor equation is a later form, not in Spearman&#39;s 1904 paper.</p>
+</section>
+<section class="demo" id="C33-D06" aria-labelledby="title-C33-D06">
+<div class="demo-title"><span class="chapter-number">06 / 06</span><h2 id="title-C33-D06">What does a classifier that never read the premise reveal?</h2></div>
+<p class="source-line small">From Chapter 33, A classifier that never saw the premise got 67.0 percent right</p>
+<p class="question">A classifier that saw only the hypothesis got 67.0 percent right. How does that split a test into Easy and Hard, and what does the split do to a model&#39;s overall score?</p><p>Easy items are those the blind classifier got right, so their share of the test is its accuracy, 67.0 percent. The full model&#39;s overall score is then an average of its Easy and Hard scores with those weights, which is the same weighted average as in the previous demonstrations. The numbers fit, so the split is consistent with the reported scores.</p>
+<p class="prediction"><strong>Predict first:</strong> Using only the 67.0 percent and the model&#39;s 93.4 and 72.7, predict the full model&#39;s overall score before looking.</p>
+<div class="controls" role="group" aria-label="Controls for What does a classifier that never read the premise reveal?">
+<div class="control"><label for="C33-D06-blind_right">Share of items the blind classifier got right: <output class="slider-value" data-for="blind_right">0.67</output></label><input type="range" id="C33-D06-blind_right" data-control="blind_right" min="0" max="6" step="1" value="3" aria-valuetext="0.67"><div class="slider-ends small"><span>0.343</span><span>0.95</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C33-D06/03.svg" alt="Bars of the four scores quoted in the chapter, and a line of the weighted overall score against the blind classifier&#39;s accuracy." width="960" height="540"><figcaption><strong class="takeaway">The reported overall score is what the Easy and Hard scores give when the blind classifier&#39;s accuracy sets the weights, so the three numbers are consistent.</strong><br><span class="selected-parameters">Share of items the blind classifier got right: 0.67</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> At 0.67, Easy items are two thirds of the set, and the weighted average is 86.57, within rounding of the reported 86.5. Move the slider to see how the overall score would change if the blind classifier had done worse or better.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">If the blind classifier got 67 percent right, Easy items are that share and Hard the rest, so a model scoring 93.4 on Easy and 72.7 on Hard averages 86.57. At 67.0 percent this is 86.57, within 0.1 of the reported 86.5.</p>
+<dl class="metrics"><div class="metric"><dt>Easy share</dt><dd>0.67</dd></div><div class="metric"><dt>Hard share</dt><dd>0.33</dd></div><div class="metric"><dt>Weighted overall (percent)</dt><dd>86.57</dd></div><div class="metric"><dt>Reported overall (percent)</dt><dd>86.5</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A score can reward a shortcut instead of the skill the test names. A blind baseline is a quick way to see how much of a test can be passed without the skill, and how a split of the test can change the story.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Binet and Simon met a human version: some children always chose the line on one side of the sheet, which earns one right in three. The habit buys no good score.</p></div><div class="note"><strong>In machines</strong><p>The blind classifier, fastText, learned which words in a hypothesis go with a label, for example words such as nobody and never for a contradiction. The authors say such artifacts do not render any particular example incorrect.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Overall = share Easy x 93.4 + share Hard x 72.7 = 0.67 x 93.4 + 0.33 x 72.7 = 86.57. Solving 86.5 = e x 93.4 + (1 - e) x 72.7 gives e = 0.667.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mtext mathvariant="normal">overall</mtext></msub><mo>=</mo><mi>e</mi><mspace width="0.167em"></mspace><msub><mi>S</mi><mtext mathvariant="normal">Easy</mtext></msub><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo><mspace width="0.167em"></mspace><msub><mi>S</mi><mtext mathvariant="normal">Hard</mtext></msub></mrow><annotation encoding="application/x-tex">
+S_{\text{overall}}=e\,S_{\text{Easy}}+(1-e)\,S_{\text{Hard}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>e</dt><dd>the share of test items the blind classifier got right, which are the Easy items</dd><dt>S_Easy, S_Hard</dt><dd>the full model&#39;s scores on the Easy and Hard items: 93.4 and 72.7 percent</dd><dt>S_overall</dt><dd>the full model&#39;s overall score, reported as 86.5 percent</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Easy items are exactly those the blind classifier got right, all scores are on one test set, and the reported percentages are rounded. The blind classifier shows only that the data allow a shortcut. Whether the full model used it is a separate question, and because Hard is defined by the blind classifier&#39;s failures, the split itself can contribute to the drop.</p></div></div>
+<details><summary>Check your understanding: If the blind classifier had been right on only 50 percent of items, with the same Easy and Hard scores, what would the overall score be?</summary><div class="answer">0.5 x 93.4 + 0.5 x 72.7 = 83.05, about 83.1 percent.</div></details>
+<p class="source small">Book source: Chapter 33, A classifier that never saw the premise got 67.0 percent right. <span title="a-classifier-that-never-saw-the-premise-got-670-percent-right">Illustration C33-D06</span>. Reported result. The scores 34.3, 67.0, 93.4, 72.7 and 86.5 percent are quoted from the chapter (Gururangan and colleagues, 2018). The identity that the Easy share equals the blind classifier&#39;s accuracy follows from the chapter&#39;s definition of Easy; the weighted-average check against 86.5 is the companion&#39;s own, and it assumes all the scores come from the same test set.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="../../index.html">All chapters</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":33,"demos":[{"id":"C33-D01","title":"What does a level score reward?","alt":"Bars of agent moves against the human baseline, and a curve of level score against the move ratio, capped at 115 percent.","controls":[{"key":"agent_moves","label":"Agent's moves on the level","values":[10,15,18,20,25,30,40,60,80],"default":40,"widget":"slider"},{"key":"status","label":"Did the agent finish the level?","values":["finished","not finished"],"default":"finished"}],"default_key":"[40,\"finished\"]","reveal_key":"[40,\"finished\"]","reveal_text":"Twice the baseline gives (1/2)^2, a quarter, so 25 percent. Try 15 moves: the squared ratio is 1.78, but the cap holds it at 115 percent, and anything under about 18.7 moves is capped the same.","states":{"[40,\"finished\"]":{"image":"states/C33-D01/12.svg","metrics":{"Agent moves":40,"Moves divided by human baseline":"2","Squared ratio (h/a)^2":"0.25","Level score (percent)":"25"},"interpretation":"With 40 moves against a human baseline of 20, the squared ratio is 0.25 and the level scores 25 percent.","calculation":"s = min((h/a)^2, 1.15) = min((20/40)^2, 1.15) = min(0.25, 1.15) = 0.25."}}},{"id":"C33-D02","title":"Why is an environment score the smaller of two averages?","alt":"Bars of per-level scores in a five-level environment, and curves of completion, efficiency and their minimum against levels finished.","controls":[{"key":"levels_done","label":"Levels finished (from level 1 up)","values":[0,1,2,3,4,5],"default":3,"widget":"slider"},{"key":"move_ratio","label":"Agent moves divided by human moves","values":[0.8,1.0,1.5,2.0],"default":1.0}],"default_key":"[3,1]","reveal_key":"[2,0.8]","reveal_text":"At 0.8 times the human moves each finished level scores 1.15, so efficiency averages 23 percent. Completion is 3/15, 20 percent, and the environment score takes the smaller, 20. Efficiency cannot buy credit for levels never finished.","states":{"[3,1]":{"image":"states/C33-D02/13.svg","metrics":{"Weighted efficiency average (percent)":"40","Weighted completion (percent)":"40","Environment score (percent)":"40","Which is smaller":"neither (equal)"},"interpretation":"Finishing 3 of 5 levels at 1 of the human move count, each finished level scores 1. Efficiency averages 40 percent and completion 40 percent, so the environment scores 40.","calculation":"Weights are the level numbers over 15. Efficiency = sum of weight x level score = 0.4. Completion = sum of weight x finished = 0.4. Score = min(0.4, 0.4) = 0.4."}}},{"id":"C33-D03","title":"Can one model have two scores on the same set?","alt":"Bars of two harness scores at one effort setting, and lines of both harness scores across the six effort settings.","controls":[{"key":"effort","label":"Effort setting","values":["none","low","medium","high","xhigh","max"],"default":"high"}],"default_key":"[\"high\"]","reveal_key":"[\"max\"]","reveal_text":"At max effort the Standard harness scored 62.7 and the Provider Adapter 98.6, a gap of 35.9 points. The Adapter is higher at all six settings, and the Standard scores range from 17.5 to 62.7 while the Adapter never fell below 96.7.","states":{"[\"high\"]":{"image":"states/C33-D03/03.svg","metrics":{"Standard harness (percent)":"54.8","Provider Adapter harness (percent)":"99.95","Gap at this effort (points)":"45.15","Adapter higher at all six settings":"yes"},"interpretation":"At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, a gap of 45.15 points. The Adapter is higher at all six settings, and each entry is a single run on one date, so a score needs its harness, set and effort.","calculation":"Gap = 99.95 - 54.8 = 45.15 points. The best entries differ in effort: Standard 62.7 at max, Adapter 99.95 at high, a gap of 37.25 that mixes the harness effect with the effort setting."}}},{"id":"C33-D04","title":"Can the order of two children flip with no change in their scores?","alt":"Bars of two children's scores with weighted averages as lines, and two lines of weighted average against weight that cross at one half.","controls":[{"key":"weight_first","label":"Weight on the first group","values":[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9],"default":0.5,"widget":"slider"}],"default_key":"[0.5]","reveal_key":"[0.8]","reveal_text":"With 0.8 on the first group P averages 75 and Q 51, as in the chapter. At 0.5 they tie at 60, and below 0.5 Q leads: at 0.2 Q has 69 and P 45.","states":{"[0.5]":{"image":"states/C33-D04/04.svg","metrics":{"P weighted average":"60","Q weighted average":"60","Ahead":"neither (tie)","Weight on the second group":"0.5"},"interpretation":"With weight 0.5 on the first group and 0.5 on the second, P averages 60 and Q 60. The separate scores never change; the weights decide the order, because they record which question was asked.","calculation":"P = 0.5 x 85 + 0.5 x 35 = 60. Q = 0.5 x 45 + 0.5 x 75 = 60. The difference is 80 x w - 40 = 0, which is zero at w = 0.5."}}},{"id":"C33-D05","title":"Can a one-factor table arise with no shared die?","alt":"A heat map of correlations among ten dice-sum tests, and curves of the gap from a one-factor table against the number of dice.","controls":[{"key":"dice","label":"Random dice in the pool","values":[40,80,145,300,1000,5000],"default":145,"widget":"slider"},{"key":"shared","label":"Dice shared by all ten tests","values":[0,19],"default":0}],"default_key":"[145,0]","reveal_key":"[5000,0]","reveal_text":"With 5000 random dice and none shared by all tests, no die enters all ten, the correlations are all positive, and a one-factor table fits them within about 0.03. The shared-dice case is nearly as close, so the fit does not tell the two apart.","states":{"[145,0]":{"image":"states/C33-D05/04.svg","metrics":{"Dice entering all ten tests":0,"Most tests any one die enters":8,"Mean correlation between tests":"0.296","Largest gap from a one-factor table":"0.108"},"interpretation":"With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlation is 0.296, and the best one-factor table misses by at most 0.108. A one-factor table summarizes these correlations although no die is common to all tests.","calculation":"Test i uses each die with chance 0.15 to 0.45 (ten values). Correlation = shared dice / sqrt(dice in one x dice in the other). A one-factor table has correlation = loading i x loading j; the best fit leaves a largest gap of 0.108 (seeded draw)."}}},{"id":"C33-D06","title":"What does a classifier that never read the premise reveal?","alt":"Bars of the four scores quoted in the chapter, and a line of the weighted overall score against the blind classifier's accuracy.","controls":[{"key":"blind_right","label":"Share of items the blind classifier got right","values":[0.343,0.5,0.6,0.67,0.75,0.85,0.95],"default":0.67,"widget":"slider"}],"default_key":"[0.67]","reveal_key":"[0.67]","reveal_text":"At 0.67, Easy items are two thirds of the set, and the weighted average is 86.57, within rounding of the reported 86.5. Move the slider to see how the overall score would change if the blind classifier had done worse or better.","states":{"[0.67]":{"image":"states/C33-D06/03.svg","metrics":{"Easy share":"0.67","Hard share":"0.33","Weighted overall (percent)":"86.57","Reported overall (percent)":"86.5"},"interpretation":"If the blind classifier got 67 percent right, Easy items are that share and Hard the rest, so a model scoring 93.4 on Easy and 72.7 on Hard averages 86.57. At 67.0 percent this is 86.57, within 0.1 of the reported 86.5.","calculation":"Overall = share Easy x 93.4 + share Hard x 72.7 = 0.67 x 93.4 + 0.33 x 72.7 = 86.57. Solving 86.5 = e x 93.4 + (1 - e) x 72.7 gives e = 0.667."}}}]}</script><script src="states/C33-D01.js"></script><script src="states/C33-D02.js"></script><script src="states/C33-D03.js"></script><script src="states/C33-D04.js"></script><script src="states/C33-D05.js"></script><script src="states/C33-D06.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" class="cmp-page" data-theme="light">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Change a trained mind on purpose, and see what each way of doing it costs. An illustrated mathematical companion to The Mathematics of Machine Intelligence."><title>Chapter 27 · Learning After Training</title><style>:root{color-scheme:light;--ink:#172a3b;--muted:#52606b;--paper:#f7f5ef;--line:#dddcd3;--teal:#136f75;--gold:#a26913;--white:#fff;--soft:#eaf2f1;font-family:Georgia,'Times New Roman',serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-size:18px;line-height:1.65}a{color:var(--teal);text-underline-offset:4px}a:hover{color:var(--ink)}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,output:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}header,main,footer{max-width:1080px;margin:auto;padding:32px 40px}header{padding-top:44px;padding-bottom:20px}.eyebrow,.tag,.nav,.control label,button,select,.small,.metric dt,.metric dd,.chapter-number{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:750;color:var(--teal);margin-bottom:18px}.nav{font-size:13px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-bottom:36px}.nav a{text-decoration:none}h1,h2,h3{font-weight:normal;line-height:1.17;letter-spacing:-.025em}h1{font-size:clamp(36px,5vw,62px);max-width:850px;margin:8px 0 20px}h2{font-size:32px;margin:0 0 18px}h3{font-size:24px;margin:0 0 12px}p{margin:0 0 18px}.lead{font-size:23px;line-height:1.48;color:var(--muted);max-width:850px}.small{font-size:13px;line-height:1.55;color:var(--muted)}.intro{max-width:800px}.chapter-nav{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0 10px}.chapter-nav a{font:13px/1.4 system-ui;background:var(--white);border:1px solid var(--line);padding:9px 13px;border-radius:5px;text-decoration:none}.demo{border-top:1px solid var(--line);padding-top:40px;margin-top:36px;scroll-margin-top:24px}.demo-title{display:flex;gap:18px;align-items:baseline}.chapter-number{color:var(--gold);font-size:13px;font-weight:700;white-space:nowrap}.question{font-size:21px;max-width:900px}.formula{background:var(--white);padding:22px 24px;border-left:3px solid var(--teal);overflow-x:auto;margin:20px 0}.formula p:last-child{margin-bottom:0}.formula math{font-size:1.1em}.symbols{font-size:16px;color:var(--muted);margin-top:14px}.prediction{border-left:2px solid var(--gold);padding:1px 0 1px 18px;margin:25px 0;font-style:italic}.controls{background:var(--soft);padding:20px;display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:22px;border-radius:5px}.control{flex:1;min-width:165px}.control label{font-size:13px;font-weight:650;display:block;margin-bottom:7px}select{font-size:14px;color:var(--ink);width:100%;min-height:43px;padding:8px 10px;background:#fff;border:1px solid #99b9b7;border-radius:4px}button{font-size:13px;color:var(--ink);background:#fff;border:1px solid #99b9b7;border-radius:4px;padding:11px 18px;cursor:pointer;min-height:43px}button:hover{background:#f6faf9}.plot{margin:18px 0 8px;background:white;border:1px solid #e6e7e4;overflow:hidden}.plot img{display:block;width:100%;height:auto}.plot figcaption{padding:12px 20px;border-top:1px solid var(--line);font:12px/1.6 system-ui;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;background:#fff;padding:18px 22px;margin:16px 0 18px;border-bottom:1px solid var(--line)}.metric dt{font-size:12px;color:var(--muted);margin-bottom:5px}.metric dd{margin:0;font-size:17px;line-height:1.4;overflow-wrap:anywhere}.interpretation{font-size:17px;min-height:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:22px}.note{font-size:16px}.note strong{font:650 12px/1.5 system-ui;text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}details{margin:18px 0;font-size:16px}summary{cursor:pointer;color:var(--teal);font-family:system-ui;font-size:14px;padding:6px 0}details .answer{padding:14px 18px;background:#fff;border-left:2px solid var(--teal)}.source{border-top:1px dotted #babdb7;padding-top:14px;margin-top:20px}.tag{font-size:11px;letter-spacing:.04em;padding:5px 9px;display:inline-block;background:#e8eeec;color:#254e4c;border-radius:4px;margin-bottom:16px}.draft{background:#fff1d9;color:#805111}.catalog{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:26px}.chapter-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px;text-decoration:none;color:var(--ink);min-height:190px}.chapter-card:hover{border-color:var(--teal)}.chapter-card .small{margin-top:auto;padding-top:18px}.chapter-card h3{font-size:22px}.chapter-card.disabled{background:transparent;opacity:.75}.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}.route{padding:18px;background:var(--soft);text-decoration:none;color:var(--ink);border-radius:5px;font-size:17px}.route span{display:block;font:12px system-ui;color:var(--teal);margin-top:8px}.rule{border-top:1px solid var(--line);margin:34px 0}.callout{border-left:3px solid var(--teal);padding:18px 22px;background:#fff;margin:28px 0}.search{font:16px system-ui;border:1px solid var(--line);background:#fff;border-radius:5px;padding:12px 16px;width:100%;max-width:540px;margin-top:8px}footer{border-top:1px solid var(--line);font:12px/1.65 system-ui;color:var(--muted);padding-top:24px;padding-bottom:40px}footer p{margin-bottom:8px}ul,ol{padding-left:23px}li{margin:7px 0}.skip{position:absolute;top:-70px;left:20px;background:white;padding:12px}.skip:focus{top:10px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}code{font:13px monospace;overflow-wrap:anywhere}.noscript{background:#fff1d9;padding:20px;margin:20px 0}
+.source-line{margin:-6px 0 14px;color:var(--teal)}input[type=range]{width:100%;min-height:43px;accent-color:var(--teal)}.slider-value{font-weight:750;color:var(--teal);margin-left:4px}.slider-ends{display:flex;justify-content:space-between;margin-top:-4px}.buttons{display:flex;gap:10px;flex-wrap:wrap}button.reveal{background:var(--teal);color:#fff;border-color:var(--teal)}button.reveal:hover{background:#0f5a5f}.takeaway{font:600 15px/1.5 system-ui;color:var(--ink)}.reveal-text{background:#fff7e6;border-left:3px solid var(--gold);padding:12px 18px}.why{background:#fff;border-left:3px solid var(--teal);padding:14px 18px;margin:18px 0}.calculation{font-size:15px;background:#fff;padding:12px 16px;border-left:2px solid var(--line);margin:8px 0 0}dl.symbols{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:14px 0 0}dl.symbols dt{font-weight:650}dl.symbols dd{margin:0}
+dl.symbols dd{margin:0}.sides{margin-top:8px}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:28px}.catalog,.route-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr;gap:14px}.lead{font-size:20px}.plot{margin-left:-10px;margin-right:-10px}.formula{padding:15px}.metrics{grid-template-columns:1fr 1fr}.controls{gap:12px;padding:15px}.nav{margin-bottom:25px}.demo{padding-top:28px}.demo-title{display:block}.chapter-number{margin-bottom:8px;display:block}}
+@media(max-width:460px){.catalog,.route-grid{grid-template-columns:1fr}.control{min-width:100%}.metrics{grid-template-columns:1fr 1fr;padding:14px;gap:13px}.metric dd{font-size:15px}h2{font-size:28px}.nav{gap:13px}.formula math{font-size:.9em}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white;font-size:12pt}.controls,.nav,.chapter-nav,.skip,button{display:none}.reveal-text[hidden],.calc[hidden]{display:block}details>*{display:block}header,main,footer{padding:15px}.demo{break-before:page}.plot{break-inside:avoid}.plot img{max-height:330px;object-fit:contain}.formula{break-inside:avoid}.metrics{break-inside:avoid}.columns{display:block}details .answer{display:block}.catalog{grid-template-columns:1fr 1fr}}
+</style>
+<style id="shell-fallback">/* Shared stylesheet for all Karpeles Publishing book companions.
+   Styles only the shell (header, navigation, footer) and the home page.
+   Every selector is prefixed cmp- so chapter demonstration styles are untouched.
+   Book-specific colour: override --cmp-accent (and --cmp-accent-soft) on :root. */
+
+:root {
+  --cmp-bg: #f7f6f2;
+  --cmp-surface: #ffffff;
+  --cmp-ink: #1a2128;
+  --cmp-muted: #5d6670;
+  --cmp-line: #e2dfd7;
+  --cmp-accent: #0f6b70;
+  --cmp-accent-soft: #e4efee;
+  --cmp-max: 1000px;
+  --cmp-max-home: 1120px;
+  --cmp-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --cmp-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --cmp-bg: #10161c;
+    --cmp-surface: #161f27;
+    --cmp-ink: #e4e9ec;
+    --cmp-muted: #9aa6ae;
+    --cmp-line: #26333d;
+    --cmp-accent: #5cbab6;
+    --cmp-accent-soft: #173130;
+  }
+}
+
+/* Page base for pages that use the shell */
+html.cmp-page { -webkit-text-size-adjust: 100%; }
+html.cmp-page body { background: var(--cmp-bg); color: var(--cmp-ink); }
+.cmp-page *, .cmp-page *::before, .cmp-page *::after { box-sizing: border-box; }
+
+/* Header */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-header { background: var(--cmp-bg); color: var(--cmp-ink); font-family: var(--cmp-sans); border-bottom: 1px solid var(--cmp-line); }
+.cmp-topbar { max-width: var(--cmp-max); margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.cmp-home .cmp-topbar, .cmp-home .cmp-wrap { max-width: var(--cmp-max-home); }
+.cmp-book { font: 600 16px/1.3 var(--cmp-serif); color: var(--cmp-ink); text-decoration: none; }
+.cmp-book:hover { color: var(--cmp-accent); }
+.cmp-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; line-height: 1.5; }
+.cmp-nav a, .cmp-nav span { color: var(--cmp-muted); text-decoration: none; white-space: nowrap; }
+.cmp-nav a:hover { color: var(--cmp-accent); text-decoration: underline; text-underline-offset: 3px; }
+.cmp-nav [aria-disabled="true"] { opacity: .45; }
+.cmp-nav a[aria-current="page"] { color: var(--cmp-ink); font-weight: 600; }
+
+.cmp-title { max-width: var(--cmp-max); margin: 0 auto; padding: 36px 32px 34px; border-top: 1px solid var(--cmp-line); }
+.cmp-eyebrow { margin: 0 0 10px; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-header h1 { margin: 0 0 10px; font: 500 clamp(32px, 5vw, 48px)/1.08 var(--cmp-serif); letter-spacing: -.01em; color: var(--cmp-ink); }
+.cmp-lead { margin: 0 0 12px; max-width: 46em; font: 400 clamp(18px, 2.2vw, 21px)/1.4 var(--cmp-serif); color: var(--cmp-ink); }
+.cmp-summary { margin: 0; max-width: 46em; font-size: 15.5px; line-height: 1.6; color: var(--cmp-muted); }
+
+/* Footer */
+footer.cmp-footer { max-width: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--cmp-line); background: var(--cmp-bg); font: 14px/1.6 var(--cmp-sans); color: var(--cmp-muted); }
+.cmp-footer-inner { max-width: var(--cmp-max); margin: 0 auto; padding: 26px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.cmp-home .cmp-footer-inner { max-width: var(--cmp-max-home); }
+.cmp-footer p { margin: 0; }
+.cmp-footer-title { font-family: var(--cmp-serif); font-size: 15px; color: var(--cmp-ink); }
+.cmp-footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.cmp-footer a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Home page */
+.cmp-home body { margin: 0; font: 16px/1.6 var(--cmp-sans); -webkit-font-smoothing: antialiased; }
+.cmp-wrap { max-width: var(--cmp-max); margin: 0 auto; padding: 0 32px; }
+.cmp-masthead { padding: 56px 0 40px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-masthead h1 { margin: 0 0 8px; font: 500 clamp(36px, 6vw, 60px)/1.05 var(--cmp-serif); letter-spacing: -.015em; }
+.cmp-byline { margin: 0 0 22px; font: italic 400 19px/1.4 var(--cmp-serif); color: var(--cmp-muted); }
+.cmp-intro { margin: 0 0 26px; max-width: 40em; font-size: 17px; }
+.cmp-stats { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 0; padding: 0; list-style: none; }
+.cmp-stats li { font-size: 14px; color: var(--cmp-muted); }
+.cmp-stats b { display: block; font: 500 30px/1.1 var(--cmp-serif); color: var(--cmp-ink); font-variant-numeric: tabular-nums; }
+
+.cmp-part { padding-top: 44px; }
+.cmp-part-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); }
+.cmp-part-head p { margin: 0; font: 600 12px/1.4 var(--cmp-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--cmp-accent); }
+.cmp-part-head h2 { margin: 0; font: 500 24px/1.2 var(--cmp-serif); }
+
+.cmp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
+.cmp-card { display: flex; flex-direction: column; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; padding: 20px 20px 18px; }
+.cmp-card:hover { border-color: color-mix(in srgb, var(--cmp-accent) 45%, var(--cmp-line)); }
+.cmp-card-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.cmp-num { font: 500 26px/1 var(--cmp-serif); color: var(--cmp-accent); font-variant-numeric: tabular-nums; }
+.cmp-count { font-size: 12.5px; color: var(--cmp-muted); }
+.cmp-card h3 { margin: 0 0 4px; font: 600 20px/1.25 var(--cmp-serif); }
+.cmp-card h3 a { color: var(--cmp-ink); text-decoration: none; }
+.cmp-card h3 a:hover { color: var(--cmp-accent); }
+.cmp-card-summary { margin: 0 0 16px; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); flex: 1; }
+.cmp-actions { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 600; }
+.cmp-actions a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-actions a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.cmp-github { margin-top: 52px; padding: 24px 26px; background: var(--cmp-surface); border: 1px solid var(--cmp-line); border-radius: 12px; }
+.cmp-github h2 { margin: 0 0 8px; font: 500 22px/1.25 var(--cmp-serif); }
+.cmp-github p { margin: 0 0 10px; max-width: 46em; }
+.cmp-github p:last-child { margin-bottom: 0; }
+.cmp-github a { color: var(--cmp-accent); font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 760px) {
+  .cmp-topbar, .cmp-title, .cmp-footer-inner, .cmp-wrap { padding-left: 16px; padding-right: 16px; }
+  .cmp-title { padding-top: 26px; padding-bottom: 24px; }
+  .cmp-masthead { padding: 36px 0 30px; }
+  .cmp-grid { grid-template-columns: 1fr; }
+  .cmp-nav { gap: 4px 14px; }
+}
+@media print {
+  .cmp-nav, .cmp-footer-links { display: none; }
+}
+
+/* Chapter text pages: keep wide figures, tables and equations inside the column */
+.cmp-text main img { max-width: 100%; height: auto; }
+.cmp-text main table { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main math[display="block"], .cmp-text main .math.display, .cmp-text main pre { display: block; max-width: 100%; overflow-x: auto; }
+.cmp-text main p:has(math), .cmp-text main li:has(math) { overflow-x: auto; }
+
+/* Pages whose own stylesheet sizes bare header elements: let the shell header span the page */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+
+/* Shell isolation: keep page-level header/nav rules from resizing the shell */
+header.cmp-header { max-width: none; margin: 0; padding: 0; }
+.cmp-nav { font-family: var(--cmp-sans); margin: 0; }
+.cmp-footer-note { flex-basis: 100%; max-width: 52em; font-size: 13px; }
+
+/* Home page: secondary materials list */
+.cmp-more { margin-top: 52px; }
+.cmp-more h2 { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--cmp-line); font: 500 24px/1.2 var(--cmp-serif); }
+.cmp-more ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px 28px; margin: 0; padding: 0; list-style: none; }
+.cmp-more li p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--cmp-muted); }
+.cmp-more li p.cmp-more-title { margin-bottom: 2px; font-size: 15px; font-weight: 600; color: var(--cmp-ink); }
+.cmp-more a { color: var(--cmp-accent); text-decoration: none; }
+.cmp-more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .cmp-more ul { grid-template-columns: 1fr; } }
+
+/* Plain document pages wrapped in main.cmp-doc: break long unspaced strings on phones */
+.cmp-doc { overflow-wrap: anywhere; }
+</style><link rel="stylesheet" href="../../../_shared/companion.css"><style>:root{--cmp-max:1064px}</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the mathematics</a>
+<header class="cmp-header"><div class="cmp-topbar"><a class="cmp-book" href="../../index.html">The Mathematics of Machine Intelligence</a><nav class="cmp-nav" aria-label="Chapter navigation"><a href="../../index.html">All chapters</a><a href="notebook.ipynb" download>Notebook</a><a href="../26-starting-structure/reader.html" rel="prev">&larr; Previous chapter</a><a href="../28-editing-learned-mind/reader.html" rel="next">Next chapter &rarr;</a></nav></div><div class="cmp-title"><p class="cmp-eyebrow">Chapter 27</p><h1>Learning After Training</h1><p class="cmp-lead">Change a trained mind on purpose, and see what each way of doing it costs.</p><p class="cmp-summary">5 guided illustrations. Move a slider or choose a value, watch the mathematics change, and check your prediction. Each illustration includes its full calculation.</p></div></header>
+<main id="main">
+<nav class="chapter-nav" aria-label="Illustrations"><a href="#C27-D01">1. What does a column times a row add to a layer?</a><a href="#C27-D02">2. How small is a rank-8 adapter on a real layer?</a><a href="#C27-D03">3. How far does each weight move when a penalty guards the old task?</a><a href="#C27-D04">4. What did the taxi trainees&#39; training look like, and what could the scan show?</a><a href="#C27-D05">5. In a toy network, what does each fix save, and what does it cost?</a></nav>
+
+<noscript><p class="noscript">The saved default illustrations and calculations are shown below. Enable JavaScript to choose other illustrated values.</p></noscript>
+
+<section class="demo" id="C27-D01" aria-labelledby="title-C27-D01">
+<div class="demo-title"><span class="chapter-number">01 / 05</span><h2 id="title-C27-D01">What does a column times a row add to a layer?</h2></div>
+<p class="source-line small">From Chapter 27, Changing the weights on purpose is routine, and a small adapter makes it cheap</p>
+<p class="question">A layer W is the 3 by 3 grid with top row (1, 2, 3). An adapter adds the column (1, 2, 0) times the row (1, 0, -1). What is the adapted layer, and how many numbers did the adapter hold?</p><p>To multiply a column by a row, multiply each number in the column by the whole row. The result has the same shape as W, so the two add. The change has rank at most r, the width of B and A. At width 1 every row of the change is a multiple of one row.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict the top row of W plus B A, and whether a rank-2 adapter on this 3 by 3 layer holds fewer numbers than the layer.</p>
+<div class="controls" role="group" aria-label="Controls for What does a column times a row add to a layer?">
+<div class="control"><label for="C27-D01-rank">Adapter rank r: <output class="slider-value" data-for="rank">1</output></label><input type="range" id="C27-D01-rank" data-control="rank" min="0" max="2" step="1" value="0" aria-valuetext="1"><div class="slider-ends small"><span>1</span><span>3</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C27-D01/00.svg" alt="Two 3 by 3 grids of numbers: the change B A for the selected adapter rank, and the adapted layer W plus B A with changed entries marked." width="960" height="540"><figcaption><strong class="takeaway">A rank-1 change is one column times one row: every row of the change is a multiple of the same row. The adapter saves numbers only when r is below half the layer width.</strong><br><span class="selected-parameters">Adapter rank r: 1</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> The rows of B A are the row (1, 0, -1) unchanged, doubled, and zeroed, so the top row of W becomes (2, 2, 2). The rank-1 adapter holds 6 numbers against 9. At rank 2 it holds 12, more than the layer: an adapter saves numbers only when its rank is below half the width.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">With rank 1 the adapter holds 6 numbers, fewer than the 9 in the full 3 by 3 layer. The top row of W becomes (2, 2, 2) and the change has rank 1. An adapter saves numbers only when its rank is below half the layer width.</p>
+<dl class="metrics"><div class="metric"><dt>Top row of W + B A</dt><dd>2, 2, 2</dd></div><div class="metric"><dt>Rank of B A</dt><dd>1</dd></div><div class="metric"><dt>Numbers in the adapter (B and A)</dt><dd>6</dd></div><div class="metric"><dt>Numbers in the full layer</dt><dd>9</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A small adapter lets a company store a change as two thin grids instead of a full copy. The saving depends on the layer width and the adapter rank, which the next demonstration sizes at real scale.</p></div>
+<div class="columns sides"><div class="note"><strong>In machines</strong><p>This is a specification of how a LoRA update is built, an arithmetic identity rather than a model of behavior. Whether a task needs only a low-rank change is a hypothesis about tasks.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Rank 1: (1, 2, 0) x (1, 0, -1). Each row of a column-by-row product is one entry of the column times the whole row. Numbers trained: 2 x 3 x 1 = 6.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>′</mo></msup><mo>=</mo><mi>W</mi><mo>+</mo><mi>B</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">
+W&#39;=W+BA
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>W</dt><dd>the original layer, d rows by k columns, kept frozen</dd><dt>B</dt><dd>a tall thin grid, d rows by r columns</dd><dt>A</dt><dd>a wide thin grid, r rows by k columns</dd><dt>r</dt><dd>the adapter width, an upper bound on the rank of the change</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A frozen W and a trained B and A, with the change to the layer built from their product. The 3 by 3 case is too small for an adapter to save much; it is shown to make the product visible.</p></div></div>
+<details><summary>Check your understanding: With B = (1, 2, 0) and A = (1, 0, -1), what are the second and third rows of B A, and what are the second and third rows of W plus B A?</summary><div class="answer">Row 2 of B A is 2 x (1, 0, -1) = (2, 0, -2) and row 3 is 0 x (1, 0, -1) = (0, 0, 0). So W plus B A has second row (4, 5, 6) + (2, 0, -2) = (6, 5, 4) and third row (7, 8, 9).</div></details>
+<p class="source small">Book source: Chapter 27, Changing the weights on purpose is routine, and a small adapter makes it cheap. <span title="changing-the-weights-on-purpose-is-routine-and-a-small-adapter-makes-it-cheap">Illustration C27-D01</span>. Formula. Book formula and constructed example (the chapter&#39;s rank-1 case: B = (1, 2, 0), A = (1, 0, -1), W with top row (1, 2, 3), result top row (2, 2, 2)). Ranks 2 and 3 add column-and-row pairs chosen by this companion; the chapter gives only rank 1. No simulation or data is used.</p>
+</section>
+<section class="demo" id="C27-D02" aria-labelledby="title-C27-D02">
+<div class="demo-title"><span class="chapter-number">02 / 05</span><h2 id="title-C27-D02">How small is a rank-8 adapter on a real layer?</h2></div>
+<p class="source-line small">From Chapter 27, Changing the weights on purpose is routine, and a small adapter makes it cheap</p>
+<p class="question">A square layer with 4,096 rows holds over sixteen million numbers. How many numbers does a rank-8 adapter hold, and when would an adapter stop saving anything?</p><p>The thin grid B has d rows and r columns and A has r rows and d columns, so together they hold 2 d r numbers. Dividing by the d squared numbers in the layer leaves 2r over d. That is small when r is much less than d.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict the share for a 4,096-wide layer at rank 8, and the rank at which the adapter becomes as large as the layer.</p>
+<div class="controls" role="group" aria-label="Controls for How small is a rank-8 adapter on a real layer?">
+<div class="control"><label for="C27-D02-layer">Layer width d: <output class="slider-value" data-for="layer">4096</output></label><input type="range" id="C27-D02-layer" data-control="layer" min="0" max="3" step="1" value="2" aria-valuetext="4096"><div class="slider-ends small"><span>512</span><span>8192</span></div></div><div class="control"><label for="C27-D02-rank">Adapter rank r: <output class="slider-value" data-for="rank">8</output></label><input type="range" id="C27-D02-rank" data-control="rank" min="0" max="4" step="1" value="2" aria-valuetext="8"><div class="slider-ends small"><span>1</span><span>64</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C27-D02/12.svg" alt="Log-scale bars of the numbers in a full layer and in its adapter, and curves of adapter size as a percent of the layer against rank for four widths." width="960" height="540"><figcaption><strong class="takeaway">At real width a small rank gives a tiny adapter, and the share is simply 2r divided by d.</strong><br><span class="selected-parameters">Layer width d: 4096 · Adapter rank r: 8</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> A 4,096 by 4,096 layer holds 16,777,216 numbers and a rank-8 adapter holds 65,536, which is 0.39 percent, or 1 in 256. The adapter would be as large as the layer at rank 2,048, half the width.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">A 4,096 by 4,096 layer holds 16,777,216 numbers. A rank-8 adapter holds 65,536, which is 0.391 percent. The adapter stops saving anything at rank 2,048, half the width.</p>
+<dl class="metrics"><div class="metric"><dt>Numbers in the full layer</dt><dd>16,777,216</dd></div><div class="metric"><dt>Numbers in the adapter</dt><dd>65,536</dd></div><div class="metric"><dt>Adapter share of the layer</dt><dd>0.391 percent (1 in 256)</dd></div><div class="metric"><dt>Rank at which the adapter is as large as the layer</dt><dd>2,048</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>A company that wanted one fine-tuned copy per customer would store a full copy each time. An adapter makes the saved difference small, though the protection of the old skill comes from keeping the original separate, not from the size.</p></div>
+<div class="columns sides"><div class="note"><strong>In machines</strong><p>The count is an arithmetic identity. How much old skill a small adapter protects is an empirical question, and the chapter&#39;s studies disagree by domain.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Full layer: 4,096 x 4,096 = 16,777,216. Adapter: B has 4,096 x 8 and A has 8 x 4,096, so 2 x 4,096 x 8 = 65,536. Share = 2 x 8 / 4,096 = 0.003906.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">adapter</mtext><mo>=</mo><mi>d</mi><mspace width="0.167em"></mspace><mi>r</mi><mo>+</mo><mi>r</mi><mspace width="0.167em"></mspace><mi>d</mi><mo>=</mo><mn>2</mn><mi>d</mi><mi>r</mi><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">share</mtext><mo>=</mo><mfrac><mrow><mn>2</mn><mi>d</mi><mi>r</mi></mrow><msup><mi>d</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>r</mi></mrow><mi>d</mi></mfrac></mrow><annotation encoding="application/x-tex">
+\text{adapter}=d\,r+r\,d=2dr,\qquad \text{share}=\frac{2dr}{d^{2}}=\frac{2r}{d}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>d</dt><dd>the layer width (rows and columns of a square layer)</dd><dt>r</dt><dd>the adapter rank</dd><dt>2 d r</dt><dd>numbers in B (d by r) plus numbers in A (r by d)</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>A single square layer, with the adapter counted as the two thin grids. Real models have many layers and adapt only some of them, so the saving for a whole model depends on which layers are adapted.</p></div></div>
+<details><summary>Check your understanding: How many numbers does a rank-16 adapter hold on a 1,024 by 1,024 layer, and what share of the layer is that?</summary><div class="answer">2 x 1,024 x 16 = 32,768 numbers against 1,048,576, which is 3.125 percent.</div></details>
+<p class="source small">Book source: Chapter 27, Changing the weights on purpose is routine, and a small adapter makes it cheap. <span title="changing-the-weights-on-purpose-is-routine-and-a-small-adapter-makes-it-cheap">Illustration C27-D02</span>. Formula. Book arithmetic: the chapter&#39;s 4,096 by 4,096 layer with 16,777,216 numbers and a rank-8 adapter of 65,536, about 0.4 percent. The other widths and ranks are this companion&#39;s variations. The LoRA paper&#39;s measured savings on GPT-3 are not computed here.</p>
+</section>
+<section class="demo" id="C27-D03" aria-labelledby="title-C27-D03">
+<div class="demo-title"><span class="chapter-number">03 / 05</span><h2 id="title-C27-D03">How far does each weight move when a penalty guards the old task?</h2></div>
+<p class="source-line small">From Chapter 27, New training can wipe out old skill, and a penalty can slow the loss</p>
+<p class="question">Both weights sit at 2 after task A. Task B alone would pull both to 0. The first weight mattered to A (Fisher number 4) and the second hardly did (0.25). With lambda 1, where does each weight settle?</p><p>Each weight is pulled two ways: the new task pulls it toward 0 with strength 1, and the penalty pulls it back to 2 with strength lambda times its Fisher number. The weight settles at the weighted average of the two targets, each counted by its strength.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict which weight moves more and by roughly how much, then predict where both settle if lambda is raised to 20.</p>
+<div class="controls" role="group" aria-label="Controls for How far does each weight move when a penalty guards the old task?">
+<div class="control"><label for="C27-D03-lam">Lambda: <output class="slider-value" data-for="lam">1.0</output></label><input type="range" id="C27-D03-lam" data-control="lam" min="0" max="6" step="1" value="3" aria-valuetext="1.0"><div class="slider-ends small"><span>0.0</span><span>20.0</span></div></div><div class="control"><label for="C27-D03-f1">Fisher number of weight 1: <output class="slider-value" data-for="f1">4.0</output></label><input type="range" id="C27-D03-f1" data-control="f1" min="0" max="2" step="1" value="1" aria-valuetext="4.0"><div class="slider-ends small"><span>1.0</span><span>16.0</span></div></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C27-D03/10.svg" alt="Contour plot of total loss over two weights with old point, new optimum and compromise, and lines of where each weight settles against lambda." width="960" height="540"><figcaption><strong class="takeaway">Each weight settles at a weighted average of the new target and its old value, pulled toward the old value in proportion to lambda times its Fisher number.</strong><br><span class="selected-parameters">Lambda: 1.0 · Fisher number of weight 1: 4.0</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> The weight that mattered settles at 1.6 and the one that hardly mattered at 0.4. Staying at (2, 2) costs 4.00, moving to (0, 0) costs 8.50 (all of it the penalty), and the compromise costs 2.00. A larger lambda keeps both nearer 2.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">At lambda 1 the weight that mattered (Fisher number 4) settles at 1.6, moving 0.4 from 2, and the weight that hardly mattered settles at 0.4, moving 1.6. A larger lambda keeps both nearer 2.</p>
+<dl class="metrics"><div class="metric"><dt>Weight 1 settles at</dt><dd>1.6</dd></div><div class="metric"><dt>Weight 2 settles at</dt><dd>0.4</dd></div><div class="metric"><dt>Total cost at (2, 2) and at (0, 0)</dt><dd>4 and 8.5</dd></div><div class="metric"><dt>Total cost at the compromise</dt><dd>2</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>The penalty slows the loss of an old skill by making the weights that mattered stiff. The price is new skill: with large lambda the new task is served less. It also needs two stored numbers per weight.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>A short-lived tag marks a synapse in rat brain slices, and the chapter calls the likeness to this penalty its own analogy, not a claim in either paper.</p></div><div class="note"><strong>In machines</strong><p>A specification: the penalty is a spring on each weight, stiff where the Fisher number is large.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Position = (lambda F x 2) / (1 + lambda F). Weight 1: (4 x 2) / (1 + 4) = 1.6. Weight 2: (0.25 x 2) / (1 + 0.25) = 0.4. Cost = new-task loss 1.36 + penalty 0.64 = 2.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>L</mi><mi>B</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><munder><mo>∑</mo><mi>i</mi></munder><mfrac><mi>λ</mi><mn>2</mn></mfrac><msub><mi>F</mi><mi>i</mi></msub><mo minsize="120%" maxsize="120%" stretchy="true" form="prefix">(</mo><msub><mi>θ</mi><mi>i</mi></msub><mo>−</mo><msubsup><mi>θ</mi><mrow><mi>A</mi><mo>,</mo><mi>i</mi></mrow><mo>*</mo></msubsup><msup><mo minsize="120%" maxsize="120%" stretchy="true" form="postfix">)</mo><mn>2</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>θ</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mi>λ</mi><msub><mi>F</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><msubsup><mi>θ</mi><mrow><mi>A</mi><mo>,</mo><mi>i</mi></mrow><mo>*</mo></msubsup></mrow><mrow><mn>1</mn><mo>+</mo><mi>λ</mi><msub><mi>F</mi><mi>i</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+L(\theta)=L_B(\theta)+\sum_i\frac{\lambda}{2}F_i\bigl(\theta_i-\theta^{*}_{A,i}\bigr)^2,\qquad \theta_i=\frac{\lambda F_i\,\theta^{*}_{A,i}}{1+\lambda F_i}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>L_B</dt><dd>the loss on the new task alone, here (theta_1^2 + theta_2^2) / 2</dd><dt>theta*_A,i</dt><dd>weight i after learning task A (2 for both)</dd><dt>F_i</dt><dd>the Fisher number: how sensitive the old task is to weight i</dd><dt>lambda</dt><dd>how much the old task counts; 0 ignores it and a large value pins the weights</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Two weights, a quadratic new-task loss and a diagonal penalty. The authors tested the method on shuffled digits and Atari games, not on large language models, and note it underestimates how uncertain the weights are.</p></div></div>
+<details><summary>Check your understanding: With lambda 1 and Fisher numbers 4 and 0.25, show that weight 2 settles at 0.4.</summary><div class="answer">The old pull has strength 0.25 x 1 = 0.25. The position is (0.25 x 2) / (1 + 0.25) = 0.5 / 1.25 = 0.4.</div></details>
+<p class="source small">Book source: Chapter 27, New training can wipe out old skill, and a penalty can slow the loss. <span title="new-training-can-wipe-out-old-skill-and-a-penalty-can-slow-the-loss">Illustration C27-D03</span>. Formula. Book formula (elastic weight consolidation, Kirkpatrick and colleagues 2017) and the chapter&#39;s constructed two-weight example: old values 2 and 2, Fisher numbers 4 and 0.25, lambda 1, giving 1.6 and 0.4 with total cost 2.00. The other lambdas and the first Fisher number are this companion&#39;s variations. The weighted-average rule is exact for this quadratic. No simulation.</p>
+</section>
+<section class="demo" id="C27-D04" aria-labelledby="title-C27-D04">
+<div class="demo-title"><span class="chapter-number">04 / 05</span><h2 id="title-C27-D04">What did the taxi trainees&#39; training look like, and what could the scan show?</h2></div>
+<p class="source-line small">From Chapter 27, Chapter 27: Learning After Training</p>
+<p class="question">Of 79 men starting the training for London taxi licensing, 39 qualified and 20 who returned did not. The qualified men showed more gray matter in the back of the hippocampus. How different was the training of the two groups?</p><p>Each bar is a group mean from the study&#39;s Table 1. The ratio on the right divides the not-qualified mean by the qualified mean. Months of training are nearly equal, so the group difference is in the intensity of the training and in the test appearances.</p>
+<p class="prediction"><strong>Predict first:</strong> Before choosing a measure, predict which of the three (months of training, hours per week, test appearances) was most similar between those who qualified and those who did not.</p>
+<div class="controls" role="group" aria-label="Controls for What did the taxi trainees&#39; training look like, and what could the scan show?">
+<div class="control"><label for="C27-D04-measure">Which measure</label><select id="C27-D04-measure" data-control="measure"><option value="0" selected>hours of training per week</option><option value="1">test appearances</option><option value="2">months of training</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C27-D04/00.svg" alt="Bars of group means for hours per week, appearances or months, and bars of the ratio of the two groups for all three measures." width="960" height="540"><figcaption><strong class="takeaway">The two groups trained for about the same number of months, but those who did not qualify trained about half as many hours per week and made far fewer appearances.</strong><br><span class="selected-parameters">Which measure: hours</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">On training hours per week, the men who did not qualify had 16.7 against 34.56 for those who did, a ratio of 0.48. Total months of training were similar (38.8 against 35.8), while weekly hours and appearances were far lower.</p>
+<dl class="metrics"><div class="metric"><dt>Qualified</dt><dd>34.56 hours per week</dd></div><div class="metric"><dt>Did not qualify</dt><dd>16.7 hours per week</dd></div><div class="metric"><dt>Ratio, not qualified to qualified (companion&#39;s arithmetic)</dt><dd>0.48</dd></div><div class="metric"><dt>Cohort</dt><dd>79 started; 59 returned (39 and 20); 31 comparison men</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>This book reads the taxi study as one of the better designs, because of the men who studied and failed. The scan result is evidence that an adult brain can keep changing with use, not evidence of how learning works at the cell level.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>Gray matter in the posterior hippocampi rose in the qualified men only, and the qualified men did worse on delayed recall of a complex figure. The study did not test whether the hippocampal change caused the drop. The mathematics of a brain is a model, and this is a reported structural result, not a model.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Ratio = 16.7 / 34.56 = 0.483. Cohort check: 39 + 20 + 20 who did not return = 79 at the first scan.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">ratio</mtext><mo>=</mo><mfrac><mtext mathvariant="normal">did not qualify</mtext><mtext mathvariant="normal">qualified</mtext></mfrac></mrow><annotation encoding="application/x-tex">
+\text{ratio}=\frac{\text{did not qualify}}{\text{qualified}}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>qualified</dt><dd>the 39 trainees who qualified and returned for the second scan</dd><dt>did not qualify</dt><dd>the 20 trainees who did not qualify and returned</dd><dt>ratio</dt><dd>this companion&#39;s own descriptive ratio of the two group means</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>An MRI scan measures how much tissue sits in a region and does not show which cells changed or whether connections did. The study covers only men, one city and one skill. A 2013 review questioned whether the reported analysis established a difference in change between groups. The authors leave open whether people who qualify differ from the start in how readily the hippocampus changes.</p></div></div>
+<details><summary>Check your understanding: Why does the similar total training time not by itself show that effort was equal in the two groups?</summary><div class="answer">Months are a duration, while hours per week and appearances measure intensity. The not-qualified men trained about half as many hours per week and made far fewer appearances, so their effort was lower even over similar months.</div></details>
+<p class="source small">Book source: Chapter 27, Chapter 27: Learning After Training. <span title="chapter-27-learning-after-training">Illustration C27-D04</span>. Reported result. Reported values quoted in the chapter and its source note from Woollett and Maguire (2011): 79 trainees at the first scan, 59 returned (39 qualified, 20 not), 20 did not return, 31 comparison men; Table 1 training figures: total training time 38.8 months (qualified) against 35.8 (not qualified), hours per week 34.56 against 16.70, appearances 15.64 against 2.60. The ratios are this companion&#39;s arithmetic. No simulation or model is used here.</p>
+</section>
+<section class="demo" id="C27-D05" aria-labelledby="title-C27-D05">
+<div class="demo-title"><span class="chapter-number">05 / 05</span><h2 id="title-C27-D05">In a toy network, what does each fix save, and what does it cost?</h2></div>
+<p class="source-line small">From Chapter 27, The build: in a small toy, replay and a penalty protected the old task, and a first-layer adapter did not</p>
+<p class="question">A small network learns task A, is trained on task B (the same cards with the 16 measurements shuffled), and forgets A. Which of replay, a penalty and a small adapter protects A, and at what price?</p><p>After learning A the network scores about 99 on A and 37 on B. Plain training on B for 1,500 updates reaches about 99 on B but drops A to about 79. Each fix changes the training: replay adds old cards, the penalty pulls weights toward their old values, and the adapter changes only a small add-on.</p>
+<p class="prediction"><strong>Predict first:</strong> Predict whether a small adapter keeps task A better or worse than plain fine-tuning, and what happens to A when the adapter is removed.</p>
+<div class="controls" role="group" aria-label="Controls for In a toy network, what does each fix save, and what does it cost?">
+<div class="control"><label for="C27-D05-fix">Which fix</label><select id="C27-D05-fix" data-control="fix"><option value="0" selected>plain fine-tuning</option><option value="1">replay of 10 old cards</option><option value="2">replay of all 90 old cards</option><option value="3">penalty, lambda 10</option><option value="4">penalty, lambda 1,000</option><option value="5">rank-2 adapter</option><option value="6">adapter removed</option></select></div><div class="control"><label for="C27-D05-stop">How long to train on B</label><select id="C27-D05-stop" data-control="stop"><option value="0" selected>1,500 updates</option><option value="1">stop at 95 percent on B&#39;s cards</option></select></div><div class="buttons"><button type="button" class="reveal">Show what happens</button><button type="button" class="reset">Reset</button></div></div>
+<figure class="plot"><img src="states/C27-D05/00.svg" alt="Bars of old and new task accuracy for the selected fix, and grouped bars of old and new accuracy for every fix with the selected row shaded." width="960" height="540"><figcaption><strong class="takeaway">In the toy, replay and the penalty protected the old task at a price in storage or in new skill, a first-layer adapter did not, and removing the adapter restores the old network and loses the new skill.</strong><br><span class="selected-parameters">Which fix: plain · How long to train on B: full length</span></figcaption></figure>
+<p class="reveal-text" hidden><strong>What happens:</strong> The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter&#39;s change to the first layer was about twice plain fine-tuning&#39;s. Removing the adapter brings back the original network exactly, with A near 99 and B near 37.</p>
+<p class="interpretation" aria-live="polite" aria-atomic="true">Plain fine-tuning (full length) leaves task A at 79 percent and task B at 99. Before B, A was 99 and B 37. This is the average of 20 seeded versions of a toy network, a companion rerun of the chapter&#39;s script, not a model of a real system.</p>
+<dl class="metrics"><div class="metric"><dt>Old task A</dt><dd>79 percent</dd></div><div class="metric"><dt>New task B</dt><dd>99 percent</dd></div><div class="metric"><dt>Change on A from before B</dt><dd>-20 points</dd></div><div class="metric"><dt>Extra to store</dt><dd>nothing extra</dd></div></dl>
+<div class="note why"><strong>Why it matters</strong><p>Replay needs the old data, the penalty trades new skill for old, and the adapter&#39;s gain is that it can be taken off. The chapter&#39;s comparison of a stored note, an adapter and retraining with old examples is a proposal that nobody has tested.</p></div>
+<div class="columns sides"><div class="note"><strong>In brains and behavior</strong><p>The stored old cards play the part that replayed memories play in the brain proposal. The brain is not known to keep a verbatim copy, and the toy does not test sleep replay.</p></div><div class="note"><strong>In machines</strong><p>A constructed network and a gradient-descent specification. Interleaving old cards helped in the toy in the same direction as the 1995 simulations the chapter cites, in a different network.</p></div></div>
+<details class="calc"><summary>Show the calculation</summary><p class="calculation">Accuracy is the share of 900 fresh cards sorted correctly, averaged over 20 random versions (seeds 0 to 19); guessing is 33 percent. Network: 16 inputs, 12 tanh units, 3 outputs, 243 weights. 1,500 updates per stage at learning rate 0.2.</p></details>
+<details class="math-details"><summary>The equations and symbols</summary><div class="formula"><p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">forgetting</mtext><mo>=</mo><mtext mathvariant="normal">accuracy on A after A</mtext><mo>−</mo><mtext mathvariant="normal">accuracy on A after B</mtext></mrow><annotation encoding="application/x-tex">
+\text{forgetting}=\text{accuracy on A after A}-\text{accuracy on A after B}
+</annotation></semantics></math></p>
+<dl class="symbols"><dt>accuracy</dt><dd>the share of 900 fresh cards sorted correctly; guessing is one third</dd><dt>replay</dt><dd>mixing some old task-A cards into the task-B training</dd><dt>penalty</dt><dd>the elastic weight consolidation penalty of the previous demonstration, with lambda 10 or 1,000</dd><dt>adapter</dt><dd>a rank-2 add-on to the first layer, 56 numbers, with the rest frozen</dd></dl></div></details>
+<div class="columns"><div class="note"><strong>Where the conclusion applies</strong><p>Task B reshuffles every input, a demanding case for a first-layer adapter. The size of the forgetting depends on how long training runs: the early-stop version ends the B stage once 95 percent of its 90 training cards are sorted correctly, and plain fine-tuning then loses far less. The toy does not show that real adapters forget more, and the chapter&#39;s own Llama-2 source found the opposite in code.</p></div></div>
+<details><summary>Check your understanding: In the full-length setting, which fix leaves old task A highest, and what does it cost on task B?</summary><div class="answer">The penalty with lambda 1,000 keeps A at about 97 and costs B (about 90 against 99 for plain fine-tuning). Replay of all 90 old cards leaves A near 96 and B near 96, but needs the old cards stored.</div></details>
+<p class="source small">Book source: Chapter 27, The build: in a small toy, replay and a penalty protected the old task, and a first-layer adapter did not. <span title="the-build-in-a-small-toy-replay-and-a-penalty-protected-the-old-task-and-a-first-layer-adapter-did-not">Illustration C27-D05</span>. Simulation. The chapter&#39;s own small simulation (its script toy_checks_27.py), ported here with the same protocol: 16 inputs, 12 tanh units, 3 outputs, 243 weights; 90 training cards per task, 900 test cards; learning rate 0.2; 1,500 updates per stage; 20 seeded versions (seeds 0 to 19), averaged. It is the book&#39;s analysis, not a published study and not a model of a real system. Replay uses evenly spaced old cards.</p>
+</section>
+<p class="source small">Mathematical illustrations use the book's formulas with disclosed small examples. Each interactive choice shows a result computed from the same calculations as the chapter notebook. A simulation is not a measurement, and for a brain the mathematics is a model: a picture illustrates a result, and the assumptions determine its scope. Review copy, brain-computer partnership revision of 1 november 2026.</p></main>
+<footer class="cmp-footer"><div class="cmp-footer-inner"><p class="cmp-footer-title"><em>The Mathematics of Machine Intelligence</em> by Jason Karpeles</p><p class="cmp-footer-links"><a href="../../index.html">All chapters</a></p><p class="cmp-footer-note">Companion 0.1.0-pilot. Examples use book values or disclosed illustrative parameters. A mathematical illustration is not evidence about a specific brain, patient, AI product or a substitute for checking a factual claim.</p></div></footer>
+<script id="companion-data" type="application/json">{"chapter":27,"demos":[{"id":"C27-D01","title":"What does a column times a row add to a layer?","alt":"Two 3 by 3 grids of numbers: the change B A for the selected adapter rank, and the adapted layer W plus B A with changed entries marked.","controls":[{"key":"rank","label":"Adapter rank r","values":[1,2,3],"default":1,"widget":"slider"}],"default_key":"[1]","reveal_key":"[1]","reveal_text":"The rows of B A are the row (1, 0, -1) unchanged, doubled, and zeroed, so the top row of W becomes (2, 2, 2). The rank-1 adapter holds 6 numbers against 9. At rank 2 it holds 12, more than the layer: an adapter saves numbers only when its rank is below half the width.","states":{"[1]":{"image":"states/C27-D01/00.svg","metrics":{"Top row of W + B A":"2, 2, 2","Rank of B A":"1","Numbers in the adapter (B and A)":"6","Numbers in the full layer":"9"},"interpretation":"With rank 1 the adapter holds 6 numbers, fewer than the 9 in the full 3 by 3 layer. The top row of W becomes (2, 2, 2) and the change has rank 1. An adapter saves numbers only when its rank is below half the layer width.","calculation":"Rank 1: (1, 2, 0) x (1, 0, -1). Each row of a column-by-row product is one entry of the column times the whole row. Numbers trained: 2 x 3 x 1 = 6."}}},{"id":"C27-D02","title":"How small is a rank-8 adapter on a real layer?","alt":"Log-scale bars of the numbers in a full layer and in its adapter, and curves of adapter size as a percent of the layer against rank for four widths.","controls":[{"key":"layer","label":"Layer width d","values":[512,1024,4096,8192],"default":4096,"widget":"slider"},{"key":"rank","label":"Adapter rank r","values":[1,4,8,16,64],"default":8,"widget":"slider"}],"default_key":"[4096,8]","reveal_key":"[4096,8]","reveal_text":"A 4,096 by 4,096 layer holds 16,777,216 numbers and a rank-8 adapter holds 65,536, which is 0.39 percent, or 1 in 256. The adapter would be as large as the layer at rank 2,048, half the width.","states":{"[4096,8]":{"image":"states/C27-D02/12.svg","metrics":{"Numbers in the full layer":"16,777,216","Numbers in the adapter":"65,536","Adapter share of the layer":"0.391 percent (1 in 256)","Rank at which the adapter is as large as the layer":"2,048"},"interpretation":"A 4,096 by 4,096 layer holds 16,777,216 numbers. A rank-8 adapter holds 65,536, which is 0.391 percent. The adapter stops saving anything at rank 2,048, half the width.","calculation":"Full layer: 4,096 x 4,096 = 16,777,216. Adapter: B has 4,096 x 8 and A has 8 x 4,096, so 2 x 4,096 x 8 = 65,536. Share = 2 x 8 / 4,096 = 0.003906."}}},{"id":"C27-D03","title":"How far does each weight move when a penalty guards the old task?","alt":"Contour plot of total loss over two weights with old point, new optimum and compromise, and lines of where each weight settles against lambda.","controls":[{"key":"lam","label":"Lambda","values":[0.0,0.25,0.5,1.0,2.0,5.0,20.0],"default":1.0,"widget":"slider"},{"key":"f1","label":"Fisher number of weight 1","values":[1.0,4.0,16.0],"default":4.0,"widget":"slider"}],"default_key":"[1,4]","reveal_key":"[1,4]","reveal_text":"The weight that mattered settles at 1.6 and the one that hardly mattered at 0.4. Staying at (2, 2) costs 4.00, moving to (0, 0) costs 8.50 (all of it the penalty), and the compromise costs 2.00. A larger lambda keeps both nearer 2.","states":{"[1,4]":{"image":"states/C27-D03/10.svg","metrics":{"Weight 1 settles at":"1.6","Weight 2 settles at":"0.4","Total cost at (2, 2) and at (0, 0)":"4 and 8.5","Total cost at the compromise":"2"},"interpretation":"At lambda 1 the weight that mattered (Fisher number 4) settles at 1.6, moving 0.4 from 2, and the weight that hardly mattered settles at 0.4, moving 1.6. A larger lambda keeps both nearer 2.","calculation":"Position = (lambda F x 2) / (1 + lambda F). Weight 1: (4 x 2) / (1 + 4) = 1.6. Weight 2: (0.25 x 2) / (1 + 0.25) = 0.4. Cost = new-task loss 1.36 + penalty 0.64 = 2."}}},{"id":"C27-D04","title":"What did the taxi trainees' training look like, and what could the scan show?","alt":"Bars of group means for hours per week, appearances or months, and bars of the ratio of the two groups for all three measures.","controls":[{"key":"measure","label":"Which measure","values":["hours","appearances","months"],"value_labels":["hours of training per week","test appearances","months of training"],"default":"hours"}],"default_key":"[\"hours\"]","reveal_key":"[\"hours\"]","reveal_text":"Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets.","states":{"[\"hours\"]":{"image":"states/C27-D04/00.svg","metrics":{"Qualified":"34.56 hours per week","Did not qualify":"16.7 hours per week","Ratio, not qualified to qualified (companion's arithmetic)":"0.48","Cohort":"79 started; 59 returned (39 and 20); 31 comparison men"},"interpretation":"On training hours per week, the men who did not qualify had 16.7 against 34.56 for those who did, a ratio of 0.48. Total months of training were similar (38.8 against 35.8), while weekly hours and appearances were far lower.","calculation":"Ratio = 16.7 / 34.56 = 0.483. Cohort check: 39 + 20 + 20 who did not return = 79 at the first scan."}}},{"id":"C27-D05","title":"In a toy network, what does each fix save, and what does it cost?","alt":"Bars of old and new task accuracy for the selected fix, and grouped bars of old and new accuracy for every fix with the selected row shaded.","controls":[{"key":"fix","label":"Which fix","values":["plain","replay10","replay90","penalty10","penalty1000","adapter2","adapter_removed"],"value_labels":["plain fine-tuning","replay of 10 old cards","replay of all 90 old cards","penalty, lambda 10","penalty, lambda 1,000","rank-2 adapter","adapter removed"],"default":"plain"},{"key":"stop","label":"How long to train on B","values":["full length","early stop"],"value_labels":["1,500 updates","stop at 95 percent on B's cards"],"default":"full length"}],"default_key":"[\"plain\",\"full length\"]","reveal_key":"[\"adapter2\",\"full length\"]","reveal_text":"The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter's change to the first layer was about twice plain fine-tuning's. Removing the adapter brings back the original network exactly, with A near 99 and B near 37.","states":{"[\"plain\",\"full length\"]":{"image":"states/C27-D05/00.svg","metrics":{"Old task A":"79 percent","New task B":"99 percent","Change on A from before B":"-20 points","Extra to store":"nothing extra"},"interpretation":"Plain fine-tuning (full length) leaves task A at 79 percent and task B at 99. Before B, A was 99 and B 37. This is the average of 20 seeded versions of a toy network, a companion rerun of the chapter's script, not a model of a real system.","calculation":"Accuracy is the share of 900 fresh cards sorted correctly, averaged over 20 random versions (seeds 0 to 19); guessing is 33 percent. Network: 16 inputs, 12 tanh units, 3 outputs, 243 weights. 1,500 updates per stage at learning rate 0.2."}}}]}</script><script src="states/C27-D01.js"></script><script src="states/C27-D02.js"></script><script src="states/C27-D03.js"></script><script src="states/C27-D04.js"></script><script src="states/C27-D05.js"></script><script>'use strict';
+const payload = JSON.parse(document.getElementById('companion-data').textContent);
+const saved = (typeof window !== 'undefined' && window.MMI_STATES) || {};
+function stateFor(demo, key) {
+  const file = saved[demo.id];
+  return (file && file[key]) || demo.states[key];
+}
+function currentValues(demo, section) {
+  return demo.controls.map(control => control.values[Number(section.querySelector('[data-control="' + control.key + '"]').value)]);
+}
+function controlText(control, value) {
+  return control.value_labels ? control.value_labels[control.values.indexOf(value)] : String(value);
+}
+function updateDemo(demo) {
+  const section = document.getElementById(demo.id);
+  const values = currentValues(demo, section);
+  const key = JSON.stringify(values);
+  const state = stateFor(demo, key);
+  demo.controls.forEach((control, i) => {
+    if (control.widget === 'slider') {
+      section.querySelector('output[data-for="' + control.key + '"]').textContent = String(values[i]);
+      section.querySelector('[data-control="' + control.key + '"]').setAttribute('aria-valuetext', String(values[i]));
+    }
+  });
+  section.querySelector('.selected-parameters').textContent = demo.controls.map((control, i) => control.label + ': ' + controlText(control, values[i])).join(' · ');
+  const reveal = section.querySelector('.reveal-text');
+  if (reveal) reveal.hidden = key !== demo.reveal_key;
+  if (!state) {
+    section.querySelector('.interpretation').textContent = 'This illustration file has not loaded. Keep the page and its states folder together.';
+    return;
+  }
+  section.querySelector('.plot img').src = state.image;
+  section.querySelector('.plot img').alt = demo.alt || (demo.title + '. ' + state.interpretation);
+  const metrics = section.querySelector('.metrics');
+  metrics.replaceChildren();
+  Object.entries(state.metrics).forEach(([label, value]) => {
+    const group = document.createElement('div'); group.className = 'metric';
+    const term = document.createElement('dt'); term.textContent = label;
+    const definition = document.createElement('dd'); definition.textContent = String(value);
+    group.append(term, definition); metrics.append(group);
+  });
+  section.querySelector('.interpretation').textContent = state.interpretation;
+  const calc = section.querySelector('.calc');
+  calc.hidden = !state.calculation;
+  section.querySelector('.calculation').textContent = state.calculation || '';
+}
+function setValues(demo, section, values) {
+  demo.controls.forEach((control, i) => { section.querySelector('[data-control="' + control.key + '"]').value = String(control.values.indexOf(values[i])); });
+  updateDemo(demo);
+}
+payload.demos.forEach(demo => {
+  const section = document.getElementById(demo.id);
+  section.querySelectorAll('[data-control]').forEach(input => {
+    input.addEventListener('change', () => updateDemo(demo));
+    input.addEventListener('input', () => updateDemo(demo));
+  });
+  section.querySelector('.reset').addEventListener('click', () => setValues(demo, section, JSON.parse(demo.default_key)));
+  const reveal = section.querySelector('.reveal');
+  if (reveal) reveal.addEventListener('click', () => setValues(demo, section, JSON.parse(demo.reveal_key)));
+  updateDemo(demo);
+});
+document.documentElement.dataset.ready = 'true';
+</script></body></html>

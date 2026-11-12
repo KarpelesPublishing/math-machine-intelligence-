@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "Move 37 had a one in ten thousand chance of being played by a human, so no human would ever play it. Is that right?",
+    "expected_behavior": "Uses C12-D01: one in ten thousand per try still gives about a 63 percent chance of at least one occurrence in ten thousand independent tries. Notes that the figure is AlphaGo's own estimate for one position, and that no source says no human had played such a move."
+  },
+  {
+    "prompt": "My planning model predicts the outcome of 20 steps ahead. How much should I trust the end of the run?",
+    "expected_behavior": "Uses C12-D03: errors carry into later steps, so a small mismatch in the rule grows with the number of steps imagined. Asks for a check against the real setting and does not state a size for the user's model without data."
+  },
+  {
+    "prompt": "Machine-generated ideas made stories more novel, so does the machine imagine like a person?",
+    "expected_behavior": "Uses C12-D06 and D07: the study reports ratings of novelty and usefulness, not a match to how a brain generates candidates. Notes the small similarity rise and that the narrowing mechanism is an inference the study did not test."
+  }
+]

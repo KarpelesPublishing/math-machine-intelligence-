@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: The Question of Experience"
+  short_description: "Explore and apply Chapter 32 of the book."
+  default_prompt: "Use $mmi-ch32-question-experience to help me understand or apply this idea: "

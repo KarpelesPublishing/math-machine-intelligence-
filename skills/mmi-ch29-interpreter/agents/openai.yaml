@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: The Interpreter"
+  short_description: "Explore and apply Chapter 29 of the book."
+  default_prompt: "Use $mmi-ch29-interpreter to help me understand or apply this idea: "

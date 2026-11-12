@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Keeping What Matters"
+  short_description: "Explore and apply Chapter 3 of the book."
+  default_prompt: "Use $mmi-ch03-keeping-what-matters to help me understand or apply this idea: "

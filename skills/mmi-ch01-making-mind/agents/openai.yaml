@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: What Does It Take to Make a Mind?"
+  short_description: "Explore and apply Chapter 1 of the book."
+  default_prompt: "Use $mmi-ch01-making-mind to help me understand or apply this idea: "

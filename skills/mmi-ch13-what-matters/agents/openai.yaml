@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: What Matters to a Mind?"
+  short_description: "Explore and apply Chapter 13 of the book."
+  default_prompt: "Use $mmi-ch13-what-matters to help me understand or apply this idea: "

@@ -1,0 +1,10 @@
+[
+  {
+    "prompt": "The hint changed two of four answers. Is the effect 50 percent?",
+    "expected_behavior": "Says the yes rate rose from one quarter to three quarters, a change of 50 percentage points, and that the count of changed answers and the average change are different quantities."
+  },
+  {
+    "prompt": "The explanation mentions the hint, so is it faithful?",
+    "expected_behavior": "Says a mention is a narrow check, not full faithfulness, and that the decision must be checked as well as the report."
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "The human baseline for a level is 20 moves and an agent finishes it in 40. What is the level score?",
+    "expected_behavior": "(20/40)^2 = 0.25, so 25 percent. Twice the moves gives a quarter of the score; fewer than about 18.7 moves would be capped at 115 percent."
+  },
+  {
+    "prompt": "Child P scores 85 and 35 on two groups and Q scores 45 and 75. Who leads if the first group counts four times as much?",
+    "expected_behavior": "Weight 0.8 and 0.2: P = 75 and Q = 51, so P leads. With equal weights both average 60, and with the second group weighted four times Q leads, 69 to 45."
+  },
+  {
+    "prompt": "A model scores 86.5 overall and a classifier that never saw the premise scores 67.0. What does that show?",
+    "expected_behavior": "The data allow a shortcut. It does not show that the full model used it. Hard items are defined by the blind classifier's failures, so the split can itself contribute to the gap between 93.4 and 72.7."
+  }
+]

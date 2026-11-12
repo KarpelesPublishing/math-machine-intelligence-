@@ -1,0 +1,4 @@
+interface:
+  display_name: "Machine Intelligence: Considering a Future"
+  short_description: "Explore and apply Chapter 17 of the book."
+  default_prompt: "Use $mmi-ch17-considering-future to help me understand or apply this idea: "

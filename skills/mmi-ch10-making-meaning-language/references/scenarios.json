@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "What does 'jump twice after walk left' decode to, and why?",
+    "expected_behavior": "Turn left, walk, jump, jump: the part after 'after' comes first, then jump twice."
+  },
+  {
+    "prompt": "A network gets 99.8 percent on a random split of SCAN. Does it compose new commands?",
+    "expected_behavior": "Not shown. The same kind of network scored 1.2 percent on composed jump commands when jump was seen only alone; different tests use different best networks."
+  },
+  {
+    "prompt": "A paper reports a correlation of 0.788 over ten items. How sure is it?",
+    "expected_behavior": "Weakly. The companion's Fisher-z illustration gives roughly 0.31 to 0.95; this is the companion's computation, not the paper's."
+  }
+]

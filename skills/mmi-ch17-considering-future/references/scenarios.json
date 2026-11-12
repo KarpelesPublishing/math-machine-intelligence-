@@ -1,0 +1,14 @@
+[
+  {
+    "prompt": "A place pays 1 now and leads to a place worth 5. With a discount of 0.9, what is its value?",
+    "expected_behavior": "1 + 0.9 x 5 = 5.5, for the single next place the chapter describes."
+  },
+  {
+    "prompt": "Straight-line guesses are 5 from B and 9 from C, roads A to B 4, A to C 3, B to D 6. Which town is explored first and what route costs?",
+    "expected_behavior": "B scores 9, C scores 12, so B first; the route through B costs 10 and C is never explored."
+  },
+  {
+    "prompt": "A quiz player passes for a sure 0.75 or answers a coin-flip question. Hints are right 7 times in 10. What is one look worth, and two?",
+    "expected_behavior": "One look is worth 0 (still pass) and two are worth 0.055 (80.5 points per 100 questions)."
+  }
+]

@@ -82,7 +82,7 @@ Of Peirce's 706 zero marks, 436 were right, 61.8 percent. If the true hit rate w
 
 **In machines:** The same check applies to a machine: take the cases at its lowest confidence and ask whether it still beats chance.
 
-**Assumptions and limits:** The 706 judgments are treated as independent trials with one hit rate. That is a simplification: they came from one person over a long series. The tally covers two people on one weight task, and shows nothing about how confidence is made.
+**Assumptions and limits:** The 706 judgments are treated as independent trials with one hit rate. That is a simplification: they came from one person over a long series. The tally is Peirce's alone (one person, 1,125 judgments, one weight task); the whole study was two people. It shows nothing about how confidence is made.
 
 **Check:** At a hit rate of 0.6, how many of the 706 would you expect to be right, and is 436 above or below that?
 
@@ -97,26 +97,26 @@ Ten answers, six right and four wrong. How do sorting and calibration behave as 
 Sorting asks only about the order of the confidences. Calibration asks whether the numbers equal how often answers are right. Rater A has the right order and the wrong scale. Rater B has the right scale and no order. The Brier score punishes both defects, which is why a rater that sorts perfectly can still lose to one that states the base rate.
 
 $$
-\text{sorting}=\Pr(c_{\text{right}}>c_{\text{wrong}})+\tfrac12\Pr(c_{\text{right}}=c_{\text{wrong}}),\qquad \operatorname{BS}=\frac1n\sum_i (p_i-y_i)^2
+\text{sorting}=\Pr(c_{\text{right}}>c_{\text{wrong}})+\tfrac12\Pr(c_{\text{right}}=c_{\text{wrong}}),\qquad \operatorname{BS}=\frac1n\sum_i (p_i-y_i)^2,\qquad \text{gap by group}=\sum_g \frac{n_g}{n}\,\bigl|c_g-h_g\bigr|
 $$
 
-**Symbols:** c_right, c_wrong: the stated confidence on a right answer and on a wrong answer; sorting: chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage; BS: the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better
+**Symbols:** c_right, c_wrong: the stated confidence on a right answer and on a wrong answer; sorting: chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage; BS: the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better; gap by group: the companion's own check: group the answers by the confidence given, compare each group's stated confidence c_g with its share right h_g, and weight by the group's share n_g/n of the answers; 0 means calibrated on this case
 
 **Predict:** Rater A gives 0.9 to right answers and 0.8 to wrong ones. Rater B says 0.6 every time. Which has the better sorting score and which the better Brier score?
 
 **Worked example:**
 - Sorting score: 1
-- Average stated confidence: 0.86
-- Share actually right: 0.6
+- Average stated confidence (hit rate 0.6): 0.86
+- Gap by group (0 is calibrated): 0.38
 - Brier score (lower is better): 0.262
 
-Giving right answers 0.9 and wrong ones 0.8, the sorting score is 1 and the stated numbers average 0.86 against a hit rate of 0.6. Sorting and calibration move separately: the Brier score is 0.262.
+Right answers 0.9, wrong ones 0.8: sorting score 1; the numbers average 0.86 against a hit rate of 0.6, but by group they miss by 0.38 (0 would be calibrated). An average can hide a group-by-group miss. Brier score 0.262.
 
-**Calculation:** Sorting: of the 6 x 4 = 24 right-wrong pairs, a right answer with higher confidence counts 1, a tie 1/2: score 1. Average stated = (6 x 0.9 + 4 x 0.8)/10 = 0.86; hit rate 6/10 = 0.6; gap 0.26. Brier = (6 x (1 - 0.9)^2 + 4 x 0.8^2)/10 = 0.262.
+**Calculation:** Sorting: of the 6 x 4 = 24 right-wrong pairs, a right answer with higher confidence counts 1, a tie 1/2: score 1. Average stated = (6 x 0.9 + 4 x 0.8)/10 = 0.86; hit rate 6/10 = 0.6; average gap 0.26. Gap by group = 0.6 x |0.9 - 1| + 0.4 x |0.8 - 0| = 0.38. Brier = (6 x (1 - 0.9)^2 + 4 x 0.8^2)/10 = 0.262.
 
 **Takeaway:** Sorting and calibration are separate checks, and a confidence can pass one while failing the other.
 
-**What happens:** At Confidence given to right answers = 0.9, Confidence given to wrong answers = 0.8: A sorts perfectly (score 1) but states an average of 0.86 against a hit rate of 0.6, and its Brier score is 0.262. Now set 0.6 and 0.6: nothing is sorted (0.5), yet the numbers match the hit rate and the Brier score is 0.24, better than A's.
+**What happens:** At Confidence given to right answers = 0.9, Confidence given to wrong answers = 0.8: A sorts perfectly (score 1) but states an average of 0.86 against a hit rate of 0.6, so by group it misses by 0.38 (the 0.9 group is all right, the 0.8 group all wrong), and its Brier score is 0.262. Now set 0.6 and 0.6: nothing is sorted (0.5), yet the numbers match the hit rate (gap 0) and the Brier score is 0.24, better than A's.
 
 **Why it matters:** A reviewer who can inspect only a fixed share of cases needs sorting. One who acts on a cost threshold needs the numbers to be right. Both checks are needed before trusting a confidence report.
 
@@ -124,13 +124,13 @@ Giving right answers 0.9 and wrong ones 0.8, the sorting score is 1 and the stat
 
 **In machines:** A machine's confidence can be graded on both counts, as Guo and colleagues did for calibration.
 
-**Assumptions and limits:** Every right answer gets one confidence value and every wrong answer another, so the sorting score is 1, 0.5 or 0. Real raters give varied numbers; this reduces the case to its logic.
+**Assumptions and limits:** Every right answer gets one confidence value and every wrong answer another, so the sorting score is 1, 0.5 or 0, and the groups for the calibration check are the two confidence values (or one group when the two are equal). Real raters give varied numbers and need more groups; this reduces the case to its logic.
 
-**Check:** Give right answers 0.8 and wrong answers 0.2. What are the sorting score and the average stated confidence?
+**Check:** Give right answers 0.8 and wrong answers 0.2. What are the sorting score and the average stated confidence, and is the rater calibrated?
 
-**Answer:** Sorting is 1. The average stated is (6 x 0.8 + 4 x 0.2)/10 = 0.56, close to the hit rate of 0.6, and the Brier score is 0.04.
+**Answer:** Sorting is 1. The average stated is (6 x 0.8 + 4 x 0.2)/10 = 0.56, close to the hit rate of 0.6, but the average hides the failure: the answers given 0.8 were all right and the answers given 0.2 were all wrong, so by group the numbers miss the share right by 0.6 x 0.2 + 0.4 x 0.2 = 0.20. It is not calibrated. The Brier score is 0.04.
 
-**Source:** One fitted number cut a network's calibration error from 16.53 to 1.26 percent; anchor `one-fitted-number-cut-a-networks-calibration-error-from-1653-to-126-percent`. Constructed example adapted by the book from Fleming and Lau (90 percent on right answers, 80 percent on wrong ones, 60 percent right). The Brier score for the settings is the companion's calculation. The other grid values are choices for exploration.
+**Source:** One fitted number cut a network's calibration error from 16.53 to 1.26 percent; anchor `one-fitted-number-cut-a-networks-calibration-error-from-1653-to-126-percent`. Constructed example adapted by the book from Fleming and Lau (90 percent on right answers, 80 percent on wrong ones, 60 percent right). The Brier score for the settings is the companion's calculation. The gap by group (cases grouped by the confidence given, each group's stated confidence compared with its share right, weighted by group size) is the companion's own simple version of the chapter's group-by-group check, not a number from the book or from Fleming and Lau. The other grid values are choices for exploration.
 
 ## C21-D04: Why does an honest probability score best?
 

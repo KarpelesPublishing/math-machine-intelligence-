@@ -23,7 +23,7 @@ $$
 **Worked example:**
 - Per-token chance p: 0.9
 - Whole answer right (p^L): 0.349
-- Share of per-token accuracy kept: 0.387
+- Whole answer over per-token chance, p^(L-1): 0.387
 - p needed for an even chance: 0.933
 
 With each of 10 tokens right with chance 0.9, the whole answer is right with chance 0.349. To get an even chance of a whole answer at length 10, each token must be right 0.933 of the time.
@@ -94,7 +94,7 @@ If each of 655 independent electrodes had a detected-match chance of 0.001, all 
 
 The electrodes' Bayes factors, 5.11 to 8.65, favored no orientation signal in the front. How much do they move a belief?
 
-Before the data the reader holds some odds for 'no orientation signal'. The Bayes factor says how much the data favor that explanation over the other. Multiplying gives the new odds, and odds convert to a probability. The same factor gives a lower probability to a reader who began doubtful and a higher one to a reader who began convinced.
+Before the data the reader holds some odds for 'no orientation signal'. The Bayes factor says how much the data favor that explanation over the other. Multiplying gives the new odds, and odds convert to a probability of that model against the one alternative, not of the claim about the whole front. The same factor gives a lower probability to a reader who began doubtful and a higher one to a reader who began convinced.
 
 $$
 \text{posterior odds}=\text{Bayes factor}\times\text{prior odds},\qquad p=\frac{\text{odds}}{1+\text{odds}}
@@ -105,18 +105,18 @@ $$
 **Predict:** With even prior odds, predict the probability of no orientation signal after a Bayes factor of 5.11 and of 8.65.
 
 **Worked example:**
-- Prior odds for no signal: 1
+- Prior odds, no-signal model: 1
 - Posterior odds: 5.11
-- Probability before: 0.5
-- Probability after: 0.836
+- Probability of that model, before: 0.5
+- Probability of that model, after: 0.836
 
-A Bayes factor of 5.11 in favor of no orientation signal turns prior odds of 1 into odds of 5.11, moving the probability from 0.5 to 0.836. The probability reading belongs to the companion's prior and is not in the paper.
+A Bayes factor of 5.11 for the no-signal model turns prior odds of 1 into odds of 5.11, so that model's probability, out of the two compared, goes from 0.5 to 0.836. This is arithmetic on a prior chosen here, not a fact about the brain, and it is not in the paper.
 
 **Calculation:** Posterior odds = Bayes factor x prior odds = 5.11 x 1 = 5.11. Probability = odds/(1 + odds) = 0.836.
 
-**Takeaway:** A Bayes factor multiplies the odds. A factor of 5 to 9 is moderate evidence and does not settle the question by itself.
+**Takeaway:** A Bayes factor multiplies the odds. A factor of 5 to 9 is called moderate evidence on a common convention (not the paper's wording) and does not settle the question by itself.
 
-**What happens:** At Bayes factor for no orientation signal = 5.11, Prior odds for no signal = 1: With even odds, a factor of 5.11 gives a probability of 0.836 for no signal, and 8.65 gives 0.896. Neither is certainty, and a prior of 4 to 1 against moves them to about 0.56 and 0.68. The factor measures the data's push; the prior is a separate choice.
+**What happens:** At Bayes factor for no orientation signal = 5.11, Prior odds for no signal = 1: With even odds, a factor of 5.11 gives a probability of 0.836 for the no-signal explanation against the one alternative, given even prior odds, and 8.65 gives 0.896. Neither is certainty, and a prior of 4 to 1 against moves them to about 0.56 and 0.68. This is arithmetic on a stated prior, not a fact about the brain. The factor measures the data's push; the prior is a separate choice.
 
 **Why it matters:** The chapter says a factor of 1 is a tie and larger numbers mean stronger support. How strong depends on where one started, and on whether the method could have found a signal.
 
@@ -124,19 +124,19 @@ A Bayes factor of 5.11 in favor of no orientation signal turns prior odds of 1 i
 
 **In machines:** The decoder is standard machine learning used as a tool on brain data, not as a model of the mind.
 
-**Assumptions and limits:** The Bayes factor is taken at face value for two explanations, 'no orientation signal' and 'an orientation signal', and a prior odds are chosen by the reader. The chapter says the paper graded the orientation result inconclusive: the evidence leans against the theory but limits of the method could explain it.
+**Assumptions and limits:** The Bayes factor is taken at face value for two explanations, 'no orientation signal' and 'an orientation signal', and a prior odds are chosen by the reader. The result is the probability of the no-signal model against that one alternative, not the probability that the front carries no orientation information. The reported 5.11 to 8.65 is a range over several analyses, each to be read one at a time; the page takes one value at a time. The chapter says the paper graded the orientation result inconclusive: the evidence leans against the theory but limits of the method could explain it.
 
 **Check:** With prior odds 1 to 4 against no signal (0.25) and a Bayes factor of 8.65, what are the posterior odds and probability?
 
 **Answer:** 8.65 x 0.25 = 2.16 in odds, which is 2.16/3.16 = 0.684.
 
-**Source:** Category was readable in the front, but orientation mostly was not; anchor `category-was-readable-in-the-front-but-orientation-mostly-was-not`. The chapter's reported Bayes factors for the electrodes (5.11 to 8.65, favoring no orientation signal) and its definition that 1 is a tie. The conversion to a probability with chosen prior odds is the companion's own and is not in the paper; the paper's factors depend on its own model of the effect.
+**Source:** Category was readable in the front, but orientation mostly was not; anchor `category-was-readable-in-the-front-but-orientation-mostly-was-not`. The chapter's reported Bayes factors for the electrodes (5.11 to 8.65, favoring no orientation signal) and its definition that 1 is a tie. The conversion to a probability with chosen prior odds is the companion's own arithmetic on a stated prior and is not in the paper; it is not a fact about the brain. The paper's factors depend on its own model of the effect.
 
 ## C31-D04: Did a shared workspace help, and what did the slot count do?
 
 In one software design, how did the number of workspace slots change a ball-separation score?
 
-Modules compete to write into a small number of slots, and whatever wins is read by all modules. With a few slots, little information gets shared. With very many, the limit is loose and the benefit fades. In between the score was highest. The adjusted Rand index compares the model's grouping of the balls to the true grouping.
+Modules compete to write into a small number of slots, and whatever wins is read by all modules. Among the slot counts tried, the score was highest at five. On the chapter's reading (not the paper's) too few slots starve the modules; the paper reads the fall after eight slots as the cost of a looser limit. The adjusted Rand index compares the model's grouping of the balls to the true grouping.
 
 $$
 \text{difference}=\text{score}_{\text{slots}}-\text{score}_{\text{comparison}},\qquad \text{ratio}=\frac{\text{score}_{\text{slots}}}{\text{score}_{\text{comparison}}}
@@ -158,7 +158,7 @@ With 5 slots the score is 0.915, 0.639 above the score with no workspace (0.276)
 
 **Takeaway:** A shared space helped on this task, and its capacity decided whether: five slots far above no workspace, two below it, ten far below five.
 
-**What happens:** At Workspace slots = 5, Compare with = no workspace: Five slots score 0.915 against 0.276 with no workspace, a ratio of 3.32. Choose 2 slots and the score is 0.154, below no workspace. Choose 10 and it falls back to 0.351. The number of slots decided whether the shared space helped.
+**What happens:** At Workspace slots = 5, Compare with = no workspace: Five slots score 0.915 against 0.276 with no workspace, a ratio of 3.32. Choose 2 slots and the score is 0.154, below no workspace. Choose 10 and it falls back to 0.351. In this design the number of slots decided whether the shared space helped.
 
 **Why it matters:** The brain theory assumes a similar capacity limit on how many items the shared channel holds at once. The software paper notes in passing that human working memory holds fewer than ten items; no study here measures a slot count in a brain.
 
@@ -166,19 +166,19 @@ With 5 slots the score is 0.915, 0.639 above the score with no workspace (0.276)
 
 **In machines:** A reported result on one design and one task: the workspace is the team's own design, built on SCOFF, so the fair comparison is SCOFF with a workspace against SCOFF without one.
 
-**Assumptions and limits:** One design and one task. The paper reads the fall after eight slots as the cost of a looser limit, and the chapter's reading that too few slots starve the modules is the chapter's, not the paper's. No spread over runs is given in the chapter.
+**Assumptions and limits:** One design and one task. The paper reads the fall after eight slots as the cost of a looser limit, and the chapter's reading that too few slots starve the modules is the chapter's, not the paper's. No spread over runs is given in the chapter, so none is shown, and the right-hand panel shows only the five slot counts measured.
 
 **Check:** How much higher is the five-slot score than the no-workspace score, in points and as a ratio?
 
 **Answer:** 0.915 - 0.276 = 0.639 points, and 0.915/0.276 = 3.32 times.
 
-**Source:** Five shared slots helped a software workspace, and two hurt it; anchor `five-shared-slots-helped-a-software-workspace-and-two-hurt-it`. Reported results from the chapter and its source note on Goyal and colleagues' bouncing-ball task (Table 2 of the paper): 0.276 with no workspace, and 0.154, 0.487, 0.915, 0.891, 0.351 with 2, 4, 5, 8, 10 slots. The differences and ratios are the companion's arithmetic.
+**Source:** Five shared slots helped a software workspace, and two hurt it; anchor `five-shared-slots-helped-a-software-workspace-and-two-hurt-it`. Reported results from the chapter and its source note on Goyal and colleagues' bouncing-ball task (the paper's table of this task): 0.276 with no workspace, and 0.154, 0.487, 0.915, 0.891, 0.351 with 2, 4, 5, 8, 10 slots. The differences and ratios are the companion's arithmetic.
 
 ## C31-D05: What happens to the leap if tokens are not independent?
 
 The formula p to the power L treats tokens as independent. What if tokens sometimes go together, all right or all wrong?
 
-Independent tokens multiply, so a long answer needs every token right and the chance falls with length. Tokens that go together share one outcome, so the whole answer is right with chance p regardless of length. Real tokens are somewhere in between, so the true leap is smaller than p^L when tokens are positively related.
+Independent tokens multiply, so a long answer needs every token right and the chance falls with length. Tokens that go together share one outcome, so the whole answer is right with chance p regardless of length. Real tokens are somewhere in between, so a positive relation among tokens would make the rise in exact match less abrupt than p^L predicts; this mixture does not say by how much.
 
 $$
 P(\text{exact})=t\,p+(1-t)\,p^{L}
@@ -198,7 +198,7 @@ If tokens go together in 0 percent of answers and are independent in the rest, a
 
 **Calculation:** P = t x p + (1 - t) x p^10. Small: 0 x 0.5 + 1 x 0.000977 = 0.000977. Larger: 0 x 0.9 + 1 x 0.349 = 0.349.
 
-**Takeaway:** The leap from nothing to a third depends on the independence assumption. The more tokens go together, the closer exact match is to per-token accuracy and the smaller the leap.
+**Takeaway:** The sudden look of the jump depends on the independence assumption. The more tokens go together, the closer exact match is to per-token accuracy: the ratio between the two models falls from about 357 to 1.8 and the curve straightens, although the absolute gap does not shrink (0.348 at t = 0, 0.400 at t = 1).
 
 **What happens:** At Share of the time tokens go together (t) = 1, Tokens in the answer (L) = 10: When tokens always go together the whole answer is right with chance p, so exact match is 0.5 and 0.9: no leap, just the per-token accuracy. At t = 0 it is the chapter's 0.001 and 0.349.
 

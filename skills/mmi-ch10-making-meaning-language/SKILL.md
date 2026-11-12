@@ -39,7 +39,7 @@ For decoding a command by the rulebook, use C10-D01. For the reported SCAN score
 - The scores are 2018 recurrent networks and 2023 transformers on specific held-out sets; each bar has its own best network, and there is no combined score.
 - No people were tested on SCAN. The colored-circle study had 25 people online, with no brain measurement, and nothing shows that people and models err for the same reasons.
 - The people-study model was trained on a mixture chosen to approximate human accuracy, so its closeness to people is by design.
-- The shuffling demonstration is a constructed illustration with disclosed seed and an assumed uniform reassignment; it is not the paper's training procedure.
+- The shuffling demonstration is a constructed illustration with disclosed seed and an assumed uniform one-to-one reassignment (the paper's Methods use random permutations; uniform is the companion's reading); it is not the paper's training procedure.
 - The rules for 'thrice', 'opposite' and 'around' are reconstructed by the companion and checked against the chapter's counts; the interval around 0.788 is the companion's own illustration.
 - For a brain, the mathematics is a model: a close fit to behavior is not proof of how neurons do it, and nothing here settles whether any system has experience. Say which of the three questions a result answers: does the model match behavior, does evidence support its mechanism, does evidence establish experience.
 - Separate what the book computes (an equation specifying what a machine does), what it models (a description that generates predictions), and what a study measured. Never present a simulation in this companion as a measurement.

@@ -68,9 +68,9 @@ $$
 - Score of a repeating string: 0.469
 - Share of random strings scoring above 1: 0.995
 
-At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings average a score of 1.34; the repeating string scores 0.469. Short random strings score above 1, and the average falls toward 1 only slowly as strings lengthen.
+At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings average a score of 1.34; the repeating string, with 0.5 of its cells on, scores 0.469. Short random strings score above 1, and the average falls toward 1 only slowly as strings lengthen.
 
-**Calculation:** Each string: c = Lempel-Ziv count of new patterns, p = its share of ones, C = c log2(32) / (32 x H(p)). Seeds are fixed by length and mix. The repeating string is 01 repeated to 32 cells.
+**Calculation:** Each string: c = Lempel-Ziv count of new patterns, p = its share of ones, C = c log2(32) / (32 x H(p)). Seeds are fixed by length and mix. The repeating string is 01 repeated to 32 cells (its share of ones is 0.5, exactly 0.5).
 
 **Takeaway:** For strings of a reasonable length the division makes repetition score far below noise, but short random strings overshoot 1 and the approach to 1 is slow.
 
@@ -82,7 +82,7 @@ At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings avera
 
 **In machines:** A machine's binary activity can be scored the same way. The normalization behaves the same for any binary string, which says nothing about experience.
 
-**Assumptions and limits:** Strings are independent random bits with a fixed chance of a one, which is a toy stand-in for noise. Strings with no mix of ones and zeros are skipped (their score is undefined). The spread shown is the middle 80 percent of 200 seeded strings, not a confidence interval. At very short lengths the repeating string need not score lower: at 8 cells with a 0.2 chance of a one, it scores above the random average.
+**Assumptions and limits:** Strings are independent random bits with a fixed chance of a one, which is a toy stand-in for noise. Strings with no mix of ones and zeros are skipped (their score is undefined). The spread shown is the middle 80 percent of 200 seeded strings, not a confidence interval. At very short lengths the repeating string need not score lower: at 8 cells with a 0.2 chance of a one, it scores above the random average. That repeating 00001 string has only 1 of 8 cells on (a share of 0.125, not 0.2), so its score is not comparable with random strings at a share of 0.2; its share is 0.1875 at 16 to 64 cells and near 0.2 only at long lengths.
 
 **Check:** In the left panel, does the mean score for 8-cell random strings sit above or below the mean for 1024-cell strings, at a mix of half the cells on?
 
@@ -262,7 +262,7 @@ A test that flags 10 of 100 cases and catches a share 0.5 of the cases with the 
 
 A decoding method read 48 of 48 answers from healthy volunteers correctly, and 5 of 5 decodable answers from one patient. Does a perfect record mean a perfect method?
 
-If each answer is right with chance a, all k are right with chance a to the power k. For 48 answers this falls quickly as a drops, but it stays above 5 percent down to about 0.94. So the record shows the error rate is probably well below 20 percent, not that it is zero.
+If each answer is right with chance a, all k are right with chance a to the power k. For 48 answers this falls quickly as a drops, but it stays above 5 percent down to about 0.94. So, if answers were independent, the record rules out a per-answer error above about 6 percent at the 5 percent level; it does not show the error rate is zero.
 
 $$
 P(\text{all } k\text{ correct})=a^{k},\qquad a_{5\%}=0.05^{1/k}
@@ -292,7 +292,7 @@ If each of 48 answers were right with chance 0.9, a perfect record would come up
 
 **In machines:** Any classifier with a short perfect record has the same limit: a perfect record shows low error only up to what the number of trials can resolve.
 
-**Assumptions and limits:** Each answer is correct independently with the same chance a. That is a simplification: the 48 answers came from 16 volunteers, three each, and the patient's answers came from one person in one session. The calculation does not estimate the method's real accuracy.
+**Assumptions and limits:** Each answer is correct independently with the same chance a. That is a simplification: the 48 answers came from 16 volunteers, three each, and the patient's answers came from one person. The calculation does not estimate the method's real accuracy.
 
 **Check:** A method is right 90 percent of the time per answer. How likely is a perfect record of 5, and of 48?
 

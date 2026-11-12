@@ -42,7 +42,7 @@ The neighbors read +10 from their usual level, so the guess is 20 + 0.5 x 10 = 2
 
 **Assumptions and limits:** The sender and receiver both know the center's usual level, the fraction and the neighbors' reading. Any saving depends on how good the guess is and how precisely the reading must be sent.
 
-**Check:** In a three-level network, a long bar has input 10 and a prediction of 10, and a short bar has input 10 and a prediction of 4. What residual does each send?
+**Check:** In the book's illustrative figure of a three-level network (constructed numbers, not from the paper), a long bar has input 10 and a prediction of 10, and a short bar has input 10 and a prediction of 4. What residual does each send?
 
 **Answer:** The long bar sends 10 - 10 = 0 and the short bar sends 10 - 4 = 6. A well-predicted input leaves little to carry.
 
@@ -68,9 +68,9 @@ $$
 - Theory sqrt(1 - rho^2): 0.6
 - Bits saved at equal precision: 0.788
 
-Fitted from 300 pairs, the guess has slope 0.842 against a true 0.8, and its residuals have 0.579 of the raw spread (theory 0.6). Sending the residual at the same precision then saves about 0.788 bits per reading; this bit count is the companion's addition.
+Fitted from 300 pairs, the guess has slope 0.842 against a true 0.8, and its residuals have 0.579 of the raw spread (theory 0.6). Sending the residual at the same precision then saves about 0.788 bits per reading, the companion's own count for finely quantized readings.
 
-**Calculation:** Slope = Cov(c, f) / Var(f) = 0.842. Residual spread / raw spread = 0.579; sqrt(1 - 0.8^2) = 0.6. Bits saved = log2(1 / 0.579) = 0.788.
+**Calculation:** Slope = Cov(c, f) / Var(f) = 0.842. Residual spread / raw spread = 0.579; sqrt(1 - 0.8^2) = 0.6. Bits saved = log2(1 / 0.579) = 0.788, valid when readings are sent in steps fine compared with their spread. The residuals are scored on the same 300 pairs the line was fitted to, which flatters short records.
 
 **Takeaway:** The best straight-line guess leaves a residual whose spread is sqrt(1 - rho^2) of the raw spread, so the better the neighbors predict the center, the less there is to send.
 
@@ -82,7 +82,7 @@ Fitted from 300 pairs, the guess has slope 0.842 against a true 0.8, and its res
 
 **In machines:** Fitting the slope Cov / Var from examples is ordinary least squares, a specification, and it needs the neighbors to vary.
 
-**Assumptions and limits:** A straight-line guess under squared error, normally distributed pairs, residuals scored on the same pairs the line was fitted to, and equal precision for the raw reading and the residual when counting bits. Association alone does not show that changing the neighbors would change the center.
+**Assumptions and limits:** A straight-line guess under squared error, normally distributed pairs, residuals scored on the same pairs the line was fitted to, and equal precision for the raw reading and the residual when counting bits. The bit count also assumes the reading is quantized finely compared with its spread; with coarse steps the saving differs. Association alone does not show that changing the neighbors would change the center.
 
 **Check:** The center and its neighbors have correlation 0.6. What share of the center's spread remains in the residual?
 
@@ -152,7 +152,7 @@ $$
 - Input reliability: 1
 - Expectation reliability: 0.1
 
-With noise variances 1 for the input and 10 for the expectation, the estimate settles at 11.1, between the expectation 2 and the input 12. The input's reliability is 10 times the expectation's, so it holds that share of the pull.
+With noise variances 1 for the input and 10 for the expectation, the estimate settles at 11.1, between the expectation 2 and the input 12. The input's reliability is 10 times the expectation's, so it holds 90.9 percent of the pull.
 
 **Calculation:** Reliabilities 1 and 0.1. Estimate = (1 x 12 + 0.1 x 2) / (1 + 0.1) = 11.1.
 
@@ -220,7 +220,7 @@ In a world that is changing, with chance 0.02 per trial, a learning rate of 0.1 
 
 If a percept leans on an expected tone, how often will a tone be reported when none was played?
 
-With more weight on the expectation, the percept shifts toward the expected tone and the sensory sample matters less. On no-tone trials the percept's mean moves from 0 toward 1 and across the criterion, and on tone trials it moves from 1 only closer to 1 while its spread shrinks.
+With more weight on the expectation, the percept shifts toward the expected tone and the sensory sample matters less. On no-tone trials the percept's mean moves from 0 toward 1 and passes the criterion at weight 0.5. On tone trials its mean stays at 1 for every weight and only its spread shrinks. The gap between the two means divided by the spread is 1 over the sensory spread at every weight, so in this model a higher weight is the same as a lower report criterion.
 
 $$
 \text{percept}=w\,s_{\text{exp}}+(1-w)\,x,\qquad x\sim\mathcal{N}(\mu,\sigma^{2}),\quad \mu=\begin{cases}1&\text{tone played}\\0&\text{no tone}\end{cases}
@@ -236,7 +236,7 @@ $$
 - Weight on the expectation: 0.3
 - Sensory noise sd: 0.5
 
-With weight 0.3 on the expectation, a tone is reported on 28.4 percent of no-tone trials and 92.3 percent of tone trials. Giving the expectation more weight pulls the percept toward the tone, so 'heard' answers rise whether or not it played.
+With weight 0.3 on the expectation, a tone is reported on 28.4 percent of no-tone trials and 92.3 percent of tone trials. At weight 0 the rates would be 15.9 and 84.1, so more weight raises 'heard' answers whether or not a tone played. This model cannot tell an overweighted expectation from a lower report criterion.
 
 **Calculation:** Percept = 0.3 x 1 + 0.7 x sample. No tone: sample mean 0, so percept mean 0.3, sd 0.35. P(percept > 0.5) = 0.284. Tone played: mean 1, P = 0.923.
 
@@ -250,7 +250,7 @@ With weight 0.3 on the expectation, a tone is reported on 28.4 percent of no-ton
 
 **In machines:** A system that fuses a prior with a reading will report what it expects if the prior weight is too high; the weight is a design setting.
 
-**Assumptions and limits:** A weighted mix of the expectation and a noisy sensory sample and a fixed reporting criterion. The studies' own model is an interpretation of reports, not a direct measurement of a weight in the brain, and the human studies do not show that a brain uses Rao and Ballard's rule.
+**Assumptions and limits:** A weighted mix of the expectation and a noisy sensory sample and a fixed reporting criterion. The studies' own model is an interpretation of reports, not a direct measurement of a weight in the brain, and the human studies do not show that a brain uses Rao and Ballard's rule. In this model, putting weight w on the expectation is the same as lowering the report criterion: the gap between the two percept means divided by the spread stays 1 / (sensory spread) for every w. So the model cannot tell an overweighted expectation from a more liberal tendency to say 'heard'; the studies' own analyses are a different, fuller model.
 
 **Check:** At weight 0.5 and spread 0.5, the no-tone percept has mean 0.5, the same as the criterion. What share of no-tone trials are reported as 'heard'?
 
@@ -278,11 +278,11 @@ $$
 - Flips seen: 20
 - Surprise if the coin is known: 1
 
-After 20 flips of the fair coin, chance 0.5, the next flip is worth 1.03 bits of surprise but only 0.032 bits of information about the coin. An agent paid for surprise keeps being paid where the coin is fair; one paid for information gain is not.
+After 20 flips of the fair coin, chance 0.5, the next flip is worth 1.03 bits of surprise and 0.032 bits of information about the coin. The surprise stays near 1 bit because the coin is fair, while the information gain has fallen from 0.279 bits at the first flip.
 
 **Calculation:** Learner starts from a uniform view of the chance of heads; after h heads in n flips it predicts heads with (h + 1) / (n + 2). Surprise is -log2 of the predicted chance of the flip that occurs. Information gain is H(predicted flip) minus the expected H(flip given the coin's chance).
 
-**Takeaway:** An agent paid for surprise keeps being paid by a coin that is fair, while one paid for information gain stops once the chance is learned.
+**Takeaway:** An agent paid for surprise keeps being paid by a coin that is fair, while one paid for information gain nearly stops once the chance is learned.
 
 **What happens:** At Coin's chance of heads = 0.5, Flips seen so far = 100: After 100 flips of the fair coin the next flip is still worth 1.01 bits of surprise, but only 0.007 bits of information about the coin, close to 1 / (2 n ln 2). A reward for surprise keeps paying here; a reward for information gain has nearly stopped.
 
@@ -298,4 +298,4 @@ After 20 flips of the fair coin, chance 0.5, the next flip is worth 1.03 bits of
 
 **Answer:** Zero bits of information gain, since nothing about the coin is left to learn, and exactly 1 bit of surprise per flip.
 
-**Source:** A television that changed channels; anchor `a-television-that-changed-channels`. The chapter's coin paragraph: a known fair coin teaches nothing, a coin of uncertain fairness teaches, and a coin that always lands heads stops being a surprise. The companion's exact calculation adds a uniform starting view (Laplace's rule) and sums over the flips. It is not a simulation of Burda and colleagues' agents, who were paid for prediction error on learned features.
+**Source:** A television that changed channels; anchor `a-television-that-changed-channels`. The chapter's coin paragraph: a known fair coin teaches nothing, a coin of uncertain fairness teaches, and a coin that always lands heads stops being a surprise. The companion's exact calculation adds a uniform starting view (Laplace's rule) and sums over the flips. It is not a simulation of Burda and colleagues' agents, who were paid for prediction error on learned features. The 1 / (2 n ln 2) estimate in the reveal is a standard large-n approximation added by the companion, not from the chapter.

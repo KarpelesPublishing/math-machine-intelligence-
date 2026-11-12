@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-07.md",
   "source_sha256": "73dffbda20c405c087b108ba6bc66473eb277e06e865f464feb44dfaf7c5b9d9",
-  "calculation_sha256": "bed8f1d54588de98c7524f9b0703ec12be95911eed5d6d907fc9a37a54e9bff3",
+  "calculation_sha256": "4fe602cc19872373882de26a1952aaabe83cbeaeeb8102fa78143632edaf25b1",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -220,7 +220,7 @@
         "derivation-8-interference-between-lessons-chapter-7"
       ],
       "provenance": "A companion toy that uses the same A and B as the previous card to mimic the chapter's contrast between focused and interleaved training. The chapter reports McClelland and colleagues' penguin network in words only, with no numbers, so none of its results are reproduced. The overlaps, rates and the 60 updates are made up and nothing is random.",
-      "kind": "simulation",
+      "kind": "constructed example",
       "assumptions": "A linear learner with unit-length features that starts exactly right on A. Focused training updates only on B. Interleaved training alternates B and A, so half its updates go to the old item and its progress is counted in updates of every kind. The chapter's network is nonlinear and far larger.",
       "prediction": "Predict, for overlap 0.5 and rate 0.25, which schedule leaves A with the smaller error after 40 updates and which gets B below an error of 0.1 sooner.",
       "reveal": {
@@ -229,10 +229,10 @@
           "overlap": 0.5,
           "rate": 0.25
         },
-        "text": "Focused training gets B under 0.1 after 10 updates but leaves A off by 0.75. Interleaved training takes 27 updates to get B under 0.1, and A's error is only 0.037 after 40 updates. Faster for the new item, worse for the old one."
+        "text": "Focused training gets B under 0.1 after 10 updates but leaves A off by about 0.71 after 10 updates and 0.75 in the long run. Interleaved training takes 27 updates to get B under 0.1, and A's error is only 0.037 after 40 updates. Faster for the new item, worse for the old one."
       },
       "takeaway": "In the toy, training on the new item alone learns it fastest and harms the old item most, while mixing in the old item is slower per update and leaves very little harm.",
-      "why_it_matters": "This is the same trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.",
+      "why_it_matters": "This echoes the trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.",
       "sides": {
         "brain": "The two-store proposal suggests that renewed activity from past events could give a slow learner mixed examples. Wilson and McNaughton found that pairs of cells that fired together awake fired together more in later sleep, and the 2010 ripple study cut ripples short; neither shows replay teaching a slow system.",
         "machine": "McClelland and colleagues report that focused penguin training learned the new facts much more rapidly but treated all animals as swimmers that cannot fly, while mixed teaching was slower and caused very little harm. This toy only echoes that contrast."
@@ -275,7 +275,7 @@
       "function": "schedule_picture",
       "alt": "Error on the new item and on the old item over 60 updates for focused and for interleaved training in a two-item toy.",
       "symbols": "w: the learner's weights; x_i, y_i: the features and right answer of the item being trained on, A or B; eta: the step size, called the rate here; overlap: the dot product of A's and B's features, as in the previous card",
-      "application": "This is the same trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.",
+      "application": "This echoes the trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.",
       "default_parameters": "Training schedule: focused · Overlap of A and B: 0.5 · Rate: 0.25",
       "worked_example": {
         "B error after 40 updates": "1.51e-05",
@@ -309,16 +309,16 @@
       ],
       "source_anchor": "forgotten-lists-were-still-relearned-faster",
       "source_section": "Forgotten lists were still relearned faster",
-      "provenance": "The chapter's savings formula and worked example (25 repetitions, 20 on relearning). Ebbinghaus's 0.58 after minutes and 0.21 after a month, Murre and Dros's one-subject 31-day savings of about 0.04 (about 0.14 adjusted) and the one-twentieth model are as the chapter reports them. Ebbinghaus used his own formula, not the plain ratio, so the efforts shown for the reported savings are the companion's scaling to the chosen first effort, not data.",
+      "provenance": "The chapter's savings formula and worked example (25 repetitions, 20 on relearning). Ebbinghaus's 0.58 after minutes and 0.21 after a month, Murre and Dros's one-subject 31-day savings of about 0.04 (about 0.14 adjusted) and the one-twentieth model are as the chapter reports them. Ebbinghaus used his own formula, not the plain ratio, so the efforts shown for the reported savings are the companion's scaling to the chosen first effort, not data. For the two Ebbinghaus cases, the plain ratio is applied to his 0.58 and 0.21 only as an illustration of what they would mean on that ratio; the chapter says his figures fit this measure only roughly.",
       "kind": "formula",
-      "assumptions": "Both efforts are in the same units, on the same material and with the same stopping standard. The six cases are separate points and not a forgetting curve; the chapter gives only two of Ebbinghaus's values, so nothing is drawn between them. The one-twentieth model is the chapter's illustration, not a reported result. Savings alone does not show what a model's weights retain.",
+      "assumptions": "Both efforts are in the same units, on the same material and with the same stopping standard. The six cases are separate points and not a forgetting curve, and in the right panel every dot lies on the line S = 1 minus the share by construction, so that panel only places the cases; the chapter gives only two of Ebbinghaus's values, so nothing is drawn between them. The one-twentieth model is the chapter's illustration, not a reported result. Savings alone does not show what a model's weights retain.",
       "prediction": "Learning a list took 25 repetitions and relearning it took 20. Predict the savings, and then the savings for a failed model that recovers with one twentieth of the original training.",
       "reveal": {
         "state": {
           "case": "chapter example",
           "l0": 25
         },
-        "text": "Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus's 0.58 and 0.21 and Murre and Dros's 0.04 and 0.14."
+        "text": "Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus's 0.58 and 0.21 (he used his own formula, so the plain-ratio efforts are only an illustration) and Murre and Dros's 0.04 and 0.14."
       },
       "takeaway": "Savings counts the effort that relearning did not need, so a list that seems forgotten can still leave a large saving: forgetting need not be erasure.",
       "why_it_matters": "A system that fails an exact-answer test may still be quick to restore. Savings asks how much of the first effort survived, which a recall test alone does not.",
@@ -337,6 +337,14 @@
             "chapter example",
             "Ebbinghaus minutes",
             "Ebbinghaus one month",
+            "Murre-Dros 31 days",
+            "Murre-Dros adjusted",
+            "one twentieth"
+          ],
+          "value_labels": [
+            "chapter example",
+            "Ebbinghaus minutes (his own formula)",
+            "Ebbinghaus one month (his own formula)",
             "Murre-Dros 31 days",
             "Murre-Dros adjusted",
             "one twentieth"
@@ -367,7 +375,7 @@
         "Effort to relearn": "20",
         "Effort saved": "5"
       },
-      "worked_interpretation": "With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values, the efforts are the companion's scaling, not data.",
+      "worked_interpretation": "With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values the efforts are the companion's scaling, not data, and Ebbinghaus used another formula.",
       "reader_anchor": "C07-D04"
     },
     {

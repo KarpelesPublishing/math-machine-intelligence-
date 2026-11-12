@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-02.md",
   "source_sha256": "b93697278ad997df3ae9cc60a38c3c5e89847957684c2d365447b97af5d3c1e7",
-  "calculation_sha256": "e72e9db278ef548cb38659f6f9649dd1a29f55b301a7f39bd57cf7efe0f845eb",
+  "calculation_sha256": "bfe77f6b646702b65cbd204a9ea2006dd5e10857a3796aaf44543bc7ad904ab2",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -132,12 +132,12 @@
           "touch_sd": 1.0,
           "sight_sd": 1.0
         },
-        "text": "With two equally sharp senses, the blend's sd is 1/sqrt(2), about 0.707 of either sense's. Every other setting here gains less."
+        "text": "With two equally sharp senses, the blend's sd is 1/sqrt(2), about 0.707 of either sense's. With sight held at 1 mm, every other touch setting gains less. (Sight 2 mm with touch 2 mm, also equal senses, gives the same ratio, 0.707, at a larger absolute sd, 1.41 mm.)"
       },
       "takeaway": "Precisions add, so the blend is always sharper than the better sense, and most so when the senses are equally sharp.",
       "why_it_matters": "Picking the better source throws away what the other one knows. Two unrelated reports partly cancel each other's misses, so a combiner that keeps both can do better than the best single source.",
       "sides": {
-        "brain": "In the experiment the gain over the better sense was clearest when the picture was grainy, which is when the two senses were closer in sharpness.",
+        "brain": "In the experiment the gain over the better sense was clearest when the picture was grainy and slight with a clear picture, as the chapter reports.",
         "machine": "A system that fuses two sensors gains most when they are about equally reliable, and little when one is far worse."
       },
       "explanation": "Picking the better sense ignores what the other knows. Two reports whose errors are unrelated partly cancel each other's misses, so the blend scatters less than either. The gain is greatest when the senses are equally sharp and fades as one gets worse. Doubling a sense's error sd cuts its precision to a quarter, and its share follows, so a sense loses say faster than it loses accuracy.",
@@ -180,7 +180,7 @@
         "Blend as a fraction of the better sense": "0.894",
         "Share of the say held by touch": "0.2"
       },
-      "worked_interpretation": "Precisions add, so the blend's error sd, 0.894 mm, is below the better sense's 1 mm, at 0.894 of it. Touch keeps only 0.2 of the say, and the gain shrinks as the senses become unequal.",
+      "worked_interpretation": "Precisions add, so the blend's error sd, 0.894 mm, is below the better sense's 1 mm, at 0.894 of it. Touch holds 0.2 of the say, and the gain shrinks as the senses become unequal.",
       "reader_anchor": "C02-D02"
     },
     {
@@ -225,13 +225,13 @@
         },
         "text": "At sd 3 and correlation 0.5 the blend's variance is about 4.05, above the better sensor's 4. The weights were chosen as if errors were unrelated, and the blend has become worse than the better sensor alone. The tipping point is a correlation near 0.48."
       },
-      "takeaway": "Treating related errors as unrelated makes a blend claim more reliability than it has, and past some correlation it is worse than the better source alone.",
+      "takeaway": "Treating positively related errors as unrelated makes a blend claim more reliability than it has, and when the second source is noticeably less sharp, past some correlation it is worse than the better source alone (about 0.48 for a second sd of 3). With two equally sharp sources it only falls back to the better source at correlation 1.",
       "why_it_matters": "A fusion rule that adds precisions without asking whether errors are shared can report confidence it has not earned. Asking whether sources err together comes before asking how to weight them.",
       "sides": {
         "brain": "In the slant study, six of eight observers did better with two visual cues than with either alone, and the fit held for three only when some shared error was allowed. Both cues reach the brain through one image.",
         "machine": "A system built to assume unrelated errors adds the precisions anyway. With positively related errors it reports more reliability than it has."
       },
-      "explanation": "The blend's variance has a cross term that depends on how far the two errors move together. Two thermometers in the same sunny window that both read two degrees high agree with each other and are both wrong, so they are closer to one witness repeated. The usual weights assume the cross term is zero; when it is not, the real variance exceeds the claimed one.",
+      "explanation": "The blend's variance has a cross term that depends on how far the two errors move together. Two thermometers in the same sunny window that both read two degrees high agree with each other and are both wrong, so they are closer to one witness repeated. The usual weights assume the cross term is zero; when the errors are positively related, the real variance exceeds the claimed one (a negative correlation does the opposite).",
       "check": "Two equally weighted thermometers each have error sd 2. At what correlation does the blend have the same variance as one thermometer alone?",
       "answer": "With equal sds and weights one half, V = 2 + 2 rho, which equals 4 only when rho = 1. When the errors move perfectly together, the second thermometer adds nothing.",
       "controls": [
@@ -511,7 +511,7 @@
         },
         "text": "At 20 degrees apart the observer gives one cause a chance of only about 0.1, so the pull falls to about a tenth of the way to the light. Compare the 4 degree default, where the pull is about 0.6."
       },
-      "takeaway": "A mind that weighs one cause against two lets a nearby light pull the sound toward it and a distant light barely move it.",
+      "takeaway": "A mind that weighs one cause against two lets a nearby light pull the judged sound a large fraction of the way toward it, and a distant light a much smaller fraction.",
       "why_it_matters": "Blending is a mistake if the reports describe different things. A combiner has to infer which signals share a cause before it pools them.",
       "sides": {
         "brain": "The model accounted for 97 percent of the variation in nineteen people's pooled judgments, against 56 percent for a model that always blends. That is a fit to behavior with four adjustable settings; the study recorded nothing from the brain.",
@@ -595,7 +595,7 @@
       "source_section": "A pilot must ignore the inner ear",
       "provenance": "Companion calculation built on the chapter's pilot example. The chapter gives no numbers; the error sds 3 and 1 and the biases 0, 3 and 6 are made up. The instruction to disregard the sensation is the FAA handbook's; treating it as zero weight is the chapter's interpretation, not a measured weight.",
       "kind": "constructed example",
-      "assumptions": "Only the inner-ear report is biased; the instrument is unbiased; the two random errors are unrelated; the offset is known to the calculator. The study of pilots is not simulated; the chapter notes the handbook reports no outcome comparison.",
+      "assumptions": "Only the inner-ear report is biased; the instrument is unbiased; the two random errors are unrelated; the offset is present in the inner-ear report and is not corrected for (if it were known and subtracted, the unbiased weight would be right again). The comparison is between fixed weights by mean squared error. The study of pilots is not simulated; the chapter notes the handbook reports no outcome comparison.",
       "prediction": "With the inner ear's error sd at 3 and the instrument's at 1, the unbiased rule gives the ear a weight of 0.1. If the ear has a steady offset of 6, will the best weight go up, go down, or stay at 0.1?",
       "reveal": {
         "state": {
@@ -610,7 +610,7 @@
         "brain": "In a sustained turn the inner ear can stop signaling the turn, so the pilot feels level. The handbook's advice is to trust the instruments over bodily sensation.",
         "machine": "A filter can go wrong when its inputs share an unaccounted-for error or are biased; adding inputs does not remove the conditions for a useful blend."
       },
-      "explanation": "Scatter averages away when reports are blended, but a steady offset does not. The squared error of the blend has one part from the offset, which grows with the square of the weight, and one part from scatter. A biased sense therefore deserves less weight than its scatter alone would give.",
+      "explanation": "Scatter averages away when reports are blended, but a steady offset does not. The squared error of the blend has one part from the offset, which grows with the square of the weight, and one part from scatter. A biased sense therefore deserves less weight than its scatter alone would give. If the offset were known, it could be removed before blending; this calculation is for an offset that is not removed.",
       "check": "If the inner ear has no bias, what weight minimizes the squared error, and what is the squared error there?",
       "answer": "With b = 0 the best weight is 1/(1 + 9) = 0.1, matching the precision rule, and the squared error is 0.01 x 9 + 0.81 x 1 = 0.9.",
       "controls": [

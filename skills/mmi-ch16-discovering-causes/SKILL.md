@@ -13,7 +13,7 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 
 - **Which explanations survive three watched events? (C16-D01):** Block B alone does nothing, block A alone lights the machine, and A with B keeps it lit. Which of four possible explanations are left, and which block should a child take off?
 - **Why can identical logs hide different effects of setting a switch? (C16-D02):** Two machines keep the same log of a switch and a light. If you set the switch by hand, does the light follow in both?
-- **How much of a risk ratio is the hidden gene? (C16-D03):** Smokers look five times as likely to get cancer when everyone is lumped, but a gene feeds both smoking and cancer. What does adjusting by the gene give?
+- **How much of a risk ratio is the gene? (C16-D03):** Smokers look five times as likely to get cancer when everyone is lumped, but a gene feeds both smoking and cancer. What does adjusting by the gene give?
 - **How common must a hidden trait be to explain away a risk ratio? (C16-D04):** Suppose smoking did nothing and one yes-or-no trait caused the whole association. How common would it have to be among smokers?
 - **When is it safe to push a stand-in score? (C16-D05):** A boat-racing game scores target hits, but the goal is to finish. Which sets of allowed behaviors let pushing the score hurt the goal?
 - **How much does being allowed to set variables help an agent? (C16-D06):** An agent has five steps to explore a five-variable world, then is told which variable to push as high as possible. Does setting variables beat only watching?

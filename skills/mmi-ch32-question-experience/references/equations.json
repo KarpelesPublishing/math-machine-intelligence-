@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-32.md",
   "source_sha256": "ddcc1a7c15c70fd784b6d819a08370bb57437c7be44efd96cdbe1a63aff18b49",
-  "calculation_sha256": "cbb5c36be385143b9b325caa17728a11837e52bcc8f0e4c7c058e374d838394e",
+  "calculation_sha256": "b5540c9d67b21eab4700f626535bc289c17e774b3ed10a50e6ee92426671d2f7",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -133,7 +133,7 @@
       "source_section": "Nine of 43 patients with only reflexive behavior gave complex responses to magnetic pulses",
       "provenance": "Simulation by the companion, with disclosed seeds, 200 random strings per setting. The chapter states that the normalization approaches 1 for long random strings and that short strings can score above 1; it does not give these simulated values. The count is the Lempel-Ziv 1976 exhaustive parse that the chapter's source note names. No patient data are used.",
       "kind": "simulation",
-      "assumptions": "Strings are independent random bits with a fixed chance of a one, which is a toy stand-in for noise. Strings with no mix of ones and zeros are skipped (their score is undefined). The spread shown is the middle 80 percent of 200 seeded strings, not a confidence interval. At very short lengths the repeating string need not score lower: at 8 cells with a 0.2 chance of a one, it scores above the random average.",
+      "assumptions": "Strings are independent random bits with a fixed chance of a one, which is a toy stand-in for noise. Strings with no mix of ones and zeros are skipped (their score is undefined). The spread shown is the middle 80 percent of 200 seeded strings, not a confidence interval. At very short lengths the repeating string need not score lower: at 8 cells with a 0.2 chance of a one, it scores above the random average. That repeating 00001 string has only 1 of 8 cells on (a share of 0.125, not 0.2), so its score is not comparable with random strings at a share of 0.2; its share is 0.1875 at 16 to 64 cells and near 0.2 only at long lengths.",
       "prediction": "Predict whether random 32-cell strings average a score below 1, near 1 or above 1, and whether a string that repeats a fixed rhythm scores higher or lower than they do.",
       "reveal": {
         "state": {
@@ -189,7 +189,7 @@
         "Score of a repeating string": "0.469",
         "Share of random strings scoring above 1": "0.995"
       },
-      "worked_interpretation": "At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings average a score of 1.34; the repeating string scores 0.469. Short random strings score above 1, and the average falls toward 1 only slowly as strings lengthen.",
+      "worked_interpretation": "At 32 cells with a chance 0.5 that a cell is on, 200 seeded random strings average a score of 1.34; the repeating string, with 0.5 of its cells on, scores 0.469. Short random strings score above 1, and the average falls toward 1 only slowly as strings lengthen.",
       "reader_anchor": "C32-D02"
     },
     {
@@ -531,7 +531,7 @@
       "source_section": "Tennis for yes: what a scan needs before it can be an answer",
       "provenance": "The counts 48 of 48 (16 healthy volunteers, 48 questions) and 5 of 5 decodable patient answers are the chapter's. The probability calculation is the companion's own and is not in the chapter or the paper.",
       "kind": "formula",
-      "assumptions": "Each answer is correct independently with the same chance a. That is a simplification: the 48 answers came from 16 volunteers, three each, and the patient's answers came from one person in one session. The calculation does not estimate the method's real accuracy.",
+      "assumptions": "Each answer is correct independently with the same chance a. That is a simplification: the 48 answers came from 16 volunteers, three each, and the patient's answers came from one person. The calculation does not estimate the method's real accuracy.",
       "prediction": "Predict the lowest per-answer accuracy that would still give 48 of 48 at least one time in twenty.",
       "reveal": {
         "state": {
@@ -546,7 +546,7 @@
         "brain": "The decoder compared each scan with two reference scans. A correct decoding of a yes-or-no question about a name is a match to a checkable fact, not evidence of what the patient experienced.",
         "machine": "Any classifier with a short perfect record has the same limit: a perfect record shows low error only up to what the number of trials can resolve."
       },
-      "explanation": "If each answer is right with chance a, all k are right with chance a to the power k. For 48 answers this falls quickly as a drops, but it stays above 5 percent down to about 0.94. So the record shows the error rate is probably well below 20 percent, not that it is zero.",
+      "explanation": "If each answer is right with chance a, all k are right with chance a to the power k. For 48 answers this falls quickly as a drops, but it stays above 5 percent down to about 0.94. So, if answers were independent, the record rules out a per-answer error above about 6 percent at the 5 percent level; it does not show the error rate is zero.",
       "check": "A method is right 90 percent of the time per answer. How likely is a perfect record of 5, and of 48?",
       "answer": "0.9^5 = 0.59, so a perfect record of 5 is likely. 0.9^48 = 0.0064, so a perfect record of 48 would be rare at that accuracy.",
       "controls": [

@@ -110,13 +110,13 @@ $$
 - Ceiling as reports are added: 3.33
 - Overcount if treated as independent (times): 3.1
 
-8 reports whose errors correlate at 0.3 are worth 2.58 independent ones, so treating them as independent counts the evidence 3.1 times over. As reports are added the worth approaches 3.33.
+8 reports whose errors correlate at 0.3 are worth 2.58 independent ones, so treating them as independent counts the evidence 3.1 times over (the book's own derivation). As reports are added the worth approaches 3.33.
 
 **Calculation:** n_eff = n / (1 + (n - 1) rho) = 8 / (1 + 7 x 0.3) = 8 / 3.1 = 2.58. Ceiling 1/rho = 3.33.
 
 **Takeaway:** Shared errors cap what more reports can add. A large headcount of related reports can be worth only a handful of independent ones.
 
-**What happens:** At Number of reports = 8, Error correlation between any two reports = 0.3: Eight reports at correlation 0.3 are worth 8/3.1, about 2.6 independent reports, and no number of such reports can exceed 10/3, about 3.3. Multiplying their likelihoods as if independent would count the evidence about 3.1 times over.
+**What happens:** At Number of reports = 8, Error correlation between any two reports = 0.3: Eight reports at correlation 0.3 are worth 8/3.1, about 2.6 independent reports, and no number of such reports can exceed 10/3, about 3.3. Multiplying their likelihoods as if independent would count the evidence about 3.1 times over (the book's own derivation, under equal noise, one shared correlation, bell-shaped errors and the same shift in every report).
 
 **Why it matters:** Multiply-and-rescale cannot tell whether two reports repeat the same source. Computing the effective size first says how much evidence the reports really carry.
 
@@ -156,7 +156,7 @@ With the person at 70, the AI at 80 and the pair at 75, the better solo score is
 
 **Calculation:** synergy = P_pair - max(P_H, P_A) = 75 - max(70, 80) = 75 - 80 = -5.
 
-**Takeaway:** Beating the weaker member is easy. A pair adds value only by passing the better one, and which member is better depends on the task.
+**Takeaway:** Beating the weaker member is easy. A pair adds score beyond its better member only by passing it, and which member is better depends on the task. A faster answer or lower cost can still matter, and is counted separately.
 
 **What happens:** At Pair's score = 75, Person alone = 70: The pair at 75 beats the person's 70 by 5 and falls 5 short of the AI's 80, so synergy is minus 5. Raise the person's score to 90 and the baseline switches to the person.
 
@@ -178,13 +178,13 @@ With the person at 70, the AI at 80 and the pair at 75, the better solo score is
 
 Across 106 experiments pairs trailed the better member by 0.23 on average, yet the pair gained when the person was better alone. How do those fit together?
 
-A mean of two subgroup effects sits between them, closer to the larger subgroup. The reported overall effect is nearer the AI-better effect, which is what a mixture dominated by that kind of experiment would produce. The review's pooling is not this simple, so the share is illustrative.
+A mean of two subgroup effects sits between them, closer to the larger subgroup. The review's main text does not report how many experiments fall in each subgroup, so the share of 0.31 is only the value the arithmetic would need, not a count. The review's pooling is not this simple, so the share is illustrative.
 
 $$
 \bar d=q\,d_{H}+(1-q)\,d_{A},\qquad d_H=0.46,\ d_A=-0.54
 $$
 
-**Symbols:** d_H: the reported synergy when the person alone was better, 0.46; d_A: the reported synergy when the AI alone was better, minus 0.54; q: the share of experiments where the person was better alone (an assumption here; the chapter does not give it); d-bar: the share-weighted mean of the two subgroup effects
+**Symbols:** d_H: the reported synergy when the person alone was better, 0.46; d_A: the reported synergy when the AI alone was better, minus 0.54; q: the share of experiments where the person was better alone (an assumption here; the chapter does not give it); d-bar: the companion's share-weighted mean of the two subgroup effects; the review does not report this quantity
 
 **Predict:** Predict whether the reported overall average of minus 0.23 lies closer to the person-better effect or to the AI-better effect.
 
@@ -198,7 +198,7 @@ If a share 0.31 of experiments had the person better alone (effect 0.46) and the
 
 **Calculation:** mean = share x 0.46 + (1 - share) x (-0.54) = 0.31 x 0.46 + 0.69 x (-0.54) = -0.23. Solving mean = -0.23 gives share = (-0.23 + 0.54) / (0.46 + 0.54) = 0.31.
 
-**Takeaway:** An average near zero or below it can hide a large gain when the person is the stronger member and a large loss when the machine is.
+**Takeaway:** An average near zero or below it can hide a gain when the person is the stronger member and a loss when the machine is.
 
 **What happens:** At Share of experiments where the person was better alone = 0.31: A share of about 0.31 gives 0.31 x 0.46 + 0.69 x (-0.54) = -0.23, matching the reported average. That is arithmetic, not a finding. The same overall number would also arise from many other splits if the effects differed.
 
@@ -208,7 +208,7 @@ If a share 0.31 of experiments had the person better alone (effect 0.46) and the
 
 **In machines:** The AI-better case is where the pair lost to the machine alone. Whether a pair can be routed to the better member for each question is one of the features the chapter's proposed test would add.
 
-**Assumptions and limits:** The mixture treats the two subgroup effects as simple averages over all experiments. The review does not give a share of person-better experiments and does not pool this way, so the share that reproduces the reported average is only a way of seeing how an average of opposite effects can land near zero.
+**Assumptions and limits:** The mixture treats the two subgroup effects as simple averages over all experiments. The review does not give a share of person-better experiments and does not pool this way, so the share that reproduces the reported average is only a way of seeing how an average of opposite effects can land near zero. Each subgroup effect has its own uncertainty in the review, and a meta-analytic pooling of 370 effect sizes is not a count-weighted mean.
 
 **Check:** If exactly half the experiments had the person better alone, what would the simple mean of the two subgroup effects be?
 
@@ -240,7 +240,7 @@ With 200 questions and the pair's and the better solo's answers correlated at 0.
 
 **Calculation:** Per-question variance of the difference = 0.8 x 0.2 + 0.85 x 0.15 - 2 x 0.5 x sqrt(0.16 x 0.1275) = 0.145. se = sqrt(var/200) = 0.0269; power = 1 - Phi((1.645 se - 0.05)/se) = 0.585; questions for 80 percent = var x ((1.645 + 0.842)/0.05)^2 = 358.
 
-**Takeaway:** Whether 200 questions are enough depends on how strongly the pair and the solo agree, so the chapter's doubt is warranted but not a number.
+**Takeaway:** Whether 200 questions are enough depends on how strongly the pair and the solo agree, so the chapter's doubt about 200 questions holds under some assumptions and not others.
 
 **What happens:** At Questions in the test = 200, Correlation of correctness between pair and solo = 0.5: At 200 questions and correlation 0.5 the chance is about 0.59, short of 0.8. It rises to about 0.90 if the answers correlate at 0.8, and falls to about 0.37 if they do not correlate. The conclusion depends on an assumption nobody has measured here.
 

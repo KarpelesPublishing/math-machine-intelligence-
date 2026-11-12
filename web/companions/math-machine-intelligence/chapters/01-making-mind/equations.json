@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-01.md",
   "source_sha256": "1fa3b23c7f05c6e9ce6cfe570a5f96ce93339e5145a16f063a5fece6767664ac",
-  "calculation_sha256": "fd425145fe03f46c7b84e95b205228862bf3f18e9bed7abe53b926aeac017318",
+  "calculation_sha256": "e8495b1eccb07d68c14d954582ed2f52b2626482ad9b3ae3c42e4d2c13b0597d",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -122,7 +122,7 @@
       ],
       "source_anchor": "a-recording-is-not-a-command",
       "source_section": "A recording is not a command",
-      "provenance": "Simulation with disclosed seeds: 400 calibrations per setting, each tested on 300 fresh recordings (100 per attempt), using the invented three-center model of C01-D01. It does not model the study's calibration, whose five-minute standing test and six weeks of preparation the chapter reports.",
+      "provenance": "Simulation with disclosed seeds: 400 calibrations per setting, each tested on 3000 fresh recordings (1000 per attempt), using the invented three-center model of C01-D01. It does not model the study's calibration, whose five-minute standing test and six weeks of preparation the chapter reports.",
       "kind": "simulation",
       "assumptions": "A one-number recording, equal noise, centers at -1, 0 and 1, and a nearest-learned-center rule. The study's decoder was calibrated differently and updated over later days. A simulation here is not a measurement of any person or system.",
       "prediction": "At noise 1, predict whether 5 examples per attempt are enough to get near the ceiling, or whether you need many more.",
@@ -139,7 +139,7 @@
         "brain": "The person supplied the examples by attempting each movement; the chapter says Oskam supplied the examples and the machine found the pattern.",
         "machine": "The decoder estimates its own parameters from examples, and the examples it saw limit how well it can estimate."
       },
-      "explanation": "The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but accuracy can never pass the ceiling set by the noise in single recordings.",
+      "explanation": "The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but on average accuracy cannot pass the ceiling set by the noise in single recordings. A simulated average can land a hair above it by chance, so a gap smaller than 0.1 points is shown as under 0.1 points and not as a negative number.",
       "check": "Why does halving the noise help more than quadrupling the examples?",
       "answer": "The ceiling itself depends on the noise, and quadrupling the examples only halves the center error. Halving the noise both halves the center error and lifts the ceiling.",
       "controls": [
@@ -175,12 +175,12 @@
       "application": "It shows why the study's time spent calibrating, and recalibrating on later days, is part of the mathematics and not just housekeeping.",
       "default_parameters": "Examples per attempt: 10 · Noise (sigma): 1.0",
       "worked_example": {
-        "Average accuracy": "57.6 percent",
+        "Average accuracy": "57.8 percent",
         "Accuracy if the means were known": "58.9 percent",
-        "Gap to that ceiling": "1.3 points",
-        "Worst tenth of calibrations": "54 percent or less"
+        "Gap to that ceiling": "1.1 points",
+        "Worst tenth of calibrations": "57 percent or less"
       },
-      "worked_interpretation": "With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.6 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 54 percent or less.",
+      "worked_interpretation": "With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.8 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 57 percent or less.",
       "reader_anchor": "C01-D02"
     },
     {
@@ -394,7 +394,7 @@
           "ratio": 2,
           "rule": "reliability weights"
         },
-        "text": "Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat it."
+        "text": "Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat the steadier sense, because it is that sense."
       },
       "takeaway": "A rule is an idea until its predictions are checked, and different rules predict different leans and different gains.",
       "why_it_matters": "This is the difference between describing, predicting and building: the rule described a pattern, predicted what happens when a sense degrades, and can be used to build a machine that combines measurements.",
@@ -404,7 +404,7 @@
       },
       "explanation": "The reliability-weight rule makes two predictions. As the picture gets grainier, the judgment should lean smoothly toward touch. And the two senses together should discriminate more finely than either alone. A plain average predicts no lean. A winner-take-all rule predicts a sudden jump and no combined gain. Observing a lean and a gain together fits the reliability rule and counts against the others.",
       "check": "If people showed a smooth lean toward touch but no gain from using both senses, which of the three rules would that count against?",
-      "answer": "It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either.",
+      "answer": "It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either. A lean without a gain could also come from errors the two senses share (Chapter 2 shows shared error reduces the gain), so it counts against the rule only together with the independence assumption.",
       "controls": [
         {
           "key": "ratio",

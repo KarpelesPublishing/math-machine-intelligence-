@@ -68,7 +68,7 @@ $$
 - Rate a keyword checker finds: 0.5
 - Cases naming the hint where nothing changed: 0
 
-A hint of 2 points changes 2 answers, and 1 of those 2 reports name it, so F_H = 0.5. A keyword checker finds 0.5. The report names the hint in 0 cases where it changed nothing, which F_H does not count.
+A hint of 2 points changes 2 answers, and 1 of those 2 reports names it, so F_H = 0.5. A keyword checker finds 0.5. The report names the hint in 0 cases where it changed nothing, which F_H does not count.
 
 **Calculation:** F_H = (changed answers whose report names the hint) / (changed answers) = 1/2.
 
@@ -82,19 +82,19 @@ A hint of 2 points changes 2 answers, and 1 of those 2 reports name it, so F_H =
 
 **In machines:** Turpin and colleagues and Chen and colleagues tested language models with biased prompts and hints and found reasons that did not name them. The chapter quotes noise-adjusted study scores of 25 percent for Claude 3.7 Sonnet and 39 percent for DeepSeek R1; those are model-based estimates, not this simple rate.
 
-**Assumptions and limits:** Deterministic cases. 'Mention' is a deliberately narrow test and does not establish full faithfulness. At other hint sizes the report wording is kept as the chapter fixes it, naming the hint only for score -1.
+**Assumptions and limits:** Deterministic cases. 'Mention' is a deliberately narrow test and does not establish full faithfulness. The chapter fixes report wording only for scores -1 (names the hint) and -2 (does not). The report for score -3 is the companion's assumption (it does not name the hint); the same is true for the unchanged score 1.
 
 **Check:** With the chapter's report and a hint of 3 points, three answers change. What is F_H?
 
-**Answer:** One third. Scores -3, -2 and -1 all change, and only the report at -1 names the hint.
+**Answer:** One third. Scores -3, -2 and -1 all change, and only the report at -1 names the hint. This takes the report at score -3 as not naming the hint, which is the companion's assumption, not the chapter's.
 
-**Source:** An explanation can miss a factor that changed an answer; anchor `an-explanation-can-miss-a-factor-that-changed-an-answer`. The chapter's constructed rule and reports: with the hint at two points, score -1 is explained as tipped by the hint and score -2 as 'the available evidence supports yes', giving one of two. The other hint sizes, report styles and the keyword checker are the companion's own variations; the chapter says a keyword search would miss other wording.
+**Source:** An explanation can miss a factor that changed an answer; anchor `an-explanation-can-miss-a-factor-that-changed-an-answer`. The chapter's constructed rule and reports: with the hint at two points, score -1 is explained as tipped by the hint and score -2 as 'the available evidence supports yes', giving one of two. The report at score -3 (and at the unchanged score 1) is not fixed by the chapter; the companion sets it to 'does not name the hint'. The other hint sizes, report styles and the keyword checker are the companion's own variations; the chapter says a keyword search would miss other wording.
 
 ## C29-D03: How surprising are the position shares if position did not matter?
 
 Shoppers favored items toward the right, 12 percent at the left to 40 percent at the right. What would equal chances give?
 
-If every position were equally likely, each would draw 13 of 52 shoppers on average, with some natural scatter. The count at the right is far above 13 and the count at the left is far below it. Because the position that looks extreme is picked after seeing the data, the fair comparison is with the most extreme of four, which is what the dashed line shows.
+If every position were equally likely, each would draw 13 of 52 shoppers on average, with some natural scatter. The count at the right is far above 13 and the count at the left is far below it. Because the position that looks extreme is picked after seeing the data, a more cautious comparison is with the most extreme of four, which is what the dashed line shows. That correction is the companion's own, not the study's analysis.
 
 $$
 P(X=k)=\binom{n}{k}p^{k}(1-p)^{n-k},\qquad n=52,\ p=\tfrac14
@@ -124,7 +124,7 @@ A 40 percent share is about 21 of 52 shoppers, against 13 expected if all four p
 
 **In machines:** A language model faces a related test: shuffle the order of options and see whether the recommendation changes, while its explanation may discuss only the options.
 
-**Assumptions and limits:** An equal chance of one quarter for each position and independent shoppers; counts are the shares times 52, rounded. The chapter notes the authors did not know why the ordering appeared and considered that the order of inspection might matter.
+**Assumptions and limits:** An equal chance of one quarter for each position and independent shoppers; counts are the shares times 52, rounded. Shares other than 12 and 40 percent are hypothetical values for exploring the calculation; with 52 shoppers 20 and 30 percent cannot occur exactly (nearest counts 10 and 16). The chapter notes the authors did not know why the ordering appeared and considered that the order of inspection might matter.
 
 **Check:** If the share at one position were 25 percent, what count is that, and how surprising is it under equal chances?
 
@@ -191,16 +191,16 @@ $$
 **Worked example:**
 - Estimated order effect: 0.606
 - Exact order effect: 0.625
-- Approximate 95 percent range: 0.526 to 0.687
+- Approximate 95 percent range: 0.525 to 0.687
 - Range covers the exact value: yes
 
-With order bias 1 and 160 runs per order, the estimated effect of listing A first is 0.606 (range 0.526 to 0.687); the exact value is 0.625. This is one seeded run, and a shorter series gives a wider range.
+With order bias 1 and 160 runs per order, the estimated effect of listing A first is 0.606 (range 0.525 to 0.687); the exact value is 0.625. One seeded run; a shorter series usually gives a wider range. 
 
-**Calculation:** Exact: P(A | first) = Phi((0.5 + 1)/1) = 0.933; P(A | second) = Phi((0.5 - 1)/1) = 0.309. Effect = 0.625. Range = 1.96 x sqrt(p1(1-p1)/n + p2(1-p2)/n) from the observed shares.
+**Calculation:** Exact: P(A | first) = Phi((0.5 + 1)/1) = 0.933; P(A | second) = Phi((0.5 - 1)/1) = 0.309. Effect = 0.625. Range = effect +/- 1.96 x sqrt(q1(1-q1)/n + q2(1-q2)/n), where q = (k + 0.5)/(n + 1) for k of n runs, cut off at -1 and 1.
 
 **Takeaway:** A deterministic assistant needs one swap to show order sensitivity. A noisy one needs repeated runs under each order, and the range around the estimate narrows only slowly with more runs.
 
-**What happens:** At Order bias = 1, Runs per order = 10: The exact effect of listing A first is 0.625, but with 10 runs per order the range around one seeded estimate (0.7, from 0.42 to 0.98) is wide. Raise the runs to 160 or 640 and it narrows around the exact value.
+**What happens:** At Order bias = 1, Runs per order = 10: The exact effect of listing A first is 0.625, but with 10 runs per order the range around one seeded estimate (0.7, from 0.38 to 1, the top of the possible scale) is wide. Raise the runs to 160 or 640 and it narrows around the exact value.
 
 **Why it matters:** A stable recommendation is also limited evidence: the order may have affected the reasoning without changing the final answer. The answer is only the outcome being measured.
 
@@ -208,7 +208,7 @@ With order bias 1 and 160 runs per order, the estimated effect of listing A firs
 
 **In machines:** The assistant is constructed. These are possible tests, not results from any assistant, and the order bias is set by us, not measured.
 
-**Assumptions and limits:** A normal judgment noise and a fixed order bias, with one seeded run for each setting. The 95 percent range is an ordinary normal approximation with the observed shares. A simulation is a computation, not a measurement of any assistant.
+**Assumptions and limits:** A normal judgment noise and a fixed order bias, with one seeded run for each setting. The 95 percent range is a normal approximation with half a run added to each outcome, so it does not collapse to zero width when every run (or none) recommends A, and it is cut off at -1 and 1; it can still miss the exact value about 1 time in 20, and it is rough at 10 runs. A simulation is a computation, not a measurement of any assistant.
 
 **Check:** With no order bias, what is the exact effect, and could an estimate from 10 runs per order still be non-zero?
 

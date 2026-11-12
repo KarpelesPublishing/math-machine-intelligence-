@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-27.md",
   "source_sha256": "d2c545ba447d066249fa987c8f70f80a545a1b27daae281dfb62f04f00ea5cd6",
-  "calculation_sha256": "382247a3d8ffa38295ac0af6cc68e83767fc0bde88dd5e52493f8bfa057336a5",
+  "calculation_sha256": "58e084be3e392c80f17a391447b3d71db2c4d33058a4eb9da3ddaf18b924cf2c",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -282,16 +282,16 @@
         "state": {
           "measure": "hours"
         },
-        "text": "Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets."
+        "text": "Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets. They leave open whether people who qualify differ from the start."
       },
       "takeaway": "The two groups trained for about the same number of months, but those who did not qualify trained about half as many hours per week and made far fewer appearances.",
       "why_it_matters": "This book reads the taxi study as one of the better designs, because of the men who studied and failed. The scan result is evidence that an adult brain can keep changing with use, not evidence of how learning works at the cell level.",
       "sides": {
         "brain": "Gray matter in the posterior hippocampi rose in the qualified men only, and the qualified men did worse on delayed recall of a complex figure. The study did not test whether the hippocampal change caused the drop. The mathematics of a brain is a model, and this is a reported structural result, not a model."
       },
-      "explanation": "Each bar is a group mean from the study's Table 1. The ratio on the right divides the not-qualified mean by the qualified mean. Months of training are nearly equal, so the group difference is in the intensity of the training and in the test appearances.",
-      "check": "Why does the similar total training time not by itself show that effort was equal in the two groups?",
-      "answer": "Months are a duration, while hours per week and appearances measure intensity. The not-qualified men trained about half as many hours per week and made far fewer appearances, so their effort was lower even over similar months.",
+      "explanation": "Each bar is a group mean from the study's Table 1. The ratio on the right divides the not-qualified mean by the qualified mean. Months of training are nearly equal, so the group difference the study reports is in hours per week and in test appearances. These are measures of how intense the training was, not of effort itself.",
+      "check": "Why does the similar total training time not by itself show that the training was equally intense in the two groups?",
+      "answer": "Months are a duration, while hours per week and appearances measure intensity. The not-qualified men trained about half as many hours per week and made far fewer appearances, so by those measures their training was less intense even over similar months. The authors still argue the gray-matter change came from acquiring the map, and they leave open whether people who qualify differ from the start in how readily the hippocampus changes.",
       "controls": [
         {
           "key": "measure",
@@ -359,17 +359,17 @@
           "fix": "adapter2",
           "stop": "full length"
         },
-        "text": "The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter's change to the first layer was about twice plain fine-tuning's. Removing the adapter brings back the original network exactly, with A near 99 and B near 37."
+        "text": "The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter's change to the first layer was about twice plain fine-tuning's. Removing the adapter brings back the original network exactly, with A near 99 and B near 37. That holds by construction, since the original weights were frozen, so it checks the code and is not a finding."
       },
-      "takeaway": "In the toy, replay and the penalty protected the old task at a price in storage or in new skill, a first-layer adapter did not, and removing the adapter restores the old network and loses the new skill.",
+      "takeaway": "In the toy, replay and the penalty protected the old task at a price in storage or in new skill, a first-layer adapter did not, and removing the adapter restores the old network (by construction) and loses the new skill.",
       "why_it_matters": "Replay needs the old data, the penalty trades new skill for old, and the adapter's gain is that it can be taken off. The chapter's comparison of a stored note, an adapter and retraining with old examples is a proposal that nobody has tested.",
       "sides": {
         "brain": "The stored old cards play the part that replayed memories play in the brain proposal. The brain is not known to keep a verbatim copy, and the toy does not test sleep replay.",
         "machine": "A constructed network and a gradient-descent specification. Interleaving old cards helped in the toy in the same direction as the 1995 simulations the chapter cites, in a different network."
       },
       "explanation": "After learning A the network scores about 99 on A and 37 on B. Plain training on B for 1,500 updates reaches about 99 on B but drops A to about 79. Each fix changes the training: replay adds old cards, the penalty pulls weights toward their old values, and the adapter changes only a small add-on.",
-      "check": "In the full-length setting, which fix leaves old task A highest, and what does it cost on task B?",
-      "answer": "The penalty with lambda 1,000 keeps A at about 97 and costs B (about 90 against 99 for plain fine-tuning). Replay of all 90 old cards leaves A near 96 and B near 96, but needs the old cards stored.",
+      "check": "In the full-length setting, which fix that still learns task B leaves old task A highest, and what does it cost on task B?",
+      "answer": "The penalty with lambda 1,000 keeps A at about 97 and costs B (about 90 against 99 for plain fine-tuning). Replay of all 90 old cards leaves A near 96 and B near 96, but needs the old cards stored. Removing the adapter leaves A at about 99, the highest of all, but it takes B back to about 37, so it does not count as a fix that learns B.",
       "controls": [
         {
           "key": "fix",

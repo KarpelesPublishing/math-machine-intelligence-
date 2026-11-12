@@ -132,7 +132,7 @@ At lambda 1 the weight that mattered (Fisher number 4) settles at 1.6, moving 0.
 
 Of 79 men starting the training for London taxi licensing, 39 qualified and 20 who returned did not. The qualified men showed more gray matter in the back of the hippocampus. How different was the training of the two groups?
 
-Each bar is a group mean from the study's Table 1. The ratio on the right divides the not-qualified mean by the qualified mean. Months of training are nearly equal, so the group difference is in the intensity of the training and in the test appearances.
+Each bar is a group mean from the study's Table 1. The ratio on the right divides the not-qualified mean by the qualified mean. Months of training are nearly equal, so the group difference the study reports is in hours per week and in test appearances. These are measures of how intense the training was, not of effort itself.
 
 $$
 \text{ratio}=\frac{\text{did not qualify}}{\text{qualified}}
@@ -154,7 +154,7 @@ On training hours per week, the men who did not qualify had 16.7 against 34.56 f
 
 **Takeaway:** The two groups trained for about the same number of months, but those who did not qualify trained about half as many hours per week and made far fewer appearances.
 
-**What happens:** At Which measure = hours: Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets.
+**What happens:** At Which measure = hours: Total months of training were about the same (38.8 and 35.8), but the men who did not qualify trained 16.70 hours a week against 34.56, about half, and made 2.60 test appearances against 15.64. The authors argue the gray-matter change came from acquiring the map, not from the effort of trying, because the men who failed studied the same streets. They leave open whether people who qualify differ from the start.
 
 **Why it matters:** This book reads the taxi study as one of the better designs, because of the men who studied and failed. The scan result is evidence that an adult brain can keep changing with use, not evidence of how learning works at the cell level.
 
@@ -162,9 +162,9 @@ On training hours per week, the men who did not qualify had 16.7 against 34.56 f
 
 **Assumptions and limits:** An MRI scan measures how much tissue sits in a region and does not show which cells changed or whether connections did. The study covers only men, one city and one skill. A 2013 review questioned whether the reported analysis established a difference in change between groups. The authors leave open whether people who qualify differ from the start in how readily the hippocampus changes.
 
-**Check:** Why does the similar total training time not by itself show that effort was equal in the two groups?
+**Check:** Why does the similar total training time not by itself show that the training was equally intense in the two groups?
 
-**Answer:** Months are a duration, while hours per week and appearances measure intensity. The not-qualified men trained about half as many hours per week and made far fewer appearances, so their effort was lower even over similar months.
+**Answer:** Months are a duration, while hours per week and appearances measure intensity. The not-qualified men trained about half as many hours per week and made far fewer appearances, so by those measures their training was less intense even over similar months. The authors still argue the gray-matter change came from acquiring the map, and they leave open whether people who qualify differ from the start in how readily the hippocampus changes.
 
 **Source:** Chapter 27: Learning After Training; anchor `chapter-27-learning-after-training`. Reported values quoted in the chapter and its source note from Woollett and Maguire (2011): 79 trainees at the first scan, 59 returned (39 qualified, 20 not), 20 did not return, 31 comparison men; Table 1 training figures: total training time 38.8 months (qualified) against 35.8 (not qualified), hours per week 34.56 against 16.70, appearances 15.64 against 2.60. The ratios are this companion's arithmetic. No simulation or model is used here.
 
@@ -192,9 +192,9 @@ Plain fine-tuning (full length) leaves task A at 79 percent and task B at 99. Be
 
 **Calculation:** Accuracy is the share of 900 fresh cards sorted correctly, averaged over 20 random versions (seeds 0 to 19); guessing is 33 percent. Network: 16 inputs, 12 tanh units, 3 outputs, 243 weights. 1,500 updates per stage at learning rate 0.2.
 
-**Takeaway:** In the toy, replay and the penalty protected the old task at a price in storage or in new skill, a first-layer adapter did not, and removing the adapter restores the old network and loses the new skill.
+**Takeaway:** In the toy, replay and the penalty protected the old task at a price in storage or in new skill, a first-layer adapter did not, and removing the adapter restores the old network (by construction) and loses the new skill.
 
-**What happens:** At Which fix = adapter2, How long to train on B = full length: The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter's change to the first layer was about twice plain fine-tuning's. Removing the adapter brings back the original network exactly, with A near 99 and B near 37.
+**What happens:** At Which fix = adapter2, How long to train on B = full length: The rank-2 adapter learns task B (about 98 percent) but leaves task A at about 47 percent, worse than plain fine-tuning at about 79. A small number of trained weights is not a small change: the adapter's change to the first layer was about twice plain fine-tuning's. Removing the adapter brings back the original network exactly, with A near 99 and B near 37. That holds by construction, since the original weights were frozen, so it checks the code and is not a finding.
 
 **Why it matters:** Replay needs the old data, the penalty trades new skill for old, and the adapter's gain is that it can be taken off. The chapter's comparison of a stored note, an adapter and retraining with old examples is a proposal that nobody has tested.
 
@@ -204,8 +204,8 @@ Plain fine-tuning (full length) leaves task A at 79 percent and task B at 99. Be
 
 **Assumptions and limits:** Task B reshuffles every input, a demanding case for a first-layer adapter. The size of the forgetting depends on how long training runs: the early-stop version ends the B stage once 95 percent of its 90 training cards are sorted correctly, and plain fine-tuning then loses far less. The toy does not show that real adapters forget more, and the chapter's own Llama-2 source found the opposite in code.
 
-**Check:** In the full-length setting, which fix leaves old task A highest, and what does it cost on task B?
+**Check:** In the full-length setting, which fix that still learns task B leaves old task A highest, and what does it cost on task B?
 
-**Answer:** The penalty with lambda 1,000 keeps A at about 97 and costs B (about 90 against 99 for plain fine-tuning). Replay of all 90 old cards leaves A near 96 and B near 96, but needs the old cards stored.
+**Answer:** The penalty with lambda 1,000 keeps A at about 97 and costs B (about 90 against 99 for plain fine-tuning). Replay of all 90 old cards leaves A near 96 and B near 96, but needs the old cards stored. Removing the adapter leaves A at about 99, the highest of all, but it takes B back to about 37, so it does not count as a fix that learns B.
 
 **Source:** The build: in a small toy, replay and a penalty protected the old task, and a first-layer adapter did not; anchor `the-build-in-a-small-toy-replay-and-a-penalty-protected-the-old-task-and-a-first-layer-adapter-did-not`. The chapter's own small simulation (its script toy_checks_27.py), ported here with the same protocol: 16 inputs, 12 tanh units, 3 outputs, 243 weights; 90 training cards per task, 900 test cards; learning rate 0.2; 1,500 updates per stage; 20 seeded versions (seeds 0 to 19), averaged. It is the book's analysis, not a published study and not a model of a real system. Replay uses evenly spaced old cards.

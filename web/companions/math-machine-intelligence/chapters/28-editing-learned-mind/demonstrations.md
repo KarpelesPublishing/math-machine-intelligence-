@@ -10,7 +10,7 @@ Practical question: Use when a reader wants to see how a key-value table is writ
 
 If every pair is stored by adding a product, what comes back when one key is asked?
 
-Writing a pair adds the product of the activity at each connection's two ends. Asking the table with a key multiplies each stored row by that key and adds. Each stored pair contributes its answer, scaled by how much its key overlaps the asked key. Overlap with itself is 1, so the right answer comes back at full strength, and any overlap with other keys leaves a faint copy of their answers.
+Writing a pair adds the product of the activity at each connection's two ends. Asking the table with a key multiplies each stored row by that key and adds. Each stored pair contributes its answer, scaled by how much its key overlaps the asked key. Overlap with itself is 1, so the right answer comes back at full strength, and any overlap with other keys leaves a faint copy of their answers. The chapter adds that ghosts grow with crowding: in a separate constructed run of the book's with random four-number keys and answers, the right answer was the nearest stored answer 77 percent of the time with four pairs stored and 27 percent with twelve. The sliders do not show that run; this companion re-ran the same protocol (20,000 random trials per row) and got 0.770 and 0.274.
 
 $$
 W=\sum_p v_p k_p^{\top},\qquad Wk_j=v_j+\sum_{i\neq j}v_i\,(k_i\cdot k_j)
@@ -136,7 +136,7 @@ Both writes make the new key return slot 5 at exactly 1. For the chapter's new k
 
 If the insert is repeated 20 times, how far does the layer drift, and do the earlier inserts survive?
 
-Each edit adds a rank-one change that fixes the new key and nudges whatever overlaps it. Keys that share a direction all feel each edit, so drift is large and the corrected write helps by writing away from that direction. Unrelated keys feel little, so the correction helps less. In 6 dimensions there is little room: earlier inserts are pushed out sooner, and in this run the correction did not lower drift after 20 edits (about 1.5 corrected against 1.3 naive).
+Each edit adds a rank-one change that fixes the new key and nudges whatever overlaps it. Keys that share a direction all feel each edit, so drift is large and the corrected write helps by writing away from that direction. Unrelated keys feel little, so the correction helps less. In 6 dimensions there is little room: earlier inserts are pushed out sooner, and in this run the correction did not lower drift after 20 edits (about 1.5 corrected against 1.3 naive). That order depends on the key pool: the book's own six-dimension runs, which use 12 typical keys instead of this companion's 256, show the corrected write lower, so treat it as a property of this construction and not as the book's result.
 
 $$
 \text{drift}=\frac{\lVert (W-W_0)X\rVert}{\lVert W_0X\rVert},\qquad \text{error}=\sqrt{\tfrac{1}{m}\textstyle\sum_{j}\lVert Wk_j-v_j\rVert^2}
@@ -152,13 +152,13 @@ $$
 - Earlier-insert error, shared keys, naive: 1.16
 - Earlier-insert error, shared keys, corrected: 0.615
 
-After 20 edits in 64 dimensions (mean of 50 seeded runs) drift with keys sharing a direction is 1.18 for the naive write and 0.638 corrected. With unrelated keys it is 0.733 and 0.629. No line stays near zero.
+After 20 edits in 64 dimensions (mean of 50 seeded runs) drift with keys sharing a direction is 1.18 for the naive write and 0.638 corrected. With unrelated keys it is 0.733 and 0.629. Every line is higher than it was after one edit.
 
 **Calculation:** Each edit is W' = W + (v - W k) z^T / (z^T k) with z = k (naive) or z = C^-1 k (corrected, C fixed from 256 sample keys). Drift = |(W - W0) X| / |W0 X| over the same 256 keys X. Error = root mean square of |W k - v| over earlier inserts.
 
-**Takeaway:** The correction counters a shared direction and helps little with unrelated keys, and no line stays near zero. Repeated edits wear a layer down.
+**Takeaway:** The correction counters a shared direction and helps little with unrelated keys, and neither write prevents drift. In this construction, repeated edits keep moving a layer further from where it started.
 
-**What happens:** At Edits so far = 20, Dimensions = 64: After 20 edits in 64 dimensions, drift is about 1.18 for the naive write and 0.64 for the corrected write with shared keys. With unrelated keys the two writes are close (0.73 against 0.63). Every line ends higher than it starts.
+**What happens:** At Edits so far = 20, Dimensions = 64: After 20 edits in 64 dimensions, drift is about 1.18 for the naive write and 0.64 for the corrected write with shared keys. With unrelated keys the two writes are close (0.73 against 0.63). Every line is higher after 20 edits than after one.
 
 **Why it matters:** A single edit that passes its own test says little about the layer after a hundred. Whether old edits survive is its own question.
 
@@ -219,7 +219,7 @@ At c = 6 the chosen columns' write along u is multiplied by -5, so the strengths
 
 If a layer's output is fed back as input, what does the dial do to a part that grows each round?
 
-The edit scales the growth of the part along u by one minus c. With c = 1 the growth is cancelled, so the multiplier is 1. With c larger than 1 the growth becomes negative, and the multiplier is below 1 and can drop below -1, when the part blows up while flipping sign. The multiplier is stable only while it lies between -1 and 1.
+The edit scales the growth of the part along u by one minus c. With c = 1 the growth is cancelled, so the multiplier is 1. With c larger than 1 the growth becomes negative, and the multiplier is below 1 and can drop below -1, when the part blows up while flipping sign. The part along u shrinks only while the multiplier lies strictly between -1 and 1.
 
 $$
 m=1+g\,(1-c),\qquad s_{t+1}=m\,s_t
@@ -258,7 +258,7 @@ With growth 35 percent per round and dial c = 6, the multiplier is -0.75, so the
 
 The edited small model rose from 7.9 to 48.1 percent on MATH-500. What do the other reported scores say about where that came from?
 
-The authors' run raised the score as the share of answers hitting the length limit fell. Three outside groups measured the unedited model with thinking off and got about 44 to 51 percent, a range that includes 48.1. With thinking off, one test moved the edited score about 1.6 points up and another about 2 down. So the headline gain is mostly recovery, and the evidence for new skill is weak.
+The authors' run raised the score as the share of answers hitting the length limit fell. Three outside groups measured the unedited model with thinking off and got about 44 to 51 percent, a range that includes 48.1. With thinking off, one test moved the edited score about 1.6 points up and another about 2 down, not significant. Those outside checks tested the final 50-pass edit, so they are not shown for the 10- and 25-pass runs, which are different edits. So much of the headline gain looks like recovery, and these checks give little sign of new skill.
 
 $$
 \text{gain}=\text{score}_{\text{edited}}-\text{score}_{\text{unedited}},\qquad \text{recovered}=\text{score}_{\text{thinking off}}-\text{score}_{\text{thinking on}}
@@ -270,16 +270,16 @@ $$
 
 **Worked example:**
 - Headline gain (points): 40.2
-- Unedited, thinking off, minus unedited, thinking on: 35.7
+- Unedited, thinking off, minus thinking on (unpaired): 35.7
 - Edit's effect with thinking off (points): 1.6
 
-The 50-pass run raised the score by 40.2 points as the share at the length limit fell to 33.1 percent. The outside check Hedwig AI scored the unedited model 35.7 points above that 7.9 with thinking off, and the edit's effect there was 1.6 points.
+The 50-pass run raised the score by 40.2 points as the share at the length limit fell to 33.1 percent. The outside check Hedwig AI scored the unedited model 35.7 points above that 7.9 with thinking off, and the final edit's effect there was 1.6 points.
 
-**Calculation:** Headline gain = 48.1 - 7.9 = 40.2. Thinking-off baseline minus thinking-on baseline = 43.6 - 7.9 = 35.7. The groups used their own graders and answer limits, so these differences are not paired.
+**Calculation:** Headline gain = 48.1 - 7.9 = 40.2. Thinking-off baseline minus thinking-on baseline = 43.6 - 7.9 = 35.7. The groups used their own graders and answer limits, so these differences are not paired, and each budget is a different edit.
 
-**Takeaway:** Most of the headline gain is recovery from a setting where the model loops. The reported effect of the edit with thinking off is small and points in different directions.
+**Takeaway:** Much of the headline gain looks like recovery from a setting where the model loops. The reported effect of the edit with thinking off is small and points in different directions.
 
-**What happens:** At Editor's forward-pass budget = 50, Outside check = Hedwig AI: With thinking off the unedited model scores 43.6 in Hedwig AI's check, nearer 48.1 than 7.9, and the edit's effect there is 1.6 points. EditLens found a drop of about 2 points. Much of the 40.2-point gain looks like recovery from looping settings.
+**What happens:** At Editor's forward-pass budget = 50, Outside check = Hedwig AI: With thinking off the unedited model scores 43.6 in Hedwig AI's check, nearer 48.1 than 7.9, and the edit's effect there is 1.6 points. EditLens found a drop of about 2 points that the chapter reports as not significant. Much of the 40.2-point gain looks like recovery from looping settings.
 
 **Why it matters:** A big jump in a score can come from removing an obstacle rather than adding an ability. The chapter's own test on a model that did not loop is a hint, not a matched test.
 
@@ -287,10 +287,10 @@ The 50-pass run raised the score by 40.2 points as the share at the length limit
 
 **In machines:** A pattern in a handful of unreviewed reports, not proof that repair is easier than teaching. A follow-up preprint reports gains of about 29, 5 and 27 points in three searches and six of 16 attempts ending with the original weights, so one run varies a lot.
 
-**Assumptions and limits:** The groups used their own graders, answer limits and settings, so the scores are not strictly comparable and the differences are not paired. The EditLens unedited figure is quoted in the chapter as 0.510 to 0.512 and 51.0 is used here.
+**Assumptions and limits:** The groups used their own graders, answer limits and settings, so the scores are not strictly comparable and the differences are not paired (this includes the 35.7-point and 89 percent figures, which divide one group's score by another's). Each pass budget is a different edit, so the 10- and 25-pass bars are not steps toward the 50-pass edit. The EditLens unedited figure is quoted in the chapter as 0.510 to 0.512 and 51.0 is used here.
 
 **Check:** The unedited model scores 43.6 with thinking off in Hedwig AI's check. How far is that above the authors' 7.9, and how much of the 40.2-point headline gain is that?
 
-**Answer:** 43.6 - 7.9 = 35.7 points, which is 35.7 of 40.2, about 89 percent. The scores come from different graders and limits, so the ratio is only a rough guide.
+**Answer:** 43.6 - 7.9 = 35.7 points, which is 35.7 of 40.2, about 89 percent. Keep that figure only as a rough guide: the scores are unpaired, come from different graders and limits, and the chapter says only that much of the gain is recovery.
 
-**Source:** Subtracting one direction made the repetition rarer, using a stronger setting than plain removal; anchor `subtracting-one-direction-made-the-repetition-rarer-using-a-stronger-setting-than-plain-removal`. Reported results quoted from the chapter and its notes: the authors' 7.9 to 48.1 percent with the share at the limit 93.0 to 33.1 (10 passes: 12.3 and 87.2; 25 passes: 14.1 and 86.4), and three outside checks with thinking off (Toledo 44.0 unedited; Hedwig AI 43.6 and 45.2; EditLens about 0.51 and 0.487). All are blog-level and unreviewed, with different graders and limits.
+**Source:** Subtracting one direction made the repetition rarer, using a stronger setting than plain removal; anchor `subtracting-one-direction-made-the-repetition-rarer-using-a-stronger-setting-than-plain-removal`. Reported results quoted from the chapter and its notes: the authors' 7.9 to 48.1 percent with the share at the limit 93.0 to 33.1 (10 passes: 12.3 and 87.2; 25 passes: 14.1 and 86.4), and three outside checks with thinking off (Toledo 44.0 unedited; Hedwig AI 43.6 and 45.2; EditLens about 0.51 and 0.487, a paired difference of about -0.02 that the chapter's note calls not significant). All are blog-level and unreviewed, with different graders and limits. The three budgets are three different edits (the chapter's Figure 28.2 caption; the authors' logs say the 10-pass edit is a direction subtraction in 30 matrices, the 25-pass edit switches off one attention head, and the 50-pass edit is the layer 15 and 19 edit), and the outside checks concern the final 50-pass edit, so the companion shows their thinking-off effect for that run only. The 7.9, 12.3, 14.1 and 48.1 scores are separate runs, so no line joins them.

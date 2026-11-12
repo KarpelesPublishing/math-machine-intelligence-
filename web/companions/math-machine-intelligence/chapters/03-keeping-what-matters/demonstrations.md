@@ -46,7 +46,7 @@ With the band covering 2 steps, the busiest step holds 40 percent of the reading
 
 **Answer:** log2 16 = 4 bits. Five bits need 2^5 = 32 equally used levels.
 
-**Source:** A cell spent its few steps where the world was crowded; anchor `a-cell-spent-its-few-steps-where-the-world-was-crowded`. Book formula and the chapter's constructed 1,000-reading example (800 in a narrow band, 100 in each tail). Laughlin did not count ten steps in a real cell; the ten levels are an illustration. Spreading band and tail readings evenly inside their steps is this companion's simplification.
+**Source:** A cell spent its few steps where the world was crowded; anchor `a-cell-spent-its-few-steps-where-the-world-was-crowded`. Book formula and the chapter's constructed 1,000-reading example (800 in a narrow band, 100 in each tail). Laughlin did not count ten steps in a real cell; the ten levels are an illustration. Spreading band and tail readings evenly inside their steps is this companion's simplification. The layouts where the band covers 1 to 9 evenly spaced steps, and the 500 and 950 band shares, are the companion's constructions; the chapter gives only the 800, 100, 100 split with eight band steps and one step per tail.
 
 ## C03-D02: What does the share-at-or-below rule buy over evenly spaced steps?
 
@@ -68,13 +68,13 @@ $$
 - Readings clipped at an end: 5 percent
 - Levels: 10
 
-With a half-range of 3 the evenly spaced response carries 3 of 3.32 bits and is a middling compromise. The share-at-or-below curve uses every step 10 percent of the time for any scale of world.
+With a half-range of 3 the evenly spaced response carries 3 of 3.32 bits, neither heavily clipped nor leaving its end steps idle. The share-at-or-below curve uses every step 10 percent of the time for any scale of world.
 
 **Calculation:** Clipped fraction = exp(-3) = 0.0498. Entropy of the 10 step probabilities = 3 bits; the rule gives log2 10 = 3.32.
 
 **Takeaway:** Making the response follow the share of readings at or below each contrast uses every step equally often, so it carries log2 M bits for any scale of world; an evenly spaced response must be tuned to the scale and still falls short.
 
-**What happens:** At Half-range of the evenly spaced response = 0.5, Number of response steps = 10: A half-range of 0.5 clips about 61 percent of readings into the end steps and carries 2.57 bits. The best evenly spaced range here is 2 (3.21 bits); only the share-at-or-below curve reaches 3.32 whatever the scale of the world.
+**What happens:** At Half-range of the evenly spaced response = 0.5, Number of response steps = 10: A half-range of 0.5 clips about 61 percent of readings into the end steps and carries 2.57 bits. Of the listed half-ranges, 2 carries the most (3.21 bits; a finer search puts the best near 1.7 with 3.23 bits); only the share-at-or-below curve reaches 3.32 whatever the scale of the world.
 
 **Why it matters:** The rule turns a measured world into a predicted response curve, which Laughlin could then check against a cell. A machine can do the same with a measured input distribution, which is how a photo's brightness values are spread across the available range.
 
@@ -162,7 +162,7 @@ At spread 4 a curve of width 2 carries 3.29 bits, against 3.32 at the best width
 
 **Why it matters:** A code fitted to one spread is mismatched when the spread changes, and the fix is to rescale it. A machine whose inputs change scale faces the same question; the chapter notes that neither the sparse-coding model nor the mammography software was tested for it.
 
-**In brains and behavior:** H1, a blowfly motion cell that fires spikes, widened its response curve when the velocity spread widened; curves nearly coincided once velocity was in units of its spread. This is one cell type in one species.
+**In brains and behavior:** H1, a blowfly motion cell that fires spikes, widened its response curve when the velocity spread widened; curves nearly coincided once velocity was in units of its spread and firing rate in units of its own average. This is one cell type in one species.
 
 **In machines:** Normalizing an input by its own spread before a fixed code is the machine counterpart of a curve that stretches; this is an engineering practice, not a claim about cells.
 
@@ -250,7 +250,7 @@ With the absolute-value penalty and lambda 2, every coefficient smaller than lam
 
 **In machines:** The toy is the coding step of dictionary learning with a fixed dictionary: a specification, not a model of any trained system.
 
-**Assumptions and limits:** A fixed orthonormal dictionary, so minimizing E splits into one-number problems. The paper's elements were learned from 16 by 16 patches of natural images with a different penalty function and without an orthonormality constraint, and the paper did not require other coefficients to be exactly zero.
+**Assumptions and limits:** A fixed orthonormal dictionary, so minimizing E splits into one-number problems. The paper learned 192 elements from 16 by 16 patches of natural images; this toy fixes an orthonormal dictionary and learns nothing. The chapter does not state the paper's penalty function, and the paper did not require the other coefficients to be exactly zero.
 
 **Check:** With the absolute-value penalty and lambda 4, which coefficients of 3.0, -2.2, 1.4 survive and how strong are they?
 
@@ -260,9 +260,9 @@ With the absolute-value penalty and lambda 2, every coefficient smaller than lam
 
 ## C03-D07: What do reported sensitivity and specificity mean in counts?
 
-If marks on a mammogram change sensitivity by 2 points and specificity by 3, how many cancers and how many recalls change per 100,000 exams?
+As a what-if, if marks on a mammogram changed sensitivity by 2 points and specificity by 3 (a combination neither study reported), how many cancers and how many recalls would change per 100,000 exams?
 
-Sensitivity applies to the small group with cancer, and specificity applies to the large group without. A 2-point change on about 505 cancers is about 10; a 3-point change on about 99,495 exams without cancer is about 2,985. With the Lehman cancer rate and sensitivity 87.3, the arithmetic recall rates at specificity 90.2 and 87.2 are 10.2 and 13.2 percent, close to Fenton's reported 10.1 and 13.2.
+Sensitivity applies to the small group with cancer, and specificity applies to the large group without. A 2-point change on about 505 cancers is about 10; a 3-point change on about 99,495 exams without cancer is about 2,985. With the Lehman cancer rate and sensitivity 87.3, the arithmetic recall rates at specificity 90.2 and 87.2 are 10.2 and 13.2 percent. They land near the recalls Fenton reported (about 10 and about 13 in 100) because recalls are dominated by women without cancer; that is expected from the arithmetic and is not a validation of it, and the two studies are not pooled.
 
 $$
 \text{found}=N\,\pi\,s_e,\qquad \text{no-cancer recalls}=N\,(1-\pi)\,(1-s_p)
@@ -278,13 +278,13 @@ $$
 - Recalled with no cancer: 8,955
 - Recall rate: 9.4 percent
 
-At sensitivity 85.3 and specificity 91 the arithmetic gives about 431 cancers found and 8,955 no-cancer recalls per 100,000 exams, a recall rate of 9.4 percent. Against the baseline, finds change by -10 and no-cancer recalls by +0.
+At sensitivity 85.3 and specificity 91, about 431 cancers found and 8,955 women without cancer recalled per 100,000 exams. Against Lehman's no-software baseline (sensitivity 87.3, specificity 91), finds change by -10 and recalls by 0. Lehman's 2-point gap was not significant and both studies are observational: arithmetic, not an effect.
 
 **Calculation:** Cancer rate = 3,159 / 625,625 = 0.00505. Cancers per 100,000 = 505. Found = 505 x 0.853 = 431. No-cancer recalls = 99,495 x 0.09 = 8,955.
 
 **Takeaway:** A few points of sensitivity move counts of cancers by tens per 100,000 exams, while a few points of specificity move recalls by thousands, because exams without cancer vastly outnumber the rest.
 
-**What happens:** At Sensitivity (percent) = 87.3, Specificity (percent) = 87.2: Holding sensitivity at 87.3 and dropping specificity from 91 to 87.2 leaves finds unchanged and adds about 3,781 recalls of women without cancer per 100,000 exams. Two points of sensitivity are only about 10 cancers; the recall rate rises from 9.4 to 13.2 percent.
+**What happens:** At Sensitivity (percent) = 87.3, Specificity (percent) = 87.2: A what-if: hold sensitivity at Lehman's 87.3 and let specificity fall from Lehman's 91 percent to the 87.2 percent Fenton reported after adoption. This mixes two studies the chapter does not pool, so it is arithmetic only. Finds are unchanged and the arithmetic adds about 3,781 recalls of women without cancer per 100,000 exams. Two points of sensitivity are only about 10 cancers; the recall rate rises from 9.4 to 13.2 percent.
 
 **Why it matters:** A rate that looks small can be a large count, and a mark that asks for a second look costs attention whether or not it helps. The chapter's studies did not measure that cost; it is an inference.
 

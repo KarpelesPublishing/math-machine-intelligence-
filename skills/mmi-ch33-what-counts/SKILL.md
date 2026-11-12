@@ -13,7 +13,7 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 
 - **What does a level score reward? (C33-D01):** If a human baseline is 20 moves on a level, how does the agent's move count set its level score?
 - **Why is an environment score the smaller of two averages? (C33-D02):** In a five-level environment weighted by level number, how do finishing fewer levels and using fewer moves combine?
-- **Can one model have two scores on the same set? (C33-D03):** GPT-6 Astra scored 62.7 and 99.95 percent on the same set. How do the harness and the effort setting each enter?
+- **Can one model have two scores on the same set? (C33-D03):** GPT-6 Astra scored 62.7 and 99.95 percent on the same set (in the 10 November 2026 leaderboard file). How do the harness and the effort setting each enter?
 - **Can the order of two children flip with no change in their scores? (C33-D04):** Two children, P and Q, have made-up scores on two groups of tasks. How does the weight on each group decide who leads?
 - **Can a one-factor table arise with no shared die? (C33-D05):** Tests that are sums of overlapping dice correlate. Can the correlations look like one common factor even when no die is common to every test?
 - **What does a classifier that never read the premise reveal? (C33-D06):** A classifier that saw only the hypothesis got 67.0 percent right. How does that split a test into Easy and Hard, and what does the split do to a model's overall score?
@@ -34,7 +34,7 @@ For a benchmark score, use C33-D01 and C33-D02 to rebuild it from move counts an
 
 ## Boundaries that matter
 
-- The 2026 ARC-AGI-3 figures are quoted from the chapter and its source note as of 2 November 2026, each a single run; standings move, and the companion did not check them against the live leaderboard.
+- The 2026 ARC-AGI-3 figures are a snapshot, each a single run. The chapter dates them 2 November 2026; they match the foundation's leaderboard data file generated 10 November 2026 (and its post of 3 September 2026). Standings move: that file already lists other models, including Claude Fable 5.2 (Standard, XHigh 81.17) and Gemini 4 Carbon (Provider Adapter, Medium 99.09).
 - The five-level environment, the 20-move baseline, children P and Q and the dice tables are constructed or made-up illustrations, not data and not Thomson's tables.
 - The weighted-average check of the Easy and Hard scores is the companion's own arithmetic on the chapter's numbers.
 - A score near 100 on a benchmark shows high completion and action efficiency under its scoring rule, not general intelligence.

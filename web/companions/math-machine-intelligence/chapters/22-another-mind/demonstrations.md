@@ -36,7 +36,7 @@ Starting at 0.5 for goal A, 1 step with chance 0.8 under A and 0.2 under B give 
 
 **Why it matters:** A machine that reads goals from steps is only as good as its picture of how a goal produces a step. The arithmetic is simple, so the assumptions carry the weight.
 
-**In brains and behavior:** In the 2009 study, the ratings of 16 people tracked a model like this one (correlation 0.97 for the version that lets goals change). That is a fit to ratings, not a finding that people multiply probabilities.
+**In brains and behavior:** In the 2009 study, the ratings of 16 people tracked a richer model that lets goals change (correlation 0.97); the fixed-goal rule used in this demonstration, which is the simplest version, scored 0.82. Either is a fit to ratings, not a finding that people multiply probabilities.
 
 **In machines:** A system that reads a user's goal from their actions can apply this rule exactly, if it is given a prior and an action model. Whether those are right is a separate check.
 
@@ -52,7 +52,7 @@ Starting at 0.5 for goal A, 1 step with chance 0.8 under A and 0.2 under B give 
 
 If two roads cost the same but one draws far fewer trips, does that show drivers dislike tolls?
 
-Each route gets a cost, and its chance falls as the cost rises. Drivers who know all three roads split evenly between the two routes that tie at 4.8, with fewer on the costlier Back roads. Drivers who never heard of Express choose between the other two. Mixing the groups leaves Express short. The analyst, who assumes full knowledge, finds the weights that reproduce these shares, and the shortfall appears as a toll weight that is too high.
+Each route gets a cost, and its chance falls as the cost rises. At the default toll weight of 0.40 the two routes tie at 4.8, so drivers who know all three roads split evenly between them, with fewer on the costlier Back roads (at other toll weights the two do not tie: at 0.20 Express is cheapest at 4.2, and at 0.80 it costs 6.0, as much as Back roads). Drivers who never heard of Express choose between the other two. Mixing the groups leaves Express short. The analyst, who assumes full knowledge, finds the weights that reproduce these shares, and the shortfall appears as a toll weight that is too high.
 
 $$
 P(a\mid s,g)=\frac{e^{\beta Q_g(s,a)}}{\sum_{a'}e^{\beta Q_g(s,a')}},\qquad Q=-\text{cost},\ \beta=1
@@ -110,7 +110,7 @@ $$
 - Rate right: 0.875
 - Rate expected: 0.5
 
-If each of 24 picks had a 0.5 chance of being right, 21 or more right would have chance 0.000139. That shows chance at that level is a poor fit; it does not say which reading of the task explains the choices.
+If each of 24 picks had a 0.5 chance of being right, 21 or more right would have chance 0.000139. That is rare, so chance at that level fits poorly; it does not say which reading of the task explains the choices.
 
 **Calculation:** Chance of 21 or more = sum over j from 21 to 24 of C(24, j) x 0.5^j x 0.5^(24 - j) = 0.000139. Expected right = 24 x 0.5 = 12.
 
@@ -233,15 +233,15 @@ $$
 - Pairs from the ranking: 6
 - Chance of picking the better answer: 0.836
 - Two raters agree: 0.726
-- Reward gap: 1.63
+- Reward gap (72.6 +/- 1.5 percent implies 1.55 to 1.71): 1.63
 
-A ranking of 4 outputs yields 6 pairs of preferences, ties aside. With a reward gap of 1.63 a rater picks the better answer with chance 0.836, and two such raters agree with chance 0.726. Matching the labelers' 0.726 needs a gap near 1.63 under these made-up assumptions.
+A ranking of 4 outputs yields 6 pairs of preferences, ties aside. At a reward gap of 1.63 a rater picks the better answer with chance 0.836, and two such raters agree with chance 0.726. The paper's 72.6 +/- 1.5 percent maps to gaps of about 1.55 to 1.71 under this made-up rule; 1.63 is one illustrative value.
 
 **Calculation:** Pairs = 4 x (4 - 1) / 2 = 6. Chance of the better = 1/(1 + e^-1.63) = 0.836. Agreement = 0.836^2 + 0.164^2 = 0.726.
 
-**Takeaway:** A short ranking becomes many pairs, and noisy raters still agree well above chance. Agreement of 72.6 percent is compatible with raters who are fairly consistent.
+**Takeaway:** A short ranking becomes many pairs. Under this simple rule, agreement of 72.6 percent would mean each rater picks the higher-reward answer about 84 percent of the time, so a good deal of label noise remains.
 
-**What happens:** At Outputs ranked (K) = 9, Reward gap between two answers = 1.63: Nine outputs give 36 pairs. A gap of 1.63 makes a rater pick the better answer with chance 0.836 and two raters agree with chance 0.726, matching the reported 72.6 percent under these assumptions.
+**What happens:** At Outputs ranked (K) = 9, Reward gap between two answers = 1.63: Nine outputs give 36 pairs. A gap of 1.63 makes a rater pick the better answer with chance 0.836 and two raters agree with chance 0.726, the reported 72.6 percent under these assumptions. But the paper reports 72.6 +/- 1.5 percent, which under the same rule means gaps from about 1.55 to 1.71 (the shaded band), so 1.63 is one illustrative value.
 
 **Why it matters:** A learned reward is a stand-in for what raters preferred, estimated from noisy choices. The authors note that labelers cannot see the context in which an answer will be used.
 
@@ -249,10 +249,10 @@ A ranking of 4 outputs yields 6 pairs of preferences, ties aside. With a reward 
 
 **In machines:** The reward model is trained on the pairs from each ranking; the logistic rule is a standard way to model that, written here as the companion's own specification, not a quote from the paper.
 
-**Assumptions and limits:** Every rater chooses independently by the same logistic rule and sees the same gap on every pair. Real raters differ and real gaps vary, so the single gap is a summary under these assumptions and not something the study estimated.
+**Assumptions and limits:** Every rater chooses independently by the same logistic rule and sees the same gap on every pair, and one gap applies to every pair. The paper reports none of these. Real raters differ and real gaps vary, so the single gap is a summary under these assumptions and not something the study estimated; different mixtures of easy and hard pairs could give the same 72.6 percent.
 
 **Check:** At a gap of 0, what is the chance a rater picks the better answer, and what is the agreement between two raters?
 
 **Answer:** With no gap the choice is a coin flip, 0.5, and two raters agree with chance 0.5 squared plus 0.5 squared, which is 0.5.
 
-**Source:** What InstructGPT inferred from rankings; anchor `what-instructgpt-inferred-from-rankings`. The pair counts (4 outputs give 6 pairs, 9 give 36) and the 72.6 percent labeler agreement are the chapter's. The logistic choice rule and the reward gap that reproduces 72.6 percent (about 1.63) are the companion's own illustration: the chapter says only that the reward model treats the higher-scoring answer as likelier to be preferred.
+**Source:** What InstructGPT inferred from rankings; anchor `what-instructgpt-inferred-from-rankings`. The pair counts (4 outputs give 6 pairs, 9 give 36) and the 72.6 percent labeler agreement are the chapter's. The logistic choice rule and the reward gap that reproduces 72.6 percent (about 1.63) are the companion's own illustration: the chapter says only that the reward model treats the higher-scoring answer as likelier to be preferred. The source figure is 72.6 +/- 1.5 percent (the chapter's footnote on Ouyang and colleagues), which under the same rule corresponds to gaps from about 1.55 to 1.71; 1.63 is a single illustrative value, not the book's number or the paper's.

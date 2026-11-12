@@ -21,26 +21,26 @@ $$
 **Predict:** Decode 'jump twice after walk left' yourself. Which two actions come first, and does 'after' put the left or the right part first?
 
 **Worked example:**
-- Actions produced: 2
+- Actions produced: 3
 - Parts decoded separately: 2
 - Rows a lookup table needs: 20,910
 - Words whose meaning is stored: 13
 
-'jump after run' splits into x = 'jump' (1 actions) and y = 'run' (1), and the joining word orders them. The result is run, jump. A lookup table would need 20,910 rows; the rulebook stores 13 word meanings and the rules.
+'walk twice and look' splits into x = 'walk twice' (2 actions) and y = 'look' (1), and the joining word orders them. The result is walk, walk, look. A lookup table would need 20,910 rows; the rulebook stores 13 word meanings and the rules.
 
-**Calculation:** [[x]] = jump; [[y]] = run. For 'after': [[x after y]] = [[y]] then [[x]] = run, jump. Total 2 actions. Table rows = 20,910.
+**Calculation:** [[x]] = walk, walk; [[y]] = look. For 'and': [[x and y]] = [[x]] then [[y]] = walk, walk, look. Total 3 actions. Table rows = 20,910.
 
 **Takeaway:** A short rulebook decodes every command exactly, while a lookup table would need one row for each of 20,910 commands.
 
 **What happens:** At Example command = 0: x = jump twice gives jump, jump; y = walk left gives turn left, walk. 'After' puts y first, so the result is turn left, walk, jump, jump, four actions from two parts of two actions each.
 
-**Why it matters:** The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules, not a gap in the data.
+**Why it matters:** The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules from the data it had. In the jump test the data held the lone word only, as the chapter explains.
 
 **In brains and behavior:** The chapter makes no brain claim here; the rulebook is not a model of how a person represents grammar.
 
 **In machines:** The rulebook is a specification, written by a designer, that decodes the artificial language exactly.
 
-**Assumptions and limits:** A finite language with no recursion and unambiguous commands. The rulebook is a specification of the artificial language, not a claim about how a person or a trained network represents grammar.
+**Assumptions and limits:** A finite language with no recursion and unambiguous commands. The rules for 'thrice', 'opposite' and 'around' are the companion's reconstruction, not quoted from the paper; they reproduce the chapter's counts. The rulebook is a specification of the artificial language, not a claim about how a person or a trained network represents grammar.
 
 **Check:** Decode 'jump after run'. Then say how many rows a lookup table would need for all commands of this language.
 
@@ -69,7 +69,7 @@ $$
 
 On 'random split, 80 percent to train' the chapter reports 99.8 percent exact matches. The bars come from different networks on different held-out commands, so there is no single score for the model. The random split alone would have made the networks look fine.
 
-**Calculation:** Score = 100 x (commands answered exactly) / (commands tested). Held out: a random fifth of the commands. Of 20,910 commands, 80 percent is 16,728 to train and 4,182 to test. Composed jump commands counted from the grammar: 7,706.
+**Calculation:** Score = 100 x (commands answered exactly) / (commands tested). Held out: a random fifth of the commands. For the random split alone: of 20,910 commands, 80 percent is 16,728 to train and 4,182 to test. Composed jump commands counted from the grammar: 7,706.
 
 **Takeaway:** A random split draws test commands from the same pool as training, so it can look excellent while a held-out combination fails.
 
@@ -114,7 +114,7 @@ A plain sum of word codes gives 'walk and jump' and 'jump and walk' the same tot
 
 **Takeaway:** Order survives only if the place codes differ; a plain sum, or places that cannot be told apart, treats both orders as one.
 
-**What happens:** At Overlap between the two word codes = 0, Overlap between the two place codes = 0: With unrelated word codes and unrelated place codes the tied codes differ by 2, the largest possible here, while the plain sums differ by 0. Slide the place overlap to 1 and the difference falls to 0.
+**What happens:** At Overlap between the two word codes = 0, Overlap between the two place codes = 0: With unrelated word codes and unrelated place codes the tied codes differ by 2, the largest among the offered overlaps, while the plain sums differ by 0. Slide the place overlap to 1 and the difference falls to 0.
 
 **Why it matters:** Whether a network holds a sentence as a sum or as words in places changes which questions it can answer, and the chapter treats the binding idea as a proposal, not a finding.
 
@@ -198,7 +198,7 @@ A correlation of 0.788 measured on 10 items is compatible with a true value anyw
 
 **Takeaway:** Ten items leave a wide range: the chapter's caution that ten items are few has a number behind it.
 
-**What happens:** At Number of items = 10, Measured correlation = 0.788: The range runs from about 0.31 to 0.95. Even a correlation that looks strong from ten items leaves a true value near 0.3 plausible. With 160 items the same r would be pinned to about 0.72 to 0.84.
+**What happens:** At Number of items = 10, Measured correlation = 0.788: The range runs from about 0.31 to 0.95. Even a correlation that looks strong from ten items leaves a true value near 0.3 plausible. With 160 items the same r would be pinned to about 0.72 to 0.84. The paper's own check for ten items was a permutation test (P = 0.031); this range is the companion's illustration.
 
 **Why it matters:** A single correlation is easy to over-read. Knowing how wide the range is keeps a model-versus-people comparison honest.
 
@@ -206,13 +206,13 @@ A correlation of 0.788 measured on 10 items is compatible with a true value anyw
 
 **In machines:** The model's per-instruction scores are measured outputs; the range here is a statistical approximation about the measurement.
 
-**Assumptions and limits:** The usual approximation: items behave like a random sample from a bivariate normal population. Ten instructions are not a random sample, so the range is a guide to how loose the number is, not a verdict.
+**Assumptions and limits:** The usual approximation: items behave like a random sample from a bivariate normal population. Ten instructions are not a random sample, so the range is a guide to how loose the number is, not a verdict. The paper itself reports P = 0.031 for 0.788 by a permutation test over the 10 items (Lake and Baroni 2023); the interval here is the companion's illustration, not the paper's.
 
 **Check:** For n = 10, what is the half-width in the transformed scale, and what range follows for r = 0.788?
 
 **Answer:** 1.96/sqrt(7) = 0.741 in z units. The transform of 0.788 is 1.066, so the range is tanh(0.325) = 0.314 to tanh(1.807) = 0.947.
 
-**Source:** A language of colored circles; anchor `a-language-of-colored-circles`. The 0.788 and the ten items are the chapter's, which says ten items are few. The Fisher interval is the companion's own addition, not in the chapter or paper. The scatter is a constructed sample with a disclosed seed, not the study's data.
+**Source:** A language of colored circles; anchor `a-language-of-colored-circles`. The 0.788 and the ten items are the chapter's, which says ten items are few. The Fisher interval is the companion's own addition, not in the chapter. The paper itself reports P = 0.031 for this correlation by a two-tailed permutation test over the 10 items; the interval here is the companion's illustration, not the paper's. The scatter is a constructed sample with a disclosed seed, not the study's data.
 
 ## C10-D06: Why does shuffling word meanings make a model read the examples?
 
@@ -234,13 +234,13 @@ $$
 - Possible reassignments of 6 words: 720
 - Of 12 shown, with every word unchanged: 2
 
-When 95 percent of practice episodes reassign the six word meanings at random, a word keeps its usual meaning with chance 0.208. Trusting word identity pays little, and reading the study pairs pays fully. Reported add-jump error fell from 99.27 to 0.22 percent (five-run averages).
+When 95 percent of practice episodes reassign the six word meanings at random, a word keeps its usual meaning with chance 0.208. The more is shuffled, the less trusting word identity pays and the more reading the study pairs pays. Reported add-jump error fell from 99.27 to 0.22 percent with the whole method, not shuffling alone.
 
-**Calculation:** Chance a word keeps its meaning = (1 - p) + p/6 = (1 - 0.95) + 0.95/6 = 0.208. Reassignments of six items = 6! = 720. Assumes a uniform random one-to-one reassignment, which is the companion's reading of 'reassigned'.
+**Calculation:** Chance a word keeps its meaning = (1 - p) + p/6 = (1 - 0.95) + 0.95/6 = 0.208. Reassignments of six items = 6! = 720. Assumes a uniform random one-to-one reassignment: the paper's Methods use random permutations of the six actions and of the six words, and taking 'random' as uniform is the companion's assumption; the seed 10 is the companion's.
 
 **Takeaway:** Shuffling makes word identity unreliable, so a model is pushed to infer meanings from the study examples in each episode.
 
-**What happens:** At Share of episodes shuffled = 0.95: A word keeps its usual meaning with chance 0.05 + 0.95/6 = 0.208, so trusting word identity is wrong about four times in five. Reading the study pairs is the only way to do well, and the reported effect on add jump was a fall in error from 99.27 to 0.22 percent.
+**What happens:** At Share of episodes shuffled = 0.95: A word keeps its usual meaning with chance 0.05 + 0.95/6 = 0.208, so trusting word identity is wrong about four times in five. Reading the study pairs is the way to do well here. The reported fall in add-jump error from 99.27 to 0.22 percent compares a basic transformer with the whole meta-learning method, of which shuffling is one part.
 
 **Why it matters:** Much of the teaching in the chapter's method is done by the training schedule, not a new network design. The authors call the many-grammar training not developmentally plausible.
 
@@ -254,7 +254,7 @@ When 95 percent of practice episodes reassign the six word meanings at random, a
 
 **Answer:** (1 - 0.5) + 0.5/6 = 0.5 + 0.0833 = 0.583.
 
-**Source:** Shuffling word meanings; anchor `shuffling-word-meanings`. Simulation. The 95 percent, the six words and the 10 study pairs per episode are the chapter's. The uniform one-to-one reassignment and the seed 10 are the companion's assumptions for the illustration; the chapter says only that the meanings were reassigned. The reported add-jump errors, 99.27 and 0.22 percent, are the chapter's.
+**Source:** Shuffling word meanings; anchor `shuffling-word-meanings`. Simulation. The 95 percent, the six words and the 10 study pairs per episode are the chapter's. The paper's Methods remap the six actions through one random permutation and the six words through another, in 95 percent of episodes; the companion simulates this as a uniform one-to-one reassignment of the six meanings (taking 'random' to mean uniform), and the seed 10 is the companion's. The chapter says only that the meanings were reassigned. The reported add-jump errors, 99.27 and 0.22 percent, are the chapter's.
 
 ## C10-D07: What does a length split hold out?
 
@@ -276,7 +276,7 @@ $$
 - Share held out: 18.7 percent
 - Longest command (actions): 48
 
-Training on commands that need up to 22 actions leaves 16,990 to train on and 3,920 to test, the longest needing 48. At the chapter's cut of 22 the counts are 16,990 and 3,920. The chapter reports 20.8 percent for the top architecture, 100 percent error for the meta-trained model and 99.7 percent for least-to-most prompting on this split.
+Training on commands that need up to 22 actions leaves 16,990 to train on and 3,920 to test, the longest needing 48. For this chapter cut the chapter reports 20.8 percent for the top architecture, 100 percent error for the meta-trained model and 99.7 percent for least-to-most prompting.
 
 **Calculation:** Count commands whose rulebook output has at most 22 actions: 16,990; the rest, 3,920, are test. Check: 16,990 + 3,920 = 20,910. No command needs exactly 23 actions, so cuts of 22 and 23 give the same split.
 

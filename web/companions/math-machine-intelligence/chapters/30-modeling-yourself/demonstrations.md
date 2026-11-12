@@ -36,7 +36,7 @@ Nothing outside moves, so the sensed change is 20. With prediction gain 0.9 the 
 
 **Why it matters:** A system that subtracts a prediction of its own move gets a leftover it must read. If the prediction is off, the leftover looks like the world.
 
-**In brains and behavior:** The von Holst and Mittelstaedt scheme: a command sends an inner copy (the efference copy) whose sign opposes the returning report, so the two cancel. The head-turned fly was their example of a flipped sign. This is their proposed scheme, and the chapter says it is a model.
+**In brains and behavior:** The von Holst and Mittelstaedt scheme: a command sends an inner copy (the efference copy) whose sign opposes the returning report, so the two cancel. The head-turned fly was their example of a flipped sign. This is their proposed scheme, which the chapter presents as the authors' proposal.
 
 **In machines:** The camera is a specification: this is what the leftover formula returns for a gain we chose. A real arm adds friction and model errors that can look like contact.
 
@@ -50,7 +50,7 @@ Nothing outside moves, so the sensed change is 20. With prediction gain 0.9 the 
 
 ## C30-D02: Can the leftover tell a collision from a bad prediction?
 
-A robot arm flags contact when the leftover passes a threshold. What else produces the same leftover?
+A system that flags contact when its leftover passes a threshold (here a camera, in degrees; a real arm compares torques) can be fooled. What else produces the same leftover?
 
 The leftover is the outside change plus the effect of a wrong gain. For a 10 degree movement, the leftover is w + 10 (1 - g). Any pair of values on the dashed line gives the same leftover. A threshold turns the leftover into an alarm, but it cannot recover which cause was present, so it raises false alarms for a poor gain and misses contacts that are small.
 
@@ -74,7 +74,7 @@ A leftover of 1 (in degrees) passes the 0.5 degree threshold, so the alarm is ra
 
 **Takeaway:** The leftover has more than one possible cause. A threshold converts it to an alarm that can be false, or can miss a contact smaller than the model error.
 
-**What happens:** At Prediction gain = 0.9, Outside motion (degrees) = 0, Alarm threshold (degrees) = 0.5: The leftover is 1 degree, over the 0.5 threshold, so the alarm sounds although nothing touched the arm: a false alarm. The same leftover arises from gain 1.0 with 1 degree of outside motion, where the alarm is correct.
+**What happens:** At Prediction gain = 0.9, Outside motion (degrees) = 0, Alarm threshold (degrees) = 0.5: The leftover is 1 degree, over the 0.5 threshold, so the alarm sounds although nothing touched the device: a false alarm. The same leftover arises from gain 1.0 with 1 degree of outside motion, where the alarm is correct.
 
 **Why it matters:** Something else must tell the causes apart. The chapter's proposal, its own and untested, is to show an operator both the prediction and the observation so a second sensor can be checked.
 
@@ -82,7 +82,7 @@ A leftover of 1 (in degrees) passes the 0.5 degree threshold, so the alarm is ra
 
 **In machines:** Collision detection by comparing commanded and expected torque is routine engineering, which the chapter attributes to a survey of 2017. Friction compensation and thresholds are its remedies for modeling errors.
 
-**Assumptions and limits:** One 10 degree movement, effects that add, and no sensor noise. A real arm's residual also carries friction and model errors the chapter says engineers handle with compensation and thresholds.
+**Assumptions and limits:** One 10 degree movement, effects that add, and no sensor noise. The degrees and thresholds belong to this camera setup; a real arm compares commanded and expected torque, and linking its residual to phantom drift is the book's own step. A real arm's residual also carries friction and model errors the chapter says engineers handle with compensation and thresholds.
 
 **Check:** With gain 1.0 and 1 degree of outside motion, the leftover is 1. Which gain with no outside motion gives the same leftover?
 
@@ -113,9 +113,9 @@ A 0.2 second delay shifts a 2 per second stroke by 144 degrees of its cycle, so 
 
 **Calculation:** Error = RMS of (sin(2 pi f t) - sin(2 pi f (t - d))) divided by sqrt(2) = |sin(pi f d)| = |sin(pi x 2 x 0.2)| = 0.951. Share = 1 - 0.5 x (1 - 0.951) = 0.976.
 
-**Takeaway:** A late touch matches the prediction badly, so it is turned down less. The sketch gives a rise that levels off near the study's delays, and its later behavior is untested.
+**Takeaway:** A late touch matches the prediction badly, so it is turned down less. The sketch rises to a peak at 0.25 seconds and then falls back; the study tested only 0.1 to 0.3 seconds, so the fall is a property of the sketch, not a finding.
 
-**What happens:** At Delay (seconds) = 0.2, Turn-down of a matched touch (k) = 0.5: At 0.2 seconds the prediction error is 0.951 of its largest value and ticklishness is 0.976 of the robot-only level, close to it, as the study found. At 0.1 it is lower (0.794) and at 0.4 it falls back (0.794). The study did not test 0.4 or 0.5.
+**What happens:** At Delay (seconds) = 0.2, Turn-down of a matched touch (k) = 0.5: At 0.2 seconds the prediction error is 0.951 of its largest value and ticklishness is 0.976 of the robot-only level, close to it. The study found ratings at 0.2 seconds not significantly different from robot-only, which is weaker than equal, and the 0.976 depends on the turn-down k = 0.5 chosen here. At 0.1 it is lower (0.794) and at 0.4 it falls back (0.794). The study did not test 0.4 or 0.5.
 
 **Why it matters:** The ratings fit the proposal that prediction error drives ticklishness, but they do not show subtraction or measure self-attribution. A model that fits one range can say nothing safe outside it.
 
@@ -197,7 +197,7 @@ If the felt location were a blend of the own body (0 cm) and the seen body (200 
 
 **Takeaway:** A 24 cm shift across 200 cm corresponds to a modest weight on the seen body. This restates a reported number as a model parameter and shows nothing about how the brain produces the shift.
 
-**What happens:** At Shift toward the seen body (cm) = 24.1: The weight is about 0.12, a variance ratio of about 7.3: the seen body would need about seven times the variance of the own-body estimate. The out-of-time shift of about 12 cm gives about 0.06, though it was not a reliable shift from baseline.
+**What happens:** At Shift toward the seen body (cm) = 24.1: On the companion's blend reading (not a reported result), the weight is about 0.12, a variance ratio of about 7.3: the seen body would need about seven times the variance of the own-body estimate. The out-of-time shift of about 12 cm gives about 0.06, though it was not a reliable shift from baseline.
 
 **Why it matters:** A model can express a shift, but fitting a number is not an explanation. Blanke's patient was one person at one site, and Lenggenhager's stroking involved no command to move.
 
@@ -205,13 +205,13 @@ If the felt location were a blend of the own body (0 cm) and the seen body (200 
 
 **In machines:** A specification: any blend gives a weight from a variance ratio. No machine here has these experiences.
 
-**Assumptions and limits:** The felt location is treated as a blend of two points, with the shift as a fraction of the distance. The study's measure is where people walked back to, and the chapter says these studies show felt location can be shifted, not why. The study reports no group spread here, so none is shown.
+**Assumptions and limits:** The felt location is treated as a blend of two points, with the shift as a fraction of the distance. The study's measure is where people walked back to, and the chapter says these studies show felt location can be shifted, not why. The study reports no group spread here, so none is shown. The shift values 0, 6, 36 and 48 cm on the slider are hypothetical; only 24.1 cm (in time) and 12 cm (out of time) are reported.
 
 **Check:** For a 24.1 cm shift, what is the implied weight, to two decimal places?
 
 **Answer:** 24.1/200 = 0.1205, about 0.12.
 
-**Source:** Stimulation gave a 43-year-old patient an out-of-body view of legs and lower trunk; anchor `stimulation-gave-a-43-year-old-patient-an-out-of-body-view-of-legs-and-lower-trunk`. Reported result: Lenggenhager and colleagues' first study (14 people): about 24 cm closer to the seen body after stroking in time, about 12 cm out of time (not a reliable shift from baseline), the seen body two metres ahead. The weighting reading is the companion's, not the study's or the chapter's.
+**Source:** Stimulation gave a 43-year-old patient an out-of-body view of legs and lower trunk; anchor `stimulation-gave-a-43-year-old-patient-an-out-of-body-view-of-legs-and-lower-trunk`. Reported shifts: Lenggenhager and colleagues' first study (14 people): about 24 cm closer to the seen body after stroking in time, about 12 cm out of time (not a reliable shift from baseline), the seen body two metres ahead. The weight (24.1/200 = 0.12) and the variance ratio (7.3) are not reported results: they are the companion's model reading, not the study's or the chapter's.
 
 ## C30-D06: Why does an explorer rewarded for surprise need the right features?
 

@@ -94,7 +94,7 @@ After 4 stored patterns, units 1 and 2 agree in 3 and disagree in 1, so their li
 
 If a pattern is damaged in a few units and the network updates, how often does it finish the pattern?
 
-Start the network on a damaged pattern and let the units update one at a time. When the start is close, it usually settles on the stored pattern. The farther the start, the less often, and some runs end on a different stored pattern, on an opposite, or on a stable state with no stored meaning.
+Start the network on a damaged pattern and let the units update one at a time. When the start is close, it usually settles on the stored pattern. The farther the start, the less often, and some runs end on a different stored pattern, on an opposite, or on a stable state with no stored meaning. Not Hopfield's number: his figure was more than 90 percent within 5 places for his 0/1 version and counts the nearest memory, while this plus/minus-one simulation counts the exact target and gives about 74 percent at 5 wrong (about 92 percent even from a start with 0 wrong).
 
 $$
 s_i \leftarrow \operatorname{sign}\Bigl(\sum_{j} w_{ij}\,s_j\Bigr),\qquad w_{ij}=\sum_{\mu=1}^{P}\xi_i^{\mu}\xi_j^{\mu}
@@ -116,7 +116,7 @@ Starting 5 units from a stored pattern in a network of 30 units holding 5 random
 
 **Takeaway:** A close cue is usually finished, a far one is not, and the network gives no warning when it settles on a wrong answer.
 
-**What happens:** At Units wrong in the starting pattern (of 30) = 10: Around 10 wrong units out of 30 is where recall of the exact target stops being usual. Wrong answers are stable too: runs end on other stored patterns, opposites, or states with no stored meaning.
+**What happens:** At Units wrong in the starting pattern (of 30) = 10: By 10 wrong units out of 30 only about 30 percent of runs end at the exact target (about 55 percent at 8), so recall of the exact target has stopped being usual. Wrong answers are stable too: runs end on other stored patterns, opposites, or states with no stored meaning.
 
 **Why it matters:** This is the content-addressable memory Hopfield wished for: a piece of an item leads to the rest. It also shows the cost, since a settled state is not necessarily the intended memory.
 
@@ -147,18 +147,18 @@ $$
 **Predict:** If every unit updates at the same instant instead of one at a time, predict whether two units with a positive link that start opposite settle, and whether the energy still only falls.
 
 **Worked example:**
-- Energy at the start: -61
-- Energy at the end: -447
+- Energy at the start: 53
+- Energy at the end: -411
 - Largest rise in one step: 0
 - The run ends in: a stable state
 
-Updating one unit at a time from random start 1, the energy fell from -61 to -447 and never rose; the largest rise was 0. The two-unit pair on the right settles after one change.
+Updating one unit at a time from random start 1, the energy fell from 53 to -411 and never rose; the largest rise was 0. The two-unit pair on the right settles after one change.
 
 **Calculation:** Energy E = -1/2 x sum over i and j of w_ij s_i s_j. For two units joined by a link of 1: matching states give E = -1 and opposite states give E = +1. Updated one at a time from (+1, -1), the first unit sees a vote of -1, becomes -1, and the pair matches with E = -1. Updated together, each copies the other: (+1, -1) becomes (-1, +1) and then back, with E = +1 every step.
 
-**Takeaway:** One-at-a-time updates cannot raise the energy, so the network must come to rest; simultaneous updates break that guarantee.
+**Takeaway:** One-at-a-time updates cannot raise the energy, so the network must come to rest; simultaneous updates remove that guarantee, though some runs still settle.
 
-**What happens:** At Update schedule = all at once, Random start number (30 units) = 1: Updated together, the two units each copy the other, swap places, and swap back forever, and their energy stays at plus 1. Updated one at a time they settle immediately and the energy drops to minus 1.
+**What happens:** At Update schedule = all at once, Random start number (30 units) = 3: Updated together, the two units each copy the other, swap places, and swap back forever, and their energy stays at plus 1. Updated one at a time they settle immediately and the energy drops to minus 1. In the 30-unit network, start 3 updated together ends in a back-and-forth cycle of two states, and its energy rises by 14 at one step; other starts happen to settle.
 
 **Why it matters:** The energy score is the argument that the network stops. It also explains the difference between a design that is guaranteed to settle and one that merely often does.
 
@@ -166,13 +166,13 @@ Updating one unit at a time from random start 1, the energy fell from -61 to -44
 
 **In machines:** A machine that updates all units in parallel can oscillate, so the schedule is part of the algorithm.
 
-**Assumptions and limits:** The guarantee needs three conditions: symmetric links, no self-links, and units updated one at a time with every unit chosen repeatedly. With simultaneous updates the guarantee can fail. The 30-unit runs show behavior in one constructed network.
+**Assumptions and limits:** The guarantee needs three conditions: symmetric links, no self-links, and units updated one at a time with every unit chosen repeatedly. With simultaneous updates the guarantee can fail. The 30-unit runs show behavior in one constructed network: here the simultaneous schedule cycles for starts 3 and 6 and settles for the other four, so it is not that a cycle always happens. In a separate check of 1000 random 30-unit, 5-pattern networks with one random start each, about 1 in 9 (11 percent) ended in a two-state cycle and about 2 percent showed a rise in energy.
 
 **Check:** Two units with a link of 1 are plus and minus. Updating the first alone, what are the states and energy afterwards?
 
 **Answer:** The first unit hears a vote of -1 from the second and becomes minus one. Both units are minus one, they match, and the energy is -1, down from +1.
 
-**Source:** Recall slid downhill and stopped, but crowded memories blurred; anchor `recall-slid-downhill-and-stopped-but-crowded-memories-blurred`. Book formula and the chapter's own two-unit example (positive link of 1, opposite start). The 30-unit network is a constructed illustration with 5 random patterns (seeds disclosed in the notebook), not Hopfield's runs.
+**Source:** Recall slid downhill and stopped, but crowded memories blurred; anchor `recall-slid-downhill-and-stopped-but-crowded-memories-blurred`. Book formula and the chapter's own two-unit example (positive link of 1, opposite start). The 30-unit network is a constructed illustration with 5 random patterns (seeds disclosed in the notebook), not Hopfield's runs; its seed was picked from a search so that simultaneous updating cycles for some of the six starts.
 
 ## C06-D05: How many memories can a network hold?
 
@@ -194,13 +194,13 @@ $$
 - Runs that stayed exactly at the start: 29 of 30
 - Share of units wrong after one simultaneous pass (estimate): 0.046 percent
 
-With 100 units and 10 random patterns, 30 seeded runs started at a stored pattern and ended with 0.3 units wrong on average; 29 of 30 had fewer than 5 wrong. The dotted verticals mark 0.15 N, Hopfield's rule of thumb quoted in the chapter.
+With 100 units and 10 random patterns, 30 seeded runs ended with 0.3 units wrong on average; 29 of 30 had fewer than 5 wrong. The dotted verticals mark 0.15 N, the chapter's rule of thumb for Hopfield's 0/1 network; this plus/minus-one version at 100 units has 26 of 30 runs under 5 wrong at 15 patterns and 19 at 20.
 
 **Calculation:** Crosstalk estimate: each unit's vote is (N - 1) from its own pattern plus noise of size sqrt((P - 1)(N - 1)). A first-pass error needs the noise to beat the signal: chance = Phi(-sqrt((N - 1)/(P - 1))) = Phi(-sqrt(99/9)) = 0.000456. The runs use the plus/minus-one storage rule and one-at-a-time updates.
 
 **Takeaway:** Every stored pattern adds noise to every vote, and past a point the noise drowns the memory it was meant to protect.
 
-**What happens:** At Stored patterns = 40, Units in the network = 100: At 40 patterns in 100 units, far past the 0.15 N mark at 15, runs from an exactly stored pattern end with many units wrong. With 10 patterns almost every run stays at its start.
+**What happens:** At Stored patterns = 40, Units in the network = 100: At 40 patterns in 100 units, far past 0.15 N (15 patterns), runs from an exactly stored pattern end with many units wrong (24 on average). In this plus/minus-one network recall already degrades from about 20 patterns; with 10 patterns almost every run stays at its start.
 
 **Why it matters:** A fixed number of units can only keep so many random patterns apart. The limit comes from crosstalk and motivates ways to separate or sharpen memories.
 
@@ -208,9 +208,9 @@ With 100 units and 10 random patterns, 30 seeded runs started at a stored patter
 
 **In machines:** Capacity depends on the coding and the error count. The modern attention-style network's capacity grows much faster, so the 0.15 N rule of thumb does not carry over to it.
 
-**Assumptions and limits:** Random patterns, the unnormalized storage rule, runs that start exactly at a stored pattern, and asynchronous updates. How errors are counted and how units are coded change the capacity figure. Beyond capacity recall can fail outright.
+**Assumptions and limits:** Random patterns, the unnormalized storage rule, runs that start exactly at a stored pattern, and asynchronous updates. How errors are counted and how units are coded change the capacity figure. Beyond capacity recall can fail outright. The 0.15 N lines come from Hopfield's 0/1 setup and are not a failure threshold for this plus/minus-one network.
 
-**Check:** For 100 units and 15 stored patterns, the crosstalk estimate of a wrong first vote per unit is about 0.4 percent. Why can a run still end with many units wrong?
+**Check:** For 100 units and 30 stored patterns, the crosstalk estimate of a wrong first vote per unit is about 3.2 percent. Why can a run still end with many units wrong?
 
 **Answer:** A few wrong units change the votes that other units hear, and those errors can feed on each other. The estimate describes only the first pass, not the settling that follows.
 
@@ -300,7 +300,7 @@ For random patterns, 32 units and 8 stored patterns, a cue with 8 units wrong gi
 
 **Check:** If two stored patterns match the cue equally well, what does the update return at any beta?
 
-**Answer:** An equal blend of the two patterns, because their shares are equal. Entries where the two patterns agree are recovered; entries where they differ average to zero.
+**Answer:** An equal share for each of the two, so the update lands near their average (other stored patterns still add a small amount at a small beta). Entries where the two agree are recovered; entries where they differ average to zero.
 
 **Source:** A sharpness dial let the best match win, and the rule was attention; anchor `a-sharpness-dial-let-the-best-match-win-and-the-rule-was-attention`. Simulation with disclosed seeds (200 cues per setting) of the update rule that Ramsauer and colleagues relate to attention, in the simplified mapping the chapter describes (stored patterns act as both keys and values). The 32-unit random and similar pattern sets are constructed. Not a test of any trained transformer.
 
@@ -328,9 +328,9 @@ Starting from 66.4 percent, an occupancy of 44.6 percent keeps 47 percent of the
 
 **Calculation:** Share kept = (44.6 - 25) / (66.4 - 25) = 19.6 / 41.4 = 0.473.
 
-**Takeaway:** Measured against the 25 percent equal-occupancy level, the knockouts kept roughly half of their preference and the controls most of it.
+**Takeaway:** Measured against the 25 percent equal-occupancy level, the knockouts kept roughly half of their preference and the controls most of it. The control group's drop was not statistically significant, so the 83 percent should not be read as a measured loss.
 
-**What happens:** At Occupancy with three cues removed (percent) = 44.6, Occupancy with all cues (percent) = 66.4: The knockout mice keep about 47 percent of their above-chance preference (44.6 against 66.4). The controls keep about 83 percent (58.8 against 65.9). The authors read the knockouts' result as degradation rather than the complete loss of recall.
+**What happens:** At Occupancy with three cues removed (percent) = 44.6, Occupancy with all cues (percent) = 66.4: The knockout mice keep about 47 percent of their above-chance preference (44.6 against 66.4). The controls keep about 83 percent (58.8 against 65.9). The authors read the knockouts' result as degradation rather than the complete loss of recall. The control group's drop was not statistically significant, so the 83 percent should not be read as a measured loss.
 
 **Why it matters:** A reported percentage means more when it is read against what chance would give. This is the evidence side of the chapter, and it does not show that a brain follows Hopfield's update rule.
 

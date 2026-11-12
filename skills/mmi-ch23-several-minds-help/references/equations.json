@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-23.md",
   "source_sha256": "43f790449c7ae34d9e77962a3b1f4551d8f2dc14fbb53eb6774b35eb630b1fd0",
-  "calculation_sha256": "d5f885ed2071ec846f83baa26170147c5e2387082be8af85360f44b7b541585e",
+  "calculation_sha256": "a5f92bfdb013ce625d85d04fc3722b03b47c5bf962e764f7efe2e36c50255e11",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -478,7 +478,7 @@
         },
         "text": "With 0.6 of wrong answers on one shared option, independent models match 0.6 x 0.6 + 2 x 0.2 x 0.2 = 0.44 of the time, well above 1/3 and still below the reported 0.6. It takes a share of about 0.755 to reach 0.6."
       },
-      "takeaway": "Agreement on wrong options is not proof that models copy each other: shared temptation produces it with no communication.",
+      "takeaway": "Some matching on wrong options is expected even for independent models, because some wrong options tempt more than others. Reaching the reported 0.6 this way would take one option drawing about 75 percent of the wrong answers, so this does not explain the reported figure; it only shows the gap above 1/3 is not by itself proof of copying.",
       "why_it_matters": "Voting and averaging assume independence. Matching on wrong answers is a warning for that assumption, but this figure cannot be dropped into the error-correlation formula, and why it arises is not established.",
       "sides": {
         "machine": "The study compared 71 models on a public leaderboard and found higher matching for models from the same developer and for larger, more accurate ones. The chapter says why this happens is not established."
@@ -524,13 +524,13 @@
         "Average the study reported over model pairs": "0.6",
         "Most tempting share needed to reach 0.6 (same option)": "0.755"
       },
-      "worked_interpretation": "If independent models send 0.34 of their wrong answers to their most tempting option, and the same option tempts both models, they match 0.333 of the time. Reaching the reported 0.6 this way takes a share of 0.755 on one shared option.",
+      "worked_interpretation": "If independent models send 0.34 of their wrong answers to their most tempting option, and the same option tempts both models, they match 0.333 of the time. Reaching the reported 0.6 this way takes a share of 0.755 on one shared option, an extreme concentration the chapter does not claim.",
       "reader_anchor": "C23-D06"
     },
     {
       "id": "C23-D07",
-      "title": "When does a majority vote over sampled answers help?",
-      "question": "If a model samples many chains of reasoning and the most common answer wins, when does the vote beat one chain, and when does it make things worse?",
+      "title": "When does a majority vote over sampled answers help? (worst case)",
+      "question": "If a model samples many chains of reasoning and the most common answer wins, when does the vote beat one chain, and when does it make things worse if all wrong chains agree?",
       "equations": [
         "P(\\text{vote right})=\\sum_{k>m/2}\\binom{m}{k}\\,p^{k}(1-p)^{m-k}"
       ],
@@ -550,23 +550,23 @@
       ],
       "source_anchor": "models-that-pick-the-same-wrong-option",
       "source_section": "Models that pick the same wrong option",
-      "provenance": "Constructed population, not a result. Easy questions (60 percent of them) have chain accuracy 0.8 and hard ones a chosen lower value. The chapter reports, for PaLM-540B on grade-school math, 56.5 percent with one chain and 74.4 percent with a vote over 40 chains (mean of 10 runs), and 36.9 percent when PaLM-540B and a smaller model voted together; this demonstration does not reproduce those figures.",
+      "provenance": "Constructed population, not a result. Easy questions (60 percent of them) have chain accuracy 0.8 and hard ones a chosen lower value. The chapter reports, for PaLM-540B on grade-school math, 56.5 percent with one chain and 74.4 percent with a vote over 40 chains (mean of 10 runs), and 36.9 percent when PaLM-540B and a smaller model voted together; this demonstration does not reproduce those figures. The rise from 56.5 to 74.4 percent in the cited paper is not reproduced, and the decline with many chains in the right panel is a result of the worst-case assumption.",
       "kind": "constructed example",
-      "assumptions": "Chains are drawn independently given the question, each right with a fixed chance for that question, and wrong chains are treated as not forming a majority for the right answer. In real use all chains share one model's strengths and biases and wrong chains may agree with each other.",
-      "prediction": "If a hard question has a chain chance of 0.3, predict whether a vote of 41 chains on it is right more often or less often than one chain.",
+      "assumptions": "Chains are drawn independently given the question, each right with a fixed chance for that question, The vote counts as right only if more than half of the chains are right. That is the worst case in which every wrong chain gives the same wrong answer; real self-consistency takes the most common answer, so when wrong chains scatter over different answers a right answer with fewer than half the votes can still win. In real use all chains also share one model's strengths and biases.",
+      "prediction": "Suppose every wrong chain gives the same wrong answer and a hard question has a chain chance of 0.3. Predict whether a vote of 41 chains on it is right more often or less often than one chain.",
       "reveal": {
         "state": {
           "chains": 41,
           "hard_chance": 0.3
         },
-        "text": "On hard questions a vote of 41 is right only 0.004 of the time, against 0.3 for one chain, while easy questions rise to 1.000. Overall the vote scores 0.601 against 0.60 for one chain. With hard-question chance 0.45 the vote scores 0.704 against 0.660."
+        "text": "If every wrong chain gives the same wrong answer, a vote of 41 on hard questions is right only 0.004 of the time, against 0.3 for one chain, while easy questions rise to 1.000. Overall the vote scores 0.601 against 0.60 for one chain. With hard-question chance 0.45 the vote scores 0.704 against 0.660."
       },
-      "takeaway": "A vote pushes each question toward certainty in whichever direction a single chain already leans, so it helps only where chains are right more often than not.",
-      "why_it_matters": "Adding votes does not repair a model that gives the same wrong answer most of the time. The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.",
+      "takeaway": "When wrong chains all repeat the same wrong answer, a vote pushes each question toward certainty in whichever direction a single chain already leans, so it helps only where chains are right more often than not. When wrong chains scatter over different answers, voting can help even where a single chain is right less than half the time.",
+      "why_it_matters": "Adding votes does not repair a model that gives the same wrong answer most of the time (the case this demonstration models). The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.",
       "sides": {
         "machine": "Self-consistency samples several chains from one model and takes the most common final answer. The chains are independent draws for a given question yet still share that model's strengths and biases."
       },
-      "explanation": "For one question with chain chance p, the vote is right when more than half of the chains are. For p above one half the chance climbs toward 1 as chains are added, and for p below one half it falls toward 0. The overall effect is the average across questions, so it depends on how many questions lean each way.",
+      "explanation": "For one question with chain chance p, the vote is right when more than half of the chains are. For p above one half the chance climbs toward 1 as chains are added, and, if every wrong chain gives the same wrong answer, for p below one half it falls toward 0. Real self-consistency takes the most common answer, so scattered wrong answers can lose to a right answer with fewer than half the votes (in a simulation with 41 chains and a right chance of 0.3, wrong answers spread over three other options gave about 0.5 right, over six about 0.9; this is the companion's own check, not the book's number). The overall effect is the average across questions, so it depends on how many questions lean each way.",
       "check": "With p = 0.6 on a question, what is the chance that a vote of 3 chains is right?",
       "answer": "Right when at least 2 of 3 chains are right: 3 x 0.6^2 x 0.4 + 0.6^3 = 0.432 + 0.216 = 0.648.",
       "controls": [
@@ -600,7 +600,7 @@
       "function": "vote_picture",
       "alt": "Bars of one chain against a vote on easy, hard and all questions, and overall accuracy against the number of chains for four hard-question chances.",
       "symbols": "m: the number of sampled chains, odd so there are no ties; p: the chance one chain is right on this question; k: how many of the m chains are right",
-      "application": "Adding votes does not repair a model that gives the same wrong answer most of the time. The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.",
+      "application": "Adding votes does not repair a model that gives the same wrong answer most of the time (the case this demonstration models). The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.",
       "default_parameters": "Chains voting: 11 · Chance one chain is right on a hard question: 0.3",
       "worked_example": {
         "One chain, all questions": "0.6",
@@ -608,7 +608,7 @@
         "Vote on hard questions": "0.0782",
         "Change from voting": "0.0243"
       },
-      "worked_interpretation": "In a constructed mix with 60 percent easy questions (each chain right with chance 0.8) and hard ones (chance 0.3), one chain scores 0.6 and a vote of 11 scores 0.624. Voting lifts easy questions toward certainty and sinks hard ones.",
+      "worked_interpretation": "In a constructed mix with 60 percent easy questions (each chain right with chance 0.8) and hard ones (chance 0.3), one chain scores 0.6 and a vote of 11 scores 0.624. In this worst-case model (every wrong chain gives the same wrong answer) voting lifts easy questions toward certainty and sinks hard ones.",
       "reader_anchor": "C23-D07"
     }
   ]

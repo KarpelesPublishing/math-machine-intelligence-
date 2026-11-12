@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-03.md",
   "source_sha256": "d49cb20cda72723b0922a13bb2faa731b4bb1f79bee9ac0bd6e60d28447b2950",
-  "calculation_sha256": "b1ff5eb41d2a87ab28682fe476686206b16b5b02f52b70947f0d80d28bb0c85d",
+  "calculation_sha256": "cd97a855e0ddd9fc899630084caac170d15febcec6dc99a475c10e7a37def455",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -38,7 +38,7 @@
         "90-derivations.md",
         "derivation-4-entropy-and-cumulative-response-chapter-3"
       ],
-      "provenance": "Book formula and the chapter's constructed 1,000-reading example (800 in a narrow band, 100 in each tail). Laughlin did not count ten steps in a real cell; the ten levels are an illustration. Spreading band and tail readings evenly inside their steps is this companion's simplification.",
+      "provenance": "Book formula and the chapter's constructed 1,000-reading example (800 in a narrow band, 100 in each tail). Laughlin did not count ten steps in a real cell; the ten levels are an illustration. Spreading band and tail readings evenly inside their steps is this companion's simplification. The layouts where the band covers 1 to 9 evenly spaced steps, and the 500 and 950 band shares, are the companion's constructions; the chapter gives only the 800, 100, 100 split with eight band steps and one step per tail.",
       "kind": "formula",
       "assumptions": "Ten equally distinguishable levels, no noise, and readings spread evenly within the band steps and within the tail steps. This is the capacity of an idealized signal, not a measurement of the fly cell.",
       "prediction": "With 800 of 1,000 readings in a band that evenly spaced steps cover with only 2 of the 10 steps, predict to the nearest bit how many of the 3.32 possible bits the signal carries.",
@@ -138,7 +138,7 @@
           "half_range": 0.5,
           "levels": 10
         },
-        "text": "A half-range of 0.5 clips about 61 percent of readings into the end steps and carries 2.57 bits. The best evenly spaced range here is 2 (3.21 bits); only the share-at-or-below curve reaches 3.32 whatever the scale of the world."
+        "text": "A half-range of 0.5 clips about 61 percent of readings into the end steps and carries 2.57 bits. Of the listed half-ranges, 2 carries the most (3.21 bits; a finer search puts the best near 1.7 with 3.23 bits); only the share-at-or-below curve reaches 3.32 whatever the scale of the world."
       },
       "takeaway": "Making the response follow the share of readings at or below each contrast uses every step equally often, so it carries log2 M bits for any scale of world; an evenly spaced response must be tuned to the scale and still falls short.",
       "why_it_matters": "The rule turns a measured world into a predicted response curve, which Laughlin could then check against a cell. A machine can do the same with a measured input distribution, which is how a photo's brightness values are spread across the available range.",
@@ -186,7 +186,7 @@
         "Readings clipped at an end": "5 percent",
         "Levels": 10
       },
-      "worked_interpretation": "With a half-range of 3 the evenly spaced response carries 3 of 3.32 bits and is a middling compromise. The share-at-or-below curve uses every step 10 percent of the time for any scale of world.",
+      "worked_interpretation": "With a half-range of 3 the evenly spaced response carries 3 of 3.32 bits, neither heavily clipped nor leaving its end steps idle. The share-at-or-below curve uses every step 10 percent of the time for any scale of world.",
       "reader_anchor": "C03-D02"
     },
     {
@@ -320,7 +320,7 @@
       "takeaway": "Only the ratio of curve width to input spread matters, so keeping information high across spreads means stretching the curve in proportion, which is what H1 was reported to do.",
       "why_it_matters": "A code fitted to one spread is mismatched when the spread changes, and the fix is to rescale it. A machine whose inputs change scale faces the same question; the chapter notes that neither the sparse-coding model nor the mammography software was tested for it.",
       "sides": {
-        "brain": "H1, a blowfly motion cell that fires spikes, widened its response curve when the velocity spread widened; curves nearly coincided once velocity was in units of its spread. This is one cell type in one species.",
+        "brain": "H1, a blowfly motion cell that fires spikes, widened its response curve when the velocity spread widened; curves nearly coincided once velocity was in units of its spread and firing rate in units of its own average. This is one cell type in one species.",
         "machine": "Normalizing an input by its own spread before a fixed code is the machine counterpart of a curve that stretches; this is an engineering practice, not a claim about cells."
       },
       "explanation": "Stretching the input and the curve together changes nothing about which response step each reading lands in. So the bits carried are a function of one number, the width divided by the spread, and the best width scales with the spread. The three curves on the right lie exactly on top of each other for that reason.",
@@ -485,7 +485,7 @@
       "source_section": "A model told to use few elements grew detectors like those in cortex",
       "provenance": "The companion's own toy built on the chapter's objective. The chapter does not state a penalty shape and does not give this closed form. The eight coefficients are made up, and the dictionary is taken as orthonormal so the elements do not overlap. No learning of elements is done here, only the coding step.",
       "kind": "model",
-      "assumptions": "A fixed orthonormal dictionary, so minimizing E splits into one-number problems. The paper's elements were learned from 16 by 16 patches of natural images with a different penalty function and without an orthonormality constraint, and the paper did not require other coefficients to be exactly zero.",
+      "assumptions": "A fixed orthonormal dictionary, so minimizing E splits into one-number problems. The paper learned 192 elements from 16 by 16 patches of natural images; this toy fixes an orthonormal dictionary and learns nothing. The chapter does not state the paper's penalty function, and the paper did not require the other coefficients to be exactly zero.",
       "prediction": "With the absolute-value penalty, predict how many of the eight elements stay active at lambda 2, and which ones.",
       "reveal": {
         "state": {
@@ -548,7 +548,7 @@
     {
       "id": "C03-D07",
       "title": "What do reported sensitivity and specificity mean in counts?",
-      "question": "If marks on a mammogram change sensitivity by 2 points and specificity by 3, how many cancers and how many recalls change per 100,000 exams?",
+      "question": "As a what-if, if marks on a mammogram changed sensitivity by 2 points and specificity by 3 (a combination neither study reported), how many cancers and how many recalls would change per 100,000 exams?",
       "equations": [
         "\\text{found}=N\\,\\pi\\,s_e,\\qquad \\text{no-cancer recalls}=N\\,(1-\\pi)\\,(1-s_p)"
       ],
@@ -573,7 +573,7 @@
       "source_anchor": "software-marks-on-mammograms-of-300000-women-were-not-linked-to-better-readings",
       "source_section": "Software marks on mammograms of 300,000 women were not linked to better readings",
       "provenance": "Rates from Lehman and colleagues (2015): sensitivity 85.3 percent with the software and 87.3 without, specificity about 91 percent either way, 3,159 cancers in 625,625 exams. Specificity values 87.2 and 90.2 are Fenton and colleagues' (2007), a different study; the values 80, 90 and 93 are dial settings chosen here. The counts are arithmetic, not results from either study.",
-      "kind": "reported result",
+      "kind": "constructed example",
       "assumptions": "The rates are observational, model-derived estimates from two studies that differ in years and design and are not pooled. Applying one study's cancer rate to the other's specificity is arithmetic for illustration. The studies do not show why marks did not help, and this is not advice about any screening decision.",
       "prediction": "Lehman's sensitivity gap is 2 points. Predict whether it is worth more cancers or fewer than 100 per 100,000 exams, and how it compares with the recall change from Fenton's specificity drop of 3 points.",
       "reveal": {
@@ -581,7 +581,7 @@
           "sensitivity": 87.3,
           "specificity": 87.2
         },
-        "text": "Holding sensitivity at 87.3 and dropping specificity from 91 to 87.2 leaves finds unchanged and adds about 3,781 recalls of women without cancer per 100,000 exams. Two points of sensitivity are only about 10 cancers; the recall rate rises from 9.4 to 13.2 percent."
+        "text": "A what-if: hold sensitivity at Lehman's 87.3 and let specificity fall from Lehman's 91 percent to the 87.2 percent Fenton reported after adoption. This mixes two studies the chapter does not pool, so it is arithmetic only. Finds are unchanged and the arithmetic adds about 3,781 recalls of women without cancer per 100,000 exams. Two points of sensitivity are only about 10 cancers; the recall rate rises from 9.4 to 13.2 percent."
       },
       "takeaway": "A few points of sensitivity move counts of cancers by tens per 100,000 exams, while a few points of specificity move recalls by thousands, because exams without cancer vastly outnumber the rest.",
       "why_it_matters": "A rate that looks small can be a large count, and a mark that asks for a second look costs attention whether or not it helps. The chapter's studies did not measure that cost; it is an inference.",
@@ -589,7 +589,7 @@
         "brain": "The reader is the brain side: a radiologist who must review and dismiss marks, with limited attention. The studies did not measure attention.",
         "machine": "The software is the machine side: marks built to flag what a reader might drop. In Lehman's data they were not linked to better accuracy overall."
       },
-      "explanation": "Sensitivity applies to the small group with cancer, and specificity applies to the large group without. A 2-point change on about 505 cancers is about 10; a 3-point change on about 99,495 exams without cancer is about 2,985. With the Lehman cancer rate and sensitivity 87.3, the arithmetic recall rates at specificity 90.2 and 87.2 are 10.2 and 13.2 percent, close to Fenton's reported 10.1 and 13.2.",
+      "explanation": "Sensitivity applies to the small group with cancer, and specificity applies to the large group without. A 2-point change on about 505 cancers is about 10; a 3-point change on about 99,495 exams without cancer is about 2,985. With the Lehman cancer rate and sensitivity 87.3, the arithmetic recall rates at specificity 90.2 and 87.2 are 10.2 and 13.2 percent. They land near the recalls Fenton reported (about 10 and about 13 in 100) because recalls are dominated by women without cancer; that is expected from the arithmetic and is not a validation of it, and the two studies are not pooled.",
       "check": "At a cancer rate of 3,159 per 625,625, about how many cancers are there per 100,000 exams, and how many does a sensitivity of 85.3 percent find?",
       "answer": "3,159 / 625,625 x 100,000 = 505 cancers per 100,000 exams. At 85.3 percent, about 431 are found and 74 are missed.",
       "controls": [
@@ -627,7 +627,7 @@
         "Recalled with no cancer": "8,955",
         "Recall rate": "9.4 percent"
       },
-      "worked_interpretation": "At sensitivity 85.3 and specificity 91 the arithmetic gives about 431 cancers found and 8,955 no-cancer recalls per 100,000 exams, a recall rate of 9.4 percent. Against the baseline, finds change by -10 and no-cancer recalls by +0.",
+      "worked_interpretation": "At sensitivity 85.3 and specificity 91, about 431 cancers found and 8,955 women without cancer recalled per 100,000 exams. Against Lehman's no-software baseline (sensitivity 87.3, specificity 91), finds change by -10 and recalls by 0. Lehman's 2-point gap was not significant and both studies are observational: arithmetic, not an effect.",
       "reader_anchor": "C03-D07"
     }
   ]

@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-22.md",
   "source_sha256": "38a00212aa81ebe059ce4b68467da57f41b1ad9b2d83ba246d5b8102fb1f8e19",
-  "calculation_sha256": "99993bbd718f9cfe40d9aae86ae9c46d52d37b6896905c7d1cfbdbb4048cf2ca",
+  "calculation_sha256": "cadf991c93254c672828997c6642f0af11c5874b1e7c553687812905d620325e",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -53,7 +53,7 @@
       "takeaway": "Each step multiplies the odds by how much likelier it is under one goal than the other, so a modest tilt compounds.",
       "why_it_matters": "A machine that reads goals from steps is only as good as its picture of how a goal produces a step. The arithmetic is simple, so the assumptions carry the weight.",
       "sides": {
-        "brain": "In the 2009 study, the ratings of 16 people tracked a model like this one (correlation 0.97 for the version that lets goals change). That is a fit to ratings, not a finding that people multiply probabilities.",
+        "brain": "In the 2009 study, the ratings of 16 people tracked a richer model that lets goals change (correlation 0.97); the fixed-goal rule used in this demonstration, which is the simplest version, scored 0.82. Either is a fit to ratings, not a finding that people multiply probabilities.",
         "machine": "A system that reads a user's goal from their actions can apply this rule exactly, if it is given a prior and an action model. Whether those are right is a separate check."
       },
       "explanation": "Each goal starts with its prior. Every step seen multiplies that goal's score by the chance of the step if the walker were heading there. Rescaling the two scores so they add to one gives the chance of each goal. With the odds of 4 to 1 per step, the odds of A against B grow as 4, 16, 64.",
@@ -151,7 +151,7 @@
         "brain": "The chapter's models of people reading each other use the same choice rule, with ratings of human observers on the other side. Nothing here measures how any person reasons about another.",
         "machine": "The softmax is a modeling choice for noisy picking, written down exactly. It is a specification of the analyst's model, not a measurement of drivers."
       },
-      "explanation": "Each route gets a cost, and its chance falls as the cost rises. Drivers who know all three roads split evenly between the two routes that tie at 4.8, with fewer on the costlier Back roads. Drivers who never heard of Express choose between the other two. Mixing the groups leaves Express short. The analyst, who assumes full knowledge, finds the weights that reproduce these shares, and the shortfall appears as a toll weight that is too high.",
+      "explanation": "Each route gets a cost, and its chance falls as the cost rises. At the default toll weight of 0.40 the two routes tie at 4.8, so drivers who know all three roads split evenly between them, with fewer on the costlier Back roads (at other toll weights the two do not tie: at 0.20 Express is cheapest at 4.2, and at 0.80 it costs 6.0, as much as Back roads). Drivers who never heard of Express choose between the other two. Mixing the groups leaves Express short. The analyst, who assumes full knowledge, finds the weights that reproduce these shares, and the shortfall appears as a toll weight that is too high.",
       "check": "If nobody is unaware (unaware share 0), what toll weight does the analyst read, and what is an hour worth?",
       "answer": "The analyst recovers the truth: 0.40 per dollar and an hour worth 60 x 0.20 / 0.40 = 30 dollars. The distortion comes from the unaware share, not from the method.",
       "controls": [
@@ -263,7 +263,7 @@
         }
       ],
       "function": "sarah_picture",
-      "alt": "A binomial bar chart for 24 trials with the tail from the chosen count shaded, and tail chances against count for three chance levels.",
+      "alt": "A binomial bar chart for 24 trials with the chosen count and above in navy, and tail chances against count for three chance levels.",
       "symbols": "k: the number of trials answered right, out of 24; p: the assumed chance of a right pick on each trial if the picks were guesses; C(24, j): the number of ways to choose j right trials out of 24",
       "application": "Premack and Woodruff wrote that the experiment 'cannot itself decide among the alternative interpretations.' A tiny chance of guessing is not the same as support for any one reading.",
       "default_parameters": "Trials right out of 24: 21 · Assumed chance of a right pick per trial: 0.5",
@@ -273,7 +273,7 @@
         "Rate right": "0.875",
         "Rate expected": "0.5"
       },
-      "worked_interpretation": "If each of 24 picks had a 0.5 chance of being right, 21 or more right would have chance 0.000139. That shows chance at that level is a poor fit; it does not say which reading of the task explains the choices.",
+      "worked_interpretation": "If each of 24 picks had a 0.5 chance of being right, 21 or more right would have chance 0.000139. That is rare, so chance at that level fits poorly; it does not say which reading of the task explains the choices.",
       "reader_anchor": "C22-D03"
     },
     {
@@ -450,18 +450,18 @@
       ],
       "source_anchor": "what-instructgpt-inferred-from-rankings",
       "source_section": "What InstructGPT inferred from rankings",
-      "provenance": "The pair counts (4 outputs give 6 pairs, 9 give 36) and the 72.6 percent labeler agreement are the chapter's. The logistic choice rule and the reward gap that reproduces 72.6 percent (about 1.63) are the companion's own illustration: the chapter says only that the reward model treats the higher-scoring answer as likelier to be preferred.",
+      "provenance": "The pair counts (4 outputs give 6 pairs, 9 give 36) and the 72.6 percent labeler agreement are the chapter's. The logistic choice rule and the reward gap that reproduces 72.6 percent (about 1.63) are the companion's own illustration: the chapter says only that the reward model treats the higher-scoring answer as likelier to be preferred. The source figure is 72.6 +/- 1.5 percent (the chapter's footnote on Ouyang and colleagues), which under the same rule corresponds to gaps from about 1.55 to 1.71; 1.63 is a single illustrative value, not the book's number or the paper's.",
       "kind": "formula",
-      "assumptions": "Every rater chooses independently by the same logistic rule and sees the same gap on every pair. Real raters differ and real gaps vary, so the single gap is a summary under these assumptions and not something the study estimated.",
+      "assumptions": "Every rater chooses independently by the same logistic rule and sees the same gap on every pair, and one gap applies to every pair. The paper reports none of these. Real raters differ and real gaps vary, so the single gap is a summary under these assumptions and not something the study estimated; different mixtures of easy and hard pairs could give the same 72.6 percent.",
       "prediction": "Nine outputs ranked: predict the number of pairs before moving the slider. Then predict the gap at which two raters would agree about 73 percent of the time.",
       "reveal": {
         "state": {
           "outputs": 9,
           "gap": 1.63
         },
-        "text": "Nine outputs give 36 pairs. A gap of 1.63 makes a rater pick the better answer with chance 0.836 and two raters agree with chance 0.726, matching the reported 72.6 percent under these assumptions."
+        "text": "Nine outputs give 36 pairs. A gap of 1.63 makes a rater pick the better answer with chance 0.836 and two raters agree with chance 0.726, the reported 72.6 percent under these assumptions. But the paper reports 72.6 +/- 1.5 percent, which under the same rule means gaps from about 1.55 to 1.71 (the shaded band), so 1.63 is one illustrative value."
       },
-      "takeaway": "A short ranking becomes many pairs, and noisy raters still agree well above chance. Agreement of 72.6 percent is compatible with raters who are fairly consistent.",
+      "takeaway": "A short ranking becomes many pairs. Under this simple rule, agreement of 72.6 percent would mean each rater picks the higher-reward answer about 84 percent of the time, so a good deal of label noise remains.",
       "why_it_matters": "A learned reward is a stand-in for what raters preferred, estimated from noisy choices. The authors note that labelers cannot see the context in which an answer will be used.",
       "sides": {
         "brain": "The raters are about 40 contractors. Nothing here measures how any person weighs outputs.",
@@ -499,7 +499,7 @@
         }
       ],
       "function": "ranking_picture",
-      "alt": "A web of lines joining every pair of ranked outputs, and rater agreement and chance of picking the better answer against reward gap.",
+      "alt": "A web of lines joining every pair of ranked outputs, and rater agreement and chance of picking the better against reward gap, with a band.",
       "symbols": "K: the number of outputs a rater ranks, from 4 to 9 in the study; Delta: the reward gap between two answers in some units; a modeling assumption; p: the chance a rater picks the higher-reward answer; a logistic rule, the two-option case of the fleet's softmax with carefulness 1",
       "application": "A learned reward is a stand-in for what raters preferred, estimated from noisy choices. The authors note that labelers cannot see the context in which an answer will be used.",
       "default_parameters": "Outputs ranked (K): 4 · Reward gap between two answers: 1.63",
@@ -507,9 +507,9 @@
         "Pairs from the ranking": "6",
         "Chance of picking the better answer": "0.836",
         "Two raters agree": "0.726",
-        "Reward gap": "1.63"
+        "Reward gap (72.6 +/- 1.5 percent implies 1.55 to 1.71)": "1.63"
       },
-      "worked_interpretation": "A ranking of 4 outputs yields 6 pairs of preferences, ties aside. With a reward gap of 1.63 a rater picks the better answer with chance 0.836, and two such raters agree with chance 0.726. Matching the labelers' 0.726 needs a gap near 1.63 under these made-up assumptions.",
+      "worked_interpretation": "A ranking of 4 outputs yields 6 pairs of preferences, ties aside. At a reward gap of 1.63 a rater picks the better answer with chance 0.836, and two such raters agree with chance 0.726. The paper's 72.6 +/- 1.5 percent maps to gaps of about 1.55 to 1.71 under this made-up rule; 1.63 is one illustrative value.",
       "reader_anchor": "C22-D06"
     }
   ]

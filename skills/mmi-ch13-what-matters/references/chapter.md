@@ -10,7 +10,7 @@ Practical question: A system must rank outcomes for different people or for one 
 
 A gain of 1,000 ducats scores differently at different starting wealth, and so does a ticket that pays 0 or 20,000. How does the logarithm make the same ticket worth more to some holders?
 
-Taking each small gain as worth less in proportion to what you hold adds up to a logarithm of the wealth ratio. The same 1,000 ducats is a doubling at 1,000 and a one percent rise at 100,000. For the ticket, averaging the scores of the two final wealth amounts and finding the certain amount that scores the same gives a worth that climbs toward the 10,000 average prize as wealth grows.
+Taking each small gain as worth less in proportion to what you hold adds up to a logarithm of the wealth ratio. The same 1,000 ducats is a doubling at 1,000 and a one percent rise at 100,000. For the ticket, averaging the scores of the two final wealth amounts and finding the certain amount that scores the same gives a worth to the holder that climbs toward the 10,000 average prize as wealth grows. That is the holder's side (what to accept to sell); a buyer's limit is lower, because paying also reduces wealth.
 
 $$
 y=b\ln\frac{x}{x_0}
@@ -28,19 +28,19 @@ $$
 - Score of a 1,000 ducat gain: 0.693
 - Wealth after the gain (ducats): 2000
 - Worth of the ticket (ducats): 3583
-- Worth against 9,000: below 9,000: selling at 9,000 is no mistake
+- Worth against 9,000: below 9,000: this holder would sell at 9,000
 
-Starting from 1,000 ducats, a 1,000 ducat gain scores 0.693. The ticket, which pays 0 or 20,000 with equal chances, is worth 3583 certain ducats to this holder, below 9,000: selling at 9,000 is no mistake.
+Starting from 1,000 ducats, a 1,000 ducat gain scores 0.693. The ticket, which pays 0 or 20,000 with equal chances, is worth 3583 certain ducats to this holder, below 9,000: this holder would sell at 9,000.
 
 **Calculation:** Gain score = ln((1,000 + 1,000)/1,000) = 0.693. Ticket worth p solves ln(w + p) = 0.5 ln(w) + 0.5 ln(w + 20,000), so p = sqrt(w (w + 20,000)) - w = 3583.
 
 **Takeaway:** A rule that makes a gain matter less as wealth grows gives the same outcome different worth to different holders, with no change in the outcome itself.
 
-**What happens:** At Starting wealth (ducats) = 100000: At 100,000 ducats the same gain scores 0.00995, about 70 times less than at 1,000. The ticket is worth about 9,540 there. It is worth exactly 9,000 at 40,500 ducats: holders with less would sell at 9,000, and holders with more would buy.
+**What happens:** At Starting wealth (ducats) = 100000: At 100,000 ducats the same gain scores 0.00995, about 70 times less than at 1,000. The ticket is worth about 9,540 there. It is worth exactly 9,000 at 40,500 ducats: a holder with less would sell at 9,000, and a holder with more would keep the ticket. Whether someone without the ticket would buy at 9,000 is a separate calculation that, under the same rule, needs wealth of about 49,500 or more. The worth figures are this companion's computation from the chapter's rule, not the book's numbers.
 
 **Why it matters:** A program given outcomes and a curve will price one ticket differently for two people. The price comes from the chosen curve and the wealth supplied, not from the outcome, so both must be checked against the person.
 
-**In brains and behavior:** Bernoulli argued that a poor holder could sell at 9,000 without error and a rich one would buy. It was an argument, and nothing here says a brain computes a logarithm.
+**In brains and behavior:** Bernoulli argued, as the chapter reports it, that a poor holder could sell at 9,000 without error and a rich one would be unwise to refuse to buy. It was an argument, and nothing here says a brain computes a logarithm.
 
 **In machines:** A program supplied with a wealth figure and this curve computes the worth directly. The designer chose what it counts and how sharply the curve bends; the calculation does not show the curve fits a given person.
 
@@ -50,7 +50,7 @@ Starting from 1,000 ducats, a 1,000 ducat gain scores 0.693. The ticket, which p
 
 **Answer:** p = sqrt(1,000 x 21,000) - 1,000 = 4,583 - 1,000, about 3,583 ducats. So 9,000 is far above its worth to this holder, and selling at 9,000 is no mistake.
 
-**Source:** Wealth changes the value of a gain; anchor `wealth-changes-the-value-of-a-gain`. Book formula (Bernoulli's rule as the chapter presents it). The 1,000 and 100,000 ducat wealth figures are the chapter's constructed examples. The ticket worth p is this companion's computation from the chapter's rule, using the chapter's ticket (0 or 20,000, equal chances) and the 9,000 price; the chapter states neither the formula for p nor the 40,500 ducat figure, and Bernoulli's argument was not a recorded sale.
+**Source:** Wealth changes the value of a gain; anchor `wealth-changes-the-value-of-a-gain`. Book formula (Bernoulli's rule as the chapter presents it). The 1,000 and 100,000 ducat wealth figures are the chapter's constructed examples. The ticket worth p is this companion's computation from the chapter's rule, using the chapter's ticket (0 or 20,000, equal chances) and the 9,000 price; the chapter body states neither the formula for p nor the 40,500 ducat figure (its footnote on Modesti mentions them as the book's own arithmetic, which the body no longer contains), and Bernoulli's argument was not a recorded sale. The worth is the value to a current holder; whether someone without the ticket should buy at 9,000 is a separate calculation, also this companion's.
 
 ## C13-D02: Which part of the model makes a loss frame choose the gamble?
 
@@ -158,11 +158,11 @@ $$
 
 Scores 2 and 1 give a gap of 1 and a predicted chance of 0.731 that A is preferred. Adding the same number to both scores leaves the chance at 0.731, because only the gap matters.
 
-**Calculation:** Without random responses: e^2 / (e^2 + e^1) = 0.731. With a share 0 of fair-coin responses: (1 - 0) x 0.731 + 0 x 0.5 = 0.731.
+**Calculation:** Without random responses: e^2 / (e^2 + e^1) = 0.731. With a share 0 of fair-coin responses (the companion's reading of the chapter's 10 percent remark): (1 - 0) x 0.731 + 0 x 0.5 = 0.731.
 
 **Takeaway:** Only the gap between two scores sets the predicted preference, so scores have no fixed zero, and equal scores give exactly one half.
 
-**What happens:** At Score of A = 2, Score of B = 1, Share of random responses = 0: The chance is e^2/(e^2 + e^1), about 0.731, and the right panel shows the same chance whenever the gap is 1, whatever the zero. Turning on 10 percent random responses pulls it toward 0.5, to about 0.708.
+**What happens:** At Score of A = 2, Score of B = 1, Share of random responses = 0: The chance is e^2/(e^2 + e^1), about 0.731, and the right panel shows the same chance whenever the gap is 1, whatever the zero. Turning on 10 percent random responses (the companion's reading: a fair coin on one response in ten) pulls it toward 0.5, to about 0.708.
 
 **Why it matters:** A reward learned from comparisons is determined only up to a shift. Knowing that tells a designer what the numbers can and cannot mean.
 
@@ -174,7 +174,7 @@ Scores 2 and 1 give a gap of 1 and a predicted chance of 0.731 that A is preferr
 
 **Check:** Scores of 3 and 0. What chance does the rule give that A is preferred, and what is it with 10 percent random responses?
 
-**Answer:** e^3/(e^3 + 1) = 20.09/21.09, about 0.953. With random responses it is 0.9 x 0.953 + 0.05, about 0.907.
+**Answer:** e^3/(e^3 + 1) = 20.09/21.09, about 0.953. With random responses, read as a fair coin on one response in ten (the companion's reading, not the chapter's formula), it is 0.9 x 0.953 + 0.05, about 0.907.
 
 **Source:** A machine can learn from human comparisons; anchor `a-machine-can-learn-from-human-comparisons`. Book formula with the chapter's constructed scores (2 and 1, not scores of any hopper clip). The 10 percent random-response option follows the chapter's remark that the training method allowed a 10 percent chance of a random response; reading that as a fair coin, so P is 0.9 times the rule plus 0.05, is this companion's, not the chapter's formula.
 
@@ -182,7 +182,7 @@ Scores 2 and 1 give a gap of 1 and a predicted chance of 0.731 that A is preferr
 
 Learning runs the other way from the preference rule: given a person's comparisons, the system adjusts scores to account for them. How close does a score gap get as comparisons accumulate?
 
-The share of comparisons that favor A is the data, and the gap that best explains that share is the log of its odds. Few comparisons leave the share noisy, and if all go one way the best gap is infinite, so the estimate is undefined. More comparisons narrow the spread, and larger gaps are easier to see because the shares are further from one half.
+A single run can miss by more than the typical error; the one run in the figure is one draw, not an average. The share of comparisons that favor A is the data, and the gap that best explains that share is the log of its odds. Few comparisons leave the share noisy, and if all go one way the best gap is infinite, so the estimate is undefined. More comparisons narrow the spread, and larger gaps are easier to see because the shares are further from one half.
 
 $$
 \hat g=\ln\frac{f}{1-f},\qquad \text{typical error}\approx\frac{1}{\sqrt{n\,p(1-p)}}
@@ -200,11 +200,11 @@ $$
 
 After 100 simulated comparisons the preferred answer won 65, giving an estimated gap of 0.619 against a true gap of 1. The formula puts the typical error at 0.226; this is a simulation with a made-up true gap, not a measurement.
 
-**Calculation:** Estimated gap = ln(f / (1 - f)) with f = 65/100 = 0.65. Typical error = 1/sqrt(n p (1 - p)) with p = 0.731, n = 100: 0.226. Repeating 2000 runs gave an rms error of 0.23.
+**Calculation:** Estimated gap = ln(f / (1 - f)) with f = 65/100 = 0.65. Typical error = 1/sqrt(n p (1 - p)) with p = 0.731, n = 100: 0.226. Repeating 2000 runs gave an rms error of 0.23. This one run missed the true gap by 0.381, 1.69 times the typical error; a single run can miss by more than the typical error.
 
 **Takeaway:** A score is learned from comparisons by raising the likelihood of the answers received, and the error shrinks slowly, in proportion to one over the square root of the number of comparisons.
 
-**What happens:** At True score gap = 1, Comparisons = 100: With 100 comparisons and a true gap of 1 the typical error is about 0.23. Nine times the comparisons cut it by a factor of 3, so 900 comparisons leave an error of about 0.075.
+**What happens:** At True score gap = 1, Comparisons = 100: With 100 comparisons and a true gap of 1 the typical error is about 0.23. Nine times the comparisons cut it by a factor of 3, so 900 comparisons leave an error of about 0.075. The single run drawn here is one sample: it can miss by more than the typical error.
 
 **Why it matters:** A person can judge examples without assigning every clip a number, and the machine can use those judgments. But how many are needed depends on how large the difference is, and the learned scores say nothing beyond the person's answers.
 

@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-29.md",
   "source_sha256": "a9c8a28fc60d012934d5fac0668cf9a8090a340fa0aff0b00703a62aaaa1e671",
-  "calculation_sha256": "8b5ac5ea1d3836f1d3ddd2749b6ff5078700da1c32f549c2edb8f4c9a843df39",
+  "calculation_sha256": "fb7b4ffd22c65481ce128898295321d5f6a013e55f2d32bfccd5aed47a159492",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -130,9 +130,9 @@
       ],
       "source_anchor": "an-explanation-can-miss-a-factor-that-changed-an-answer",
       "source_section": "An explanation can miss a factor that changed an answer",
-      "provenance": "The chapter's constructed rule and reports: with the hint at two points, score -1 is explained as tipped by the hint and score -2 as 'the available evidence supports yes', giving one of two. The other hint sizes, report styles and the keyword checker are the companion's own variations; the chapter says a keyword search would miss other wording.",
+      "provenance": "The chapter's constructed rule and reports: with the hint at two points, score -1 is explained as tipped by the hint and score -2 as 'the available evidence supports yes', giving one of two. The report at score -3 (and at the unchanged score 1) is not fixed by the chapter; the companion sets it to 'does not name the hint'. The other hint sizes, report styles and the keyword checker are the companion's own variations; the chapter says a keyword search would miss other wording.",
       "kind": "constructed example",
-      "assumptions": "Deterministic cases. 'Mention' is a deliberately narrow test and does not establish full faithfulness. At other hint sizes the report wording is kept as the chapter fixes it, naming the hint only for score -1.",
+      "assumptions": "Deterministic cases. 'Mention' is a deliberately narrow test and does not establish full faithfulness. The chapter fixes report wording only for scores -1 (names the hint) and -2 (does not). The report for score -3 is the companion's assumption (it does not name the hint); the same is true for the unchanged score 1.",
       "prediction": "With the chapter's report and a two-point hint, predict F_H. Then predict what happens if no answer changes.",
       "reveal": {
         "state": {
@@ -149,7 +149,7 @@
       },
       "explanation": "Compare each case's answer with and without the hint. Among cases where it changed, count the reports that name the hint. The bottom of the fraction is the number of changed answers, so with none the rate has no value. Words alone do not settle the causal question: a report can mention the hint and misstate how it was used, or name it where it changed nothing.",
       "check": "With the chapter's report and a hint of 3 points, three answers change. What is F_H?",
-      "answer": "One third. Scores -3, -2 and -1 all change, and only the report at -1 names the hint.",
+      "answer": "One third. Scores -3, -2 and -1 all change, and only the report at -1 names the hint. This takes the report at score -3 as not naming the hint, which is the companion's assumption, not the chapter's.",
       "controls": [
         {
           "key": "strength",
@@ -186,7 +186,7 @@
         "Rate a keyword checker finds": "0.5",
         "Cases naming the hint where nothing changed": "0"
       },
-      "worked_interpretation": "A hint of 2 points changes 2 answers, and 1 of those 2 reports name it, so F_H = 0.5. A keyword checker finds 0.5. The report names the hint in 0 cases where it changed nothing, which F_H does not count.",
+      "worked_interpretation": "A hint of 2 points changes 2 answers, and 1 of those 2 reports names it, so F_H = 0.5. A keyword checker finds 0.5. The report names the hint in 0 cases where it changed nothing, which F_H does not count.",
       "reader_anchor": "C29-D02"
     },
     {
@@ -218,7 +218,7 @@
       "source_section": "Position can affect a choice without appearing in the account",
       "provenance": "The chapter's reported shares (12 to 40 percent across four positions, 52 shoppers, 80 recorded reasons with no mention of position). The counts are implied by rounding the shares and the chance calculation is the companion's own: the chapter and this book do not give the study's statistical analysis. Only the two extreme shares are given.",
       "kind": "constructed example",
-      "assumptions": "An equal chance of one quarter for each position and independent shoppers; counts are the shares times 52, rounded. The chapter notes the authors did not know why the ordering appeared and considered that the order of inspection might matter.",
+      "assumptions": "An equal chance of one quarter for each position and independent shoppers; counts are the shares times 52, rounded. Shares other than 12 and 40 percent are hypothetical values for exploring the calculation; with 52 shoppers 20 and 30 percent cannot occur exactly (nearest counts 10 and 16). The chapter notes the authors did not know why the ordering appeared and considered that the order of inspection might matter.",
       "prediction": "At a 40 percent share, predict whether the chance of a count that far from 13 is below 5 in 100 for one position chosen in advance, and for the most extreme of four.",
       "reveal": {
         "state": {
@@ -233,7 +233,7 @@
         "brain": "Nisbett and Wilson's proposal, as the chapter states it, is that people sometimes infer the causes of their behavior from available information and their ideas about how choices work, which allows a report to be right. Nearly all shoppers denied position's influence when asked directly.",
         "machine": "A language model faces a related test: shuffle the order of options and see whether the recommendation changes, while its explanation may discuss only the options."
       },
-      "explanation": "If every position were equally likely, each would draw 13 of 52 shoppers on average, with some natural scatter. The count at the right is far above 13 and the count at the left is far below it. Because the position that looks extreme is picked after seeing the data, the fair comparison is with the most extreme of four, which is what the dashed line shows.",
+      "explanation": "If every position were equally likely, each would draw 13 of 52 shoppers on average, with some natural scatter. The count at the right is far above 13 and the count at the left is far below it. Because the position that looks extreme is picked after seeing the data, a more cautious comparison is with the most extreme of four, which is what the dashed line shows. That correction is the companion's own, not the study's analysis.",
       "check": "If the share at one position were 25 percent, what count is that, and how surprising is it under equal chances?",
       "answer": "13 of 52, exactly the expected count, so a count at least this far from 13 has chance 1: it is not surprising at all.",
       "controls": [
@@ -387,14 +387,14 @@
       "source_section": "Written reasoning can also change the answer",
       "provenance": "The chapter's constructed hiring assistant, described in words with no numbers: the chapter says these are possible tests, not results from an assistant. The gap, noise, biases and run counts are the companion's invented values and the runs are seeded simulations.",
       "kind": "simulation",
-      "assumptions": "A normal judgment noise and a fixed order bias, with one seeded run for each setting. The 95 percent range is an ordinary normal approximation with the observed shares. A simulation is a computation, not a measurement of any assistant.",
+      "assumptions": "A normal judgment noise and a fixed order bias, with one seeded run for each setting. The 95 percent range is a normal approximation with half a run added to each outcome, so it does not collapse to zero width when every run (or none) recommends A, and it is cut off at -1 and 1; it can still miss the exact value about 1 time in 20, and it is rough at 10 runs. A simulation is a computation, not a measurement of any assistant.",
       "prediction": "With a bias of 1 and only 10 runs per order, predict whether the estimated effect is reliably different from zero.",
       "reveal": {
         "state": {
           "bias": 1,
           "trials": 10
         },
-        "text": "The exact effect of listing A first is 0.625, but with 10 runs per order the range around one seeded estimate (0.7, from 0.42 to 0.98) is wide. Raise the runs to 160 or 640 and it narrows around the exact value."
+        "text": "The exact effect of listing A first is 0.625, but with 10 runs per order the range around one seeded estimate (0.7, from 0.38 to 1, the top of the possible scale) is wide. Raise the runs to 160 or 640 and it narrows around the exact value."
       },
       "takeaway": "A deterministic assistant needs one swap to show order sensitivity. A noisy one needs repeated runs under each order, and the range around the estimate narrows only slowly with more runs.",
       "why_it_matters": "A stable recommendation is also limited evidence: the order may have affected the reasoning without changing the final answer. The answer is only the outcome being measured.",
@@ -438,10 +438,10 @@
       "worked_example": {
         "Estimated order effect": "0.606",
         "Exact order effect": "0.625",
-        "Approximate 95 percent range": "0.526 to 0.687",
+        "Approximate 95 percent range": "0.525 to 0.687",
         "Range covers the exact value": "yes"
       },
-      "worked_interpretation": "With order bias 1 and 160 runs per order, the estimated effect of listing A first is 0.606 (range 0.526 to 0.687); the exact value is 0.625. This is one seeded run, and a shorter series gives a wider range.",
+      "worked_interpretation": "With order bias 1 and 160 runs per order, the estimated effect of listing A first is 0.606 (range 0.525 to 0.687); the exact value is 0.625. One seeded run; a shorter series usually gives a wider range. ",
       "reader_anchor": "C29-D05"
     },
     {

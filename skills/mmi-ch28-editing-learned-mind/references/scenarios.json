@@ -5,6 +5,6 @@
   },
   {
     "prompt": "Did the weight edit teach the model math?",
-    "expected_behavior": "Says the chapter's evidence points to recovery from looping settings; with thinking off the unedited model scored about 44 to 51 percent and the edit's effect was small or negative in two outside checks."
+    "expected_behavior": "Says the chapter's evidence points to recovery from looping settings; with thinking off the unedited model scored about 44 to 51 percent, and the edit's effect was small and in different directions in two outside checks (about 1.6 points up in one, about 2 down and not significant in the other)."
   }
 ]

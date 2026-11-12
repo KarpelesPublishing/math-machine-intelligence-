@@ -92,7 +92,7 @@ Finishing 3 of 5 levels at 1 of the human move count, each finished level scores
 
 ## C33-D03: Can one model have two scores on the same set?
 
-GPT-6 Astra scored 62.7 and 99.95 percent on the same set. How do the harness and the effort setting each enter?
+GPT-6 Astra scored 62.7 and 99.95 percent on the same set (in the 10 November 2026 leaderboard file). How do the harness and the effort setting each enter?
 
 The same model was run under two wrappers at six effort settings. The Standard harness score depends strongly on effort, and is not even steady across settings, since none beats low. The Adapter scores sit between 96.7 and 99.95 throughout. Comparing the two at each setting, as the right panel does, removes the effort mismatch of the two best entries.
 
@@ -107,16 +107,16 @@ $$
 **Worked example:**
 - Standard harness (percent): 54.8
 - Provider Adapter harness (percent): 99.95
-- Gap at this effort (points): 45.15
+- Gap at this effort (points, unrounded data): 45.1
 - Adapter higher at all six settings: yes
 
-At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, a gap of 45.15 points. The Adapter is higher at all six settings, and each entry is a single run on one date, so a score needs its harness, set and effort.
+At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, a gap of 45.1 points from the unrounded data. The Adapter is higher at all six settings; each entry is one run in a 10 November 2026 snapshot, so a score needs its harness, set, effort and date.
 
-**Calculation:** Gap = 99.95 - 54.8 = 45.15 points. The best entries differ in effort: Standard 62.7 at max, Adapter 99.95 at high, a gap of 37.25 that mixes the harness effect with the effort setting.
+**Calculation:** Gap = 99.946 - 54.819 = 45.1 points from the unrounded data, which differs from the rounded figures' 45.2 only by rounding (shown scores: 99.95 and 54.8). The best entries differ in effort: Standard 62.7 at max, Adapter 99.95 at high, a gap of 37.2 that mixes the harness effect with the effort setting.
 
 **Takeaway:** The Adapter leads at every effort setting, so the 99.95 versus 62.7 headline is not only an effort effect, but a number still has to travel with its harness, set and date.
 
-**What happens:** At Effort setting = max: At max effort the Standard harness scored 62.7 and the Provider Adapter 98.6, a gap of 35.9 points. The Adapter is higher at all six settings, and the Standard scores range from 17.5 to 62.7 while the Adapter never fell below 96.7.
+**What happens:** At Effort setting = max: At max effort the Standard harness scored 62.7 and the Provider Adapter 98.6, a gap of 35.8 points from the unrounded data (35.9 from the rounded scores). The Adapter is higher at all six settings, and the Standard scores range from 17.5 to 62.7 while the Adapter never fell below 96.7.
 
 **Why it matters:** A single score can describe the model together with its software. The foundation treats the two harnesses as separate questions, so quoting one without the other can mislead.
 
@@ -124,13 +124,13 @@ At high effort the Standard harness scored 54.8 and the Provider Adapter 99.95, 
 
 **In machines:** The harness decides what the model carries from step to step. In the Standard harness it carries notes it chose to write; the Provider Adapter uses the provider's own memory features. The effort level is a dial the tester sets.
 
-**Assumptions and limits:** The numbers are the chapter's as of 2 November 2026. Each is one run, so no spread is available. The gap at the same effort isolates the harness more than the headline pair does, but it does not show why the harness matters.
+**Assumptions and limits:** The numbers are the chapter's, which match the 10 November 2026 leaderboard file; they are a snapshot of GPT-6 Astra's rows only, not of the board. Gaps are computed from the unrounded file values, so a gap can differ by 0.1 from the difference of the rounded scores shown. Each is one run, so no spread is available. The gap at the same effort isolates the harness more than the headline pair does, but it does not show why the harness matters.
 
 **Check:** At which effort setting is the gap between the harnesses largest, and how large is it?
 
-**Answer:** At low effort: 98.0 minus 17.5 is 80.5 points. The smallest gap is at max effort, 35.9 points.
+**Answer:** At low effort: the unrounded data give 80.6 points (98.0 minus 17.5 from the rounded scores gives 80.5). The smallest gap is at max effort, 35.8 points (35.9 from the rounded scores).
 
-**Source:** 99.95 percent combines completion and move efficiency; anchor `9995-percent-combines-completion-and-move-efficiency`. The twelve scores are those in the chapter's source note, from the foundation's leaderboard data file of 2 November 2026: each entry is the best of its harness at that effort, on the semi-private set, a single run. The web page shows the 99.95 entry as 99.9 (data value 0.99946). The companion did not check them against the live leaderboard; standings move.
+**Source:** 99.95 percent combines completion and move efficiency; anchor `9995-percent-combines-completion-and-move-efficiency`. The twelve scores are those in the chapter's source note, which cites the foundation's leaderboard data file of 2 November 2026: each entry is the best of its harness at that effort, on the semi-private set, a single run. The web page shows the 99.95 entry as 99.9 (data value 0.99946). Checked on 11 November 2026 against the foundation's leaderboard data file (generated 10 November 2026) and its post of 3 September 2026: the twelve Astra values match, and the scores here are stated as of that file. Standings move: by 10 November other models had posted, including Claude Fable 5.2 (Standard, XHigh 81.17) and Gemini 4 Carbon (Provider Adapter, Medium 99.09). The unrounded values used for the gaps are from the same file.
 
 ## C33-D04: Can the order of two children flip with no change in their scores?
 
@@ -194,13 +194,13 @@ $$
 - Mean correlation between tests: 0.296
 - Largest gap from a one-factor table: 0.108
 
-With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlation is 0.296, and the best one-factor table misses by at most 0.108. A one-factor table summarizes these correlations although no die is common to all tests.
+With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlation is 0.296, and the best one-factor table misses by at most 0.108. No die in all ten was to be expected (chance about 0.00049), and each die joins each test independently, so the one-factor shape is built in.
 
 **Calculation:** Test i uses each die with chance 0.15 to 0.45 (ten values). Correlation = shared dice / sqrt(dice in one x dice in the other). A one-factor table has correlation = loading i x loading j; the best fit leaves a largest gap of 0.108 (seeded draw).
 
-**Takeaway:** A one-factor fit is a summary of the correlations, not a finding that a common cause lies behind them.
+**Takeaway:** A one-factor fit is a summary of the correlations, not a finding that a common cause lies behind them. The one-factor shape is built into this toy, which illustrates the point and does not test it.
 
-**What happens:** At Random dice in the pool = 5000, Dice shared by all ten tests = 0: With 5000 random dice and none shared by all tests, no die enters all ten, the correlations are all positive, and a one-factor table fits them within about 0.03. The shared-dice case is nearly as close, so the fit does not tell the two apart.
+**What happens:** At Random dice in the pool = 5000, Dice shared by all ten tests = 0: With 5000 random dice and none shared by all tests, no die entered all ten in this draw (the chance of one is about 0.02), the correlations are all positive, and a one-factor table fits them within about 0.03. The shared-dice case is nearly as close, so the fit does not tell the two apart. The one-factor shape is built in by letting each die join each test independently, so this toy illustrates the point and does not test it.
 
 **Why it matters:** A single factor from scores that rise together can come from a shared cause, from overlapping causes, or from skills that help each other. The data alone, as Thomson showed, did not separate the first two.
 
@@ -208,7 +208,7 @@ With 145 random dice and 0 shared, 0 dice enter all ten tests, the mean correlat
 
 **In machines:** Language models that share training material and fail together could show a common factor from shared exposure. Kim and colleagues found two wrong models picked the same wrong option about 60 percent of the time, against one third for independent choices, and the cause is not established.
 
-**Assumptions and limits:** Independent fair dice that add in each test, which the chapter says psychological factors need not do. The simulation shows only that a table of positive correlations can be summarized by one factor without a common cause. It does not say anything about intelligence, and the chapter lists a common factor, overlapping causes and mutual benefit as three accounts that fit the same data.
+**Assumptions and limits:** Independent fair dice that add in each test, which the chapter says psychological factors need not do. The simulation shows only that a table of positive correlations can be summarized by one factor without a common cause. Because each die joins each test independently, no shared die and a growing fit are built in, not found; and unlike Thomson's table, where no die ran through more than five tests, a die here can enter more (the metric shows how many). It does not say anything about intelligence, and the chapter lists a common factor, overlapping causes and mutual benefit as three accounts that fit the same data.
 
 **Check:** In the left panel, does a correlation between two tests tell you which dice they share, or only how many?
 
@@ -242,11 +242,11 @@ If the blind classifier got 67 percent right, Easy items are that share and Hard
 
 **Takeaway:** The reported overall score is what the Easy and Hard scores give when the blind classifier's accuracy sets the weights, so the three numbers are consistent.
 
-**What happens:** At Share of items the blind classifier got right = 0.67: At 0.67, Easy items are two thirds of the set, and the weighted average is 86.57, within rounding of the reported 86.5. Move the slider to see how the overall score would change if the blind classifier had done worse or better.
+**What happens:** At Share of items the blind classifier got right = 0.67: At 0.67, Easy items are two thirds of the set, and the weighted average is 86.57, within rounding of the reported 86.5. Only the 0.67 position is reported. The other positions are a constructed counterfactual that holds the Easy and Hard scores fixed, which would not stay fixed if the split changed, so read them as arithmetic on the formula and not as what the study would have found.
 
 **Why it matters:** A score can reward a shortcut instead of the skill the test names. A blind baseline is a quick way to see how much of a test can be passed without the skill, and how a split of the test can change the story.
 
-**In brains and behavior:** Binet and Simon met a human version: some children always chose the line on one side of the sheet, which earns one right in three. The habit buys no good score.
+**In brains and behavior:** Binet and Simon met a human version: some children always chose the line on the right, which earns one right in three (the longer line was on the right on the first sheet and on the left on the other two, so always choosing the left would earn two in three). Either way the habit is not a comparison of the lines.
 
 **In machines:** The blind classifier, fastText, learned which words in a hypothesis go with a label, for example words such as nobody and never for a contradiction. The authors say such artifacts do not render any particular example incorrect.
 
@@ -254,6 +254,6 @@ If the blind classifier got 67 percent right, Easy items are that share and Hard
 
 **Check:** If the blind classifier had been right on only 50 percent of items, with the same Easy and Hard scores, what would the overall score be?
 
-**Answer:** 0.5 x 93.4 + 0.5 x 72.7 = 83.05, about 83.1 percent.
+**Answer:** 0.5 x 93.4 + 0.5 x 72.7 = 83.05, about 83.1 percent. This is a constructed counterfactual: the reported split is at 0.67.
 
 **Source:** A classifier that never saw the premise got 67.0 percent right; anchor `a-classifier-that-never-saw-the-premise-got-670-percent-right`. The scores 34.3, 67.0, 93.4, 72.7 and 86.5 percent are quoted from the chapter (Gururangan and colleagues, 2018). The identity that the Easy share equals the blind classifier's accuracy follows from the chapter's definition of Easy; the weighted-average check against 86.5 is the companion's own, and it assumes all the scores come from the same test set.

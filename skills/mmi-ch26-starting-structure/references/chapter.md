@@ -30,7 +30,7 @@ A creature with 10 open switches and all its fixed genes right finds the good wi
 
 **Calculation:** P = 1 - (1 - 2^(-10))^1000 = 1 - (1 - 0.0009766)^1000 = 0.624. One random try on 20 switches succeeds with chance 2^(-20) = 9.54e-07.
 
-**Takeaway:** A few open switches make the good wiring easy to find in a lifetime, and many make it nearly hopeless, so how many genes are already right matters more than the number of tries.
+**Takeaway:** A few open switches make the good wiring easy to find in a lifetime, and many make it nearly hopeless, so both the number of open switches and the number of tries matter, and each extra open switch halves the chance of one try.
 
 **What happens:** At Open switches (?) = 10, Tries in a lifetime = 1000: With 10 open switches, up to 1,000 tries find the good wiring about 62 times in 100. With 20 open switches the chance falls to under 1 in 1,000, since there are 1,048,576 settings to wander through and only 1,000 looks.
 
@@ -74,7 +74,7 @@ In seeded run 1, the share of 1 genes goes from 0.252 to 0.768 in 50 generations
 
 **Takeaway:** Learning changed who had children, and that alone shifted the inherited genes toward the right settings, although every child started over.
 
-**What happens:** At Seed of the run = 1: The share of 0 genes drops to zero within about 10 generations in this seeded run because a creature with a 0 gene can never find the good wiring, and 1 genes spread. The share of ? genes shrinks more slowly, and many remain at generation 50, so the right wiring is not yet inherited.
+**What happens:** At Seed of the run = 1: The share of 0 genes falls below 0.1 percent within about 10 generations in this seeded run (7 to 20 across the eight seeds; the chapter says about 20 for the paper's run) because a creature with a 0 gene can never find the good wiring, and 1 genes spread. The share of ? genes shrinks more slowly, and many remain at generation 50, so the right wiring is not yet inherited. The chapter says the paper's one shown run ended with about 56 percent of gene copies correct; these seeded runs end at 73 to 80 percent, so they are not a reproduction of that run.
 
 **Why it matters:** This is the Baldwin effect in a toy: a trait that first needs learning can come to be built in. The chapter's caution is that the plotted run did not show the right wiring becoming fully innate.
 
@@ -110,13 +110,13 @@ $$
 - Mean generations per run: 492
 - Reported at 1,000 tries: 0.167 (16.7 percent)
 
-With 1,000 trials per lifetime, the right wiring fixed in 19 of 200 seeded runs, a share of 0.095. The chapter reports 0.167 at 1,000 trials for Fontanari and Santos; this reimplementation is not their code, so close agreement is not claimed.
+With 1,000 trials per lifetime, the right wiring fixed in 19 of 200 seeded runs, a share of 0.095. The chapter reports 0.167 at 1,000 trials for Fontanari and Santos; this reimplementation is not their code, so close agreement is not claimed. The interval excludes 0.167: this run does not reproduce that share.
 
 **Calculation:** Share = 19 / 200 = 0.095. 95 percent Wilson interval 0.0617 to 0.144, which treats the runs as independent.
 
-**Takeaway:** With learning, the right wiring fixed in roughly one run in ten here and about one in six in the chapter's report, against an estimated 1 in 10 million without it. How often it fixes depends on settings such as the trial budget.
+**Takeaway:** With learning, the right wiring fixed in roughly one run in ten here and about one in six in the chapter's report, against an estimated 1 in 10 million without it (a figure from Fontanari and Santos's fitted curve, not computed here). This reimplementation does not reproduce the chapter's one in six. How often it fixes depends on settings such as the trial budget.
 
-**What happens:** At Trials per lifetime = 1000: At 1,000 tries the right wiring fixed in 19 of 200 seeded runs, about 1 in 10, a little below the chapter's reported 16.7 percent (the interval runs from about 0.06 to 0.14). More tries are not always better: 100 and 300 tries fixed it more often, about 0.27, and 3,000 less often.
+**What happens:** At Trials per lifetime = 1000: At 1,000 tries the right wiring fixed in 19 of 200 seeded runs, about 1 in 10, clearly below the chapter's reported 16.7 percent: the 95 percent interval, about 0.06 to 0.14, does not include 0.167. This reimplementation does not reproduce that share, which is expected: it is built from a description, and model details the chapter and the paper do not fully specify, such as how parents are paired, can move the share. That is no claim about the chapter's own rerun or the paper's result. More tries are not always better: 100 and 300 tries fixed it more often, about 0.27, and 3,000 less often.
 
 **Why it matters:** The 1987 plot showed learning being selected, not the right wiring becoming innate. Counting how runs end is the test the chapter says Fontanari and Santos applied.
 
@@ -130,7 +130,7 @@ With 1,000 trials per lifetime, the right wiring fixed in 19 of 200 seeded runs,
 
 **Answer:** With no mutation, the ? at that position cannot become a 1 by crossover, since every parent carries ?. The wiring can still be learned but is never fully inherited, which is the outcome the test excludes.
 
-**Source:** Running the 1987 simulation to the end: about one run in six; anchor `running-the-1987-simulation-to-the-end-about-one-run-in-six`. Seeded reimplementation by this companion (200 runs per budget, the same rules as the previous demonstration), compared with the value the chapter reports from Fontanari and Santos (2017): 16.7 percent with learning at 1,000 trials, and an estimated 1 in 10 million without learning, read from a fitted curve. The chapter says the book's own rerun gave 0.164 (standard error 0.004); this reimplementation is not that rerun and has not been tuned to match.
+**Source:** Running the 1987 simulation to the end: about one run in six; anchor `running-the-1987-simulation-to-the-end-about-one-run-in-six`. Seeded reimplementation by this companion (200 runs per budget, the same rules as the previous demonstration), compared with the value the chapter reports from Fontanari and Santos (2017): 16.7 percent with learning at 1,000 trials, and an estimated 1 in 10 million without learning, read from a fitted curve. The chapter says the book's own rerun gave 0.164 (standard error 0.004); this reimplementation is not that rerun and has not been tuned to match. A second independent reimplementation made by the accuracy reviewer gave about 0.09 to 0.12 at 1,000 tries; the cause of the difference from 0.167 was not found.
 
 ## C26-D04: How much of a change in the average came from choosing, and how much from copying?
 
@@ -211,7 +211,7 @@ Round falls to a quarter, wrinkled holds at a quarter, speckled doubles to a hal
 
 **Check:** If striped starts at 0.01 with no copy error, does it ever appear in the next round's shares, and does it take over?
 
-**Answer:** Yes: its share is 0.01 x 10 divided by the new total, about 0.047 after one round, and it grows each round and takes over within a dozen. Starting above zero matters.
+**Answer:** Yes: its share is 0.01 x 10 divided by the new total, about 0.048 after one round, and it grows each round and takes over within a dozen. Starting above zero matters.
 
 **Source:** A field of seeds, and a striped seed that stays at zero; anchor `a-field-of-seeds-and-a-striped-seed-that-stays-at-zero`. Book formula (the replicator rule in its step form, from Taylor and Jonker 1978) and constructed ledger: shares 0.5, 0.25, 0.25 and 0, offspring 1, 2, 4 and 10, which hold no real data. The copy-error step, where some speckled offspring come out striped, and the nonzero starting shares are this companion's variations, in the spirit of the chapter's note that variation in copying can introduce a missing type.
 

@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-04.md",
   "source_sha256": "b5850eb112cf4ec700dcea5b6b334efaf26472eaa30d25f7ee92f933ad440d4d",
-  "calculation_sha256": "bdbca670a2d1908866069c1e6c8a430ab73d357cb6f092b2aef177121ce88098",
+  "calculation_sha256": "cfdea31d5345146e0288fc4cedc85b5ad1204273f1f58ce03132dae178f74b1a",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -60,7 +60,7 @@
         "machine": "A machine can fit the same guess from data with no cell involved and send only the residual; the saving depends on the guess and the required precision."
       },
       "explanation": "The receiver builds the same guess from the neighbors and adds the residual to it. Nothing is lost: the reading is recovered exactly. What changes is the size of the number that has to be sent, which is the miss and not the reading.",
-      "check": "In a three-level network, a long bar has input 10 and a prediction of 10, and a short bar has input 10 and a prediction of 4. What residual does each send?",
+      "check": "In the book's illustrative figure of a three-level network (constructed numbers, not from the paper), a long bar has input 10 and a prediction of 10, and a short bar has input 10 and a prediction of 4. What residual does each send?",
       "answer": "The long bar sends 10 - 10 = 0 and the short bar sends 10 - 4 = 6. A well-predicted input leaves little to carry.",
       "controls": [
         {
@@ -136,7 +136,7 @@
       ],
       "provenance": "The book's formula and its derivation 5. The pairs are a seeded simulation (seed 4) with mean 20, spread 5 and a chosen correlation; seed 4 was picked after trying a few because its fits were typical, and with 30 pairs fits scatter more whatever the seed. The ratio sqrt(1 - rho^2) and the bit count are standard results added by the companion and not printed in the chapter.",
       "kind": "simulation",
-      "assumptions": "A straight-line guess under squared error, normally distributed pairs, residuals scored on the same pairs the line was fitted to, and equal precision for the raw reading and the residual when counting bits. Association alone does not show that changing the neighbors would change the center.",
+      "assumptions": "A straight-line guess under squared error, normally distributed pairs, residuals scored on the same pairs the line was fitted to, and equal precision for the raw reading and the residual when counting bits. The bit count also assumes the reading is quantized finely compared with its spread; with coarse steps the saving differs. Association alone does not show that changing the neighbors would change the center.",
       "prediction": "If the center follows its neighbors with correlation 0.8, predict what share of the raw spread is left in the residuals.",
       "reveal": {
         "state": {
@@ -192,7 +192,7 @@
         "Theory sqrt(1 - rho^2)": "0.6",
         "Bits saved at equal precision": "0.788"
       },
-      "worked_interpretation": "Fitted from 300 pairs, the guess has slope 0.842 against a true 0.8, and its residuals have 0.579 of the raw spread (theory 0.6). Sending the residual at the same precision then saves about 0.788 bits per reading; this bit count is the companion's addition.",
+      "worked_interpretation": "Fitted from 300 pairs, the guess has slope 0.842 against a true 0.8, and its residuals have 0.579 of the raw spread (theory 0.6). Sending the residual at the same precision then saves about 0.788 bits per reading, the companion's own count for finely quantized readings.",
       "reader_anchor": "C04-D02"
     },
     {
@@ -369,7 +369,7 @@
         "Input reliability": "1",
         "Expectation reliability": "0.1"
       },
-      "worked_interpretation": "With noise variances 1 for the input and 10 for the expectation, the estimate settles at 11.1, between the expectation 2 and the input 12. The input's reliability is 10 times the expectation's, so it holds that share of the pull.",
+      "worked_interpretation": "With noise variances 1 for the input and 10 for the expectation, the estimate settles at 11.1, between the expectation 2 and the input 12. The input's reliability is 10 times the expectation's, so it holds 90.9 percent of the pull.",
       "reader_anchor": "C04-D04"
     },
     {
@@ -484,7 +484,7 @@
       "source_section": "When an expectation outweighs the senses",
       "provenance": "A constructed model by the companion in the spirit of the chapter's analogy to the balance between a reading and a guess. The chapter gives no weights or rates: the tone strength 1, the criterion 0.5 and the noise spreads are made up. Powers, Mathys and Corlett studied 59 people in four groups; this is not their model or data.",
       "kind": "model",
-      "assumptions": "A weighted mix of the expectation and a noisy sensory sample and a fixed reporting criterion. The studies' own model is an interpretation of reports, not a direct measurement of a weight in the brain, and the human studies do not show that a brain uses Rao and Ballard's rule.",
+      "assumptions": "A weighted mix of the expectation and a noisy sensory sample and a fixed reporting criterion. The studies' own model is an interpretation of reports, not a direct measurement of a weight in the brain, and the human studies do not show that a brain uses Rao and Ballard's rule. In this model, putting weight w on the expectation is the same as lowering the report criterion: the gap between the two percept means divided by the spread stays 1 / (sensory spread) for every w. So the model cannot tell an overweighted expectation from a more liberal tendency to say 'heard'; the studies' own analyses are a different, fuller model.",
       "prediction": "With sensory spread 0.5 and no weight on the expectation, a tone is reported on 84 percent of tone trials and 16 percent of no-tone trials. Predict both rates when the weight rises to 0.5.",
       "reveal": {
         "state": {
@@ -499,7 +499,7 @@
         "brain": "In the tone task, all four groups reported some absent tones, and as groups the people who heard voices daily reported more, with or without a diagnosis. The fitted model gave their expectation more weight. In another task, people with early psychotic symptoms benefited more from seeing clear pictures first. These are group findings and model interpretations, not claims about any person, and the chapter notes evidence for weaker priors too.",
         "machine": "A system that fuses a prior with a reading will report what it expects if the prior weight is too high; the weight is a design setting."
       },
-      "explanation": "With more weight on the expectation, the percept shifts toward the expected tone and the sensory sample matters less. On no-tone trials the percept's mean moves from 0 toward 1 and across the criterion, and on tone trials it moves from 1 only closer to 1 while its spread shrinks.",
+      "explanation": "With more weight on the expectation, the percept shifts toward the expected tone and the sensory sample matters less. On no-tone trials the percept's mean moves from 0 toward 1 and passes the criterion at weight 0.5. On tone trials its mean stays at 1 for every weight and only its spread shrinks. The gap between the two means divided by the spread is 1 over the sensory spread at every weight, so in this model a higher weight is the same as a lower report criterion.",
       "check": "At weight 0.5 and spread 0.5, the no-tone percept has mean 0.5, the same as the criterion. What share of no-tone trials are reported as 'heard'?",
       "answer": "Half, 50 percent, because the percept is as likely to fall above the criterion as below it.",
       "controls": [
@@ -541,7 +541,7 @@
         "Weight on the expectation": "0.3",
         "Sensory noise sd": "0.5"
       },
-      "worked_interpretation": "With weight 0.3 on the expectation, a tone is reported on 28.4 percent of no-tone trials and 92.3 percent of tone trials. Giving the expectation more weight pulls the percept toward the tone, so 'heard' answers rise whether or not it played.",
+      "worked_interpretation": "With weight 0.3 on the expectation, a tone is reported on 28.4 percent of no-tone trials and 92.3 percent of tone trials. At weight 0 the rates would be 15.9 and 84.1, so more weight raises 'heard' answers whether or not a tone played. This model cannot tell an overweighted expectation from a lower report criterion.",
       "reader_anchor": "C04-D06"
     },
     {
@@ -571,7 +571,7 @@
       ],
       "source_anchor": "a-television-that-changed-channels",
       "source_section": "A television that changed channels",
-      "provenance": "The chapter's coin paragraph: a known fair coin teaches nothing, a coin of uncertain fairness teaches, and a coin that always lands heads stops being a surprise. The companion's exact calculation adds a uniform starting view (Laplace's rule) and sums over the flips. It is not a simulation of Burda and colleagues' agents, who were paid for prediction error on learned features.",
+      "provenance": "The chapter's coin paragraph: a known fair coin teaches nothing, a coin of uncertain fairness teaches, and a coin that always lands heads stops being a surprise. The companion's exact calculation adds a uniform starting view (Laplace's rule) and sums over the flips. It is not a simulation of Burda and colleagues' agents, who were paid for prediction error on learned features. The 1 / (2 n ln 2) estimate in the reveal is a standard large-n approximation added by the companion, not from the chapter.",
       "kind": "formula",
       "assumptions": "Independent flips of a coin with chance 0.5, 0.9 or 1 of heads, and a learner that starts from a uniform view of the coin. Expected surprise is the learner's log loss, a stand-in for prediction error. A learner that already knew the coin would have zero information gain at every flip.",
       "prediction": "For the fair coin, predict whether the expected surprise after 100 flips is near 0, 0.5 or 1 bit, and whether the information gain is large or small.",
@@ -582,7 +582,7 @@
         },
         "text": "After 100 flips of the fair coin the next flip is still worth 1.01 bits of surprise, but only 0.007 bits of information about the coin, close to 1 / (2 n ln 2). A reward for surprise keeps paying here; a reward for information gain has nearly stopped."
       },
-      "takeaway": "An agent paid for surprise keeps being paid by a coin that is fair, while one paid for information gain stops once the chance is learned.",
+      "takeaway": "An agent paid for surprise keeps being paid by a coin that is fair, while one paid for information gain nearly stops once the chance is learned.",
       "why_it_matters": "A prediction error can mean the guess was wrong, or it can mean the world is only noisy. Being surprised is not the same as learning something, and a machine paid for surprise can keep paying itself for noise it cannot learn from.",
       "sides": {
         "brain": "No test in the chapter shows whether people or animals chase surprise or information.",
@@ -630,7 +630,7 @@
         "Flips seen": 20,
         "Surprise if the coin is known": "1"
       },
-      "worked_interpretation": "After 20 flips of the fair coin, chance 0.5, the next flip is worth 1.03 bits of surprise but only 0.032 bits of information about the coin. An agent paid for surprise keeps being paid where the coin is fair; one paid for information gain is not.",
+      "worked_interpretation": "After 20 flips of the fair coin, chance 0.5, the next flip is worth 1.03 bits of surprise and 0.032 bits of information about the coin. The surprise stays near 1 bit because the coin is fair, while the information gain has fallen from 0.279 bits at the first flip.",
       "reader_anchor": "C04-D07"
     }
   ]

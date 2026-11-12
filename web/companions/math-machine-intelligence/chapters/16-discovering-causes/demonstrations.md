@@ -28,11 +28,11 @@ $$
 
 After the events (B alone: nothing; A alone: lit; A and B: lit), 1 of 4 explanations remain. The chance that taking A off stops the machine is 1 and for B it is 0.
 
-**Calculation:** Start: weights (1-p)^2, p(1-p), (1-p)p, p^2 with p = 0.5: 0.25, 0.25, 0.25, 0.25. Cross out each explanation that clashes with an event, then divide by what is left: 0, 1, 0, 0.
+**Calculation:** Start: weights (1-p)^2, p(1-p), (1-p)p, p^2 with p = 0.5 (the companion's choice of starting chance; the book assigns none): 0.25, 0.25, 0.25, 0.25. Cross out each explanation that clashes with an event, then divide by what is left: 0, 1, 0, 0.
 
 **Takeaway:** Crossing out explanations that clash with what was seen can leave a single survivor after very few events, and the survivor tells you which block to remove.
 
-**What happens:** At Events watched (0 to 3) = 3, Starting chance a block triggers it = 0.5: After all three events only one explanation survives, 'only A triggers', so taking A off is the action the toy advises. In the study 18 of 24 children took A off first. Slide back to see that two events already leave one explanation, and the third rules out nothing more.
+**What happens:** At Events watched (0 to 3) = 3, Starting chance a block triggers it (companion's choice) = 0.5: After all three events only one explanation survives, 'only A triggers', so taking A off is the action the toy advises. In the study 18 of 24 children took A off first. Slide back to see that two events already leave one explanation, and the third rules out nothing more.
 
 **Why it matters:** A system that keeps a list of rival explanations and strikes out the ones the data contradict does a simple form of Bayesian updating, as long as someone supplies the list and the starting chances.
 
@@ -66,15 +66,15 @@ $$
 - Logged chance of light when switch on (both): 1
 - Light after set on, H: 0.5
 - Light after set on, D: 1
-- Chance H mimics D in the experiment: 1.53e-05
+- Chance H mimics D in the experiment: 1.53e-5
 
-In both logs the light was on whenever the switch was. Set by hand, the light comes on 0.5 of the time in H and always in D. With 8 trials per arm, H shows D's exact pattern by luck with chance 1.53e-05.
+In both logs the light was on whenever the switch was. Set by hand, the light comes on 0.5 of the time in H and always in D. With 8 trials per arm, H shows D's exact pattern by luck with chance 1.53e-5.
 
-**Calculation:** H: the hidden coin lights the light with chance 0.5 whatever the setting. D: the light follows the setting. Mimic chance = (c x (1 - c))^n = (0.5 x 0.5)^8 = 1.53e-05.
+**Calculation:** H: the hidden coin lights the light with chance 0.5 whatever the setting. D: the light follows the setting. Mimic chance = (c x (1 - c))^n = (0.5 x 0.5)^8 = 1.53e-5.
 
 **Takeaway:** A record answers what goes with what. What setting a variable would do needs a setting, or assumptions that rule out a hidden common cause.
 
-**What happens:** At Trials in each arm = 8, Chance the hidden coin is on = 0.5: Set on by hand, the light is on half the time in H and every time in D, though the logs were identical. With 8 trials in each arm, H shows D's exact pattern by luck with chance about 0.000015 (1.5 in 100,000). A few trials already tell the machines apart.
+**What happens:** At Trials in each arm = 8, Chance the hidden coin is on (0.5 is the chapter's) = 0.5: Set on by hand, the light is on half the time in H and every time in D, though the logs were identical. With 8 trials in each arm, H shows D's exact pattern by luck with chance about 0.000015 (1.5 in 100,000). A few trials already tell the machines apart.
 
 **Why it matters:** A machine that learns only from logs can mistake a switch that merely accompanies the light for one that makes it. Setting the variable on randomly chosen trials separates the two.
 
@@ -90,7 +90,7 @@ In both logs the light was on whenever the switch was. Set by hand, the light co
 
 **Source:** Seeing is not setting; anchor `seeing-is-not-setting`. The chapter's constructed pair of machines, H and D, with a fair hidden coin (the coin chance is varied here). The chapter says explicitly that the pair is made up and not data. The seeded trials are simulated with a fixed seed; the 'mimic chance' is exact arithmetic for the experiment of equal numbers of set-on and set-off trials.
 
-## C16-D03: How much of a risk ratio is the hidden gene?
+## C16-D03: How much of a risk ratio is the gene?
 
 Smokers look five times as likely to get cancer when everyone is lumped, but a gene feeds both smoking and cancer. What does adjusting by the gene give?
 
@@ -177,7 +177,7 @@ A risk ratio of 9 means a trait standing in for smoking must be at least 9 times
 
 A boat-racing game scores target hits, but the goal is to finish. Which sets of allowed behaviors let pushing the score hurt the goal?
 
-The real goal is finishing and the stand-in is target hits. Among the racing behaviors, more hits never means finishing less, so pushing hits is safe. Add a behavior that never finishes but collects many hits and you can raise the stand-in score by giving up the race. Allow mixtures and the scores must agree on every mixture, which these two cannot do.
+The real goal is finishing and the stand-in is target hits. Among the racing behaviors, more hits never means finishing less, so pushing hits is safe. Add a behavior that never finishes but collects many hits and you can raise the stand-in score by giving up the race. Allow mixtures and the scores must agree on every mixture (or one of them must never tell behaviors apart), which these two cannot do.
 
 $$
 \text{hackable if there are behaviors } \pi,\pi' \text{ with } J_{\text{stand-in}}(\pi)<J_{\text{stand-in}}(\pi') \text{ and } J_{\text{real}}(\pi)>J_{\text{real}}(\pi')
@@ -196,7 +196,7 @@ With the allowed set (plus circling the lagoon), moving from race, few hits (2 h
 
 **Calculation:** Real goal = races finished; stand-in = target hits. Behaviors (real, stand-in): race, few hits (1, 2); race, many hits (1, 4); idle (0, 0); lagoon (0, 10). Hackable if some pair has a higher stand-in score and a lower real score.
 
-**Takeaway:** Whether a stand-in is safe depends on which behaviors are allowed, and allowing every mixture of behaviors makes it safe only when the two scores rank everything alike.
+**Takeaway:** Whether a stand-in is safe depends on which behaviors are allowed, and allowing every mixture of behaviors makes it safe only when the two scores rank everything alike or one of them never tells any behaviors apart.
 
 **What happens:** At Behaviors allowed (1 to 4) = 3, Target hits from circling the lagoon = 10: With the lagoon allowed and worth 10 hits, circling beats both racing behaviors on the stand-in score while never finishing the race, so the stand-in is hackable. With only racing behaviors it was safe; with the lagoon worth 2 hits or fewer it stays safe until mixtures are allowed.
 
@@ -229,20 +229,20 @@ $$
 **Predict:** The setter pushes each variable by 4 and the noise sd starts at 1. Predict whether the setter still beats the watcher when the noise sd rises to 4, the size of the push.
 
 **Worked example:**
-- Sets each variable once: 0.932
-- Only watches: 0.456
-- Random choice: -0.00726
-- Best possible (value of cued variable): 3.8
+- Sets each variable once: 0.93
+- Only watches: 0.46
+- Random choice: -0.00122
+- Best possible (sampled average value): 3.7
 
-Across 2000 random five-variable linear diagrams (noise sd 1, edge chance 0.6), an explorer that sets each variable once reaches 0.932 of the best value, one that only watches reaches 0.456, and a random choice -0.00726. This is the companion's constructed world, not the paper's.
+In 100,000 random five-variable diagrams (noise sd 1, edge chance 0.6), a rule-based explorer that sets each variable once reaches 0.93 of the best value, one that only watches 0.46, and a random pick -0.00122. The setter is ahead here. This is the companion's constructed world, not the paper's networks.
 
-**Calculation:** Expected value of setting variable v to +4 or -4 is 4 x (path sum from v to the cue). The best possible is the larger of those over v. Seeded averages over 2000 diagrams give oracle 3.8, setters 3.54, watchers 1.73, random -0.0276.
+**Calculation:** Expected value of setting variable v to +4 or -4 is 4 x (path sum from v to the cue). The best possible is the larger of those over v. Seeded sample averages over 100,000 diagrams (sampling error remains in the last digit) give oracle 3.7, setters 3.43, watchers 1.7, random -0.00451.
 
-**Takeaway:** In this constructed world, trying each variable once reads off what each does to the cue far better than watching, until the noise grows as large as the push and one trial no longer shows the effect.
+**Takeaway:** In this constructed world, trying each variable once reads off what each does to the cue far better than watching, but the lead shrinks as the noise nears the push. At noise 4 (the size of the push) the watcher is ahead at edge chance 0.3 and 0.6, and the two are about level at 0.9.
 
-**What happens:** At Noise sd on every variable = 1.0, Chance of an edge between two variables = 0.6: At noise sd 1 and edge chance 0.6 the setter reaches about 0.93 of the best value, the watcher about 0.46 and a random choice about 0. Turn the noise up to 4, the size of the push, and the setter falls to about 0.37, below the watcher, whose share does not change with noise.
+**What happens:** At Noise sd on every variable = 1.0, Chance of an edge between two variables = 0.6: At noise sd 1 and edge chance 0.6 the setter reaches about 0.93 of the best value, the watcher about 0.46 and a random choice about 0 (best value about 3.7, a sample average). Turn the noise up to 4, the size of the push, and the setter falls to about 0.38, below the watcher, whose share does not change with noise. At edge chance 0.9 the two end up about level instead.
 
-**Why it matters:** The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation shows why watching reads cause less directly, and that setting needs a push that stands out from the noise.
+**Why it matters:** The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation illustrates why watching reads cause less directly, and that setting needs a push that stands out from the noise.
 
 **In brains and behavior:** No brain recording is involved. The only link to the children is that taking a block off is an intervention a child can attempt and a log cannot.
 
@@ -254,4 +254,4 @@ Across 2000 random five-variable linear diagrams (noise sd 1, edge chance 0.6), 
 
 **Answer:** Setting A to +4 gives 1.5 x 4 = 6 for B, and setting A to -4 gives -6. The agent that learns which way A pushes B can choose the sign.
 
-**Source:** Agents that copy an expert who experimented; anchor `agents-that-copy-an-expert-who-experimented`. A constructed, seeded simulation (seed 1616, 2000 random diagrams per setting) in the spirit of the setup the chapter describes from Lampinen and colleagues (2023): five variables, five exploratory steps, settings of plus or minus 4, a cue naming the variable to push. The edge weights, noise and the rule-based explorers are this companion's; the paper's agents were trained networks and the chapter gives no percent of optimal for them.
+**Source:** Agents that copy an expert who experimented; anchor `agents-that-copy-an-expert-who-experimented`. A constructed, seeded simulation (seed 1616, 100,000 random diagrams per setting, sample averages) in the spirit of the setup the chapter describes from Lampinen and colleagues (2023): five variables, five exploratory steps, settings of plus or minus 4, a cue naming the variable to push. The edge weights, noise and the rule-based explorers are this companion's; the paper's agents were trained networks and the chapter gives no percent of optimal for them.

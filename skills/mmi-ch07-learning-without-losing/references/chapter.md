@@ -120,9 +120,9 @@ In this two-item toy with overlap 0.5 and rate 0.25, focused training: B is lear
 
 **Takeaway:** In the toy, training on the new item alone learns it fastest and harms the old item most, while mixing in the old item is slower per update and leaves very little harm.
 
-**What happens:** At Training schedule = focused, Overlap of A and B = 0.5, Rate = 0.25: Focused training gets B under 0.1 after 10 updates but leaves A off by 0.75. Interleaved training takes 27 updates to get B under 0.1, and A's error is only 0.037 after 40 updates. Faster for the new item, worse for the old one.
+**What happens:** At Training schedule = focused, Overlap of A and B = 0.5, Rate = 0.25: Focused training gets B under 0.1 after 10 updates but leaves A off by about 0.71 after 10 updates and 0.75 in the long run. Interleaved training takes 27 updates to get B under 0.1, and A's error is only 0.037 after 40 updates. Faster for the new item, worse for the old one.
 
-**Why it matters:** This is the same trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.
+**Why it matters:** This echoes the trade the chapter reports for the penguin network, with the cost named: slower learning of each new fact and a person or process to choose the old examples to mix in.
 
 **In brains and behavior:** The two-store proposal suggests that renewed activity from past events could give a slow learner mixed examples. Wilson and McNaughton found that pairs of cells that fired together awake fired together more in later sleep, and the 2010 ripple study cut ripples short; neither shows replay teaching a slow system.
 
@@ -156,13 +156,13 @@ $$
 - Effort to relearn: 20
 - Effort saved: 5
 
-With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values, the efforts are the companion's scaling, not data.
+With a first learning effort of 25, savings of 0.2 means relearning takes 20, so 5 of the first effort is saved. For the reported savings values the efforts are the companion's scaling, not data, and Ebbinghaus used another formula.
 
 **Calculation:** S = (L0 - Lt) / L0 = (25 - 20) / 25 = 0.2. Equivalently Lt = L0 x (1 - S) = 25 x 0.8 = 20.
 
 **Takeaway:** Savings counts the effort that relearning did not need, so a list that seems forgotten can still leave a large saving: forgetting need not be erasure.
 
-**What happens:** At Case = chapter example, Effort of the first learning = 25: Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus's 0.58 and 0.21 and Murre and Dros's 0.04 and 0.14.
+**What happens:** At Case = chapter example, Effort of the first learning = 25: Five of 25 repetitions were saved, so S = 0.2. The one-twentieth model would have S = 0.95. The reported values on this card are Ebbinghaus's 0.58 and 0.21 (he used his own formula, so the plain-ratio efforts are only an illustration) and Murre and Dros's 0.04 and 0.14.
 
 **Why it matters:** A system that fails an exact-answer test may still be quick to restore. Savings asks how much of the first effort survived, which a recall test alone does not.
 
@@ -170,13 +170,13 @@ With a first learning effort of 25, savings of 0.2 means relearning takes 20, so
 
 **In machines:** French's review reports that Hetherington and Seidenberg applied a savings measure to networks and found that a network that seemed to have forgotten could often be retrained quickly, though later work showed not all catastrophic forgetting is this shallow. No figures are given.
 
-**Assumptions and limits:** Both efforts are in the same units, on the same material and with the same stopping standard. The six cases are separate points and not a forgetting curve; the chapter gives only two of Ebbinghaus's values, so nothing is drawn between them. The one-twentieth model is the chapter's illustration, not a reported result. Savings alone does not show what a model's weights retain.
+**Assumptions and limits:** Both efforts are in the same units, on the same material and with the same stopping standard. The six cases are separate points and not a forgetting curve, and in the right panel every dot lies on the line S = 1 minus the share by construction, so that panel only places the cases; the chapter gives only two of Ebbinghaus's values, so nothing is drawn between them. The one-twentieth model is the chapter's illustration, not a reported result. Savings alone does not show what a model's weights retain.
 
 **Check:** A failed model recovers with one twentieth of its original training. What are the savings?
 
 **Answer:** L_t is one twentieth of L_0, so S = (1 - 1/20) = 0.95.
 
-**Source:** Forgotten lists were still relearned faster; anchor `forgotten-lists-were-still-relearned-faster`. The chapter's savings formula and worked example (25 repetitions, 20 on relearning). Ebbinghaus's 0.58 after minutes and 0.21 after a month, Murre and Dros's one-subject 31-day savings of about 0.04 (about 0.14 adjusted) and the one-twentieth model are as the chapter reports them. Ebbinghaus used his own formula, not the plain ratio, so the efforts shown for the reported savings are the companion's scaling to the chosen first effort, not data.
+**Source:** Forgotten lists were still relearned faster; anchor `forgotten-lists-were-still-relearned-faster`. The chapter's savings formula and worked example (25 repetitions, 20 on relearning). Ebbinghaus's 0.58 after minutes and 0.21 after a month, Murre and Dros's one-subject 31-day savings of about 0.04 (about 0.14 adjusted) and the one-twentieth model are as the chapter reports them. Ebbinghaus used his own formula, not the plain ratio, so the efforts shown for the reported savings are the companion's scaling to the chosen first effort, not data. For the two Ebbinghaus cases, the plain ratio is applied to his 0.58 and 0.21 only as an illustration of what they would mean on that ratio; the chapter says his figures fit this measure only roughly.
 
 ## C07-D05: Can a prediction change without erasing an old expectation?
 

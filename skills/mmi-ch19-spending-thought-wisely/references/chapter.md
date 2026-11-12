@@ -74,7 +74,7 @@ With looks costing 1 and a perfect forecast, acting now is worth 3.6, one look t
 
 **Takeaway:** The stopping equation compares acting now with paying for a look and then continuing, and it can find value in several looks that no single look shows.
 
-**What happens:** At Price of one look = 1.0, Chance each hint is right = 1.0: With a perfect forecast costing 1, acting now is worth 3.6 and one look then acting is worth 6 - 1 = 5, so the model takes the look, as in the chapter. Now try hints right 0.7 at a price of 0.2: one look then acting is worth only 3.4, below 3.6, so a planner pricing only the next look declines. The best use of looks is worth 4.2, taking about 3.5 looks.
+**What happens:** At Price of one look = 1.0, Chance each hint is right = 1.0: With a perfect forecast costing 1, acting now is worth 3.6 and one look then acting is worth 6 - 1 = 5, so the model takes the look, as in the chapter. Now try hints right 0.7 at a price of 0.2 (the companion's noisy-hint extension, not in the chapter): one look then acting is worth only 3.4, below 3.6, so a planner pricing only the next look declines. The best use of looks is worth 4.2, taking about 3.5 looks.
 
 **Why it matters:** A planner that asks only whether the next look is worth its price can stop before discovering that a few looks together would change the decision.
 
@@ -150,15 +150,15 @@ $$
 - Best stopping bound (net hints): 4
 - Chance the answer is right: 0.967
 - Looks expected before stopping: 9.35
-- Costs per look that make this bound best: 0.00657 to 0.0137
+- Costs that make this bound best (backward reading): 0.00657 to 0.0137
 
 With hints right 0.7 of the time and 0.01 reward per look, stopping once one answer leads by 4 hints is best: chance 0.967 of being right after about 9.35 looks. Stopping there fits a cost per look from 0.00657 to 0.0137, a backward reading that goes beyond the paper.
 
 **Calculation:** Value of bound B = P(B) - c x E[looks], P(B) = 1/(1 + rho^B), rho = (1 - a)/a = 0.429, E[looks] = B(2P - 1)/(2a - 1). At B = 4: 0.967 - 0.01 x 9.35 = 0.874.
 
-**Takeaway:** A price per look fixes a stopping bound, and a stopping bound fixes the range of prices it is consistent with.
+**Takeaway:** In this toy, a price per look fixes a stopping bound, and a stopping bound fixes the range of prices it is consistent with. The backward range is an extension beyond the paper, not a measured cost of time.
 
-**What happens:** At Cost per look (reward units) = 0.01, Chance each hint is right = 0.7: At 0.01 per look with hints right 0.7 of the time, stopping once one answer leads by 4 net hints is best, with a 0.967 chance of a right answer after about 9.3 looks. Run backward, a chooser who stops at that bound behaves as if each look cost between about 0.0066 and 0.0137.
+**What happens:** At Cost per look (reward units) = 0.01, Chance each hint is right = 0.7: At 0.01 per look with hints right 0.7 of the time, stopping once one answer leads by 4 net hints is best, with a 0.967 chance of a right answer after about 9.3 looks. Run backward, a chooser who stops at that bound behaves as if each look cost between about 0.0066 and 0.0137. That backward cost range is the companion's extension beyond the paper, with made-up hints and a constant cost.
 
 **Why it matters:** The same equation serves both directions. Give a machine a price and it returns a stopping point; watch a stopping point and ask what price it behaves as if it paid.
 
@@ -178,7 +178,7 @@ With hints right 0.7 of the time and 0.01 reward per look, stopping once one ans
 
 Take The Best checks cues in order and stops at the first one that separates two objects. How does it compare with using every cue, in a made-up world?
 
-Take The Best orders cues by validity and walks down the list until one cue separates the two objects, then stops. It ignores every later cue, so on most pairs it looks at only a few. When the first deciding cue is reliable, the later cues add little. When cues are noisy, weighing many of them can pay more.
+Take The Best orders cues by validity and walks down the list until one cue separates the two objects, then stops. It ignores every later cue, so on most pairs it looks at only a few. When the first deciding cue is reliable, the later cues add little. In this constructed world with all nine cues, at high noise a regression fitted in sample to the true sizes did a little better (about 1.5 points at noise 3), while equal-weight tallying did worse. With only three cues Take The Best was level with or ahead of regression at noise 1 to 3.
 
 $$
 \text{choose the object with the cue at the first cue } j \text{ (most trusted first) where } x_{aj}\ne x_{bj}
@@ -198,15 +198,15 @@ In this made-up world with cue noise 1 and 9 cues known, Take The Best judges 84
 
 **Calculation:** Take The Best orders cues by validity (share of the pairs a cue separates where its holder is larger) and stops at the first cue that separates the pair; ties count one half. Seeded world (seed 1996): 83 objects, hidden size, nine cues with prevalences 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1.
 
-**Takeaway:** A rule that stops at the first deciding cue can come close to rules that weigh everything, while looking at far fewer cues.
+**Takeaway:** In this constructed world, a rule that stops at the first deciding cue came within about two points of rules that weigh everything, while looking at fewer cues. The chapter's real contest, 65.8 against 65.7, is the paper's own result and is not reproduced here.
 
-**What happens:** At Cue noise (larger means weaker cues) = 1.0, Cues known = 9: In this constructed world at noise 1 with all nine cues, Take The Best judges 84.0 percent of pairs right against 84.8 for the fitted regression and 83.1 for tallying, while looking at about 2.9 cues per pair. The gap to regression grows only to about 1.4 points at noise 3. The chapter's real result, 65.8 against 65.7 percent, comes from different data.
+**What happens:** At Cue noise (larger means weaker cues) = 1.0, Cues known = 9: In this constructed world at noise 1 with all nine cues, Take The Best judges 84.0 percent of pairs right against 84.8 for the fitted regression and 83.1 for tallying, while looking at about 2.9 cues per pair. With all nine cues, the gap to regression is about 0.8 points at noise 1, widens to about 1.8 at noise 2 and is about 1.5 at noise 3. The chapter's real result, 65.8 against 65.7 percent, comes from different data.
 
 **Why it matters:** Stopping is also a design choice: a rule can stop by recipe rather than by pricing each look, and the chapter's examples show it can cost little accuracy in some settings.
 
 **In brains and behavior:** Gigerenzer and Goldstein's contest was a computer simulation, not a test of people.
 
-**In machines:** Take The Best is a fixed recipe: recognition first, then the most trusted cue that separates the pair. This simulation compares it with tallying and a fitted regression in a made-up world.
+**In machines:** Take The Best is a fixed recipe. The paper's rule, as the chapter describes it, starts with recognition; this simulation leaves that step out and treats every object as known, then uses the most trusted cue that separates the pair. It compares it with tallying and a fitted regression in a made-up world.
 
 **Assumptions and limits:** Ties count one half. The regression is fitted in sample to the true sizes, a strong rival. The cues track size with noise controlled by a setting. A simulation is a computation with disclosed seeds, never a measurement of people, and the paper's authors call their own result an existence proof that does not show simple rules win in general.
 
@@ -236,13 +236,13 @@ $$
 - Spread of one score (points): 9.13
 - Gap in spreads of the difference: 0.521
 
-On 30 problems one problem is 3.33 points, so a 6.7-point gap is about 2 problems. If each problem were an independent draw at 50 percent, one score would spread by about 9.13 points, and the gap would be 0.521 spreads of the difference. This is a yardstick for scale, not a test of the paper's result, which compares the same problems.
+On 30 problems one problem is 3.33 points, so a 6.7-point gap is about 2 problems. If each problem were an independent draw at 50 percent, one score would spread by about 9.13 points, and the gap would be 0.521 spreads of the difference. Scoring the same problems twice makes this yardstick overstate the noise, so use it for scale only.
 
-**Calculation:** Spread of a score = 100 x sqrt(p(1 - p)/30) = 9.13 points at p = 0.5. Spread of a difference = sqrt(9.13^2 + 9.05^2) = 12.9. Gap/spread = 6.7/12.9 = 0.521.
+**Calculation:** Spread of a score = 100 x sqrt(p(1 - p)/30) = 9.13 points at p = 0.5. Spread of a difference = sqrt(9.13^2 + 9.05^2) = 12.9. Gap/spread = 6.7/12.9 = 0.521. If the two scores on the same problems are positively correlated, the true spread of the difference is smaller than this unpaired figure, and the gap would count for more spreads.
 
-**Takeaway:** On a 30-problem test two problems is a small step, and the same percentage gap means more on a larger test; scale shows how much room for chance a small test leaves.
+**Takeaway:** On a 30-problem test the 6.7-point gap is about two problems. Under an unpaired independent-draw yardstick, which tends to overstate the noise, it is about half a spread of the difference, and the same gap means more on a larger test.
 
-**What happens:** At Problems in the test = 30: On 30 problems one problem is 3.33 points, so the gap is about two problems. A score at 50 percent would spread by about 9.1 points if each problem were an independent draw, and the gap is about half a spread of the difference. The same gap on 1,000 problems would be about 3.0 spreads.
+**What happens:** At Problems in the test = 30: On 30 problems one problem is 3.33 points, so the gap is about two problems. A score at 50 percent would spread by about 9.1 points if each problem were an independent draw, and the gap is about half a spread of the difference on this unpaired yardstick, which tends to overstate the noise for scores on the same problems. The same gap on 1,000 problems would be about 3.0 spreads.
 
 **Why it matters:** A reported gain on a small test deserves a question about its size before a conclusion about its cause. The chapter itself adds that other tests gave smaller and mixed results.
 
@@ -250,7 +250,7 @@ On 30 problems one problem is 3.33 points, so a 6.7-point gap is about 2 problem
 
 **In machines:** Budget forcing blocks the end-of-thinking marker and appends 'Wait' to make the model think longer. A builder sets the limit, the same for every question, whatever its difficulty.
 
-**Assumptions and limits:** The yardstick treats each problem as an independent draw at the reported rate and the two scores as independent. The paper's two conditions are scored on the same problems, so this is not its analysis and says nothing for or against the reported gain. Budget forcing combines length limits and forced continuations, every question got the same limits, and the gain flattened after about six Waits.
+**Assumptions and limits:** The yardstick treats each problem as an independent draw at the reported rate and the two scores as independent. The paper's two conditions are scored on the same problems, so this is not its analysis and does not show the gain is or is not real. Because both conditions score the same problems, the true spread of the difference is smaller than this unpaired figure when the two scores are positively correlated, so the yardstick tends to understate how unusual the gap is; the chapter gives no per-problem results, so the size of that effect is not known here. Budget forcing combines length limits and forced continuations, every question got the same limits, and the gain flattened after about six Waits.
 
 **Check:** On a test of 100 problems, how many problems is a 6.7-point gap?
 

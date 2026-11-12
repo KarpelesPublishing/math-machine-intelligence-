@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-30.md",
   "source_sha256": "65a142d6c256da41f59b956071a8204a5fe25e265f94ba2aef455ce6e9b9bbda",
-  "calculation_sha256": "e4e6159a3a0fe80ac6c1a4202a3aa2f857177442c122fe5b7270af0809909109",
+  "calculation_sha256": "afefbb85a6f96f20a9dcb7acd36119bf20e8951af349706df265297dbf006ddd",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -52,7 +52,7 @@
       "takeaway": "A wrong prediction gain produces phantom drift that grows in proportion to the movement. The leftover is a mix of outside change and prediction error.",
       "why_it_matters": "A system that subtracts a prediction of its own move gets a leftover it must read. If the prediction is off, the leftover looks like the world.",
       "sides": {
-        "brain": "The von Holst and Mittelstaedt scheme: a command sends an inner copy (the efference copy) whose sign opposes the returning report, so the two cancel. The head-turned fly was their example of a flipped sign. This is their proposed scheme, and the chapter says it is a model.",
+        "brain": "The von Holst and Mittelstaedt scheme: a command sends an inner copy (the efference copy) whose sign opposes the returning report, so the two cancel. The head-turned fly was their example of a flipped sign. This is their proposed scheme, which the chapter presents as the authors' proposal.",
         "machine": "The camera is a specification: this is what the leftover formula returns for a gain we chose. A real arm adds friction and model errors that can look like contact."
       },
       "explanation": "The system holds a copy of its command and turns it into a predicted change. What the senses report minus that prediction is the leftover. If the gain is 0.9, ten percent of every turn is left over, so a bigger turn leaves a bigger leftover. Phantom drift is apparent motion left over when the gain is wrong.",
@@ -102,7 +102,7 @@
     {
       "id": "C30-D02",
       "title": "Can the leftover tell a collision from a bad prediction?",
-      "question": "A robot arm flags contact when the leftover passes a threshold. What else produces the same leftover?",
+      "question": "A system that flags contact when its leftover passes a threshold (here a camera, in degrees; a real arm compares torques) can be fooled. What else produces the same leftover?",
       "equations": [
         "e=w+10\\,(1-g),\\qquad \\text{alarm if } |e|>\\text{threshold}"
       ],
@@ -128,7 +128,7 @@
       "source_section": "A fly with its head glued on upside down circled, lurched or froze",
       "provenance": "The chapter's point that the same 1 degree leftover can come from a correctly predicted 10 degree turn plus 1 degree of outside motion, and that engineers add friction compensation and thresholds. The two thresholds and the outside motions are the companion's constructed values, and the chapter says the comparison with phantom drift is its own, not the survey's.",
       "kind": "constructed example",
-      "assumptions": "One 10 degree movement, effects that add, and no sensor noise. A real arm's residual also carries friction and model errors the chapter says engineers handle with compensation and thresholds.",
+      "assumptions": "One 10 degree movement, effects that add, and no sensor noise. The degrees and thresholds belong to this camera setup; a real arm compares commanded and expected torque, and linking its residual to phantom drift is the book's own step. A real arm's residual also carries friction and model errors the chapter says engineers handle with compensation and thresholds.",
       "prediction": "With gain 0.9 and no outside motion, predict the leftover and whether the alarm sounds with a threshold of 0.5.",
       "reveal": {
         "state": {
@@ -136,7 +136,7 @@
           "outside": 0,
           "threshold": 0.5
         },
-        "text": "The leftover is 1 degree, over the 0.5 threshold, so the alarm sounds although nothing touched the arm: a false alarm. The same leftover arises from gain 1.0 with 1 degree of outside motion, where the alarm is correct."
+        "text": "The leftover is 1 degree, over the 0.5 threshold, so the alarm sounds although nothing touched the device: a false alarm. The same leftover arises from gain 1.0 with 1 degree of outside motion, where the alarm is correct."
       },
       "takeaway": "The leftover has more than one possible cause. A threshold converts it to an alarm that can be false, or can miss a contact smaller than the model error.",
       "why_it_matters": "Something else must tell the causes apart. The chapter's proposal, its own and untested, is to show an operator both the prediction and the observation so a second sensor can be checked.",
@@ -229,9 +229,9 @@
           "delay": 0.2,
           "attenuation": 0.5
         },
-        "text": "At 0.2 seconds the prediction error is 0.951 of its largest value and ticklishness is 0.976 of the robot-only level, close to it, as the study found. At 0.1 it is lower (0.794) and at 0.4 it falls back (0.794). The study did not test 0.4 or 0.5."
+        "text": "At 0.2 seconds the prediction error is 0.951 of its largest value and ticklishness is 0.976 of the robot-only level, close to it. The study found ratings at 0.2 seconds not significantly different from robot-only, which is weaker than equal, and the 0.976 depends on the turn-down k = 0.5 chosen here. At 0.1 it is lower (0.794) and at 0.4 it falls back (0.794). The study did not test 0.4 or 0.5."
       },
-      "takeaway": "A late touch matches the prediction badly, so it is turned down less. The sketch gives a rise that levels off near the study's delays, and its later behavior is untested.",
+      "takeaway": "A late touch matches the prediction badly, so it is turned down less. The sketch rises to a peak at 0.25 seconds and then falls back; the study tested only 0.1 to 0.3 seconds, so the fall is a property of the sketch, not a finding.",
       "why_it_matters": "The ratings fit the proposal that prediction error drives ticklishness, but they do not show subtraction or measure self-attribution. A model that fits one range can say nothing safe outside it.",
       "sides": {
         "brain": "The authors propose a forward model that turns the command into a predicted sensation. The study recorded ratings, not brain activity, and two of 16 volunteers noticed the delays; the chapter says the scans in a separate study of six do not show subtraction either.",
@@ -389,15 +389,15 @@
       ],
       "source_anchor": "stimulation-gave-a-43-year-old-patient-an-out-of-body-view-of-legs-and-lower-trunk",
       "source_section": "Stimulation gave a 43-year-old patient an out-of-body view of legs and lower trunk",
-      "provenance": "Reported result: Lenggenhager and colleagues' first study (14 people): about 24 cm closer to the seen body after stroking in time, about 12 cm out of time (not a reliable shift from baseline), the seen body two metres ahead. The weighting reading is the companion's, not the study's or the chapter's.",
-      "kind": "reported result",
-      "assumptions": "The felt location is treated as a blend of two points, with the shift as a fraction of the distance. The study's measure is where people walked back to, and the chapter says these studies show felt location can be shifted, not why. The study reports no group spread here, so none is shown.",
+      "provenance": "Reported shifts: Lenggenhager and colleagues' first study (14 people): about 24 cm closer to the seen body after stroking in time, about 12 cm out of time (not a reliable shift from baseline), the seen body two metres ahead. The weight (24.1/200 = 0.12) and the variance ratio (7.3) are not reported results: they are the companion's model reading, not the study's or the chapter's.",
+      "kind": "reported result with a constructed model reading",
+      "assumptions": "The felt location is treated as a blend of two points, with the shift as a fraction of the distance. The study's measure is where people walked back to, and the chapter says these studies show felt location can be shifted, not why. The study reports no group spread here, so none is shown. The shift values 0, 6, 36 and 48 cm on the slider are hypothetical; only 24.1 cm (in time) and 12 cm (out of time) are reported.",
       "prediction": "Predict the weight on the seen body that a 24 cm shift of a 200 cm gap would imply.",
       "reveal": {
         "state": {
           "shift": 24.1
         },
-        "text": "The weight is about 0.12, a variance ratio of about 7.3: the seen body would need about seven times the variance of the own-body estimate. The out-of-time shift of about 12 cm gives about 0.06, though it was not a reliable shift from baseline."
+        "text": "On the companion's blend reading (not a reported result), the weight is about 0.12, a variance ratio of about 7.3: the seen body would need about seven times the variance of the own-body estimate. The out-of-time shift of about 12 cm gives about 0.06, though it was not a reliable shift from baseline."
       },
       "takeaway": "A 24 cm shift across 200 cm corresponds to a modest weight on the seen body. This restates a reported number as a model parameter and shows nothing about how the brain produces the shift.",
       "why_it_matters": "A model can express a shift, but fitting a number is not an explanation. Blanke's patient was one person at one site, and Lenggenhager's stroking involved no command to move.",

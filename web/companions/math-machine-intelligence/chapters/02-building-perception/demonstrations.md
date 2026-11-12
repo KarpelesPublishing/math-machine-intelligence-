@@ -68,17 +68,17 @@ $$
 - Blend as a fraction of the better sense: 0.894
 - Share of the say held by touch: 0.2
 
-Precisions add, so the blend's error sd, 0.894 mm, is below the better sense's 1 mm, at 0.894 of it. Touch keeps only 0.2 of the say, and the gain shrinks as the senses become unequal.
+Precisions add, so the blend's error sd, 0.894 mm, is below the better sense's 1 mm, at 0.894 of it. Touch holds 0.2 of the say, and the gain shrinks as the senses become unequal.
 
 **Calculation:** Precisions 1 and 0.25 add to 1.25. Blended sd = 1/sqrt(1.25) = 0.894 mm. Touch's share = 0.25/1.25 = 0.2. Ratio to the better sense = 0.894/1 = 0.894.
 
 **Takeaway:** Precisions add, so the blend is always sharper than the better sense, and most so when the senses are equally sharp.
 
-**What happens:** At Touch error sd (mm) = 1.0, Sight error sd (mm) = 1.0: With two equally sharp senses, the blend's sd is 1/sqrt(2), about 0.707 of either sense's. Every other setting here gains less.
+**What happens:** At Touch error sd (mm) = 1.0, Sight error sd (mm) = 1.0: With two equally sharp senses, the blend's sd is 1/sqrt(2), about 0.707 of either sense's. With sight held at 1 mm, every other touch setting gains less. (Sight 2 mm with touch 2 mm, also equal senses, gives the same ratio, 0.707, at a larger absolute sd, 1.41 mm.)
 
 **Why it matters:** Picking the better source throws away what the other one knows. Two unrelated reports partly cancel each other's misses, so a combiner that keeps both can do better than the best single source.
 
-**In brains and behavior:** In the experiment the gain over the better sense was clearest when the picture was grainy, which is when the two senses were closer in sharpness.
+**In brains and behavior:** In the experiment the gain over the better sense was clearest when the picture was grainy and slight with a clear picture, as the chapter reports.
 
 **In machines:** A system that fuses two sensors gains most when they are about equally reliable, and little when one is far worse.
 
@@ -94,7 +94,7 @@ Precisions add, so the blend's error sd, 0.894 mm, is below the better sense's 1
 
 If two sensors share some of their error, how much does their agreement really tell us?
 
-The blend's variance has a cross term that depends on how far the two errors move together. Two thermometers in the same sunny window that both read two degrees high agree with each other and are both wrong, so they are closer to one witness repeated. The usual weights assume the cross term is zero; when it is not, the real variance exceeds the claimed one.
+The blend's variance has a cross term that depends on how far the two errors move together. Two thermometers in the same sunny window that both read two degrees high agree with each other and are both wrong, so they are closer to one witness repeated. The usual weights assume the cross term is zero; when the errors are positively related, the real variance exceeds the claimed one (a negative correlation does the opposite).
 
 $$
 V=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\rho\,\sigma_1\sigma_2
@@ -114,7 +114,7 @@ The blend weights the first sense 0.5 and the second 0.5 as if their errors were
 
 **Calculation:** w1 = (1/2^2) / (1/2^2 + 1/2^2) = 0.5, w2 = 0.5. V = 0.5^2 x 4 + 0.5^2 x 4 + 2 x 0.5 x 0.5 x (0) x 2 x 2 = 2. Claimed (rho = 0 and optimal weights): 1/(1/4 + 1/4) = 2.
 
-**Takeaway:** Treating related errors as unrelated makes a blend claim more reliability than it has, and past some correlation it is worse than the better source alone.
+**Takeaway:** Treating positively related errors as unrelated makes a blend claim more reliability than it has, and when the second source is noticeably less sharp, past some correlation it is worse than the better source alone (about 0.48 for a second sd of 3). With two equally sharp sources it only falls back to the better source at correlation 1.
 
 **What happens:** At Error correlation (rho) = 0.5, Second sensor error sd = 3.0: At sd 3 and correlation 0.5 the blend's variance is about 4.05, above the better sensor's 4. The weights were chosen as if errors were unrelated, and the blend has become worse than the better sensor alone. The tipping point is a correlation near 0.48.
 
@@ -242,7 +242,7 @@ At 4 degrees apart, the observer gives one cause a chance of 0.648, so the judge
 
 **Calculation:** Judged = P(one cause) x blended + (1 - P) x separate = 0.648 x 3.7 + 0.352 x 0 = 2.4 degrees. The sound is at 0 and the light measured at 4; error sds are 2 (sight), 8 (sound), prior 15.
 
-**Takeaway:** A mind that weighs one cause against two lets a nearby light pull the sound toward it and a distant light barely move it.
+**Takeaway:** A mind that weighs one cause against two lets a nearby light pull the judged sound a large fraction of the way toward it, and a distant light a much smaller fraction.
 
 **What happens:** At Light's distance from the sound (degrees) = 20, Expected chance of a common cause = 0.5: At 20 degrees apart the observer gives one cause a chance of only about 0.1, so the pull falls to about a tenth of the way to the light. Compare the 4 degree default, where the pull is about 0.6.
 
@@ -264,7 +264,7 @@ At 4 degrees apart, the observer gives one cause a chance of 0.648, so the judge
 
 A pilot in cloud feels level while the instruments show a bank. How much weight should the body sense get?
 
-Scatter averages away when reports are blended, but a steady offset does not. The squared error of the blend has one part from the offset, which grows with the square of the weight, and one part from scatter. A biased sense therefore deserves less weight than its scatter alone would give.
+Scatter averages away when reports are blended, but a steady offset does not. The squared error of the blend has one part from the offset, which grows with the square of the weight, and one part from scatter. A biased sense therefore deserves less weight than its scatter alone would give. If the offset were known, it could be removed before blending; this calculation is for an offset that is not removed.
 
 $$
 \mathrm{MSE}(w)=w^2\left(b^2+\sigma_{\text{ear}}^2\right)+(1-w)^2\sigma_{\text{inst}}^2,\qquad w^{*}=\frac{\sigma_{\text{inst}}^2}{\sigma_{\text{inst}}^2+\sigma_{\text{ear}}^2+b^2}
@@ -294,7 +294,7 @@ With inner-ear bias 6 and weight 0.1 on it, the blend's squared error is 1.26: 0
 
 **In machines:** A filter can go wrong when its inputs share an unaccounted-for error or are biased; adding inputs does not remove the conditions for a useful blend.
 
-**Assumptions and limits:** Only the inner-ear report is biased; the instrument is unbiased; the two random errors are unrelated; the offset is known to the calculator. The study of pilots is not simulated; the chapter notes the handbook reports no outcome comparison.
+**Assumptions and limits:** Only the inner-ear report is biased; the instrument is unbiased; the two random errors are unrelated; the offset is present in the inner-ear report and is not corrected for (if it were known and subtracted, the unbiased weight would be right again). The comparison is between fixed weights by mean squared error. The study of pilots is not simulated; the chapter notes the handbook reports no outcome comparison.
 
 **Check:** If the inner ear has no bias, what weight minimizes the squared error, and what is the squared error there?
 

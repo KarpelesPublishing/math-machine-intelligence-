@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-34.md",
   "source_sha256": "04600b55ecb76ff46f650b25927cc1c176e3a78f1f6b13360b6cdc768f1e3e8e",
-  "calculation_sha256": "de4d08c6dff88ba0b87ce910991c0a6ba244e2ab0f2487703ae01e79e64159ba",
+  "calculation_sha256": "b92772d28e7cf96cec72b676855891bc880cb920e3f8f4e9bb7d3a3942eb5406",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -221,7 +221,7 @@
           "reports": 8,
           "correlation": 0.3
         },
-        "text": "Eight reports at correlation 0.3 are worth 8/3.1, about 2.6 independent reports, and no number of such reports can exceed 10/3, about 3.3. Multiplying their likelihoods as if independent would count the evidence about 3.1 times over."
+        "text": "Eight reports at correlation 0.3 are worth 8/3.1, about 2.6 independent reports, and no number of such reports can exceed 10/3, about 3.3. Multiplying their likelihoods as if independent would count the evidence about 3.1 times over (the book's own derivation, under equal noise, one shared correlation, bell-shaped errors and the same shift in every report)."
       },
       "takeaway": "Shared errors cap what more reports can add. A large headcount of related reports can be worth only a handful of independent ones.",
       "why_it_matters": "Multiply-and-rescale cannot tell whether two reports repeat the same source. Computing the effective size first says how much evidence the reports really carry.",
@@ -269,7 +269,7 @@
         "Ceiling as reports are added": "3.33",
         "Overcount if treated as independent (times)": "3.1"
       },
-      "worked_interpretation": "8 reports whose errors correlate at 0.3 are worth 2.58 independent ones, so treating them as independent counts the evidence 3.1 times over. As reports are added the worth approaches 3.33.",
+      "worked_interpretation": "8 reports whose errors correlate at 0.3 are worth 2.58 independent ones, so treating them as independent counts the evidence 3.1 times over (the book's own derivation). As reports are added the worth approaches 3.33.",
       "reader_anchor": "C34-D03"
     },
     {
@@ -306,7 +306,7 @@
         },
         "text": "The pair at 75 beats the person's 70 by 5 and falls 5 short of the AI's 80, so synergy is minus 5. Raise the person's score to 90 and the baseline switches to the person."
       },
-      "takeaway": "Beating the weaker member is easy. A pair adds value only by passing the better one, and which member is better depends on the task.",
+      "takeaway": "Beating the weaker member is easy. A pair adds score beyond its better member only by passing it, and which member is better depends on the task. A faster answer or lower cost can still matter, and is counted separately.",
       "why_it_matters": "A partnership claim needs the right comparison. Comparing the pair with the weaker partner, or with nothing, can make any pair look useful.",
       "sides": {
         "brain": "A person's solo score is what the person does without the machine. It depends on the task and the person, and these numbers are constructed.",
@@ -377,14 +377,14 @@
         },
         {
           "sym": "d-bar",
-          "meaning": "the share-weighted mean of the two subgroup effects"
+          "meaning": "the companion's share-weighted mean of the two subgroup effects; the review does not report this quantity"
         }
       ],
       "source_anchor": "across-106-experiments-pairs-on-average-trailed-the-better-of-the-two-alone",
       "source_section": "Across 106 experiments, pairs on average trailed the better of the two alone",
       "provenance": "The three numbers are those the chapter reports from Vaccaro, Almaatouq and Malone (2024): minus 0.23 overall, plus 0.46 when the person alone was better, minus 0.54 when the AI alone was better, on one standardized scale. The share-weighted mean is the companion's own arithmetic; the review's overall figure is a meta-analytic pooling of 370 effect sizes, not a simple mean.",
-      "kind": "reported result",
-      "assumptions": "The mixture treats the two subgroup effects as simple averages over all experiments. The review does not give a share of person-better experiments and does not pool this way, so the share that reproduces the reported average is only a way of seeing how an average of opposite effects can land near zero.",
+      "kind": "reported result with companion arithmetic",
+      "assumptions": "The mixture treats the two subgroup effects as simple averages over all experiments. The review does not give a share of person-better experiments and does not pool this way, so the share that reproduces the reported average is only a way of seeing how an average of opposite effects can land near zero. Each subgroup effect has its own uncertainty in the review, and a meta-analytic pooling of 370 effect sizes is not a count-weighted mean.",
       "prediction": "Predict whether the reported overall average of minus 0.23 lies closer to the person-better effect or to the AI-better effect.",
       "reveal": {
         "state": {
@@ -392,13 +392,13 @@
         },
         "text": "A share of about 0.31 gives 0.31 x 0.46 + 0.69 x (-0.54) = -0.23, matching the reported average. That is arithmetic, not a finding. The same overall number would also arise from many other splits if the effects differed."
       },
-      "takeaway": "An average near zero or below it can hide a large gain when the person is the stronger member and a large loss when the machine is.",
+      "takeaway": "An average near zero or below it can hide a gain when the person is the stronger member and a loss when the machine is.",
       "why_it_matters": "A single average cannot say whether a pair helps. The authors do not think the result means combining people and AI is a bad idea, and the split shows why the answer depends on who is better alone.",
       "sides": {
         "brain": "The person-better case is where the pair gained over its better member. The review compared people, machines and pairs on the same tasks, and it measured no brain activity.",
         "machine": "The AI-better case is where the pair lost to the machine alone. Whether a pair can be routed to the better member for each question is one of the features the chapter's proposed test would add."
       },
-      "explanation": "A mean of two subgroup effects sits between them, closer to the larger subgroup. The reported overall effect is nearer the AI-better effect, which is what a mixture dominated by that kind of experiment would produce. The review's pooling is not this simple, so the share is illustrative.",
+      "explanation": "A mean of two subgroup effects sits between them, closer to the larger subgroup. The review's main text does not report how many experiments fall in each subgroup, so the share of 0.31 is only the value the arithmetic would need, not a count. The review's pooling is not this simple, so the share is illustrative.",
       "check": "If exactly half the experiments had the person better alone, what would the simple mean of the two subgroup effects be?",
       "answer": "0.5 x 0.46 + 0.5 x (-0.54) = -0.04, much closer to zero than the reported -0.23.",
       "controls": [
@@ -422,7 +422,7 @@
       ],
       "function": "split_picture",
       "alt": "Bars of the three reported synergy values, and a line of the share-weighted mean against the share of person-better experiments.",
-      "symbols": "d_H: the reported synergy when the person alone was better, 0.46; d_A: the reported synergy when the AI alone was better, minus 0.54; q: the share of experiments where the person was better alone (an assumption here; the chapter does not give it); d-bar: the share-weighted mean of the two subgroup effects",
+      "symbols": "d_H: the reported synergy when the person alone was better, 0.46; d_A: the reported synergy when the AI alone was better, minus 0.54; q: the share of experiments where the person was better alone (an assumption here; the chapter does not give it); d-bar: the companion's share-weighted mean of the two subgroup effects; the review does not report this quantity",
       "application": "A single average cannot say whether a pair helps. The authors do not think the result means combining people and AI is a bad idea, and the split shows why the answer depends on who is better alone.",
       "default_parameters": "Share of experiments where the person was better alone: 0.31",
       "worked_example": {
@@ -476,7 +476,7 @@
         },
         "text": "At 200 questions and correlation 0.5 the chance is about 0.59, short of 0.8. It rises to about 0.90 if the answers correlate at 0.8, and falls to about 0.37 if they do not correlate. The conclusion depends on an assumption nobody has measured here."
       },
-      "takeaway": "Whether 200 questions are enough depends on how strongly the pair and the solo agree, so the chapter's doubt is warranted but not a number.",
+      "takeaway": "Whether 200 questions are enough depends on how strongly the pair and the solo agree, so the chapter's doubt about 200 questions holds under some assumptions and not others.",
       "why_it_matters": "A proposed test should be sized before it is run, and the size depends on stated assumptions. A design that cannot detect the target gain cannot settle the question.",
       "sides": {
         "brain": "A person's answers and a pair's answers on the same questions are likely to correlate, since the person is part of the pair. How strongly is an assumption here, not a measurement.",

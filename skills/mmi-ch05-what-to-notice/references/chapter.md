@@ -26,7 +26,7 @@ $$
 - Attended share, softmax: 0.8
 - Ignored total share, softmax: 0.2
 
-A gain of 0.25 makes each ignored stream quieter but leaves the attended stream at 1. In a softmax the shares must add to 1, so shrinking 1 ignored stream lifts the attended share to 0.8.
+A gain of 0.25 makes each ignored stream quieter but leaves the attended stream at 1. In a softmax the shares must add to 1, so shrinking 1 ignored stream lifts the attended share from 0.5 (equal streams) to 0.8.
 
 **Calculation:** Softmax with scores 0 and ln(0.25) for each ignored stream: attended share = 1 / (1 + 1 x 0.25) = 0.8.
 
@@ -132,17 +132,17 @@ With drives 4 and 1, constant 1 and a gain of 4 on input 2, the responses are 0.
 
 **Source:** A monkey's cell and seven people fit a divided response; anchor `a-monkeys-cell-and-seven-people-fit-a-divided-response`. The chapter's worked numbers: drives 4 and 1, no attention, sigma 1 gives two thirds and one sixth, and a gain of 4 on the second input makes both four ninths. The formula simplifies Reynolds and Heeger's 2009 normalization model, which its authors call a mathematical abstraction.
 
-## C05-D04: How far did attention move a monkey's cell toward the attended bar?
+## C05-D04: Where does one V4 cell's pair response fall between its two single-bar responses, and how did attention shift the pooled weights?
 
-One V4 cell fired 11.75 to a vertical bar, 17.80 to a tilted bar and 13.81 to both. How was the pair's response read, and what did attention do to the weights?
+One V4 cell fired 11.75 to a vertical bar, 17.80 to a tilted bar and 13.81 to both. How is the pair's response read as a weight, and what did attention do to the pooled weights across cells?
 
-If the pair's response is a weighted average of the two single responses, the weight can be read off from where the pair falls between them. This cell's pair response is about a third of the way from the first to the second. Attention moved the fitted weight on the second bar from 0.55 to 0.74 when it was attended and to 0.34 when the first bar was.
+If the pair's response is a weighted average of the two single responses, the weight can be read off from where the pair falls between them. This cell's pair response is about a third of the way from the first to the second. Separately, across all analyzed V4 pairs, attention moved the fitted weight on the second bar from 0.55 (attention elsewhere) to 0.74 (attention on the second bar) and to 0.34 (attention on the first). The chapter does not say which attention condition this one cell was recorded under, so its own 0.34 is not the attend-first condition, and the pooled weights are not this cell's.
 
 $$
 r_{\text{pair}}=(1-w)\,r_1+w\,r_2,\qquad w=\frac{r_{\text{pair}}-r_1}{r_2-r_1}
 $$
 
-**Symbols:** r_1, r_2: responses to the first and second bar alone, in spikes per second; r_pair: response to the two bars together; w: weight on the second bar; 0 gives it no share and 1 gives it the whole share; implied gain ratio: how much more gain on the second bar than at baseline would produce w, if w is a share g2 d2 / (g1 d1 + g2 d2); the companion's reading
+**Symbols:** r_1, r_2: responses to the first and second bar alone, in spikes per second; r_pair: response to the two bars together; w: weight on the second bar; 0 gives it no share and 1 gives it the whole share; implied gain ratio: how much more gain on the second bar than at baseline would produce w, if w is a share g2 d2 / (g1 d1 + g2 d2); the companion's own construct, not the paper's
 
 **Predict:** The cell fired 11.75 and 17.80 to the bars alone and 13.81 to both. Predict the weight on the tilted bar, and whether it is closer to 0, one third or 1.
 
@@ -150,15 +150,15 @@ $$
 - Pair response: 15.08
 - Weight on second bar: 0.55
 - This cell's own weight: 0.34
-- Implied gain ratio: 1
+- Implied gain ratio (companion's construct): 1
 
-A weight of 0.55 on the second bar puts the pair at 15.08 spikes a second, between 11.75 and 17.80. The cell in the chapter fired 13.81, a weight of 0.34, about a third of the way.
+A weight of 0.55 on the second bar puts the pair at 15.08 spikes a second, between 11.75 and 17.80. The cell in the chapter fired 13.81, a weight of 0.34, about a third of the way; the chapter does not say which attention condition it was recorded under.
 
-**Calculation:** Pair = (1 - 0.55) x 11.75 + 0.55 x 17.80 = 15.08. This cell: (13.81 - 11.75) / (17.80 - 11.75) = 0.34.
+**Calculation:** Pair = (1 - 0.55) x 11.75 + 0.55 x 17.80 = 15.08. This cell: (13.81 - 11.75) / (17.80 - 11.75) = 0.34. The implied gain ratio is the companion's own reading, treating the weight as a share g2 d2 / (g1 d1 + g2 d2); the paper's fit is a weighted average that can include an offset and does not use that share rule.
 
-**Takeaway:** Attention pulled the pair's response toward the attended bar's own response, as a weighted average whose weights shift with the attended location.
+**Takeaway:** Across the analyzed V4 pairs, attention pulled the pair's response toward the attended bar's own response, as a weighted average whose fitted weights shift with the attended location.
 
-**What happens:** At Weight on the second bar = 0.34: This cell's own weight is 0.34, about a third of the way from the vertical bar's response to the tilted bar's. At the pooled weight of 0.74 the pair would be at 16.23, and at 0.55 at 15.08, but these are the pooled weights applied to this cell's responses, not what this cell did.
+**What happens:** At Weight on the second bar = 0.34: This cell's own weight is 0.34, about a third of the way from the vertical bar's response to the tilted bar's. At the pooled weight of 0.74 the pair would be at 16.23, and at 0.55 at 15.08, but these are the pooled weights applied to this cell's responses, not what this cell did. The chapter does not say which attention condition this cell was recorded under.
 
 **Why it matters:** A response that behaves like a weighted average with shifting weights is the cortex-side picture of selection, and it can be compared with the weights a machine's head assigns.
 
@@ -166,7 +166,7 @@ A weight of 0.55 on the second bar puts the pair at 15.08 spikes a second, betwe
 
 **In machines:** A weighted average of values, with weights that shift, is also what a head's blend of values is. That is a mathematical likeness and not evidence of a shared mechanism.
 
-**Assumptions and limits:** The pooled weights come from fits across the analyzed V4 pairs, and the fit can include an offset. Attention effects varied across cells. In about a quarter of the V4 pairs the second bar significantly changed the response, but no significant attention effect was detected. Three monkeys; no person was recorded and no machine is involved.
+**Assumptions and limits:** The chapter does not say which attention condition this single cell was recorded under, so its own weight of 0.34 should not be read as the attend-first condition; the pooled weights (0.34, 0.55, 0.74) are fits across all analyzed V4 pairs, not this cell's. The implied gain ratio assumes the share form g2 d2 / (g1 d1 + g2 d2); the paper's fit is a weighted average that can include an offset and does not use this share rule. The pooled weights come from fits across the analyzed V4 pairs, and the fit can include an offset. Attention effects varied across cells. In about a quarter of the V4 pairs the second bar significantly changed the response, but no significant attention effect was detected. Three monkeys; no person was recorded and no machine is involved.
 
 **Check:** A cell fires 10 to bar A alone and 20 to bar B alone. With a weight of 0.3 on B, what does the pair fire?
 
@@ -246,7 +246,7 @@ With 8 other passages each scoring 2 below the answer, the answer takes 0.48 of 
 
 **Why it matters:** A weight is a share, and a share is relative to whatever else is present. The same largest share could belong to an excellent passage in one search and the least unsuitable one in another.
 
-**In brains and behavior:** In Alexander and Zelinsky's search task, 24 students looked for a teddy bear or a butterfly among six pictures. When no picture was the target, search took 1.48 seconds if all six looked like it and 0.84 if none did, with 3.16 pictures looked at against 1.51; errors stayed under 6 percent. The costs were time and eye movements, not accuracy.
+**In brains and behavior:** In Alexander and Zelinsky's search task, 24 students looked for a teddy bear or a butterfly among six pictures. When no picture was the teddy bear, search took 1.48 seconds if all six looked bearlike and 0.84 if none did, with 3.16 pictures looked at against 1.51; butterflies gave the same direction with a smaller gap. Errors stayed under 6 percent. The costs were time and eye movements, not accuracy.
 
 **In machines:** Cuconasu and colleagues added eight passages to an answer passage for four small open models. In all 12 combinations of model and position, eight look-alikes cost more accuracy than eight random passages. For Llama2 with the answer near the question, accuracy was 56.4 percent alone, 56.1 with random passages and 37.5 with look-alikes.
 
@@ -262,29 +262,29 @@ With 8 other passages each scoring 2 below the answer, the answer takes 0.48 of 
 
 A model answered 75.8 percent of questions when the answer passage came first among 20 and 53.8 when it came tenth. How large are those gaps against having no passages at all?
 
-The comparison that matters is not only first against last but each position against the score with no passages at all. Being worse than no passages means the added text hurt more than it helped at that position. The rough band shows that differences of a point or two are small next to the sampling noise of 2,655 questions.
+The comparison that matters is not only first against last but each position against the score with no passages at all. A score below the no-passage score would mean the added text hurt more than it helped at that position, but the band for a gap between two proportions is about 2.67 points, so a gap of 2.3 points is inside it and is not separated from sampling noise here. The first and last positions are well outside it.
 
 $$
-\text{gap}=A_{\text{position}}-A_{\text{no passages}},\qquad \text{band}=1.96\sqrt{\frac{p(1-p)}{N}}
+\text{gap}=A_{\text{position}}-A_{\text{no passages}},\qquad \text{band}=1.96\sqrt{\frac{p_1(1-p_1)}{N}+\frac{p_2(1-p_2)}{N}}
 $$
 
-**Symbols:** A: percent of questions answered correctly; gap: points above (positive) or below (negative) the no-passage score of 56.1 percent; N: number of questions, 2,655; band: a rough plus-or-minus range, the companion's own arithmetic, in points
+**Symbols:** A: percent of questions answered correctly; gap: points above (positive) or below (negative) the no-passage score of 56.1 percent; N: number of questions, 2,655; p_1, p_2: the two scores being compared, as shares of questions answered correctly; band: a rough plus-or-minus range for a gap between two scores treated as independent samples, the companion's own arithmetic, in points
 
 **Predict:** Predict which of the five positions was worst, and whether it fell below the score with no passages at all.
 
 **Worked example:**
 - Accuracy at this position: 53.8 percent
 - Points above no passages: -2.3
-- Rough noise band (plus or minus): 1.89
-- Gap outside the rough band: yes
+- Noise band for a gap, two proportions (plus or minus): 2.67
+- Gap outside the independent-samples band: no
 
-With the answer at position 10, the model answered 53.8 percent, 2.3 points below its no-passage score of 56.1. Only five positions were tested, so the curve between them is unknown, and the study measured answers, not attention weights.
+At position 10 the model answered 53.8 percent, 2.3 points below its no-passage score of 56.1. That gap is inside the independent-samples band of plus or minus 2.67 points, so it is not separated from sampling noise here. Only five positions were tested, and answers, not attention weights, were measured.
 
-**Calculation:** Gap = 53.8 - 56.1 = -2.3 points. Rough band = 1.96 x sqrt(p(1 - p) / 2,655) x 100 = plus or minus 1.89 points for p = 0.561, ignoring that the same questions were used every time.
+**Calculation:** Gap = 53.8 - 56.1 = -2.3 points. Band for a gap between two proportions = 1.96 x sqrt(p1(1 - p1) / N + p2(1 - p2) / N) x 100 with N = 2,655 and both p at 0.561 = plus or minus 2.67 points. Using this position's own score for p1 moves it to 2.68. The band treats the two scores as independent samples; the same questions were used every time, so a paired comparison could be tighter, and that needs per-question data the companion does not have.
 
-**Takeaway:** Answers were best when the passage came first, next best last and worst in the middle, where they fell slightly below having no passages at all; but only five positions were tested.
+**Takeaway:** Answers were best when the passage came first, next best last and worst in the middle, where the scores sat slightly below having no passages at all, by gaps the companion's rough two-proportion band does not separate from noise; and only five positions were tested.
 
-**What happens:** At Position of the answer passage = 10, Rough noise band = show: At the tenth position accuracy was 53.8 percent, 2.3 points below the 56.1 with no passages, while the first position was 19.7 points above and the last 7.1 above. The fifth and fifteenth are within about a point of the no-passage line, inside the rough band.
+**What happens:** At Position of the answer passage = 10, Two-proportion noise band = show: At the tenth position accuracy was 53.8 percent, 2.3 points below the 56.1 with no passages, while the first position was 19.7 points above and the last 7.1 above. The band for a gap between two proportions is about plus or minus 2.67 points: the first and last gaps are outside it, and the fifth, tenth and fifteenth are inside it, so the dip below the no-passage line is not separated from sampling noise by this arithmetic (the pairing of the questions could tighten the band, but that needs per-question data).
 
 **Why it matters:** A long prompt does not give every position the same treatment, so where a fact sits can matter. The result shows that position can matter, not that it matters equally for every model.
 
@@ -292,10 +292,10 @@ With the answer at position 10, the model answered 53.8 percent, 2.3 points belo
 
 **In machines:** GPT-3.5-Turbo (0613), one model tested in 2023. They measured answers, not attention weights, so nothing here ties the dip to attention sinks.
 
-**Assumptions and limits:** One model tested in 2023 at five positions, so the curve between them is unknown. The study measured answers, not attention weights, and established no single cause; the authors offered only hypotheses, and the crowd of look-alikes is a second suspect. The band treats each score as the share correct among 2,655 independent questions, but the same questions were used every time, so a paired comparison can be tighter or wider.
+**Assumptions and limits:** One model tested in 2023 at five positions, so the curve between them is unknown. The study measured answers, not attention weights, and established no single cause; the authors offered only hypotheses, and the crowd of look-alikes is a second suspect. The band is for a gap between two proportions, each the share correct among 2,655 questions, about plus or minus 2.67 points. It treats the two scores as independent samples, but the same questions were used every time, so a paired comparison could be tighter; that needs per-question data the companion does not have. On this arithmetic the first and last positions are outside the band and the fifth, tenth and fifteenth are inside it, so the dips below the no-passage score are not separated from sampling noise here.
 
 **Check:** Compute the gap to the no-passage score at the first position and at the tenth.
 
 **Answer:** First: 75.8 - 56.1 = 19.7 points above. Tenth: 53.8 - 56.1 = -2.3, so 2.3 points below.
 
-**Source:** In 2023, facts in the middle of long prompts fared worst; look-alikes cost most; anchor `in-2023-facts-in-the-middle-of-long-prompts-fared-worst-look-alikes-cost-most`. Liu and colleagues' 2023 test of GPT-3.5-Turbo (0613) as the chapter reports it: 2,655 questions, 20 passages, one holding the answer and 19 look-alikes; 75.8, 57.2, 53.8, 55.4 and 63.2 percent at positions 1, 5, 10, 15 and 20, and 56.1 with no passages. The noise band is the companion's arithmetic, not a result from the chapter or the study.
+**Source:** In 2023, facts in the middle of long prompts fared worst; look-alikes cost most; anchor `in-2023-facts-in-the-middle-of-long-prompts-fared-worst-look-alikes-cost-most`. Liu and colleagues' 2023 test of GPT-3.5-Turbo (0613) as the chapter reports it: 2,655 questions, 20 passages, one holding the answer and 19 look-alikes; 75.8, 57.2, 53.8, 55.4 and 63.2 percent at positions 1, 5, 10, 15 and 20, and 56.1 with no passages. The noise band is the companion's arithmetic, not a result from the chapter or the study, and the study did not report one.

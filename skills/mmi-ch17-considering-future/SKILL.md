@@ -12,11 +12,11 @@ Use Chapter 17 of *The Mathematics of Machine Intelligence* to answer the reader
 Read [the chapter guidance](references/chapter.md) for the selected example and [equation cards](references/equations.json) for exact formulas, assumptions, domains, and book anchors. Load only the material needed for the request.
 
 - **How does the value of a place come from what happens next? (C17-D01):** A place pays 1 now and leads to a place worth 5 later. What is it worth when later rewards count for less?
-- **Why does A star explore B first and never touch C? (C17-D02):** Which towns does a search explore on a four-town map, and what route does it return?
+- **Which towns does A star explore, and when does it reach D through C? (C17-D02):** Which towns does a search explore on a four-town map, and what route does it return?
 - **What goes wrong if a search will not reopen a place? (C17-D03):** A place is closed at one cost and a cheaper way to it turns up later. Does the search still return a cheapest route?
 - **Can a table of expected visits be re-scored when only the goal moves? (C17-D04):** A walker steps right through three rooms and stops in room 3. If the reward moves from room 3 to room 2, what changes in the table and what changes in the values?
 - **Why can a first look be worth nothing while two looks pay? (C17-D05):** A player can pass for a sure 0.75 or answer a coin-flip question. Hints are right 7 times in 10. What is each look worth?
-- **How many looks does it take to find a move the model rates as rare? (C17-D06):** If a search tries moves in proportion to a starting weight, how many looks does a one-in-ten-thousand move need before it is ever tried?
+- **How many looks does it take to find a move a toy search rates as rare? (C17-D06):** In a toy search that tries moves in proportion to a starting weight, how many looks does a move with weight one in ten thousand need before it is ever tried?
 
 ## Make the method fit the question
 

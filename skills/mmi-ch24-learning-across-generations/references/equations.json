@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-24.md",
   "source_sha256": "bb53435da04a3b4d2694f9b45815e52b1648ee3b28f9e1eb4922093bffa263a9",
-  "calculation_sha256": "5a9bddfe5bb64811ddd329faf3325fd980cf78afdc0c1443a189efa7211b8454",
+  "calculation_sha256": "83ffbb6fc644d5b42d68bb77e1c43ed412ffdd6ba8481129553c67952e1c6992",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -257,7 +257,7 @@
         }
       ],
       "function": "chain_picture",
-      "alt": "Share of chains holding the clause over generations for two kinds of reader, and the long-run share against copying fidelity.",
+      "alt": "Share of chains holding the clause over generations for two kinds of reader, and the memory kept per generation against copying fidelity.",
       "symbols": "S_t: whether the writer at step t holds the clause; reader(d): chance the next writer adopts the clause after page d: the posterior (sampling) or 1 or 0 (best guess); lambda_2: the second eigenvalue: how much of the starting difference survives each generation; prior: 0.2, the shared prior of every learner",
       "application": "Near-exact copying preserves an early mistake as well as an early insight, and a likeliest-version rule can wipe out a minority view. A real pipeline that rewrites and samples ends where its steps together send it.",
       "default_parameters": "Copying fidelity: 0.7 · Kind of reader: sampling",
@@ -297,7 +297,7 @@
       ],
       "source_anchor": "what-keeps-a-story-alive-and-what-keeps-a-model-whole",
       "source_section": "What keeps a story alive, and what keeps a model whole",
-      "provenance": "Seeded simulation built from the chapter's 1 in 100 example: 400 chains of 30 generations per setting, seed 2024. It is this companion's construction, not the model-collapse study (which used OPT-125m and did not count rare answers) and not a measurement. The chapter reports only the one-step miss chance and that a run with some original data degraded less.",
+      "provenance": "Seeded simulation built from the chapter's 1 in 100 example: 2,000 chains of 30 generations per setting, seed 2024. It is this companion's construction, not the model-collapse study (which used OPT-125m and did not count rare answers) and not a measurement. The chapter reports only the one-step miss chance and that a run with some original data degraded less.",
       "kind": "simulation",
       "assumptions": "A plain copier that reproduces exactly its sample. Draws are independent. The share r stands in for keeping some original data; the paper's 10 percent run also trained for ten epochs against five, so it does not isolate the 10 percent.",
       "prediction": "Predict whether the average share after 30 generations stays near 1 in 100 even though many chains reach zero.",
@@ -354,7 +354,7 @@
         "Missing after generation 30": "0.938",
         "Mean share after generation 30": "0.00921"
       },
-      "worked_interpretation": "With samples of 100 and 0 of each sample taken from the original, the rare answer is missing from 93.8 percent of 2000 seeded chains by generation 30. A chain that hits zero stays there unless the original is drawn on.",
+      "worked_interpretation": "With samples of 100 and a share of 0 of each sample taken from the original, the rare answer is missing from 93.8 percent of 2000 seeded chains by generation 30. A chain that hits zero stays there unless the original is drawn on.",
       "reader_anchor": "C24-D04"
     },
     {
@@ -387,7 +387,7 @@
         "text": "With 10 percent of the original data kept, the score ends near 37, against about 52 without it and 34 at the start. The authors report only minor degradation for this run, but it also trained for ten epochs, so the 10 percent alone is not isolated."
       },
       "takeaway": "Retraining on a model's own text raised perplexity from 34 to roughly 60 after one generation and about 52 after nine. Keeping some original data ended near 37.",
-      "why_it_matters": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate.",
+      "why_it_matters": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate. The chapter does not say which run the printed example comes from.",
       "sides": {
         "machine": "A model trained on a teacher's text can lose rare content and drift toward typical output, which the authors call model collapse. The scores are the evidence here, plus theory."
       },
@@ -416,7 +416,7 @@
       "function": "perplexity_picture",
       "alt": "Four bars of perplexity from the start to nine generations, and four printed outputs from one prompt across generations.",
       "symbols": "perplexity: how surprised the model is by each next token of real text; lower is better when the test and tokenization are fixed; 34: the starting perplexity, given in the paper's text",
-      "application": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate.",
+      "application": "This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate. The chapter does not say which run the printed example comes from.",
       "default_parameters": "Which score: gen9",
       "worked_example": {
         "Perplexity": "about 52",
@@ -457,7 +457,7 @@
         "state": {
           "rising_start": 8
         },
-        "text": "If all eight rising-start chains ended rising, 20 of the 24 chains that began elsewhere did as well, which is the smallest it can be. If some rising-start chains moved away, more of the others ended rising. Either way the pull toward a rising line is real in the counts, though the study did not fit a model."
+        "text": "If all eight rising-start chains ended rising, 20 of the 24 chains that began elsewhere did as well, which is the smallest it can be. If some rising-start chains moved away, more of the others ended rising. Either way the counts are consistent with a pull toward a rising line, though the study did not fit a model and says more data would be needed to confirm convergence."
       },
       "takeaway": "At least 20 of the 24 chains that began elsewhere ended on a rising line, which is what makes the count more than a restatement of the starting data.",
       "why_it_matters": "A headline count can hide how much of it was already there at the start. Subtracting the chains that began on the answer shows what is left, and the chapter does exactly that.",

@@ -26,13 +26,13 @@ $$
 - Expected number of players: 1
 - Tries for a 50 percent chance: 6,932
 
-With a one-in-10,000 chance per try, 10,000 independent tries give a 0.632 chance that at least one succeeds. A small chance per try does not mean it never happens; it means it takes many tries.
+With a one-in-10,000 chance per try, 10,000 independent tries give a 0.632 chance that at least one succeeds. A small chance per try does not mean it never happens; it takes many tries, if they are independent and equally likely.
 
-**Calculation:** P(at least one) = 1 - (1 - p)^n = 1 - (1 - 1/10,000)^10,000 = 0.632. Tries for a 50 percent chance: ln(0.5)/ln(1 - p) = 6,932.
+**Calculation:** The formula is the companion's arithmetic on the chapter's quote; the chapter makes no claim about how often the position arises. P(at least one) = 1 - (1 - p)^n = 1 - (1 - 1/10,000)^10,000 = 0.632. Tries for a 50 percent chance: ln(0.5)/ln(1 - p) = 6,932.
 
-**Takeaway:** A small chance per try compounds. With enough tries, the 'impossible' move shows up.
+**Takeaway:** A small chance per try compounds: the move becomes likely somewhere among many tries, if the tries are independent and the chance is the same each time. The chapter does not say how often the position arises.
 
-**What happens:** At Number of independent tries = 10000, Chance per try is one in = 10000: After 10,000 tries at one in 10,000, the chance that at least one succeeds is about 0.632. Half the chance is reached near 6,931 tries. A rare chance is not never; the chapter makes the same point: a one-in-ten-thousand chance is not never.
+**What happens:** At Number of independent tries = 10000, Chance per try is one in = 10000: After 10,000 tries at one in 10,000, the chance that at least one succeeds is about 0.632. A half chance is reached at 6,932 tries (the first whole number of tries above one half, for independent tries at one in 10,000). A rare chance is not never; the chapter makes the same point: a one-in-ten-thousand chance is not never.
 
 **Why it matters:** A claim of novelty from a probability is a claim about one estimate of one position, not a statement that the move never occurred. Separating the two keeps novelty from sliding into originality.
 
@@ -78,7 +78,7 @@ Joining 1 s at no turn to 4 s at a half turn, a 90 degree turn takes 2.5 s. The 
 
 **In brains and behavior:** The eight adults showed a straight-line rise in reaction time and said they imagined turning the shape. The paper has no brain data, and the rate is a summary of behavior.
 
-**In machines:** A world model runs a learned rule forward step by step. The straight line is the cost of a mind doing something like that, in time, which the next demonstration treats as a computation.
+**In machines:** A world model runs a learned rule forward step by step. If the mind did turn the shape at a steady rate, the straight line is what that would look like; the next demonstration treats a model run forward as a computation.
 
 **Assumptions and limits:** Time is a straight line in angle between the quoted end points. The paper has no brain data. All subjects said they imagined one shape turning, and the authors treat such reports with caution. Joining 1 and 4 seconds gives the paper's 60; joining 1 and 6 seconds gives 36.
 
@@ -92,7 +92,7 @@ Joining 1 s at no turn to 4 s at a half turn, a 90 degree turn takes 2.5 s. The 
 
 A model rolls an imagined ball forward step by step. If its rule is slightly wrong, how large is the error after many steps?
 
-At each step the model starts from its own last answer, not from the true state. So the imagined position and the real position part company at step one and the gap itself gets multiplied. The numbers show the idea in the simplest rule I could build; real models are noisier and predict ranges.
+At each step the model starts from its own last answer, not from the true state. So the imagined position and the real position part company at step one and, with a gain above 1, the gap itself gets multiplied. A constant offset in the rule would add up in a straight line instead, and a gain below 1 would shrink the gap. The numbers show the idea in the simplest rule that shows the effect; real models are noisier and predict ranges.
 
 $$
 s_{t+1}=f(s_t,a_t)
@@ -108,21 +108,21 @@ $$
 - Error: 7.04
 - Error against distance moved: 35.2 percent
 
-Starting at 3 and choosing to move right by 2 each step, the real ball is at 23 after 10 steps. A model whose rule is off by gain 1.05 imagines it at 30, an error of 7.04.
+Starting at 3 and choosing to move right by 2 each step, the real ball is at 23 after 10 steps. A model whose invented rule has gain 1.05 imagines it at 30, an error of 7.04. The rule is constructed here.
 
 **Calculation:** Real step: s_next = s + 2, so s after 10 steps = 3 + 2 x 10 = 23. Imagined step: s_next = 1.05 x s + 2, applied 10 times, gives 30.
 
-**Takeaway:** An error in the model carries into every later step, so a small mismatch can grow into a large one.
+**Takeaway:** An error in the model carries into every later step, so a mismatch can build up, and in this toy it builds fast because the invented rule has a gain above 1.
 
 **What happens:** At Model's gain (1 is the correct rule) = 1.0, Steps imagined = 1: With a correct rule, one step takes the ball from 3 to 5, the chapter's example. Now raise the gain and the steps: the error is small after one step and keeps growing, because each imagined step starts from an already wrong place.
 
-**Why it matters:** A machine that trains on imagined games inherits the model's flaws. In the world-model experiment the agent scored 2,086 out of 2,100 in its dream and 193 in the real game, against 210 for random play. The real game exposed what the dream hid.
+**Why it matters:** A machine that trains on imagined games inherits the model's flaws. In the run where the model's randomness was turned almost off, the agent scored 2,086 out of 2,100 in its dream and 193 in the real game, against 210 for random play; the dream-trained agent the chapter reports separately averaged about 1,100 in the real game. The real game exposed what the dream hid.
 
 **In brains and behavior:** If imagining is running a model forward, errors would carry through the run too. The chapter's studies do not show how a brain would do that, or how a brain's own model errors grow.
 
 **In machines:** This rule is a specification: the program applies a function again and again. In a learned world model that function is learned from experience, and its errors are what the rollout inherits.
 
-**Assumptions and limits:** One number for the state, the same action each step, and a model whose only flaw is a gain above 1. A real learned model has many flaws and predicts a range of outcomes.
+**Assumptions and limits:** One number for the state, the same action each step, and a model whose only flaw is a gain above 1. The growth shown is a property of that invented rule, not a general law: the chapter says only that an error carries into later steps. A real learned model has many flaws and predicts a range of outcomes.
 
 **Check:** With gain 1.1 and 2 steps from 3, what is the imagined position, and what is the real one?
 
@@ -150,7 +150,7 @@ $$
 - Scorer's claim for the pick: 2.18
 - Overstatement: 1.09
 
-With 10 candidates and scorer error sd 1, the pick's true value averages 1.09 against 1.54 for the best on offer. The scorer claims 2.18, because the pick was chosen partly for its scoring error.
+With 10 candidates and scorer error sd 1, the pick's true value averages 1.09 against 1.54 for the best on offer. The scorer claims 2.18, because the pick was chosen partly for its scoring error. This is the companion's own model.
 
 **Calculation:** Mean best of 10 standard normal values = 1.54. True value of the pick = 1.54/sqrt(1 + 1^2) = 1.09. Claim = 1.54 x sqrt(1 + 1^2) = 2.18.
 
@@ -158,7 +158,7 @@ With 10 candidates and scorer error sd 1, the pick's true value averages 1.09 ag
 
 **What happens:** At Number of imagined candidates = 10, Scorer error sd = 1.0: With 10 candidates and scorer error sd 1, the pick's true value averages about 1.09 and the scorer claims about 2.18. The scorer is unbiased overall, but the pick was chosen partly for its good luck in scoring, so its score overstates its worth.
 
-**Why it matters:** Imagining generates options; something must rank them. The chapter's world-model agent excelled against its own inaccurate dream and failed in the real game. A check in the setting where the idea will be used is what separates the claimed worth from the real one.
+**Why it matters:** Imagining generates options; something must rank them. In the chapter's near-zero-randomness run, the world-model agent excelled against its own inaccurate dream and failed in the real game. A check in the setting where the idea will be used is what separates the claimed worth from the real one.
 
 **In brains and behavior:** The chapter says nothing in these studies shows what stands in for a scoreboard when a person imagines alone.
 
@@ -170,7 +170,7 @@ With 10 candidates and scorer error sd 1, the pick's true value averages 1.09 ag
 
 **Answer:** Yes. The second and third moves are only 1 point apart, so an error of 1 can reverse them. The first move is 3 points behind, so it is much less likely to win by error.
 
-**Source:** Eight adults, 1,600 pairs of shapes each, and a straight line; anchor `eight-adults-1600-pairs-of-shapes-each-and-a-straight-line`. Constructed model. The chapter's own example is three moves with scores 2, 5 and 4, where the second is chosen. The closed forms here follow from standard normal values and normal scoring error; they are the companion's addition. The chapter's dream-versus-real figures (2,086 of 2,100 imagined, 193 real, 210 random) are quoted from it and are not produced here.
+**Source:** Eight adults, 1,600 pairs of shapes each, and a straight line; anchor `eight-adults-1600-pairs-of-shapes-each-and-a-straight-line`. Constructed model. The chapter's own example is three moves with scores 2, 5 and 4, where the second is chosen. The closed forms here follow from standard normal values and normal scoring error; they are the companion's addition. The chapter's dream-versus-real figures (2,086 of 2,100 imagined, 193 real, 210 random, from the run with the model's randomness turned almost off) are quoted from it and are not produced here.
 
 ## C12-D05: How do sums on points make a smiling man?
 
@@ -192,9 +192,9 @@ $$
 - Typical miss in the 150 draws: 1.79
 - Miss against the smile step of 3: 0.577
 
-Without scatter, smiling woman minus neutral woman plus neutral man lands exactly on (1, 2, 4), the smiling man. With face scatter 1 and 3 examples per idea, the result misses by about 1.73 on average, in made-up numbers.
+Without scatter, smiling woman minus neutral woman plus neutral man lands exactly on (1, 2, 4), the smiling man. With face scatter 1 and 3 examples per idea, the typical miss is about 1.73 over all three numbers (the plot shows two), in made-up numbers from the companion's own scatter model.
 
-**Calculation:** (5, 2, 4) - (5, 2, 1) + (1, 2, 1) = (1, 2, 4). Each idea's average has scatter 1/sqrt(3); three averages and three numbers give a typical miss of sqrt(9) x 1/sqrt(3) = 1.73.
+**Calculation:** (5, 2, 4) - (5, 2, 1) + (1, 2, 1) = (1, 2, 4). Each idea's average has scatter 1/sqrt(3); three averages and three numbers give a typical miss of sqrt(9) x 1/sqrt(3) = 1.73. The distance counts all three numbers; the plot shows two.
 
 **Takeaway:** Averaging several example faces per idea steadies the arithmetic. The sum is exact only when the points are exact.
 
@@ -235,7 +235,7 @@ $$
 
 Readers rated stories by writers offered up to five machine ideas higher by 8.1 percent on novelty and 9 percent on usefulness. For writers who scored low on the word-association test, the novelty gain was 10.7 percent.
 
-**Calculation:** These are the chapter's reported percentages, read from the chapter and not recomputed from the study's data.
+**Calculation:** These are the chapter's reported percentages, read from the chapter and not recomputed from the study's data. The gain formula is the companion's gloss; the study's own comparison is not reproduced here.
 
 **Takeaway:** Access to machine ideas went with higher ratings of novelty and usefulness, most for writers who scored low on the word-association test.
 
@@ -253,7 +253,7 @@ Readers rated stories by writers offered up to five machine ideas higher by 8.1 
 
 **Answer:** Novelty went from 5.4 to 8.1, a rise of 2.7 points. Usefulness went from 3.7 to 9.0, a rise of 5.3 points, so usefulness gained more.
 
-**Source:** Writers with AI story ideas, and stories that look alike; anchor `writers-with-ai-story-ideas-and-stories-that-look-alike`. Reported result, quoted from the chapter (Doshi and Hauser, 2024): 293 writers, 600 readers. One idea: novelty up 5.4 percent, usefulness up 3.7. Up to five: 8.1 and 9.0. Low word-association scorers: novelty up 6.3 and 10.7 percent. The chapter gives no usefulness figures for the low scorers and no number for high scorers ('little effect'), so none appear here.
+**Source:** Writers with AI story ideas, and stories that look alike; anchor `writers-with-ai-story-ideas-and-stories-that-look-alike`. Reported result, quoted from the chapter (Doshi and Hauser, 2024): 293 writers, 600 readers. One idea: novelty up 5.4 percent, usefulness up 3.7. Up to five: 8.1 and 9.0. Low word-association scorers: novelty up 6.3 and 10.7 percent. The chapter gives no usefulness figures for the low scorers and no number for high scorers ('little effect'), so none appear here. The gain formula is a gloss added here; the study's percentages come from its own comparison against writers with no machine ideas and are not recomputed.
 
 ## C12-D07: When does a shared source narrow what people write?
 
@@ -275,11 +275,11 @@ $$
 - Pool spread as a share of writers alone: 0.837
 - Share building on ideas: 0.4
 
-If 0.4 of writers build on ideas whose spread is 0.5 and the rest write alone with spread 1, the pool's spread is 0.837. Only a source narrower than the writers shrinks the pool, and the model says nothing about how good any story is.
+If 0.4 of writers build on ideas whose spread is 0.5 and the rest write alone with spread 1, the pool's spread is 0.837. In the companion's own model, only a source narrower than the writers shrinks the pool; it says nothing about how good any story is.
 
 **Calculation:** Spread = sqrt((1 - 0.4) x 1^2 + 0.4 x 0.5^2) = 0.837.
 
-**Takeaway:** A shared source narrows the pool only if it is narrower than the writers it feeds.
+**Takeaway:** In this model, a shared source narrows the pool only if it is narrower than the writers it feeds.
 
 **What happens:** At Share of writers building on a machine idea = 0.4, Spread of the machine's ideas = 0.5: With 0.4 of writers building on ideas of spread 0.5, the pool's spread falls to about 0.84. Set the ideas' spread to 1 and the pool does not narrow at all, however many use them. Set it to 0 and the share building on the one idea becomes a spike.
 
@@ -289,7 +289,7 @@ If 0.4 of writers build on ideas whose spread is 0.5 and the rest write alone wi
 
 **In machines:** A model draws on one learned source for every user. This demonstration shows what such a source would do if its spread were smaller; it does not show that it is.
 
-**Assumptions and limits:** Each writer either builds on a machine idea or writes alone, with story positions bell-shaped on a single arbitrary axis. A program measured similarity in the study, with embeddings, not this axis. The model says nothing about how good any story is.
+**Assumptions and limits:** Each writer either builds on a machine idea or writes alone, with story positions bell-shaped on a single arbitrary axis. A program measured similarity in the study, with embeddings, not this axis. The model says nothing about how good any story is. Both groups share one center here; a source that pulled many writers toward a common center would narrow the pool even at equal spread, which this model leaves out.
 
 **Check:** Half of the writers build on ideas with spread 0, all the same, and the rest write alone with spread 1. What is the pool's spread?
 

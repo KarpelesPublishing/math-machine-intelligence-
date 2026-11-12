@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-10.md",
   "source_sha256": "88424600e0eee2f2967c6207652251c23777f6211028d880e3a48434e8e2d7ba",
-  "calculation_sha256": "f07c39bc957a22756ec627da084ea5a1b0516a15ae34b91ebafd22957f738466",
+  "calculation_sha256": "112783c7e88bb5067a87d0bc1bc837c05eaf5fe71346c0c2f669c8ff0a3a55a0",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -32,7 +32,7 @@
       "source_section": "A small language with a rulebook",
       "provenance": "Book formula and worked example (Figure 10.1). The 13 words, 6 actions and 20,910 commands are the chapter's. The rules for 'thrice', 'opposite' and 'around' are the companion's reconstruction, checked by reproducing the chapter's counts (D02 and D07). The lookup-table comparison is constructed, as the chapter says.",
       "kind": "formula",
-      "assumptions": "A finite language with no recursion and unambiguous commands. The rulebook is a specification of the artificial language, not a claim about how a person or a trained network represents grammar.",
+      "assumptions": "A finite language with no recursion and unambiguous commands. The rules for 'thrice', 'opposite' and 'around' are the companion's reconstruction, not quoted from the paper; they reproduce the chapter's counts. The rulebook is a specification of the artificial language, not a claim about how a person or a trained network represents grammar.",
       "prediction": "Decode 'jump twice after walk left' yourself. Which two actions come first, and does 'after' put the left or the right part first?",
       "reveal": {
         "state": {
@@ -41,7 +41,7 @@
         "text": "x = jump twice gives jump, jump; y = walk left gives turn left, walk. 'After' puts y first, so the result is turn left, walk, jump, jump, four actions from two parts of two actions each."
       },
       "takeaway": "A short rulebook decodes every command exactly, while a lookup table would need one row for each of 20,910 commands.",
-      "why_it_matters": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules, not a gap in the data.",
+      "why_it_matters": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules from the data it had. In the jump test the data held the lone word only, as the chapter explains.",
       "sides": {
         "brain": "The chapter makes no brain claim here; the rulebook is not a model of how a person represents grammar.",
         "machine": "The rulebook is a specification, written by a designer, that decodes the artificial language exactly."
@@ -73,21 +73,21 @@
             "7. look after turn right twice",
             "8. run twice after jump thrice"
           ],
-          "default": 1
+          "default": 2
         }
       ],
       "function": "decoder_picture",
       "alt": "Blocks showing two parts of a command decoded into actions and joined in order, and a bar chart of actions produced by eight examples.",
       "symbols": "[[x]]: the list of basic actions that command x specifies; ||: joins two action lists, the left one performed first; x, y: the two commands joined by 'after'",
-      "application": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules, not a gap in the data.",
-      "default_parameters": "Example command: 1",
+      "application": "The rulebook is the bar a learner is held to: it handles any combination of known words correctly by design, so a network's failure on a new combination is a failure to find the rules from the data it had. In the jump test the data held the lone word only, as the chapter explains.",
+      "default_parameters": "Example command: 2",
       "worked_example": {
-        "Actions produced": "2",
+        "Actions produced": "3",
         "Parts decoded separately": "2",
         "Rows a lookup table needs": "20,910",
         "Words whose meaning is stored": "13"
       },
-      "worked_interpretation": "'jump after run' splits into x = 'jump' (1 actions) and y = 'run' (1), and the joining word orders them. The result is run, jump. A lookup table would need 20,910 rows; the rulebook stores 13 word meanings and the rules.",
+      "worked_interpretation": "'walk twice and look' splits into x = 'walk twice' (2 actions) and y = 'look' (1), and the joining word orders them. The result is walk, walk, look. A lookup table would need 20,910 rows; the rulebook stores 13 word meanings and the rules.",
       "reader_anchor": "C10-D01"
     },
     {
@@ -204,7 +204,7 @@
           "word_overlap": 0,
           "role_overlap": 0
         },
-        "text": "With unrelated word codes and unrelated place codes the tied codes differ by 2, the largest possible here, while the plain sums differ by 0. Slide the place overlap to 1 and the difference falls to 0."
+        "text": "With unrelated word codes and unrelated place codes the tied codes differ by 2, the largest among the offered overlaps, while the plain sums differ by 0. Slide the place overlap to 1 and the difference falls to 0."
       },
       "takeaway": "Order survives only if the place codes differ; a plain sum, or places that cannot be told apart, treats both orders as one.",
       "why_it_matters": "Whether a network holds a sentence as a sum or as words in places changes which questions it can answer, and the chapter treats the binding idea as a proposal, not a finding.",
@@ -350,16 +350,16 @@
       ],
       "source_anchor": "a-language-of-colored-circles",
       "source_section": "A language of colored circles",
-      "provenance": "The 0.788 and the ten items are the chapter's, which says ten items are few. The Fisher interval is the companion's own addition, not in the chapter or paper. The scatter is a constructed sample with a disclosed seed, not the study's data.",
+      "provenance": "The 0.788 and the ten items are the chapter's, which says ten items are few. The Fisher interval is the companion's own addition, not in the chapter. The paper itself reports P = 0.031 for this correlation by a two-tailed permutation test over the 10 items; the interval here is the companion's illustration, not the paper's. The scatter is a constructed sample with a disclosed seed, not the study's data.",
       "kind": "formula (companion's own illustration)",
-      "assumptions": "The usual approximation: items behave like a random sample from a bivariate normal population. Ten instructions are not a random sample, so the range is a guide to how loose the number is, not a verdict.",
+      "assumptions": "The usual approximation: items behave like a random sample from a bivariate normal population. Ten instructions are not a random sample, so the range is a guide to how loose the number is, not a verdict. The paper itself reports P = 0.031 for 0.788 by a permutation test over the 10 items (Lake and Baroni 2023); the interval here is the companion's illustration, not the paper's.",
       "prediction": "Predict the low end of the plausible range for 0.788 from ten items. Is it close to 0.788, to 0.5, or lower?",
       "reveal": {
         "state": {
           "items": 10,
           "r": 0.788
         },
-        "text": "The range runs from about 0.31 to 0.95. Even a correlation that looks strong from ten items leaves a true value near 0.3 plausible. With 160 items the same r would be pinned to about 0.72 to 0.84."
+        "text": "The range runs from about 0.31 to 0.95. Even a correlation that looks strong from ten items leaves a true value near 0.3 plausible. With 160 items the same r would be pinned to about 0.72 to 0.84. The paper's own check for ten items was a permutation test (P = 0.031); this range is the companion's illustration."
       },
       "takeaway": "Ten items leave a wide range: the chapter's caution that ten items are few has a number behind it.",
       "why_it_matters": "A single correlation is easy to over-read. Knowing how wide the range is keeps a model-versus-people comparison honest.",
@@ -434,7 +434,7 @@
       ],
       "source_anchor": "shuffling-word-meanings",
       "source_section": "Shuffling word meanings",
-      "provenance": "Simulation. The 95 percent, the six words and the 10 study pairs per episode are the chapter's. The uniform one-to-one reassignment and the seed 10 are the companion's assumptions for the illustration; the chapter says only that the meanings were reassigned. The reported add-jump errors, 99.27 and 0.22 percent, are the chapter's.",
+      "provenance": "Simulation. The 95 percent, the six words and the 10 study pairs per episode are the chapter's. The paper's Methods remap the six actions through one random permutation and the six words through another, in 95 percent of episodes; the companion simulates this as a uniform one-to-one reassignment of the six meanings (taking 'random' to mean uniform), and the seed 10 is the companion's. The chapter says only that the meanings were reassigned. The reported add-jump errors, 99.27 and 0.22 percent, are the chapter's.",
       "kind": "simulation",
       "assumptions": "A uniform random one-to-one reassignment of the six words' meanings, and an idealized learner that reads the study pairs perfectly. This illustrates the pressure of the training schedule; it is not a model of the network or a measurement.",
       "prediction": "At 95 percent shuffling, predict how often a word keeps its usual meaning. Is it closer to 5 percent, 20 percent or 50 percent?",
@@ -442,7 +442,7 @@
         "state": {
           "shuffle_prob": 0.95
         },
-        "text": "A word keeps its usual meaning with chance 0.05 + 0.95/6 = 0.208, so trusting word identity is wrong about four times in five. Reading the study pairs is the only way to do well, and the reported effect on add jump was a fall in error from 99.27 to 0.22 percent."
+        "text": "A word keeps its usual meaning with chance 0.05 + 0.95/6 = 0.208, so trusting word identity is wrong about four times in five. Reading the study pairs is the way to do well here. The reported fall in add-jump error from 99.27 to 0.22 percent compares a basic transformer with the whole meta-learning method, of which shuffling is one part."
       },
       "takeaway": "Shuffling makes word identity unreliable, so a model is pushed to infer meanings from the study examples in each episode.",
       "why_it_matters": "Much of the teaching in the chapter's method is done by the training schedule, not a new network design. The authors call the many-grammar training not developmentally plausible.",
@@ -479,7 +479,7 @@
         "Possible reassignments of 6 words": "720",
         "Of 12 shown, with every word unchanged": "2"
       },
-      "worked_interpretation": "When 95 percent of practice episodes reassign the six word meanings at random, a word keeps its usual meaning with chance 0.208. Trusting word identity pays little, and reading the study pairs pays fully. Reported add-jump error fell from 99.27 to 0.22 percent (five-run averages).",
+      "worked_interpretation": "When 95 percent of practice episodes reassign the six word meanings at random, a word keeps its usual meaning with chance 0.208. The more is shuffled, the less trusting word identity pays and the more reading the study pairs pays. Reported add-jump error fell from 99.27 to 0.22 percent with the whole method, not shuffling alone.",
       "reader_anchor": "C10-D06"
     },
     {
@@ -549,7 +549,7 @@
         "Share held out": "18.7 percent",
         "Longest command (actions)": "48"
       },
-      "worked_interpretation": "Training on commands that need up to 22 actions leaves 16,990 to train on and 3,920 to test, the longest needing 48. At the chapter's cut of 22 the counts are 16,990 and 3,920. The chapter reports 20.8 percent for the top architecture, 100 percent error for the meta-trained model and 99.7 percent for least-to-most prompting on this split.",
+      "worked_interpretation": "Training on commands that need up to 22 actions leaves 16,990 to train on and 3,920 to test, the longest needing 48. For this chapter cut the chapter reports 20.8 percent for the top architecture, 100 percent error for the meta-trained model and 99.7 percent for least-to-most prompting.",
       "reader_anchor": "C10-D07"
     }
   ]

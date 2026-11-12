@@ -21,7 +21,7 @@ $$
 **Predict:** The averages are 56.9 and 56.5 percent. If the two ends were independent, what share of pairs would students recall from both ends? Then move the correlation up and watch that share.
 
 **Worked example:**
-- Recalled from both ends: 32.1 percent
+- Recalled from both ends (constructed): 32.1 percent
 - Expected if independent: 32.1 percent
 - Yule's Q: 0
 - Forward and backward averages: 56.9 and 56.5 percent
@@ -32,7 +32,7 @@ Forward and backward recall average 56.9 and 56.5 percent in every state of this
 
 **Takeaway:** Equal forward and backward averages are the same under independence and under strong ties; only the pair-by-pair record separates them.
 
-**What happens:** At Which pairs = all pairs, first test, Correlation between the two ends (pair by pair) = 0.6: At correlation 0.6, 46.9 percent of pairs come back from both ends, against 32.1 percent under independence, and Q is 0.884, about the size of the reported .88. The two averages never moved.
+**What happens:** At Which pairs = all pairs, first test, Correlation between the two ends (pair by pair) = 0.6: At correlation 0.6, 46.9 percent of pairs come back from both ends, against 32.1 percent under independence, and Q is 0.884. The reported Q of .88 and .91 comes from retests, a different table, so this is not a claim about what the students' pairs looked like. The two averages never moved.
 
 **Why it matters:** A system can look symmetric on average and still store two unrelated links. The test that decides is whether recall from one end predicts recall from the other for the same pair.
 
@@ -40,7 +40,7 @@ Forward and backward recall average 56.9 and 56.5 percent in every state of this
 
 **In machines:** A pair table with equal strengths in both directions returns the partner from either cue. That is a specification of a table, not a measured mechanism in the students.
 
-**Assumptions and limits:** The curve is a construction: it fixes the two averages and varies the tie between them. The reported .88 and .91 come from retests of the same pairs, so they are reference marks, not points on this curve. Equal averages fit both a symmetric link and two independent links, as the paper says; they do not show a mechanism in the students' brains.
+**Assumptions and limits:** The chapter does not say each pair was tested from both ends on the first test, so the both-ways, forward-only and backward-only shares are constructed; only the averages are reported. The curve is a construction: it fixes the two averages and varies the tie between them. The reported .88 and .91 come from retests of the same pairs, so they are reference marks, not points on this curve. Equal averages fit both a symmetric link and two independent links, as the paper says; they do not show a mechanism in the students' brains.
 
 **Check:** In the studied-once table the averages are 32.9 and 33.6 percent. With correlation 0, what share of pairs is recalled from both ends?
 
@@ -98,7 +98,7 @@ The grid has a 1 where the row person is mother of the column person, 2 ones in 
 
 A fine-tuned model scored 96.7 percent in one direction and 0.1 in the other. What was scored, on which facts, and what does that leave open?
 
-For a description-first fact the trained order gives the description and asks for the name; the reverse gives the name and asks for the description. Exact match marks an answer right only if it equals the target, which is easier for names than for descriptions. That is why name-first facts score lower even in the trained order.
+For a description-first fact the trained order gives the description and asks for the name; the reverse gives the name and asks for the description. Exact match marks an answer right only if it equals the target, which is easier for names than for descriptions. That is partly why name-first facts score lower even in the trained order.
 
 $$
 \text{exact match}=\frac{\text{answers equal to the target}}{\text{questions asked}}
@@ -168,7 +168,7 @@ On name-first facts, reversed questions scored 0.0 percent with standard fine-tu
 
 **In brains and behavior:** Nothing in this experiment concerns people.
 
-**In machines:** A behavior measured on one 7B model in one preprint. The reversal sketched on the left shows the mechanical idea only.
+**In machines:** A behavior measured on one 7B model in one preprint. The reversal sketched on the left is the companion's own sketch of the description in the chapter and shows the mechanical idea only, not the paper's preprocessing.
 
 **Assumptions and limits:** A preprint, not peer reviewed in the chapter's account. The number of facts, runs and spread behind the table is not stated. Soft match is more generous than exact match, so these scores are not like for like with the previous demonstration. Forward accuracy of 78.3 to 80.3 percent is quoted for the name-first rows only in the chapter's source note.
 
@@ -176,7 +176,7 @@ On name-first facts, reversed questions scored 0.0 percent with standard fine-tu
 
 **Answer:** 70.0 - 4.0 = 66.0 points, against 6.0 - 4.0 = 2.0 points for names kept in order.
 
-**Source:** Training on reversed copies of the facts; anchor `training-on-reversed-copies-of-the-facts`. Reported results quoted in the chapter from Golovneva and colleagues (2024 preprint, Table 6): a 7-billion-parameter Llama-2 model on invented facts, reversed questions, soft match. The sentence shown on the left is the chapter's own invented fact; the reversal shown is this companion's sketch of the operation as the chapter describes it, with words standing in for tokens.
+**Source:** Training on reversed copies of the facts; anchor `training-on-reversed-copies-of-the-facts`. Reported results quoted in the chapter from Golovneva and colleagues (2024 preprint, Table 6): a 7-billion-parameter Llama-2 model on invented facts, reversed questions, soft match. The sentence shown on the left is the chapter's own invented fact; the reversal shown is this companion's sketch of the operation as the chapter describes it, with words standing in for tokens. The paper's own method differs: entity-preserving reversal runs an entity detector, random segments are joined by a special "[REV]" token, and chunk sizes are drawn uniformly from 1 to k tokens (k = 25 in the rows labeled rand k = 25). This sketch uses a fixed name, a bar, and chunks of 1 to 3 words, and shows the idea only (it also leaves Abyssal Melodies free to reverse, as "Melodies Abyssal").
 
 ## C08-D05: Why can a model learn A to B and still miss B to A?
 
@@ -202,11 +202,11 @@ After 50 steps of forward facts only among 20 entities, the toy answers the forw
 
 **Calculation:** Each entity has an input vector and an output vector (8 numbers each, seed 2026). A question about x gets chance exp(u_x . v_y) / sum over j of exp(u_x . v_j) for answer y. Training moves only the vectors involved, 5 facts, step size 0.1, 50 steps.
 
-**Takeaway:** In this toy the reverse direction is a separate lookup that forward training never touches, and training on the reversed copy supplies it.
+**Takeaway:** By construction the toy keeps the reverse direction in parameters that forward training barely touches, so training on the reversed copy is what supplies it.
 
-**What happens:** At Training text = forward facts only, Entities in the toy = 20, Training steps = 50: After 50 steps the forward question is answered about 96 percent of the time and the reversed one about 3.9 percent, a little below the 5 percent chance level. Adding reversed copies lifts the reversed question to about 96 percent too.
+**What happens:** At Training text = forward facts only, Entities in the toy = 20, Training steps = 50: After 50 steps the forward question is answered about 96 percent of the time and the reversed one about 3.9 percent, near the 5 percent chance level (3.9 for this seed; about 4.7 averaged over 200 other seeds). Adding reversed copies lifts the reversed question to about 96 percent too.
 
-**Why it matters:** It gives a concrete way to see why a system can hold a fact in one direction only: the parameters that serve the reverse question are different parameters. A repair has to reach them.
+**Why it matters:** It shows what follows if the parameters for the question side and the answer side of an entity are separate: the reverse question can stay at chance until the reverse pair is trained. Real models are not shown to work this way.
 
 **In machines:** A seeded toy of the mechanism the chapter's references discuss. No claim about how real models store facts follows from it.
 
@@ -214,7 +214,7 @@ After 50 steps of forward facts only among 20 entities, the toy answers the forw
 
 **Check:** Why is the reversed answer not exactly at chance after training on forward facts only?
 
-**Answer:** Training also pushes the answer vectors of other entities away from the trained question vectors. That shifts every answer slightly, so the reversed chance drifts a little below 5 percent instead of staying exactly there.
+**Answer:** Training also pushes the answer vectors of other entities away from the trained question vectors. That shifts every answer slightly, so the reversed chance can drift from 5 percent instead of staying exactly there (3.9 for this seed; about 4.7 averaged over 200 other seeds).
 
 **Source:** GPT-3 learns facts in one order only; anchor `gpt-3-learns-facts-in-one-order-only`. Constructed toy, in the spirit of the chapter's mention of a 2024 proof about a simple model where the A to B link grows while the B to A link stays small. It is this companion's own simulation, seed 2026, step size 0.1, 8 numbers per vector; it is not the proof, not their model, and not a language model.
 
@@ -222,7 +222,7 @@ After 50 steps of forward facts only among 20 entities, the toy answers the forw
 
 If next town east is a step of one stride, what gap does the fact score, what happens when head and tail swap, and what does negating the step do?
 
-The step takes the head point to a landing point. The fact fits when the landing point is the tail. If you swap head and tail but keep the step, the landing point is a stride past the old head, so the miss is twice the step. Negating the step on the swapped pair always reproduces the original gap, since |t - r - h| = |h + r - t|.
+The step takes the head point to a landing point. The fact fits when the landing point is the tail. If you swap head and tail but keep the step, the landing point is a step past the new head (Birch in the example), so the miss is twice the step when the original fact fit exactly. Negating the step on the swapped pair always reproduces the original gap, since |t - r - h| = |h + r - t|.
 
 $$
 f(h,r,t)=\lVert \mathbf h+\mathbf r-\mathbf t\rVert
@@ -242,7 +242,7 @@ From Ash at 0, a step of +1 lands at 1, and the tail Birch is at 1, so the gap i
 
 **Calculation:** f = |h + r - t| = |0 + (1) - 1| = 0. Swapped, same step: |1 + (1) - 0| = 2. Swapped with the negated step: |1 + (-1) - 0| = 0.
 
-**Takeaway:** Swapping head and tail with the same step misses by twice the step; negating the step reads the relation backward and the miss closes.
+**Takeaway:** Swapping head and tail with the same step misses by twice the step when the original fact fits exactly; negating the step reads the relation backward and the miss closes.
 
 **What happens:** At Head town = Birch, Tail town = Ash, Relation step = one stride east: With Birch as head and Ash as tail the eastward step lands at Cedar, 2 strides past the tail, so the gap is 2. Switch the step to one stride west and the gap closes to 0.
 

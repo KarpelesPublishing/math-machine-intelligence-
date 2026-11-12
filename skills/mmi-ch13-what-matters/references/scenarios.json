@@ -5,7 +5,7 @@
   },
   {
     "prompt": "A ticket pays 0 or 20,000 ducats with equal chances. Is 9,000 a fair price?",
-    "expected_behavior": "Under the logarithmic rule it depends on wealth: the worth is sqrt(w(w + 20,000)) - w, which is 9,000 only at w = 40,500; holders with less would sell at 9,000, with more would buy. State this is the rule's output, not data."
+    "expected_behavior": "Under the logarithmic rule it depends on wealth: the worth is sqrt(w(w + 20,000)) - w, which is 9,000 only at w = 40,500; a holder with less would sell at 9,000 and a holder with more would keep the ticket; the buyer's side has its own threshold (about 49,500 under the same rule). State that the 40,500 and 49,500 figures are the companion's computation from the chapter's rule, not Bernoulli's and not data."
   },
   {
     "prompt": "Does the loss weight explain why the gift-and-gamble groups chose differently?",

@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-20.md",
   "source_sha256": "f04fdc06fde6fb38635dcaf885d3ccd76a5cde84c181413b344714e1bf7bc3d1",
-  "calculation_sha256": "79e1908123c1a7eea35ec1b08eb35c0a113bbf049406e30f7bed89cdd92da9da",
+  "calculation_sha256": "77c3b17f3c8861112b110dac7ff9c9982ee713e3b58b38bcc699720a809955d9",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -52,7 +52,7 @@
       "takeaway": "A missing first-jump estimate shows up as a second jump that misses by exactly the lost share times the first jump.",
       "why_it_matters": "A controller that plans one move from the last has to know how far the last move went. The subtraction makes the dependence visible, and the shift measures how much of the estimate is being used.",
       "sides": {
-        "brain": "In two monkeys, a drug in a thalamic relay shifted second jumps, not single ones, in the direction that losing the signal predicts. The subtraction is the book's model of what the signal does, not a recorded calculation.",
+        "brain": "In two monkeys, a drug in a thalamic relay shifted second jumps in the direction that losing the signal predicts, while single jumps to a lone target were barely affected. The subtraction is the book's model of what the signal does, not a recorded calculation.",
         "machine": "A saccade planner or robot arm can compute the subtraction exactly from its own motor command, a specification and not a model of a monkey."
       },
       "explanation": "The eye starts at the origin and makes a first jump. The target for the second jump was seen before the move, so it is remembered relative to the start. The jump still needed is that target minus where the eye now is. If the estimate of the first jump is too small, the subtraction removes too little, and the planned jump is too large by the missing part.",
@@ -216,18 +216,18 @@
       ],
       "source_anchor": "where-a-prediction-could-come-from-a-relay-and-the-cerebellum",
       "source_section": "Where a prediction could come from: a relay and the cerebellum",
-      "provenance": "The shower story and the Smith predictor idea are the chapter's. The plant, the 0.2 s delay (the low end of the chapter's 200 to 250 ms upper estimate for sight-guided reaches), the gains and the simulation are constructed here and are not the 1993 paper's simulation. Euler steps of 5 ms.",
+      "provenance": "The shower story and the Smith predictor idea are the chapter's. The plant, the 0.2 s delay (the low end of the chapter's 200 to 250 ms upper estimate for sight-guided reaches), the gains and the simulation are constructed here and are not the 1993 paper's simulation, and they give a different answer for a 100 ms delay-model error: the chapter reports that error made the 1993 simulation unstable, while here it is tolerated up to about gain 15 (model too long) or at every slider gain (model too short). Euler steps of 5 ms.",
       "kind": "simulation",
-      "assumptions": "A pure integrator plant, no noise, an exact plant model, and a delay model that is exactly right or off by 100 ms. The plain loop settles only when gain times delay is below pi/2. Real delays and plants differ.",
+      "assumptions": "A pure integrator plant, no noise, an exact plant model, and a delay model that is exactly right or off by 100 ms. The plain loop settles only when gain times delay is below pi/2. Real delays and plants differ. In this plant a delay model that is 100 ms too long still settles at gains up to about 15 per second, and one 100 ms too short settles over the whole slider range. The 1993 simulation, as the chapter reports it, became unstable with a delay model 100 ms wrong; this constructed integrator is more forgiving, so its tolerance is not a result about that paper or about any brain.",
       "prediction": "The plain loop stops settling above a gain of about 7.85 per second. Predict whether the delay-modelling loop will tolerate a gain of 10 when its delay model is exactly right.",
       "reveal": {
         "state": {
           "gain": 10,
           "model_error_ms": 0
         },
-        "text": "At gain 10 the plain loop swings out of range, while the loop that models the delay correctly rises to the target without overshoot. Now move the delay-model error to plus 100 ms and the gain to 20: the delay-modelling loop fails too."
+        "text": "At gain 10 the plain loop swings out of range, while the loop that models the delay correctly rises to the target without overshoot. Now move the delay-model error to plus 100 ms: at gain 14 the swing is slow to die away, and at gain 20 the delay-modelling loop fails too (the limit with this error is roughly 15 per second). The chapter says a delay model wrong by 100 ms made the 1993 simulation unstable; this constructed plant tolerates that error at lower gains, so it does not reproduce that result."
       },
-      "takeaway": "A model of the delay allows strong correction in this constructed plant, but only while the delay model is close to right.",
+      "takeaway": "A model of the delay allows strong correction in this constructed plant and tolerates a modest delay-model error here, but a large enough gain still fails when the delay model is 100 ms too long. The chapter's source simulation was less forgiving: a delay model wrong by 100 ms made it unstable.",
       "why_it_matters": "Strong correction from old data is the cause of the swing. A controller that holds a prediction of the present can act on it and use the late report as a check, which is what the cerebellum proposal says might happen.",
       "sides": {
         "brain": "The 1993 paper proposed, with a simulation and no experiment, that the cerebellum holds a forward model and a delay model. A 2007 magnetic-pulse experiment fits a hand estimate 138 ms old, but nothing here tests a cerebellum.",
@@ -274,7 +274,7 @@
         "Smith loop": "settles",
         "Smith overshoot (percent)": "0"
       },
-      "worked_interpretation": "At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the Smith predictor with its delay model 0 ms off settles. The plain loop's limit for this plant is gain pi/(2 x 0.2) = 7.85.",
+      "worked_interpretation": "At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the Smith loop with its delay model 0 ms off settles. The plain loop's limit is gain pi/(2 x 0.2) = 7.85.",
       "reader_anchor": "C20-D03"
     },
     {
@@ -308,16 +308,16 @@
       ],
       "source_anchor": "which-errors-to-fix-and-how-a-body-model-is-repaired",
       "source_section": "Which errors to fix, and how a body model is repaired",
-      "provenance": "The principle (correct deviations only when they interfere with the task) and the spreads 0.14 and 0.26 square centimeters with five targets, and 0.18 and 0.18 with 21, are quoted from the chapter's account of Todorov and Jordan (2002). The scalar model, its weights and its noise are constructed here; nothing is fitted to the study, and the study's ratio of 1.86 is drawn only as a reference line.",
+      "provenance": "The principle (correct deviations only when they interfere with the task) and the spreads 0.14 and 0.26 square centimeters with five targets, and 0.18 and 0.18 with 21, are quoted from the chapter's account of Todorov and Jordan (2002). The scalar model, its weights and its noise are constructed here; nothing is fitted to the study, and the ratio 0.26/0.14 = 1.86 of the chapter's two five-target variances is drawn only as a reference line.",
       "kind": "model",
-      "assumptions": "A one-number state, a push of fixed size each step, a quadratic cost and a controller that knows the state. Real reaches have many joints, delayed noisy senses and no single weight. In the study, the 21-target comparison no longer detected a significant difference.",
+      "assumptions": "A one-number state, a push of fixed size each step, a quadratic cost and a controller that knows the state. Real reaches have many joints, delayed noisy senses and no single weight. In the study, the 21-target comparison no longer detected a significant difference. The study's spreads are of hand position at points along a reach, while the model's ratio compares two long-run directions of a one-number state, so the two ratios are different kinds of quantity.",
       "prediction": "If a direction carries no weight at all, how large is its long-run spread? And does giving it the same weight as the other direction equalize the two?",
       "reveal": {
         "state": {
           "irrelevant_weight": 0.1,
           "effort_cost": 1.0
         },
-        "text": "At weight 0.1 against 1, the spread in the direction that matters little is about 1.83 times the other, near the reported 1.86 for five targets. That is a coincidence of a tidy number, not a fit. Set the weight to 1 and the two spreads are equal, the analogue of the 21-target condition where every point on the path was a target."
+        "text": "At weight 0.1 against 1, the spread in the direction that matters little is about 1.83 times the other, near 1.86, the ratio of the chapter's two five-target variances, 0.26 over 0.14. The nearness of 1.83 to 1.86 is a coincidence of a tidy number, not a fit: the weights are made up and the study's spreads are not what this model computes. Set the weight to 1 and the two spreads are equal, the analogue of the 21-target condition where every point on the path was a target."
       },
       "takeaway": "A controller that charges for effort corrects the direction that matters hard and the other loosely; at equal weights the two are equal.",
       "why_it_matters": "Perfect correction everywhere is costly. A controller that corrects only what interferes with the task spends effort where it pays, so a looser hand between targets is a prediction, not a defect.",
@@ -355,7 +355,7 @@
         }
       ],
       "function": "minimal_picture",
-      "alt": "Bars of long-run spread in two directions, and the spread ratio against the weight with the reported 1.86 and 1 as reference lines.",
+      "alt": "Bars of long-run spread in two directions, and the spread ratio against the weight with the variance ratios 1.86 (five targets) and 1 (21 targets).",
       "symbols": "q: weight on missing the task in one direction; r: cost of the correcting effort; P: the steady-state cost-to-go weight of the standard scalar solution; K: the share of the error corrected each step; Var: long-run variance, with a push of variance sigma^2 = 1 added each step",
       "application": "Perfect correction everywhere is costly. A controller that corrects only what interferes with the task spends effort where it pays, so a looser hand between targets is a prediction, not a defect.",
       "default_parameters": "Weight on the direction that matters little: 0.1 · Effort cost r: 1.0",
@@ -407,7 +407,7 @@
         "text": "After 40 reaches at learning rate 0.1 the estimate has reached 98.5 percent of the push, so the first reach with the field off misses by almost exactly the size of the first miss, on the opposite side. With 5 reaches the mirror is only 41 percent."
       },
       "takeaway": "The better the estimate of the push, the more nearly the aftereffect mirrors the first miss; the mirror is a sign of what was learned.",
-      "why_it_matters": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore evidence of the model, read from behavior.",
+      "why_it_matters": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore read as a sign of the model, inferred from behavior.",
       "sides": {
         "brain": "The authors read the aftereffect as a sign that the controller gradually built a model of the field. That is an inference from behavior, not a recorded model.",
         "machine": "A robot arm can run the same error-driven update on a force estimate; the update rule is a specification."
@@ -445,7 +445,7 @@
       "function": "adaptation_picture",
       "alt": "Sideways miss over reaches with a field on and then off, and the aftereffect share against practice for four learning rates.",
       "symbols": "B: the strength of the push of the world, taken as 1; b_n: the controller's estimate of the push after n reaches; eta: learning rate, the share of the error corrected in the estimate each reach; N: the number of practice reaches with the field on",
-      "application": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore evidence of the model, read from behavior.",
+      "application": "A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore read as a sign of the model, inferred from behavior.",
       "default_parameters": "Learning rate: 0.1 · Practice reaches with the field on: 40",
       "worked_example": {
         "First miss (field on)": "1",
@@ -496,7 +496,7 @@
       "takeaway": "Ten trials leave a wide range of rates plausible, so the two reported counts are consistent with a wide range of true rates, including some in common.",
       "why_it_matters": "A system that is evaluated on a handful of real trials cannot be told apart from many nearby rates. The honest report is the count and its range, not the share alone.",
       "sides": {
-        "brain": "The chapter's brain-side counts are also small: seven patients, eight men, two monkeys. The same caution applies to their shares.",
+        "brain": "The chapter's brain-side counts are also small: one participant in the walking study, eight men in the unseen-hand test, two monkeys in the eye-jump study, and eight people in the reaching-variance test. The same caution applies to any share computed from them.",
         "machine": "A robot test on 10 trials is a measurement with this much uncertainty. The 2019 preprint's hand-tuned simulation settings are a separate matter."
       },
       "explanation": "For each possible true rate, the chance of seeing a given count is a binomial probability. A rate is ruled out when it would make the count of 2 or fewer, or 2 or more, rare. The rates that survive form an interval. The exact interval is wide because ten trials contain little information.",

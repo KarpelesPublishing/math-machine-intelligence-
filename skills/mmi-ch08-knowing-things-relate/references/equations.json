@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-08.md",
   "source_sha256": "b1cd65b9e794adecd1b55b57eb86cf8a4624aaf14be3f69aa27fc090102872a3",
-  "calculation_sha256": "21f5a2d0dd357edcd5d14edbf137677c07812c3b39af0a500d2ddede8bb60223",
+  "calculation_sha256": "d2e659fc9fe8357d020ed567695b26454c56dbe7790e05cfa731b440fc87a619",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -35,15 +35,15 @@
       "source_anchor": "fifteen-students-recalled-new-random-noun-pairs-about-equally-well-from-either-end",
       "source_section": "Fifteen students recalled new random noun pairs about equally well from either end",
       "provenance": "Reported averages from the chapter's source note on Kahana (2002): first-test forward .569 and backward .565, and the once and five-times values .329, .336 and .732, .718. The chapter and its note give Yule's Q near unity (.88 and .91) for retests; the pair table at each correlation and the Q curve are this companion's own construction on those averages.",
-      "kind": "reported result",
-      "assumptions": "The curve is a construction: it fixes the two averages and varies the tie between them. The reported .88 and .91 come from retests of the same pairs, so they are reference marks, not points on this curve. Equal averages fit both a symmetric link and two independent links, as the paper says; they do not show a mechanism in the students' brains.",
+      "kind": "constructed example on reported averages",
+      "assumptions": "The chapter does not say each pair was tested from both ends on the first test, so the both-ways, forward-only and backward-only shares are constructed; only the averages are reported. The curve is a construction: it fixes the two averages and varies the tie between them. The reported .88 and .91 come from retests of the same pairs, so they are reference marks, not points on this curve. Equal averages fit both a symmetric link and two independent links, as the paper says; they do not show a mechanism in the students' brains.",
       "prediction": "The averages are 56.9 and 56.5 percent. If the two ends were independent, what share of pairs would students recall from both ends? Then move the correlation up and watch that share.",
       "reveal": {
         "state": {
           "table": "all pairs, first test",
           "phi": 0.6
         },
-        "text": "At correlation 0.6, 46.9 percent of pairs come back from both ends, against 32.1 percent under independence, and Q is 0.884, about the size of the reported .88. The two averages never moved."
+        "text": "At correlation 0.6, 46.9 percent of pairs come back from both ends, against 32.1 percent under independence, and Q is 0.884. The reported Q of .88 and .91 comes from retests, a different table, so this is not a claim about what the students' pairs looked like. The two averages never moved."
       },
       "takeaway": "Equal forward and backward averages are the same under independence and under strong ties; only the pair-by-pair record separates them.",
       "why_it_matters": "A system can look symmetric on average and still store two unrelated links. The test that decides is whether recall from one end predicts recall from the other for the same pair.",
@@ -86,7 +86,7 @@
       "application": "A system can look symmetric on average and still store two unrelated links. The test that decides is whether recall from one end predicts recall from the other for the same pair.",
       "default_parameters": "Which pairs: all pairs, first test · Correlation between the two ends (pair by pair): 0",
       "worked_example": {
-        "Recalled from both ends": "32.1 percent",
+        "Recalled from both ends (constructed)": "32.1 percent",
         "Expected if independent": "32.1 percent",
         "Yule's Q": "0",
         "Forward and backward averages": "56.9 and 56.5 percent"
@@ -223,7 +223,7 @@
         "brain": "People were not tested. Kahana's students recalled word pairs about equally from both ends, but those were not facts, so the comparison stays open.",
         "machine": "This is a behavior measured on one family of fine-tuned models. The authors leave the cause open; a 2024 proof applies to a toy model under stated assumptions."
       },
-      "explanation": "For a description-first fact the trained order gives the description and asks for the name; the reverse gives the name and asks for the description. Exact match marks an answer right only if it equals the target, which is easier for names than for descriptions. That is why name-first facts score lower even in the trained order.",
+      "explanation": "For a description-first fact the trained order gives the description and asks for the name; the reverse gives the name and asks for the description. Exact match marks an answer right only if it equals the target, which is easier for names than for descriptions. That is partly why name-first facts score lower even in the trained order.",
       "check": "Name-first facts scored 50.0 percent in the trained order and 0.0 in reverse. Can this be read as a smaller reversal problem than for description-first facts?",
       "answer": "No. The drop is 50.0 points against 96.6, but the trained-order score is lower partly because exact match is harder for descriptions. Both reverse scores are close to zero.",
       "controls": [
@@ -283,7 +283,7 @@
       ],
       "source_anchor": "training-on-reversed-copies-of-the-facts",
       "source_section": "Training on reversed copies of the facts",
-      "provenance": "Reported results quoted in the chapter from Golovneva and colleagues (2024 preprint, Table 6): a 7-billion-parameter Llama-2 model on invented facts, reversed questions, soft match. The sentence shown on the left is the chapter's own invented fact; the reversal shown is this companion's sketch of the operation as the chapter describes it, with words standing in for tokens.",
+      "provenance": "Reported results quoted in the chapter from Golovneva and colleagues (2024 preprint, Table 6): a 7-billion-parameter Llama-2 model on invented facts, reversed questions, soft match. The sentence shown on the left is the chapter's own invented fact; the reversal shown is this companion's sketch of the operation as the chapter describes it, with words standing in for tokens. The paper's own method differs: entity-preserving reversal runs an entity detector, random segments are joined by a special \"[REV]\" token, and chunk sizes are drawn uniformly from 1 to k tokens (k = 25 in the rows labeled rand k = 25). This sketch uses a fixed name, a bar, and chunks of 1 to 3 words, and shows the idea only (it also leaves Abyssal Melodies free to reverse, as \"Melodies Abyssal\").",
       "kind": "reported result",
       "assumptions": "A preprint, not peer reviewed in the chapter's account. The number of facts, runs and spread behind the table is not stated. Soft match is more generous than exact match, so these scores are not like for like with the previous demonstration. Forward accuracy of 78.3 to 80.3 percent is quoted for the name-first rows only in the chapter's source note.",
       "prediction": "Name-first reversed questions scored 0.0 percent under standard fine-tuning. Predict the score with names kept in order, then with random chunks, and whether description-first facts behave the same way.",
@@ -298,7 +298,7 @@
       "why_it_matters": "Giving a system the reverse direction in its training data is one way to supply direction. The cost is that every passage is used twice, and the repair is reported for a particular test, not for every kind of knowledge.",
       "sides": {
         "brain": "Nothing in this experiment concerns people.",
-        "machine": "A behavior measured on one 7B model in one preprint. The reversal sketched on the left shows the mechanical idea only."
+        "machine": "A behavior measured on one 7B model in one preprint. The reversal sketched on the left is the companion's own sketch of the description in the chapter and shows the mechanical idea only, not the paper's preprocessing."
       },
       "explanation": "Standard fine-tuning shows the model each passage once. Reverse training adds a copy with the order changed, so the model sees an answer before its cue. Reversing every word barely helped in a smaller test. Keeping names intact worked for name-first facts; cutting text into random chunks helped on both kinds.",
       "check": "How many points does random-chunk training gain over standard fine-tuning on description-first facts?",
@@ -371,16 +371,16 @@
           "entities": 20,
           "steps": 50
         },
-        "text": "After 50 steps the forward question is answered about 96 percent of the time and the reversed one about 3.9 percent, a little below the 5 percent chance level. Adding reversed copies lifts the reversed question to about 96 percent too."
+        "text": "After 50 steps the forward question is answered about 96 percent of the time and the reversed one about 3.9 percent, near the 5 percent chance level (3.9 for this seed; about 4.7 averaged over 200 other seeds). Adding reversed copies lifts the reversed question to about 96 percent too."
       },
-      "takeaway": "In this toy the reverse direction is a separate lookup that forward training never touches, and training on the reversed copy supplies it.",
-      "why_it_matters": "It gives a concrete way to see why a system can hold a fact in one direction only: the parameters that serve the reverse question are different parameters. A repair has to reach them.",
+      "takeaway": "By construction the toy keeps the reverse direction in parameters that forward training barely touches, so training on the reversed copy is what supplies it.",
+      "why_it_matters": "It shows what follows if the parameters for the question side and the answer side of an entity are separate: the reverse question can stay at chance until the reverse pair is trained. Real models are not shown to work this way.",
       "sides": {
         "machine": "A seeded toy of the mechanism the chapter's references discuss. No claim about how real models store facts follows from it."
       },
       "explanation": "Each entity has two vectors, one used as the question and one as an answer. Learning that b answers a moves the question vector of a and the answer vector of b. The reversed question starts from the question vector of b, which was not moved, so its answer stays near chance. A reversed copy trains those parameters directly.",
       "check": "Why is the reversed answer not exactly at chance after training on forward facts only?",
-      "answer": "Training also pushes the answer vectors of other entities away from the trained question vectors. That shifts every answer slightly, so the reversed chance drifts a little below 5 percent instead of staying exactly there.",
+      "answer": "Training also pushes the answer vectors of other entities away from the trained question vectors. That shifts every answer slightly, so the reversed chance can drift from 5 percent instead of staying exactly there (3.9 for this seed; about 4.7 averaged over 200 other seeds).",
       "controls": [
         {
           "key": "training",
@@ -418,7 +418,7 @@
       "function": "toy_reversal_picture",
       "alt": "Curves of the toy's chance of the right forward and reversed answers against training steps, and bars comparing the two training texts.",
       "symbols": "u_x: input vector of entity x, used when x is the question; v_y: output vector of entity y, used when y is a candidate answer; p(y | x): the toy's chance of answering y when asked about x",
-      "application": "It gives a concrete way to see why a system can hold a fact in one direction only: the parameters that serve the reverse question are different parameters. A repair has to reach them.",
+      "application": "It shows what follows if the parameters for the question side and the answer side of an entity are separate: the reverse question can stay at chance until the reverse pair is trained. Real models are not shown to work this way.",
       "default_parameters": "Training text: forward facts only · Entities in the toy: 20 · Training steps: 50",
       "worked_example": {
         "Forward question": "96.5 percent",
@@ -464,12 +464,12 @@
         },
         "text": "With Birch as head and Ash as tail the eastward step lands at Cedar, 2 strides past the tail, so the gap is 2. Switch the step to one stride west and the gap closes to 0."
       },
-      "takeaway": "Swapping head and tail with the same step misses by twice the step; negating the step reads the relation backward and the miss closes.",
+      "takeaway": "Swapping head and tail with the same step misses by twice the step when the original fact fits exactly; negating the step reads the relation backward and the miss closes.",
       "why_it_matters": "A translation score builds direction into the geometry: the fact fits one way, and the reverse costs a sign. The cost is that a relation true in both directions cannot keep a nonzero step.",
       "sides": {
         "machine": "TransE is a published model for scoring facts in a knowledge base; the line of towns is an illustration. The reversal by negating the step follows from the algebra, not from the paper."
       },
-      "explanation": "The step takes the head point to a landing point. The fact fits when the landing point is the tail. If you swap head and tail but keep the step, the landing point is a stride past the old head, so the miss is twice the step. Negating the step on the swapped pair always reproduces the original gap, since |t - r - h| = |h + r - t|.",
+      "explanation": "The step takes the head point to a landing point. The fact fits when the landing point is the tail. If you swap head and tail but keep the step, the landing point is a step past the new head (Birch in the example), so the miss is twice the step when the original fact fit exactly. Negating the step on the swapped pair always reproduces the original gap, since |t - r - h| = |h + r - t|.",
       "check": "With Ash as head, Cedar as tail and the eastward step, what is the gap?",
       "answer": "Ash at 0 plus 1 lands at 1, the tail Cedar is at 2, so the gap is 1 stride.",
       "matter_anchor": [

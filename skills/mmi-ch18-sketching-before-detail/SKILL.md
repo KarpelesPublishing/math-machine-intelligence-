@@ -14,9 +14,9 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 - **How many passes does it take to build a text? (C18-D01):** A 16-position text can be built one position at a time, by filling every position in several passes, or level by level. How many passes and position-updates does each take?
 - **Can a later level undo an earlier one? (C18-D02):** A target of 0.7316 is described in three levels, each choosing one entry from a list. What are the totals and leftovers, and what happens when level 1 overshoots?
 - **Which draft does minimum Bayes risk keep? (C18-D03):** A model writes five one-line summaries of a vote. If we keep the one most like the others, is it the right one?
-- **How did the reported Sudoku results compare, and why is one wrong square so costly? (C18-D04):** The preprint reports the share of boards solved by three kinds of model. How much per-square accuracy would those shares imply if squares were independent?
+- **How did the reported Sudoku results compare, and what would they imply per square? (C18-D04):** The preprint reports the share of boards solved by three kinds of model. How much per-square accuracy would those shares imply if squares were independent?
 - **What can a vote among drafts never repair? (C18-D05):** Majority voting over final answers is MBR with the simplest similarity. How many voters does it take, and what stops it?
-- **How large was the global-precedence gap in Navon's timings? (C18-D06):** People named either the big letter or the small letters of a figure. In which task did the other level slow them down?
+- **How large was the slowest-condition gap in Navon's timings? (C18-D06):** People named either the big letter or the small letters of a figure. In which task did the other level slow them down?
 
 ## Make the method fit the question
 

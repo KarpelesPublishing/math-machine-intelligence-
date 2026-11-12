@@ -8,7 +8,7 @@
     "expected_behavior": "To use every step equally, eight steps in the band at 100 readings per 1,000 each and one step in each tail; if the goal is a small squared miss instead, the layout reaches farther into the tails."
   },
   {
-    "prompt": "Software raises sensitivity by 2 points but lowers specificity by 3. What changes per 100,000 exams?",
-    "expected_behavior": "At a cancer rate of 0.00505, 2 points of sensitivity is about 10 cancers and 3 points of specificity is about 3,000 recalls of women without cancer; say the studies were observational and the numbers are arithmetic, not advice."
+    "prompt": "Suppose, as a hypothetical, a tool changes sensitivity by 2 points and lowers specificity by 3. What changes per 100,000 exams?",
+    "expected_behavior": "At a cancer rate of 0.00505, 2 points of sensitivity is about 10 cancers and 3 points of specificity is about 3,000 recalls of women without cancer; say this combination is not either study's finding (Lehman: sensitivity 2 points lower, not statistically significant; Fenton: specificity 3 points lower), that the studies were observational, and that the numbers are arithmetic, not advice."
   }
 ]

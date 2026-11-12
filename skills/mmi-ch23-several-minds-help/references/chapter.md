@@ -228,11 +228,11 @@ $$
 - Average the study reported over model pairs: 0.6
 - Most tempting share needed to reach 0.6 (same option): 0.755
 
-If independent models send 0.34 of their wrong answers to their most tempting option, and the same option tempts both models, they match 0.333 of the time. Reaching the reported 0.6 this way takes a share of 0.755 on one shared option.
+If independent models send 0.34 of their wrong answers to their most tempting option, and the same option tempts both models, they match 0.333 of the time. Reaching the reported 0.6 this way takes a share of 0.755 on one shared option, an extreme concentration the chapter does not claim.
 
 **Calculation:** Match chance = sum over options of (model 1's share) x (model 2's share) = 0.34 x 0.34 + 2 x 0.33^2 = 0.333. For the same option, L^2 + (1 - L)^2/2 = 0.6 gives L = (1 + sqrt(1.6))/3 = 0.755.
 
-**Takeaway:** Agreement on wrong options is not proof that models copy each other: shared temptation produces it with no communication.
+**Takeaway:** Some matching on wrong options is expected even for independent models, because some wrong options tempt more than others. Reaching the reported 0.6 this way would take one option drawing about 75 percent of the wrong answers, so this does not explain the reported figure; it only shows the gap above 1/3 is not by itself proof of copying.
 
 **What happens:** At Share of wrong answers on the most tempting option = 0.6, Which option tempts the second model = same wrong option: With 0.6 of wrong answers on one shared option, independent models match 0.6 x 0.6 + 2 x 0.2 x 0.2 = 0.44 of the time, well above 1/3 and still below the reported 0.6. It takes a share of about 0.755 to reach 0.6.
 
@@ -248,11 +248,11 @@ If independent models send 0.34 of their wrong answers to their most tempting op
 
 **Source:** Models that pick the same wrong option; anchor `models-that-pick-the-same-wrong-option`. Constructed illustration. The reported figures are from Kim and colleagues as the chapter gives them: an average match of 0.6 over pairs among 71 models on questions both got wrong, against 1/3 for uniform random choice among three wrong options. The shape of the wrong-option shares here is invented to show a mechanism, not fitted to their data.
 
-## C23-D07: When does a majority vote over sampled answers help?
+## C23-D07: When does a majority vote over sampled answers help? (worst case)
 
-If a model samples many chains of reasoning and the most common answer wins, when does the vote beat one chain, and when does it make things worse?
+If a model samples many chains of reasoning and the most common answer wins, when does the vote beat one chain, and when does it make things worse if all wrong chains agree?
 
-For one question with chain chance p, the vote is right when more than half of the chains are. For p above one half the chance climbs toward 1 as chains are added, and for p below one half it falls toward 0. The overall effect is the average across questions, so it depends on how many questions lean each way.
+For one question with chain chance p, the vote is right when more than half of the chains are. For p above one half the chance climbs toward 1 as chains are added, and, if every wrong chain gives the same wrong answer, for p below one half it falls toward 0. Real self-consistency takes the most common answer, so scattered wrong answers can lose to a right answer with fewer than half the votes (in a simulation with 41 chains and a right chance of 0.3, wrong answers spread over three other options gave about 0.5 right, over six about 0.9; this is the companion's own check, not the book's number). The overall effect is the average across questions, so it depends on how many questions lean each way.
 
 $$
 P(\text{vote right})=\sum_{k>m/2}\binom{m}{k}\,p^{k}(1-p)^{m-k}
@@ -260,7 +260,7 @@ $$
 
 **Symbols:** m: the number of sampled chains, odd so there are no ties; p: the chance one chain is right on this question; k: how many of the m chains are right
 
-**Predict:** If a hard question has a chain chance of 0.3, predict whether a vote of 41 chains on it is right more often or less often than one chain.
+**Predict:** Suppose every wrong chain gives the same wrong answer and a hard question has a chain chance of 0.3. Predict whether a vote of 41 chains on it is right more often or less often than one chain.
 
 **Worked example:**
 - One chain, all questions: 0.6
@@ -268,22 +268,22 @@ $$
 - Vote on hard questions: 0.0782
 - Change from voting: 0.0243
 
-In a constructed mix with 60 percent easy questions (each chain right with chance 0.8) and hard ones (chance 0.3), one chain scores 0.6 and a vote of 11 scores 0.624. Voting lifts easy questions toward certainty and sinks hard ones.
+In a constructed mix with 60 percent easy questions (each chain right with chance 0.8) and hard ones (chance 0.3), one chain scores 0.6 and a vote of 11 scores 0.624. In this worst-case model (every wrong chain gives the same wrong answer) voting lifts easy questions toward certainty and sinks hard ones.
 
 **Calculation:** Vote correct = sum over k above 11/2 of C(11, k) p^k (1 - p)^(11 - k). Easy: 0.988. Hard (p = 0.3): 0.0782. Overall = 0.6 x 0.988 + 0.4 x 0.0782 = 0.624; one chain: 0.6 x 0.8 + 0.4 x 0.3 = 0.6.
 
-**Takeaway:** A vote pushes each question toward certainty in whichever direction a single chain already leans, so it helps only where chains are right more often than not.
+**Takeaway:** When wrong chains all repeat the same wrong answer, a vote pushes each question toward certainty in whichever direction a single chain already leans, so it helps only where chains are right more often than not. When wrong chains scatter over different answers, voting can help even where a single chain is right less than half the time.
 
-**What happens:** At Chains voting = 41, Chance one chain is right on a hard question = 0.3: On hard questions a vote of 41 is right only 0.004 of the time, against 0.3 for one chain, while easy questions rise to 1.000. Overall the vote scores 0.601 against 0.60 for one chain. With hard-question chance 0.45 the vote scores 0.704 against 0.660.
+**What happens:** At Chains voting = 41, Chance one chain is right on a hard question = 0.3: If every wrong chain gives the same wrong answer, a vote of 41 on hard questions is right only 0.004 of the time, against 0.3 for one chain, while easy questions rise to 1.000. Overall the vote scores 0.601 against 0.60 for one chain. With hard-question chance 0.45 the vote scores 0.704 against 0.660.
 
-**Why it matters:** Adding votes does not repair a model that gives the same wrong answer most of the time. The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.
+**Why it matters:** Adding votes does not repair a model that gives the same wrong answer most of the time (the case this demonstration models). The chapter's cross-model vote did worse than the best single model because lower-capacity models dragged it down.
 
 **In machines:** Self-consistency samples several chains from one model and takes the most common final answer. The chains are independent draws for a given question yet still share that model's strengths and biases.
 
-**Assumptions and limits:** Chains are drawn independently given the question, each right with a fixed chance for that question, and wrong chains are treated as not forming a majority for the right answer. In real use all chains share one model's strengths and biases and wrong chains may agree with each other.
+**Assumptions and limits:** Chains are drawn independently given the question, each right with a fixed chance for that question, The vote counts as right only if more than half of the chains are right. That is the worst case in which every wrong chain gives the same wrong answer; real self-consistency takes the most common answer, so when wrong chains scatter over different answers a right answer with fewer than half the votes can still win. In real use all chains also share one model's strengths and biases.
 
 **Check:** With p = 0.6 on a question, what is the chance that a vote of 3 chains is right?
 
 **Answer:** Right when at least 2 of 3 chains are right: 3 x 0.6^2 x 0.4 + 0.6^3 = 0.432 + 0.216 = 0.648.
 
-**Source:** Models that pick the same wrong option; anchor `models-that-pick-the-same-wrong-option`. Constructed population, not a result. Easy questions (60 percent of them) have chain accuracy 0.8 and hard ones a chosen lower value. The chapter reports, for PaLM-540B on grade-school math, 56.5 percent with one chain and 74.4 percent with a vote over 40 chains (mean of 10 runs), and 36.9 percent when PaLM-540B and a smaller model voted together; this demonstration does not reproduce those figures.
+**Source:** Models that pick the same wrong option; anchor `models-that-pick-the-same-wrong-option`. Constructed population, not a result. Easy questions (60 percent of them) have chain accuracy 0.8 and hard ones a chosen lower value. The chapter reports, for PaLM-540B on grade-school math, 56.5 percent with one chain and 74.4 percent with a vote over 40 chains (mean of 10 runs), and 36.9 percent when PaLM-540B and a smaller model voted together; this demonstration does not reproduce those figures. The rise from 56.5 to 74.4 percent in the cited paper is not reproduced, and the decline with many chains in the right panel is a result of the worst-case assumption.

@@ -52,7 +52,7 @@ At recorded value 0.75 with noise 1, the most likely attempt is right hip at pro
 
 A decoder learns the typical recording for each attempt from examples. How does its accuracy depend on how many examples it saw, and how noisy the recordings are?
 
-The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but accuracy can never pass the ceiling set by the noise in single recordings.
+The decoder learns where each attempt typically lands by averaging the examples it saw. With few examples, those averages are off by about sigma over the square root of the number of examples, and misplaced centers cause avoidable mistakes. More examples shrink that error, but on average accuracy cannot pass the ceiling set by the noise in single recordings. A simulated average can land a hair above it by chance, so a gap smaller than 0.1 points is shown as under 0.1 points and not as a negative number.
 
 $$
 \text{spread of the learned center}=\frac{\sigma}{\sqrt{n}},\qquad \text{ceiling}=\frac{4\,\Phi\!\left(\tfrac{1}{2\sigma}\right)-1}{3}
@@ -63,12 +63,12 @@ $$
 **Predict:** At noise 1, predict whether 5 examples per attempt are enough to get near the ceiling, or whether you need many more.
 
 **Worked example:**
-- Average accuracy: 57.6 percent
+- Average accuracy: 57.8 percent
 - Accuracy if the means were known: 58.9 percent
-- Gap to that ceiling: 1.3 points
-- Worst tenth of calibrations: 54 percent or less
+- Gap to that ceiling: 1.1 points
+- Worst tenth of calibrations: 57 percent or less
 
-With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.6 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 54 percent or less.
+With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57.8 percent correct, against a ceiling of 58.9 percent. The spread between calibrations is part of the answer: the worst tenth scored 57 percent or less.
 
 **Calculation:** Each calibration estimates a mean from 10 noisy examples, whose own error has spread 1 / sqrt(10) = 0.316. Ceiling: (4 x Phi(0.5 / 1) - 1) / 3 = 0.589, where Phi is the bell-curve cumulative probability.
 
@@ -88,7 +88,7 @@ With 10 examples per attempt and noise 1, 400 simulated calibrations averaged 57
 
 **Answer:** The ceiling itself depends on the noise, and quadrupling the examples only halves the center error. Halving the noise both halves the center error and lifts the ceiling.
 
-**Source:** A recording is not a command; anchor `a-recording-is-not-a-command`. Simulation with disclosed seeds: 400 calibrations per setting, each tested on 300 fresh recordings (100 per attempt), using the invented three-center model of C01-D01. It does not model the study's calibration, whose five-minute standing test and six weeks of preparation the chapter reports.
+**Source:** A recording is not a command; anchor `a-recording-is-not-a-command`. Simulation with disclosed seeds: 400 calibrations per setting, each tested on 3000 fresh recordings (1000 per attempt), using the invented three-center model of C01-D01. It does not model the study's calibration, whose five-minute standing test and six weeks of preparation the chapter reports.
 
 ## C01-D03: Why not give every voice an equal say?
 
@@ -200,7 +200,7 @@ Reliability weights give touch 0.8 here, and the combined spread 0.894 is better
 
 **Takeaway:** A rule is an idea until its predictions are checked, and different rules predict different leans and different gains.
 
-**What happens:** At Vision's spread relative to touch's = 2, Combination rule = reliability weights: Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat it.
+**What happens:** At Vision's spread relative to touch's = 2, Combination rule = reliability weights: Reliability weights give touch 0.8 and predict a combined spread of 0.894, finer than either sense (1 and 2). A plain average gives touch 0.5 whatever the picture quality, and always trusting the steadier sense can never beat the steadier sense, because it is that sense.
 
 **Why it matters:** This is the difference between describing, predicting and building: the rule described a pattern, predicted what happens when a sense degrades, and can be used to build a machine that combines measurements.
 
@@ -212,6 +212,6 @@ Reliability weights give touch 0.8 here, and the combined spread 0.894 is better
 
 **Check:** If people showed a smooth lean toward touch but no gain from using both senses, which of the three rules would that count against?
 
-**Answer:** It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either.
+**Answer:** It would count against the reliability-weight rule, which predicts both. The plain average predicts no lean, and the steadier-sense rule predicts a jump, so neither would fit a smooth lean either. A lean without a gain could also come from errors the two senses share (Chapter 2 shows shared error reduces the gain), so it counts against the rule only together with the independence assumption.
 
 **Source:** The rule was tested on people; anchor `the-rule-was-tested-on-people`. The chapter reports Ernst and Banks (2002): judgments came close to the predicted lean toward touch as the picture grew grainier and to the prediction that two senses discriminate more finely than either alone. The numbers plotted here are constructed from the rule and are not their measurements.

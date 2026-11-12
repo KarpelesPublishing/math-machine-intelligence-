@@ -17,7 +17,7 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 - **Why must a response curve stretch when the spread of its input changes? (C03-D04):** If a cell's velocity input doubles in spread, what does it do to a curve that was best before?
 - **When does a less exact rebuild beat a more exact one? (C03-D05):** One code rebuilds a patch more exactly but uses many elements; another is less exact but sparse. Which does the objective prefer?
 - **What does the sparsity penalty do to a patch's coefficients? (C03-D06):** Given the strength each element would need to rebuild a patch exactly, how many elements stay active as the penalty grows?
-- **What do reported sensitivity and specificity mean in counts? (C03-D07):** If marks on a mammogram change sensitivity by 2 points and specificity by 3, how many cancers and how many recalls change per 100,000 exams?
+- **What do reported sensitivity and specificity mean in counts? (C03-D07):** As a what-if, if marks on a mammogram changed sensitivity by 2 points and specificity by 3 (a combination neither study reported), how many cancers and how many recalls would change per 100,000 exams?
 
 ## Make the method fit the question
 

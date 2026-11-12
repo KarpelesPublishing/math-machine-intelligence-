@@ -17,7 +17,7 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 - **How does a noisy running total decide when to stop? (C15-D04):** If evidence drifts toward an answer with random jitter, when does it reach the bound, and how often does it reach the wrong one?
 - **Can stopping at a lead beat counting a fixed number of votes? (C15-D05):** Judges vote one at a time. Does stopping when one answer leads by three beat taking nine votes and counting them?
 - **How does the price of time change the best bound? (C15-D06):** A careful setting and a quick setting each earn correct answers. Which earns more per second, and does it depend on the delay between trials?
-- **When does a sampler stop, and does a settled tally mean it is right? (C15-D07):** A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does it stop on the wrong answer?
+- **When does a sampler stop, and does a settled tally mean it is right? (C15-D07):** A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does the final answer end up wrong?
 
 ## Make the method fit the question
 

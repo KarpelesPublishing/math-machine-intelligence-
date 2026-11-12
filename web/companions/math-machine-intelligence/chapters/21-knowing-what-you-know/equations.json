@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-21.md",
   "source_sha256": "fa2d05ab01b718aa45afcd48876f14875ed92567d44ba8ca719718fcc8c24130",
-  "calculation_sha256": "e52c23a67adc24410a2dae3b61667aec3d9e3f8026d330465cae58335c5354e0",
+  "calculation_sha256": "68556018dfa3a9da5001588f086da93c8a5d7b4faa1f98aac26c898bd8d11eb8",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -120,7 +120,7 @@
       "source_section": "Peirce's marks of sureness tracked accuracy, even the zeros",
       "provenance": "The tallies are the chapter's, quoted from Peirce and Jastrow's 1885 footnote: 706 zero marks among 1,125 judgments, 436 right, and 62, 82, 90 and 97 percent right at marks 0 to 3. The binomial tail is the companion's own calculation on those printed counts; the authors did not report it.",
       "kind": "reported result",
-      "assumptions": "The 706 judgments are treated as independent trials with one hit rate. That is a simplification: they came from one person over a long series. The tally covers two people on one weight task, and shows nothing about how confidence is made.",
+      "assumptions": "The 706 judgments are treated as independent trials with one hit rate. That is a simplification: they came from one person over a long series. The tally is Peirce's alone (one person, 1,125 judgments, one weight task); the whole study was two people. It shows nothing about how confidence is made.",
       "prediction": "Before moving the slider: if the true hit rate on zero marks were 0.6, would 436 right of 706 be rare or ordinary?",
       "reveal": {
         "state": {
@@ -171,7 +171,7 @@
       "title": "Can confidence sort perfectly and still be wrong about its numbers?",
       "question": "Ten answers, six right and four wrong. How do sorting and calibration behave as you change the confidence given to each group?",
       "equations": [
-        "\\text{sorting}=\\Pr(c_{\\text{right}}>c_{\\text{wrong}})+\\tfrac12\\Pr(c_{\\text{right}}=c_{\\text{wrong}}),\\qquad \\operatorname{BS}=\\frac1n\\sum_i (p_i-y_i)^2"
+        "\\text{sorting}=\\Pr(c_{\\text{right}}>c_{\\text{wrong}})+\\tfrac12\\Pr(c_{\\text{right}}=c_{\\text{wrong}}),\\qquad \\operatorname{BS}=\\frac1n\\sum_i (p_i-y_i)^2,\\qquad \\text{gap by group}=\\sum_g \\frac{n_g}{n}\\,\\bigl|c_g-h_g\\bigr|"
       ],
       "symbols_list": [
         {
@@ -185,20 +185,24 @@
         {
           "sym": "BS",
           "meaning": "the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better"
+        },
+        {
+          "sym": "gap by group",
+          "meaning": "the companion's own check: group the answers by the confidence given, compare each group's stated confidence c_g with its share right h_g, and weight by the group's share n_g/n of the answers; 0 means calibrated on this case"
         }
       ],
       "source_anchor": "one-fitted-number-cut-a-networks-calibration-error-from-1653-to-126-percent",
       "source_section": "One fitted number cut a network's calibration error from 16.53 to 1.26 percent",
-      "provenance": "Constructed example adapted by the book from Fleming and Lau (90 percent on right answers, 80 percent on wrong ones, 60 percent right). The Brier score for the settings is the companion's calculation. The other grid values are choices for exploration.",
+      "provenance": "Constructed example adapted by the book from Fleming and Lau (90 percent on right answers, 80 percent on wrong ones, 60 percent right). The Brier score for the settings is the companion's calculation. The gap by group (cases grouped by the confidence given, each group's stated confidence compared with its share right, weighted by group size) is the companion's own simple version of the chapter's group-by-group check, not a number from the book or from Fleming and Lau. The other grid values are choices for exploration.",
       "kind": "constructed example",
-      "assumptions": "Every right answer gets one confidence value and every wrong answer another, so the sorting score is 1, 0.5 or 0. Real raters give varied numbers; this reduces the case to its logic.",
+      "assumptions": "Every right answer gets one confidence value and every wrong answer another, so the sorting score is 1, 0.5 or 0, and the groups for the calibration check are the two confidence values (or one group when the two are equal). Real raters give varied numbers and need more groups; this reduces the case to its logic.",
       "prediction": "Rater A gives 0.9 to right answers and 0.8 to wrong ones. Rater B says 0.6 every time. Which has the better sorting score and which the better Brier score?",
       "reveal": {
         "state": {
           "conf_right": 0.9,
           "conf_wrong": 0.8
         },
-        "text": "A sorts perfectly (score 1) but states an average of 0.86 against a hit rate of 0.6, and its Brier score is 0.262. Now set 0.6 and 0.6: nothing is sorted (0.5), yet the numbers match the hit rate and the Brier score is 0.24, better than A's."
+        "text": "A sorts perfectly (score 1) but states an average of 0.86 against a hit rate of 0.6, so by group it misses by 0.38 (the 0.9 group is all right, the 0.8 group all wrong), and its Brier score is 0.262. Now set 0.6 and 0.6: nothing is sorted (0.5), yet the numbers match the hit rate (gap 0) and the Brier score is 0.24, better than A's."
       },
       "takeaway": "Sorting and calibration are separate checks, and a confidence can pass one while failing the other.",
       "why_it_matters": "A reviewer who can inspect only a fixed share of cases needs sorting. One who acts on a cost threshold needs the numbers to be right. Both checks are needed before trusting a confidence report.",
@@ -207,8 +211,8 @@
         "machine": "A machine's confidence can be graded on both counts, as Guo and colleagues did for calibration."
       },
       "explanation": "Sorting asks only about the order of the confidences. Calibration asks whether the numbers equal how often answers are right. Rater A has the right order and the wrong scale. Rater B has the right scale and no order. The Brier score punishes both defects, which is why a rater that sorts perfectly can still lose to one that states the base rate.",
-      "check": "Give right answers 0.8 and wrong answers 0.2. What are the sorting score and the average stated confidence?",
-      "answer": "Sorting is 1. The average stated is (6 x 0.8 + 4 x 0.2)/10 = 0.56, close to the hit rate of 0.6, and the Brier score is 0.04.",
+      "check": "Give right answers 0.8 and wrong answers 0.2. What are the sorting score and the average stated confidence, and is the rater calibrated?",
+      "answer": "Sorting is 1. The average stated is (6 x 0.8 + 4 x 0.2)/10 = 0.56, close to the hit rate of 0.6, but the average hides the failure: the answers given 0.8 were all right and the answers given 0.2 were all wrong, so by group the numbers miss the share right by 0.6 x 0.2 + 0.4 x 0.2 = 0.20. It is not calibrated. The Brier score is 0.04.",
       "controls": [
         {
           "key": "conf_right",
@@ -236,17 +240,17 @@
         }
       ],
       "function": "sorting_picture",
-      "alt": "Ten confidence dots in two groups with lines for average stated confidence and hit rate, and a grid of sorting scores and calibration gaps.",
-      "symbols": "c_right, c_wrong: the stated confidence on a right answer and on a wrong answer; sorting: chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage; BS: the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better",
+      "alt": "Ten confidence dots in two groups with lines for average stated confidence and hit rate, and a grid of sorting scores and gaps by confidence group.",
+      "symbols": "c_right, c_wrong: the stated confidence on a right answer and on a wrong answer; sorting: chance a right answer gets higher confidence than a wrong one, ties counted half; 0.5 means no advantage; BS: the Brier score, the average squared gap between stated confidence and the outcome (1 right, 0 wrong); lower is better; gap by group: the companion's own check: group the answers by the confidence given, compare each group's stated confidence c_g with its share right h_g, and weight by the group's share n_g/n of the answers; 0 means calibrated on this case",
       "application": "A reviewer who can inspect only a fixed share of cases needs sorting. One who acts on a cost threshold needs the numbers to be right. Both checks are needed before trusting a confidence report.",
       "default_parameters": "Confidence given to right answers: 0.9 · Confidence given to wrong answers: 0.8",
       "worked_example": {
         "Sorting score": "1",
-        "Average stated confidence": "0.86",
-        "Share actually right": "0.6",
+        "Average stated confidence (hit rate 0.6)": "0.86",
+        "Gap by group (0 is calibrated)": "0.38",
         "Brier score (lower is better)": "0.262"
       },
-      "worked_interpretation": "Giving right answers 0.9 and wrong ones 0.8, the sorting score is 1 and the stated numbers average 0.86 against a hit rate of 0.6. Sorting and calibration move separately: the Brier score is 0.262.",
+      "worked_interpretation": "Right answers 0.9, wrong ones 0.8: sorting score 1; the numbers average 0.86 against a hit rate of 0.6, but by group they miss by 0.38 (0 would be calibrated). An average can hide a group-by-group miss. Brier score 0.262.",
       "reader_anchor": "C21-D03"
     },
     {

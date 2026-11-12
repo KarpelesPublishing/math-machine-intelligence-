@@ -105,36 +105,36 @@ $$
 **Predict:** Predict the error of counting agreements and of weighing by steadiness for 20 candidates, and what happens when the shaky cells are as steady as the others.
 
 **Worked example:**
-- Counting, wrong picks (percent): 10.5
-- Weighing, wrong picks (percent): 1.5
+- Counting, wrong picks (percent): 10.6
+- Weighing, wrong picks (percent): 1.6
 - Random pick would be wrong (percent): 95
-- Counting errors per weighing error: 6.96
+- Counting errors per weighing error: 6.83
 
-In this seeded simulation of 40,000 trials, counting agreements picks the wrong twin 10.5 percent of the time and weighing by steadiness 1.5 percent, with shaky cells flipping 0.3 of the time. The chapter reports about 10.6 and 1.6 percent for 20 candidates and 0.30; this run is a constructed model, not a measurement.
+In this seeded simulation of 2,000,000 trials, counting picks the wrong twin 10.6 percent of the time and weighing 1.6 percent, with shaky cells flipping 0.3. The chapter reports about 10.6 and 1.6 for 20 candidates at 0.30. Constructed model, not a measurement; Monte Carlo error about 0.02 and 0.01 points.
 
-**Calculation:** Weights: steady 2.25, shaky 0.323. Each trial draws one 40-cell character, two redraws (picture and twin) and 19 unrelated grids; the lowest total penalty wins and ties are broken at random. Equal flip chances (0.05 and 0.05) give equal weights, so the two methods then agree exactly.
+**Calculation:** Weights: steady 2.25, shaky 0.323. Each trial draws one 40-cell character, two redraws (picture and twin) and 19 unrelated grids; the lowest total penalty wins and ties are broken at random. Equal flip chances (0.05 and 0.05) give equal weights, so the two methods then agree exactly. Standard error of a simulated rate = sqrt(rate x (1 - rate)/2,000,000), here 0.02 and 0.01 percentage points. The ratio of the two rates is shown only when both are at least 1 percent, because a smaller rate rests on too few wrong picks to trust the ratio.
 
 **Takeaway:** The benefit of weighing comes from the learner knowing how cells differ in steadiness; with nothing to know, it adds nothing.
 
-**What happens:** At Flip chance of the 20 shaky cells = 0.3, Candidates to choose among = 20: Counting is wrong about 10.5 percent of the time and weighing about 1.5 percent in this seeded run, close to the chapter's 10.6 and 1.6. Slide the shaky chance down to 0.05 and the two methods become identical, since all weights are equal.
+**What happens:** At Flip chance of the 20 shaky cells = 0.3, Candidates to choose among = 20: Counting is wrong about 10.6 percent of the time and weighing about 1.6 percent in this seeded run of 2,000,000 trials, matching the chapter's 10.6 and 1.6 within Monte Carlo error (about 0.02 and 0.01 points). An earlier 40,000-trial run showed 10.5 and 1.5; that gap was sampling noise, not a disagreement with the book. Slide the shaky chance down to 0.05 and the two methods become identical, since all weights are equal.
 
 **Why it matters:** It shows the prior doing real work in a controlled world, and that its value depends on how well it matches the world.
 
 **In machines:** Both pickers are explicit procedures that a program applies; the second needs the flip chances as background knowledge.
 
-**Assumptions and limits:** The chapter's constructed world: independent 40-cell grids, 20 steady cells at 0.05, the rest at the shaky chance, other candidates unrelated characters, ties broken at random. A simulation is a computation with a stated model, not a measurement.
+**Assumptions and limits:** The chapter's constructed world: independent 40-cell grids, 20 steady cells at 0.05, the rest at the shaky chance, other candidates unrelated characters, ties broken at random. A simulation is a computation with a stated model, not a measurement, and every simulated rate carries Monte Carlo error. When a rate falls under 1 percent the ratio of counting to weighing errors is not shown, since it rests on too few wrong picks.
 
 **Check:** If every cell had the same flip chance, why would counting and weighing give the same answers?
 
 **Answer:** All weights would then be equal, so the weighted penalty is a constant times the count and ranks candidates the same way.
 
-**Source:** One example was enough because the learner knew how characters are drawn; anchor `one-example-was-enough-because-the-learner-knew-how-characters-are-drawn`. Simulation with disclosed seeds (11000 plus 10 times the shaky chance in percent plus the number of candidates), 40,000 trials per setting, written for this companion from the chapter's description. The chapter reports about 10.6 and 1.6 percent for 20 candidates and a shaky flip chance of 0.30. Not a result from the paper.
+**Source:** One example was enough because the learner knew how characters are drawn; anchor `one-example-was-enough-because-the-learner-knew-how-characters-are-drawn`. Simulation with disclosed seeds (11000 plus 10 times the shaky chance in percent plus the number of candidates), 2,000,000 trials per setting (an earlier 40,000-trial version gave 10.5 and 1.5 at the default, which was Monte Carlo noise, not a disagreement with the book), written for this companion from the chapter's description. The chapter reports about 10.6 and 1.6 percent for 20 candidates and a shaky flip chance of 0.30; the default run here gives 10.6 and 1.6. Not a result from the paper.
 
 ## C11-D04: What did the one-shot character test report?
 
 After one look at a new handwritten character, how often did people, a stroke model and a convolutional network pick its twin wrongly, and how did that change with less background?
 
-The stroke model fitted numbers inside a fixed plan of strokes, parts and relations. Tripling its allowance for how much one copy differs from the standard form raised errors from 3.3 to 11.0 percent. A separate lesion to what it learned about how strokes are shaped, sized and joined left errors at 3.5.
+The stroke model fitted numbers inside a fixed plan of strokes, parts and relations. Tripling its allowance for how much one copy differs from the standard form raised errors from 3.3 to 11.0 percent. A separate lesion to what it had learned about how strokes are shaped, sized and joined left errors at 3.5 (from the paper's supplement, as the chapter cites it).
 
 $$
 \text{errors}=100\times\frac{\text{wrong picks}}{\text{trials}}
@@ -154,9 +154,9 @@ Reported errors for 30 alphabets: stroke model 3.3 percent, convolutional networ
 
 **Calculation:** Network errors divided by stroke-model errors = 13.5/3.3 = 4.09. In the lesion rows the network figure is its intact 13.5, and the stroke figure is the lesioned model's.
 
-**Takeaway:** A built-in plan needed few earlier examples to fill in its numbers, and one learned part, how much copies vary, mattered a great deal. The reported results do not show that the whole prior did.
+**Takeaway:** One reading is that a built-in plan needs few earlier examples to fill in its numbers; the authors do not say why the gap widened. One learned part, how much copies vary, mattered a great deal. The reported results do not show that the whole prior did.
 
-**What happens:** At Case = five alphabets, first set: The stroke model rose only from 3.3 to 4.3 percent, while the network went from 13.5 to 24.0. Then pick the lesion that tripled copy variation: the stroke model's errors rise to 11.0, so knowing how copies vary was doing real work.
+**What happens:** At Case = five alphabets (set 1 as listed): The stroke model rose only from 3.3 to 4.3 percent, while the network went from 13.5 to 24.0. Then pick the lesion that tripled copy variation: the stroke model's errors rise to 11.0, so knowing how copies vary was doing real work.
 
 **Why it matters:** It is the chapter's evidence that a prior can make one example enough, and its warning that the gap between models is not all prior.
 
@@ -164,13 +164,13 @@ Reported errors for 30 alphabets: stroke model 3.3 percent, convolutional networ
 
 **In machines:** The stroke model is a program with a designed structure (the authors call it prewired) and numbers learned from earlier characters; the network learned from pictures only.
 
-**Assumptions and limits:** Nothing is recomputed. The authors say the 4.5 percent for people may be an upper bound, since people answered quickly and had no incentive. The stroke model also had pen-stroke data the network never saw, and the two were trained on different tasks.
+**Assumptions and limits:** Nothing is recomputed. The chapter lists the two stroke-model errors (4.3, 4.0) and the two network errors (24.0, 22.3) without saying which belong to the same set; pairing them in listed order is an assumption, which is why the two rows read 'as listed' and their connecting lines are dotted. The authors say the 4.5 percent for people may be an upper bound, since people answered quickly and had no incentive. The stroke model also had pen-stroke data the network never saw, and the two were trained on different tasks.
 
 **Check:** Does the lesion result show that the whole prior accounts for the gap between 3.3 and 13.5 percent?
 
 **Answer:** No. It shows that knowing how copies vary mattered. The stroke model also had pen strokes the network never saw, and the authors give no split of how much each difference mattered.
 
-**Source:** One example was enough because the learner knew how characters are drawn; anchor `one-example-was-enough-because-the-learner-knew-how-characters-are-drawn`. Reported results quoted from the chapter: Lake, Salakhutdinov and Tenenbaum (Science, 2015) and the 2019 progress report. 40 people on Mechanical Turk, ten trials each; the 3.5 percent figure for the stroke-learning lesion comes from the paper's supplement as cited in the chapter. The two five-alphabet sets are listed in the order the chapter gives them, and each used 136 or 156 characters.
+**Source:** One example was enough because the learner knew how characters are drawn; anchor `one-example-was-enough-because-the-learner-knew-how-characters-are-drawn`. Reported results quoted from the chapter: Lake, Salakhutdinov and Tenenbaum (Science, 2015) and the 2019 progress report. 40 people on Mechanical Turk, ten trials each; the 3.5 percent figure for the lesion of what the model had learned about how strokes are shaped, sized and joined comes from the paper's supplement as cited in the chapter. The two five-alphabet sets are listed in the order the chapter gives them, and each used 136 or 156 characters.
 
 ## C11-D05: How much did a manual change a first game?
 
@@ -190,11 +190,11 @@ $$
 - Mean first-game score: 1,848
 - Times the no-help score: 5.19
 - Players in the group: 72
-- On the 2015 paper's scale (companion's conversion): 41.8
+- Original DQN on the 2015 scale (after about 920 hours of training): 6.2
 
-Players in the group 'read a manual' averaged 1,848 points, 5.19 times the no-help 356. The chapter reads the manual result as a hint that people build a model of the game, which is the authors' interpretation; no mechanism was measured. The original deep Q-network scored 328.3, 6.2 on the 2015 scale.
+Players in the group 'read a manual' averaged 1,848 points, 5.19 times the no-help 356. The authors read the manual result as a hint that people build a model of the game; no mechanism was measured. The original network, after about 920 hours of training, scored 328.3, 6.2 on the 2015 scale.
 
-**Calculation:** Ratio = 1,848/356 = 5.19. Scale = 100 x (score - 65.2)/(4,335 - 65.2); for 328.3 this is 6.2, the 6.2 the 2015 paper reports. For the human groups the same conversion is this companion's own, and the two studies differ in training, players and setting.
+**Calculation:** Ratio = 1,848/356 = 5.19. Scale = 100 x (score - 65.2)/(4,335 - 65.2); for 328.3 this is 6.2, the 6.2 the chapter reports. The human group means are not put on this scale: the chapter says nothing shows the manual group played like professionals, and the two studies differ in training, players and setting.
 
 **Takeaway:** A short manual was worth about five times the first-game score, but the reported data do not say what the manual changed in the players' minds.
 
@@ -206,13 +206,13 @@ Players in the group 'read a manual' averaged 1,848 points, 5.19 times the no-he
 
 **In machines:** The networks learn from game scores over about 920 hours of play, while the manual players had one session.
 
-**Assumptions and limits:** A short symposium paper comparing four Frostbite groups on first episodes only. The 328.3 is the original deep Q-network, not the Double DQN the authors compared; people and networks come to the game with different things already in place, so the comparison is not a fair count of what each learner had beforehand.
+**Assumptions and limits:** A short symposium paper comparing four Frostbite groups on first episodes only. The 328.3 is the original deep Q-network after about 920 hours of training, not a first-game score and not the Double DQN the authors compared; people and networks come to the game with different things already in place, so the comparison is not a fair count of what each learner had beforehand.
 
 **Check:** The original network scored 328.3 against 65.2 for random play and 4335 for a professional tester. What is that on the 2015 scale?
 
 **Answer:** 100 x (328.3 - 65.2)/(4335 - 65.2) = 6.2, the figure in the 2015 paper.
 
-**Source:** Players who read a manual scored 5.2 times higher in their first Frostbite game; anchor `players-who-read-a-manual-scored-52-times-higher-in-their-first-frostbite-game`. Reported results quoted from the chapter and its sources: Tsividis and colleagues (2017) for the four group means (356, 417, 1,144 and 1,848) and group sizes; Mnih and colleagues (2015) for the 328.3 score and the 6.2 percent scale. The conversion of the human scores to the 2015 scale is this companion's own, to show the scale.
+**Source:** Players who read a manual scored 5.2 times higher in their first Frostbite game; anchor `players-who-read-a-manual-scored-52-times-higher-in-their-first-frostbite-game`. Reported results quoted from the chapter and its sources: Tsividis and colleagues (2017) for the four group means (356, 417, 1,144 and 1,848) and group sizes; Mnih and colleagues (2015) for the 328.3 score and the 6.2 percent scale. The companion converts only the network's 328.3 to that scale (the chapter's 6.2); it does not convert the human scores.
 
 ## C11-D06: How sure can n successes make you?
 
@@ -322,11 +322,11 @@ For the triple 1 3 13, the true rule (increasing order) says yes and the narrow 
 
 **Takeaway:** An example that every candidate rule explains teaches nothing, and a test case is an input chosen to make the rules disagree.
 
-**What happens:** At Test item = triple 1 3 13: Only 1 3 13 splits the rules here: the true rule says yes and the narrow rule no. The triple 10 12 14 fits both and 3 2 1 fails both, so neither teaches anything. Then try the prompt 2 # 1, which separates addition from 'first plus twice the second'.
+**What happens:** At Test item = triple 1 3 13: 1 3 13 and 1 2 3 both split the rules here: the true rule says yes and the narrow rule says no. The triple 10 12 14 fits both and 3 2 1 fails both, so neither teaches anything. Then try the prompt 2 # 1, which separates addition from 'first plus twice the second'.
 
 **Why it matters:** It gives a way to check any confident answer, from a person or a machine: ask for a case where the favored rule and a rival differ.
 
-**In brains and behavior:** Wason's students mostly tested triples that fit their own guess. That is the chapter's account of one lab task, not a law of how people reason.
+**In brains and behavior:** In the chapter's account of Wason's 1960 task, 22 of 29 students announced a wrong rule first, nearly all narrower than the true one. That is one lab task, not a law of how people reason.
 
 **In machines:** The # prompt is an invented illustration; no system was tested.
 

@@ -72,7 +72,7 @@ With an asking cost of 0.05 and the counselor right on hard cases 0.7 of the tim
 
 **Calculation:** Model alone: 0.8 x 0.95 + 0.2 x 0.60 = 0.88. Counselor alone: 0.8 x 0.90 + 0.2 x 0.7 = 0.86. Rule h - c > q: clear 0.85 vs 0.95; hard 0.65 vs 0.60. Net = accuracy - 0.05 x share routed (0.2).
 
-**Takeaway:** Routing beat both solo scores in the constructed case, but only while asking costs under 0.10 and the counselor is clearly better on hard cases.
+**Takeaway:** Routing beat both solo scores in the constructed case, but only while the counselor's success on hard cases minus the asking cost stayed above the model's 0.60. With the counselor at 0.70 that means an asking cost under 0.10.
 
 **What happens:** At Cost of asking, per question = 0.05, Counselor's success on hard cases = 0.7: Clear cases stay with the model (0.90 minus 0.05 is 0.85, short of 0.95). Hard cases go to the counselor (0.65 beats 0.60). Accuracy rises from 0.88 to 0.90, net score is 0.89, and the counselor alone scores 0.86, so the routed system beats the better solo score, 0.88.
 
@@ -134,28 +134,28 @@ The person overrides all 150 disagreements and is right on 60 (40 percent), so o
 
 ## C25-D04: Did doctors with a chat model beat the chat model alone?
 
-Three trials gave doctors, or the public, a chat model and also scored the model alone. How big was the gain from the model, and how far did the people using it fall short of the model alone?
+Four trials gave doctors, or the public, a chat model and also scored the model alone. How big was the gain from the model, and how far did the people using it fall short of the model alone?
 
-Each trial has an arm with the model and an arm without, and an arm where the model worked alone. The gain is the first difference and the gap is the second. Putting them in one stack shows how much of the distance to the model's score the people closed.
+Each trial has an arm with the model and an arm without, and an arm where the model worked alone. The gain is the first difference and the gap is the second. Putting them in one stack shows how much of the distance to the model's score the people closed. Hatched pieces are differences that could not be told from zero.
 
 $$
 \text{gain}=\bar x_{\text{pair}}-\bar x_{\text{no model}},\qquad \text{gap}=\bar x_{\text{model alone}}-\bar x_{\text{pair}}
 $$
 
-**Symbols:** gain: points the model added for the people using it, as reported; gap: points by which the model alone scored above the people using it
+**Symbols:** gain: points the model added for the people using it, as reported (in the 50-doctor trial the difference could not be told from chance); gap: points by which the model alone scored above the people using it (in the 92-doctor trial the paper prints the sign both ways, so no direction is claimed)
 
 **Predict:** Before switching trials, predict whether the doctors using the model reached the model's own score in any of the three doctor trials.
 
 **Worked example:**
-- Gain from the model (points): 2
+- Gain from the model (points): 2 (could not be told from chance)
 - Model alone above the pair (points): about 16
 - How that gap was obtained: a reading of medians, not tested
 
-50 doctors, written cases: the model added 2 points for the people using it, yet the model alone sat about 16 points above them. The trials are scored differently and cannot be pooled.
+50 doctors, written cases: doctors using the model scored 2 points higher at the median, a difference the paper could not tell from chance; GPT-4 alone sat about 16 points above them, a reading of the medians, not a tested result. The trials are scored differently and cannot be pooled.
 
-**Calculation:** GPT-4 alone: three model-only runs. The paper did not test the pair against the model alone.
+**Calculation:** GPT-4 alone: three model-only runs. The paper did not test the pair against the model alone. The 16 here is 92 minus 76, the chapter's reading of the medians.
 
-**Takeaway:** In each trial the machine alone scored at or above the people using it (in the 92-doctor trial by about a point, too small to tell from zero), though the arms received different inputs and one comparison was not tested directly.
+**Takeaway:** In the 50-doctor, 58-doctor and public trials the machine alone scored above the people using it; in the 92-doctor trial the two were about a point apart and the paper's sign is inconsistent, so no direction is claimed. The arms received different inputs, and the 50-doctor comparison was not tested directly.
 
 **What happens:** At Which trial = qazi: In the trained-doctor trial the model added 27.5 points, yet the model alone still scored 11.5 points above the doctors working with it. The pair beat the model's median in 31.4 percent of cases.
 
@@ -163,7 +163,7 @@ $$
 
 **In brains and behavior:** The people are doctors or members of the public, so the results are about how people use a chat model, not about neurons.
 
-**In machines:** The chat models are the stronger solo member in these written-case tasks, as in the review's split by who was better alone.
+**In machines:** In three of the four trials the chat model alone scored above the people using it; in the 92-doctor trial the two were about a point apart. The chapter links this to the review's split by who was better alone.
 
 **Assumptions and limits:** The trials score different things, so the points are not comparable across them. The opening trial did not test the pair directly against the model alone, and the model-alone arms were exploratory in some trials. The public trial's models received the whole scenario while participants had to convey the details. Written cases, not patients. Nothing here is a clinical claim.
 
@@ -171,7 +171,7 @@ $$
 
 **Answer:** The paper reports no separate test of the pair against GPT-4 alone. The 16 points are the difference between two medians, 92 and 76, so they are a reading of the numbers.
 
-**Source:** Doctors with a chat model scored at or below the chat model alone; anchor `doctors-with-a-chat-model-scored-at-or-below-the-chat-model-alone`. Reported values quoted in the chapter and its source notes: Goh and colleagues 2024 (50 doctors: medians 74, 76 and 92), Goh and colleagues 2025 (92 doctors: plus 6.5; about one point from GPT-4 alone), Qazi and colleagues 2026 (58 trained doctors: 71.4 against 42.6, adjusted 27.5; model alone 11.5 above the pair), Bean and colleagues 2026 (1,298 members of the public: 94.9 against under 34.5). The model-alone score of 82.9 is derived by this companion from two reported numbers. No simulation.
+**Source:** Doctors with a chat model scored at or below the chat model alone; anchor `doctors-with-a-chat-model-scored-at-or-below-the-chat-model-alone`. Reported values quoted in the chapter and its source notes: Goh and colleagues 2024 (50 doctors: medians 74, 76 and 92), Goh and colleagues 2025 (92 doctors: plus 6.5; about one point from GPT-4 alone, with the sign printed both ways in the paper), Qazi and colleagues 2026 (58 trained doctors: 71.4 against 42.6, adjusted 27.5; model alone 11.5 above the pair), Bean and colleagues 2026 (1,298 members of the public: 94.9 against under 34.5). The model-alone score of 82.9 is derived by this companion from two reported numbers. No simulation.
 
 ## C25-D05: How often did a fixed rule match or beat the professional?
 
@@ -201,11 +201,11 @@ Of 136 studies, the rule did clearly better in 64, about equal in 64 and worse i
 
 **What happens:** At How to count ties = ties count for the rule: Counting ties for the rule, it matched or beat the professional in 128 of 136 studies, 94 percent. Counting only clear wins it is 47 percent. The professional clearly won only 8 times, about 6 percent, however ties are counted.
 
-**Why it matters:** The rule does not know anything the professional lacks. Its advantage is steadiness, and a tool could show a person the same cases twice and report how far the two ratings differ.
+**Why it matters:** A count of studies cannot say why the rules won; steadier use of the cues and better weights both fit the facts. A tool could show a person the same cases twice and report how far the two ratings differ.
 
-**In brains and behavior:** The professionals were trained clinicians and similar judges. The drift of a judge from case to case is inferred from the rule's success, not measured.
+**In brains and behavior:** The professionals were trained clinicians and similar judges. Any drift of a judge from case to case is inferred, not measured.
 
-**In machines:** The rule is a fixed equation or table that weighs the cues the same way each time. It holds no new knowledge.
+**In machines:** The rule is a fixed equation or table that weighs the cues the same way each time. In Goldberg's case it held only the psychologist's habits.
 
 **Assumptions and limits:** The studies are those the authors could find, so the count describes that collection, not every task. A count of studies cannot say why the rules won; steadier use of the cues and better weights both fit the facts.
 
@@ -238,20 +238,20 @@ For the average judge, the reported correlation with the recorded diagnosis is 0
 
 **Calculation:** r squared = 0.28 x 0.28 = 0.0784, about 7.8 percent. The chapter gives only the correlations.
 
-**Takeaway:** Steady use of the cues did about as well as the professional's judgment, and random weights did about as well as the fitted ones.
+**Takeaway:** Steady use of the cues may explain why the equations did about as well as the professional's judgment, and random weights did about as well as the fitted ones.
 
-**What happens:** At Which scorer = random: Equations with random weights scored .30, above the average judge's .28 and close to the fitted equation's .31. The advantage here is steady use of the cues, not good weights; the chapter says a plausible reason is that the equation weighs the cues the same way every time.
+**What happens:** At Which scorer = random: Equations with random weights scored .30, above the average judge's .28 and close to the fitted equation's .31. A plausible reading, the chapter's, is steady use of the cues: the equation weighs them the same way every time. The chapter notes the drift of a judge is inferred, not measured.
 
-**Why it matters:** A fixed rule gets credit for consistency. The design lesson is to collect the person's judgment under comparable conditions and keep a benchmark.
+**Why it matters:** A fixed rule may get credit for consistency. The design lesson is to collect the person's judgment under comparable conditions and keep a benchmark.
 
 **In brains and behavior:** The judges were clinical psychologists reading questionnaire profiles. The correlation says how well their ratings tracked a diagnosis, not how they reasoned.
 
-**In machines:** The fitted equation is a model of the judge's habits. The random-weight equation is a rule with no tuning at all.
+**In machines:** The fitted equation is a model of the judge's habits. The random-weight equation is an equation with random weights.
 
 **Assumptions and limits:** The criterion was the recorded diagnosis, neurotic or psychotic, in one data set of 861 profiles. The equation held no new knowledge, only the psychologist's habits. No account reports a judge rating the same profile twice, so the drift is inferred, not measured.
 
 **Check:** Why does the chapter not conclude that the equation held more knowledge than the judge?
 
-**Answer:** The equation was tuned to the judge's own ratings from the same scores. It held only the judge's habits, so its small edge points to steadiness rather than new knowledge.
+**Answer:** The equation was tuned to the judge's own ratings from the same scores. It held only the judge's habits, so its small edge is consistent with steadiness rather than new knowledge. The chapter calls steadiness a plausible reason, inferred and not measured.
 
 **Source:** A fixed rule often matched or beat the professional it replaced; anchor `a-fixed-rule-often-matched-or-beat-the-professional-it-replaced`. Reported correlations quoted in the chapter and its source notes from Goldberg (1970) and Dawes (1979): the average judge .28, the average fitted equation .31, and equations with random weights .30. The r squared values are this companion's own arithmetic. Accounts differ on how many equations beat their judges, so no count is printed. No simulation.

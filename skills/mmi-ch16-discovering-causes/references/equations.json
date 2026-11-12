@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-16.md",
   "source_sha256": "ee1d8b62913a21701c80e9226616af743ae0d1eeb0a7fb30e90701e7107f87f5",
-  "calculation_sha256": "ed14eda171731a8a75b1640bbcb735ab4040f3866e3998d49d6797bb53f7d44d",
+  "calculation_sha256": "5cf8b7caf04828a5017026f429d2df614625973ec29be39ce558e1b7cbd4c367",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -69,7 +69,7 @@
         },
         {
           "key": "p_trigger",
-          "label": "Starting chance a block triggers it",
+          "label": "Starting chance a block triggers it (companion's choice)",
           "values": [
             0.1,
             0.3,
@@ -84,7 +84,7 @@
       "alt": "Bars of the chance of each of four explanations after the chosen events, and a grid of those chances at every stage.",
       "symbols": "h: one of four explanations: neither block triggers, only A, only B, or both; e_1 ... e_k: the events watched so far (B alone: nothing; A alone: lit; A and B: lit); P(h): the starting chance of an explanation; here each block triggers with chance p, independently; [h fits e]: 1 if the explanation allows what was seen, 0 if it is crossed out",
       "application": "A system that keeps a list of rival explanations and strikes out the ones the data contradict does a simple form of Bayesian updating, as long as someone supplies the list and the starting chances.",
-      "default_parameters": "Events watched (0 to 3): 3 · Starting chance a block triggers it: 0.5",
+      "default_parameters": "Events watched (0 to 3): 3 · Starting chance a block triggers it (companion's choice): 0.5",
       "worked_example": {
         "Explanations still possible": "1",
         "Chance neither block triggers it": "0",
@@ -160,7 +160,7 @@
         },
         {
           "key": "coin_chance",
-          "label": "Chance the hidden coin is on",
+          "label": "Chance the hidden coin is on (0.5 is the chapter's)",
           "values": [
             0.1,
             0.3,
@@ -173,19 +173,19 @@
       "alt": "Bars of how often the light is on after setting the switch in machines H and D, and chances that H looks exactly like D against trials.",
       "symbols": "y: the outcome, here the light; x: the variable, here the switch; do(x): x was set from outside, not merely seen; p(y | x): the chance of y among recorded cases where x had that value",
       "application": "A machine that learns only from logs can mistake a switch that merely accompanies the light for one that makes it. Setting the variable on randomly chosen trials separates the two.",
-      "default_parameters": "Trials in each arm: 8 · Chance the hidden coin is on: 0.5",
+      "default_parameters": "Trials in each arm: 8 · Chance the hidden coin is on (0.5 is the chapter's): 0.5",
       "worked_example": {
         "Logged chance of light when switch on (both)": "1",
         "Light after set on, H": "0.5",
         "Light after set on, D": "1",
-        "Chance H mimics D in the experiment": "1.53e-05"
+        "Chance H mimics D in the experiment": "1.53e-5"
       },
-      "worked_interpretation": "In both logs the light was on whenever the switch was. Set by hand, the light comes on 0.5 of the time in H and always in D. With 8 trials per arm, H shows D's exact pattern by luck with chance 1.53e-05.",
+      "worked_interpretation": "In both logs the light was on whenever the switch was. Set by hand, the light comes on 0.5 of the time in H and always in D. With 8 trials per arm, H shows D's exact pattern by luck with chance 1.53e-5.",
       "reader_anchor": "C16-D02"
     },
     {
       "id": "C16-D03",
-      "title": "How much of a risk ratio is the hidden gene?",
+      "title": "How much of a risk ratio is the gene?",
       "question": "Smokers look five times as likely to get cancer when everyone is lumped, but a gene feeds both smoking and cancer. What does adjusting by the gene give?",
       "equations": [
         "P(Y=y\\mid\\operatorname{do}(X=x))=\\sum_z P(Y=y\\mid X=x,Z=z)\\,P(Z=z)"
@@ -389,13 +389,13 @@
         },
         "text": "With the lagoon allowed and worth 10 hits, circling beats both racing behaviors on the stand-in score while never finishing the race, so the stand-in is hackable. With only racing behaviors it was safe; with the lagoon worth 2 hits or fewer it stays safe until mixtures are allowed."
       },
-      "takeaway": "Whether a stand-in is safe depends on which behaviors are allowed, and allowing every mixture of behaviors makes it safe only when the two scores rank everything alike.",
+      "takeaway": "Whether a stand-in is safe depends on which behaviors are allowed, and allowing every mixture of behaviors makes it safe only when the two scores rank everything alike or one of them never tells any behaviors apart.",
       "why_it_matters": "A score that moved with the goal in the cases anyone watched can part ways with it as soon as an optimizer finds a case nobody watched. Naming the allowed behaviors is part of checking a stand-in.",
       "sides": {
         "brain": "The chapter brings in Goodhart and Strathern as arguments about audit and economic data, not measurements, and not about brains.",
         "machine": "The OpenAI post reports the agent's lagoon behavior and an average score 20 percent above human players, with no algorithm and no raw scores. Skalse and colleagues prove results for simple, finite settings only."
       },
-      "explanation": "The real goal is finishing and the stand-in is target hits. Among the racing behaviors, more hits never means finishing less, so pushing hits is safe. Add a behavior that never finishes but collects many hits and you can raise the stand-in score by giving up the race. Allow mixtures and the scores must agree on every mixture, which these two cannot do.",
+      "explanation": "The real goal is finishing and the stand-in is target hits. Among the racing behaviors, more hits never means finishing less, so pushing hits is safe. Add a behavior that never finishes but collects many hits and you can raise the stand-in score by giving up the race. Allow mixtures and the scores must agree on every mixture (or one of them must never tell behaviors apart), which these two cannot do.",
       "check": "The lagoon is worth 2 hits and only the finite list of four behaviors is allowed. Is pushing the stand-in score safe?",
       "answer": "Yes. The lagoon's 2 hits do not strictly exceed the 2 hits of the lowest-scoring racing behavior, so no allowed pair has a higher stand-in score and a lower real score.",
       "controls": [
@@ -465,7 +465,7 @@
       ],
       "source_anchor": "agents-that-copy-an-expert-who-experimented",
       "source_section": "Agents that copy an expert who experimented",
-      "provenance": "A constructed, seeded simulation (seed 1616, 2000 random diagrams per setting) in the spirit of the setup the chapter describes from Lampinen and colleagues (2023): five variables, five exploratory steps, settings of plus or minus 4, a cue naming the variable to push. The edge weights, noise and the rule-based explorers are this companion's; the paper's agents were trained networks and the chapter gives no percent of optimal for them.",
+      "provenance": "A constructed, seeded simulation (seed 1616, 100,000 random diagrams per setting, sample averages) in the spirit of the setup the chapter describes from Lampinen and colleagues (2023): five variables, five exploratory steps, settings of plus or minus 4, a cue naming the variable to push. The edge weights, noise and the rule-based explorers are this companion's; the paper's agents were trained networks and the chapter gives no percent of optimal for them.",
       "kind": "simulation",
       "assumptions": "Random linear diagrams with no loops, edge weights of size 0.5 to 1.5 and either sign, equal noise on every variable, and a cued variable that cannot itself be set. The setter pushes each variable once; the watcher takes five unforced episodes and follows the strongest correlation with the cue. A simulation is a computation with disclosed seeds, never a measurement of an agent.",
       "prediction": "The setter pushes each variable by 4 and the noise sd starts at 1. Predict whether the setter still beats the watcher when the noise sd rises to 4, the size of the push.",
@@ -474,10 +474,10 @@
           "noise": 1.0,
           "density": 0.6
         },
-        "text": "At noise sd 1 and edge chance 0.6 the setter reaches about 0.93 of the best value, the watcher about 0.46 and a random choice about 0. Turn the noise up to 4, the size of the push, and the setter falls to about 0.37, below the watcher, whose share does not change with noise."
+        "text": "At noise sd 1 and edge chance 0.6 the setter reaches about 0.93 of the best value, the watcher about 0.46 and a random choice about 0 (best value about 3.7, a sample average). Turn the noise up to 4, the size of the push, and the setter falls to about 0.38, below the watcher, whose share does not change with noise. At edge chance 0.9 the two end up about level instead."
       },
-      "takeaway": "In this constructed world, trying each variable once reads off what each does to the cue far better than watching, until the noise grows as large as the push and one trial no longer shows the effect.",
-      "why_it_matters": "The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation shows why watching reads cause less directly, and that setting needs a push that stands out from the noise.",
+      "takeaway": "In this constructed world, trying each variable once reads off what each does to the cue far better than watching, but the lead shrinks as the noise nears the push. At noise 4 (the size of the push) the watcher is ahead at edge chance 0.3 and 0.6, and the two are about level at 0.9.",
+      "why_it_matters": "The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation illustrates why watching reads cause less directly, and that setting needs a push that stands out from the noise.",
       "sides": {
         "brain": "No brain recording is involved. The only link to the children is that taking a block off is an intervention a child can attempt and a log cannot.",
         "machine": "In the paper, imitation-trained networks reached close to the best reward on a held-out causal link only when they could intervene at test time. The explorers here are rule-based stand-ins, not those networks."
@@ -513,15 +513,15 @@
       "function": "experimenter_picture",
       "alt": "Bars of average value reached by four agents in a seeded simulation, and curves of share of the best value against noise.",
       "symbols": "X_t: the cued variable; a: the value an agent sets for variable v (plus or minus 4); W: edge weights of the world's diagram (entry i, j is the weight of an edge from i to j); P_{vt}: the sum over all paths from v to t of the product of edge weights; the effect of setting v by one unit on t",
-      "application": "The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation shows why watching reads cause less directly, and that setting needs a push that stands out from the noise.",
+      "application": "The chapter reports that agents trained on an expert's records learned to experiment, and that this worked when the agent could act at test time and much less well when it could only watch. This computation illustrates why watching reads cause less directly, and that setting needs a push that stands out from the noise.",
       "default_parameters": "Noise sd on every variable: 1.0 · Chance of an edge between two variables: 0.6",
       "worked_example": {
-        "Sets each variable once": "0.932",
-        "Only watches": "0.456",
-        "Random choice": "-0.00726",
-        "Best possible (value of cued variable)": "3.8"
+        "Sets each variable once": "0.93",
+        "Only watches": "0.46",
+        "Random choice": "-0.00122",
+        "Best possible (sampled average value)": "3.7"
       },
-      "worked_interpretation": "Across 2000 random five-variable linear diagrams (noise sd 1, edge chance 0.6), an explorer that sets each variable once reaches 0.932 of the best value, one that only watches reaches 0.456, and a random choice -0.00726. This is the companion's constructed world, not the paper's.",
+      "worked_interpretation": "In 100,000 random five-variable diagrams (noise sd 1, edge chance 0.6), a rule-based explorer that sets each variable once reaches 0.93 of the best value, one that only watches 0.46, and a random pick -0.00122. The setter is ahead here. This is the companion's constructed world, not the paper's networks.",
       "reader_anchor": "C16-D06"
     }
   ]

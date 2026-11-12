@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-15.md",
   "source_sha256": "4f3297a93f6388397a2f6f86d07f2d030fcd9e421210562539282dc8d43b683a",
-  "calculation_sha256": "f37682957b8cf9ccff3331d1f622764d1b3918d5f0ac8b9ca5902aec1078d52f",
+  "calculation_sha256": "18938b4a1654d2a71cad9a285c94474a7c7e4cd9ea87838345144eccc2fb903a",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -129,7 +129,7 @@
           "dprime": 2.12,
           "cutoff": 1.3
         },
-        "text": "Sharpness 2.12 with the cutoff at 1.3 spreads gives a hit rate near 79.4 percent and a false-alarm rate near 9.7 percent, close to Eddy's 79.2 and 9.6. Slide the cutoff and the ringed point travels along the curve; only a different sharpness moves the curve."
+        "text": "Sharpness 2.12 with the cutoff at 1.3 spreads gives a hit rate near 79.4 percent and a false-alarm rate near 9.7 percent, matching Eddy's 79.2 and 9.6 by construction: the sharpness was chosen from those two rates, so this is a reading of them, not a test. Slide the cutoff and the ringed point travels along the curve; only a different sharpness moves the curve."
       },
       "takeaway": "A looser cutoff adds hits and false alarms together. Sharpness, the clarity of the evidence, stays put.",
       "why_it_matters": "A stricter cutoff can cut false alarms but misses more cases, and no cutoff rescues evidence that is poor. Asking for the hit rate alone, or the false-alarm rate alone, hides the trade.",
@@ -303,7 +303,7 @@
         },
         "text": "With no noise the total climbs straight to the bound in 5 seconds, as in the chapter. Now raise the noise: the mean time barely moves at noise 2, falls to about 4.2 s at noise 4 and about 1.5 s at noise 8, but the chance of ending at the wrong edge rises to about 35 percent."
       },
-      "takeaway": "Drift sets the average climb; noise scatters single trials, and enough noise buys speed at the price of wrong answers.",
+      "takeaway": "In this model, drift sets the average climb, noise scatters single trials, and with the bound fixed, more noise gives faster answers and more wrong ones.",
       "why_it_matters": "A bound turns accumulated evidence into a decision. Where the bound sits, and how much noise the evidence carries, set both the wait and the error rate, which is why who sets the bound matters.",
       "sides": {
         "brain": "In 2002 two monkeys judged moving dots, and the firing of 54 cells in a parietal area climbed faster when more dots drifted together and reached about 69 spikes per second before the eye moved. These are correlations in two monkeys. Nothing was silenced, and the 2002 paper did not write down a diffusion model.",
@@ -544,7 +544,7 @@
     {
       "id": "C15-D07",
       "title": "When does a sampler stop, and does a settled tally mean it is right?",
-      "question": "A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does it stop on the wrong answer?",
+      "question": "A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does the final answer end up wrong?",
       "equations": [
         "\\text{estimate}=P\\!\\left(\\mathrm{Bin}(a+b+1,\\tfrac12)\\le a\\right),\\qquad \\text{stop if estimate}>0.95\\ \\text{or samples}=40"
       ],
@@ -573,7 +573,7 @@
           "share": 0.6,
           "threshold": 0.95
         },
-        "text": "At s = 0.6 the sampler draws 24.2 samples on average, about 38 percent of runs hit the cap of 40 without settling, and about 5 percent stop on the runner-up. At s = 0.8 it needs 8.7 samples on average."
+        "text": "At s = 0.6 the sampler draws 24.2 samples on average, about 38 percent of runs hit the cap of 40 without settling, and about 5 percent stop on the runner-up. If a capped run returned its current leader (the companion's assumption, not the chapter's), about 10 percent of final answers would be wrong once those capped runs are counted. At s = 0.8 it needs 8.7 samples on average."
       },
       "takeaway": "A close race costs many samples, and a tally that settles is stable, not necessarily true.",
       "why_it_matters": "Where a tally never settles before the cap, a system could hand the question to a person. And ten answers based on the same mistaken source repeat the mistake rather than add independent evidence.",
@@ -616,11 +616,11 @@
       "default_parameters": "Chance a sample gives the likelier answer (s): 0.8 · Stopping threshold: 0.95",
       "worked_example": {
         "Average samples drawn": "8.72",
-        "Chance it stops on the runner-up": "0.186 percent",
+        "Chance it stops on the runner-up before the cap": "0.186 percent",
         "Chance it hits the cap": "0.249 percent",
-        "Earliest possible stop": "4 samples"
+        "Chance of a wrong final answer, cap included": "0.187 percent"
       },
-      "worked_interpretation": "When 80 percent of samples give the likelier answer and the sampler stops above 0.95, it draws 8.72 samples on average against a fixed 40. It stops on the runner-up 0.186 percent of the time. Settled means stable, not true.",
+      "worked_interpretation": "When 80 percent of samples give the likelier answer and the sampler stops above 0.95, it draws 8.72 samples on average against a fixed 40. It stops on the runner-up 0.186 percent of the time, and the final answer is wrong 0.187 percent of the time if capped runs return their leader. Settled means stable, not true.",
       "reader_anchor": "C15-D07"
     }
   ]

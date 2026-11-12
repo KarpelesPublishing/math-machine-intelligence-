@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-17.md",
   "source_sha256": "c51dfd1e8da428359d050d567478fed02c0468ca1ca360ab332ea07c25ac7a77",
-  "calculation_sha256": "618c3a7ed6ce7ec26e4bb0daf1778fbd397f3bee78b9a2febb65be796abfca8e",
+  "calculation_sha256": "2a940c29c9f59335978b3957f0591b1dfb0894fd48c7690e35b866c8aba8d92c",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -48,9 +48,9 @@
           "future_value": 5,
           "reach": 1.0
         },
-        "text": "With one possible next place, discount 0.9 and future value 5, the value is 1 + 0.9 x 5 = 5.5. The future supplies 4.5 of the 5.5, so most of the value is later."
+        "text": "With one possible next place, discount 0.9 and future value 5, the value is 1 + 0.9 x 5 = 5.5. The future supplies 4.5 of the 5.5, so most of the value is later. For the prediction: the later part, gamma x 5, equals the immediate 1 at gamma = 0.2 (the slider has no 0.2 stop; at 0.5 the later part is already 2.5)."
       },
-      "takeaway": "A place is worth its immediate reward plus a discounted share of what lies beyond it, and a higher discount lets the future count for more.",
+      "takeaway": "A place is worth its immediate reward plus a discounted share of what lies beyond it, and when there is future value to count, a higher discount lets it count for more.",
       "why_it_matters": "A planner that holds a model of how places lead to one another can score any place by this equation once it is given a goal and a rule, without a new trip.",
       "sides": {
         "brain": "Tolman read the rats' sudden drop in errors as a cognitive map. The chapter says calling a map a transition model is a modern reading, not Tolman's, and the rat is not shown to hold this table.",
@@ -107,7 +107,7 @@
     },
     {
       "id": "C17-D02",
-      "title": "Why does A star explore B first and never touch C?",
+      "title": "Which towns does A star explore, and when does it reach D through C?",
       "question": "Which towns does a search explore on a four-town map, and what route does it return?",
       "equations": [
         "f(n)=g(n)+h(n)"
@@ -136,9 +136,9 @@
         "90-derivations.md",
         "derivation-16-a-star-and-a-cheapest-route-chapter-17"
       ],
-      "provenance": "Hart, Nilsson and Raphael (1968) as the chapter describes them, with the chapter's four-town map: A to B 4 miles, A to C 3 miles, B to D 6 miles, straight-line guesses 5 from B and 9 from C. The chapter gives no road from C to D; the optional C to D road and the other B to D lengths are this companion's variations, kept at least as long as the straight-line guesses so that those guesses never run too high.",
+      "provenance": "Hart, Nilsson and Raphael (1968) as the chapter describes them, with the chapter's four-town map: A to B 4 miles, A to C 3 miles, B to D 6 miles, straight-line guesses 5 from B and 9 from C. The chapter gives no road from C to D; the optional C to D road and the other B to D lengths are this companion's variations, kept at least as long as the straight-line guesses so that those guesses never run too high. The chapter gives no guess for A, which is the start; the companion sets it to 0 and never uses it.",
       "kind": "formula",
-      "assumptions": "A finite map with nonnegative road costs, guesses that never exceed the true cost left and equal zero at the goal, and a search that may reopen a place when it finds a cheaper way there. A star was built for machines and is not a model of how people search.",
+      "assumptions": "A finite map with nonnegative road costs, guesses that never exceed the true cost left and equal zero at the goal, and a search that may reopen a place when it finds a cheaper way there. When two places tie on score (for example D and C at 12 when the B to D road is 8 miles), the code takes the one it found first, so the list of explored places can differ under another tie rule. A star was built for machines and is not a model of how people search.",
       "prediction": "With the road from B to D at 6 miles and no road from C, predict which town is explored first and whether C is ever explored.",
       "reveal": {
         "state": {
@@ -153,13 +153,13 @@
         "brain": "A star is engineering proved on paper, built for machines. The chapter does not offer it as a model of how people or rats search.",
         "machine": "A star is a specification with a proof: with a guess that never runs high, the route it returns is a cheapest one. Its authors note that exploring the fewest places might not minimize the total resources used."
       },
-      "explanation": "The search always explores the place with the lowest score, cost so far plus a guess of what is left. A guess that never runs too high means a place's score is a floor on any route through it, so once the goal has the lowest score no unexplored place can beat it. When the road from B to D is long enough, B's route to D stops being the cheapest and the search turns to C.",
+      "explanation": "The search always explores the place with the lowest score, cost so far plus a guess of what is left. A guess that never runs too high means a place's score is a floor on any route through it, so once the goal has the lowest score no unexplored place can beat it. When the road from B to D is long enough and a road from C to D exists, the route through C becomes the cheaper one and the search turns to it. With no road from C to D, a long B to D road still ends with the route through B, though C may be explored and set aside.",
       "check": "With the B to D road at 12 miles and a 9 mile road from C to D, which route does A star return, and what does it cost?",
       "answer": "Through B the route would cost 4 + 12 = 16, through C it costs 3 + 9 = 12. After exploring B (score 9), C (score 12) has the lowest score and its road to D gives 12, so the route is A, C, D at 12 miles.",
       "controls": [
         {
           "key": "bd_miles",
-          "label": "Length of the B to D road (miles)",
+          "label": "Length of the B to D road (miles; the chapter uses 6)",
           "values": [
             5,
             6,
@@ -174,7 +174,7 @@
         },
         {
           "key": "cd_miles",
-          "label": "Road from C to D",
+          "label": "Road from C to D (the chapter has none)",
           "values": [
             0,
             9,
@@ -192,7 +192,7 @@
       "alt": "A map of towns A to D with road lengths and scores, and curves of the cost of the route found against the B to D road length.",
       "symbols": "n: a place on the map; g(n): the cost of the best path found so far from the start to n, in miles; h(n): a guess at the cost from n to the goal; it must never exceed the true cost left and must equal zero at the goal; f(n): the score: cost so far plus the guess",
       "application": "Planning means running a model forward to see where actions lead, and every road leads to more roads. A good guess prunes the roads that cannot win without losing the best route.",
-      "default_parameters": "Length of the B to D road (miles): 6 · Road from C to D: 0",
+      "default_parameters": "Length of the B to D road (miles; the chapter uses 6): 6 · Road from C to D (the chapter has none): 0",
       "worked_example": {
         "Route found": "A to B to D",
         "Cost (miles)": "10",
@@ -249,7 +249,7 @@
       "sides": {
         "machine": "This is a specification checked by tracing a small graph. Straight-line distance never needs reopening, so the chapter's town map is not affected."
       },
-      "explanation": "At first the search reaches A at cost 3 and B at cost 1. A scores 3, below B's score of 1 plus its guess. With the guess at B of 3, B scores 4, so A is explored first and closed. When B is explored, it offers A a cheaper cost of 2. A search that may reopen A takes it, and G is then reached at 4. One that cannot reopen keeps cost 3 for A and reaches G at 5.",
+      "explanation": "At first the search reaches A at cost 3 and B at cost 1. With the guess at B at 3, A scores 3, below B's score of 1 + 3 = 4, so A is explored first and closed. With the guess at B at 1 or less, B scores 2 or less, below A's 3, so B goes first and A is never closed too soon. When B is explored, it offers A a cheaper cost of 2. A search that may reopen A takes it, and G is then reached at 4. One that cannot reopen keeps cost 3 for A and reaches G at 5.",
       "check": "With the guess at B set to 1 and no reopening, which of A and B is explored first, and what does the search return?",
       "answer": "B scores 1 + 1 = 2 and A scores 3, so B is explored first and gives A the cost 2 before A is closed. Reopening never comes up, and the search returns 4.",
       "controls": [
@@ -409,7 +409,7 @@
         "derivation-18-value-of-information-chapter-19"
       ],
       "provenance": "The chapter's made-up quiz: pass pays 0.75, answering pays 1 or 0, equally likely answers, hints right 7 times in 10 and independent given the answer. One look is worth 0 and two are worth 0.055 (80.5 points per 100 questions). The other hint accuracies and the numbers of looks are this companion's variations. The chapter says the numbers are not findings.",
-      "kind": "formula",
+      "kind": "constructed example",
       "assumptions": "Independent hints given the correct answer, equally likely answers, a known pass payoff and a player who updates by Bayes' rule. If every look costs the same amount, looking pays only when that price is below the gain per look. No study here measures how often one-step pricing misleads real systems.",
       "prediction": "At hint accuracy 0.7, predict the value of the first look, then of the second. Does a planner that prices only the next look take either?",
       "reveal": {
@@ -417,12 +417,12 @@
           "looks": 2,
           "accuracy": 0.7
         },
-        "text": "At accuracy 0.7 one look leaves the player 70 percent sure, still below 0.75, so it changes nothing and is worth 0. Two looks give 0.805 points per question, a gain of 0.055. A planner pricing only the next look stops before discovering that a second look pays."
+        "text": "At accuracy 0.7 one look leaves the player 70 percent sure, still below 0.75, so it changes nothing and is worth 0. Two looks give 0.805 points per question, a gain of 0.055. If looking cost anything, a planner pricing only the next look would stop before discovering that a second look pays."
       },
       "takeaway": "A look can be worth nothing by itself and a lot together with another, so pricing only the next look can stop a planner too early.",
       "why_it_matters": "Whether to keep searching depends on what later looks make possible. A planner that stops when the next look is worthless can miss that two looks together change the choice.",
       "sides": {
-        "brain": "The chapter reports no study that measures how often one-step pricing misleads people; the quiz is a made-up illustration.",
+        "brain": "No study here measures how often one-step pricing misleads real systems, and the quiz is a made-up illustration.",
         "machine": "A builder chooses the search depth. At depth one the first look shows no gain; at depth two it shows a gross gain of 0.055 per question."
       },
       "explanation": "One hint makes the player 70 percent sure, which is still below the sure 0.75, so the player passes and the hint changed nothing. Two hints agree on 58 of 100 questions, and then the favored answer is right on 49 of those 58. The player answers then and passes when the hints split, for 80.5 points per 100 questions against 75.",
@@ -470,15 +470,15 @@
     },
     {
       "id": "C17-D06",
-      "title": "How many looks does it take to find a move the model rates as rare?",
-      "question": "If a search tries moves in proportion to a starting weight, how many looks does a one-in-ten-thousand move need before it is ever tried?",
+      "title": "How many looks does it take to find a move a toy search rates as rare?",
+      "question": "In a toy search that tries moves in proportion to a starting weight, how many looks does a move with weight one in ten thousand need before it is ever tried?",
       "equations": [
         "P(\\text{tried at least once})=1-(1-w)^{n},\\qquad n_{c}=\\left\\lceil\\frac{\\ln(1-c)}{\\ln(1-w)}\\right\\rceil"
       ],
       "symbols_list": [
         {
           "sym": "w",
-          "meaning": "the starting weight the model gives a move (one in ten thousand is 0.0001)"
+          "meaning": "the toy's starting weight for a move (0.0001 borrows the reported one-in-ten-thousand estimate; it is not a weight read from AlphaGo)"
         },
         {
           "sym": "n",
@@ -497,16 +497,16 @@
       "source_section": "Move 79, and a value estimate that dived on move 87",
       "provenance": "The reported figure is Hassabis's statement, as Wired reports it, that by AlphaGo's own estimate there was about one chance in ten thousand that a human would play move 78. No source read says how the program reached that number. The calculation is a toy this companion built: independent draws in proportion to a starting weight. It is not AlphaGo's search, whose Seoul version may differ from the 2015 version in the Nature paper.",
       "kind": "model",
-      "assumptions": "Each look draws one move independently with chance equal to its weight. A real tree search also uses the results of earlier looks and a value estimate, and the accounts cited do not establish why the program erred at move 79 or what its policy network and search did. This is one game and one move; it shows what a search can miss, not how often it does.",
+      "assumptions": "Each look draws one move independently with chance equal to its weight. A real tree search also uses the results of earlier looks and a value estimate, and the accounts cited do not establish why the program erred at move 79 or what its policy network and search did. The one in ten thousand reported for move 78 is AlphaGo's estimate of how likely a human was to play it; the chapter does not say it was a sampling weight in the search. This toy only borrows the number as an example of a rare starting weight. This is one game and one move; it shows what a search can miss, not how often it does.",
       "prediction": "For a move with weight one in ten thousand, predict whether 1,000 looks give a better or worse than even chance of ever trying it.",
       "reveal": {
         "state": {
           "weight": 0.0001,
           "looks": 1000
         },
-        "text": "With weight 0.0001 and 1,000 looks, the chance of trying the move even once is about 0.095. It takes about 6,932 looks for an even chance and about 29,956 for 95 percent. A search can only weigh the futures its model holds."
+        "text": "With weight 0.0001 and 1,000 looks, the chance of trying the move even once is about 0.095. It takes about 6,932 looks for an even chance and about 29,956 for 95 percent. The weight is a toy value that borrows the reported one-in-ten-thousand figure; the point is that a search can only weigh the futures its model holds."
       },
-      "takeaway": "A move the model rates as very rare can go unexamined for a long time, and a search that never examines it cannot weigh what it would bring.",
+      "takeaway": "In this toy, a move given a very small weight can go unexamined for a long time, and a search that never examines it cannot weigh what it would bring.",
       "why_it_matters": "A planner can only weigh the futures its model holds. If the model rates a move as nearly impossible, the omission travels through the search however carefully it is steered.",
       "sides": {
         "brain": "No brain data are involved. The chapter says the evidence on Seoul does not show the cause of the mistake.",
@@ -543,7 +543,7 @@
       ],
       "function": "blind_spot_picture",
       "alt": "Chance a rare move is tried against number of looks, and looks needed for an even chance and for 95 percent against the move's weight.",
-      "symbols": "w: the starting weight the model gives a move (one in ten thousand is 0.0001); n: the number of independent looks; c: the chance wanted that the move is tried at least once; n_c: the least number of looks that gives chance c",
+      "symbols": "w: the toy's starting weight for a move (0.0001 borrows the reported one-in-ten-thousand estimate; it is not a weight read from AlphaGo); n: the number of independent looks; c: the chance wanted that the move is tried at least once; n_c: the least number of looks that gives chance c",
       "application": "A planner can only weigh the futures its model holds. If the model rates a move as nearly impossible, the omission travels through the search however carefully it is steered.",
       "default_parameters": "Starting weight of the move: 0.0001 · Looks (simulated lines of play): 1000",
       "worked_example": {
@@ -551,7 +551,7 @@
         "Looks for an even chance": "6,932",
         "Looks for 95 percent": "29,956"
       },
-      "worked_interpretation": "A move given starting weight 0.0001 is tried at least once in 1,000 looks with chance 0.0952. It takes about 6,932 looks for an even chance. This toy draws moves in proportion to their weight; it is not AlphaGo's algorithm.",
+      "worked_interpretation": "In this toy, a move with starting weight 0.0001 is tried at least once in 1,000 looks with chance 0.0952; an even chance takes about 6,932 looks. The weights are the companion's toy values: 0.0001 only borrows the reported one-in-ten-thousand human-move estimate, and this is not AlphaGo's search.",
       "reader_anchor": "C17-D06"
     }
   ]

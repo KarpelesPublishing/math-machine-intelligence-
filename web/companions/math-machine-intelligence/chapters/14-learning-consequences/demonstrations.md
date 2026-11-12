@@ -68,13 +68,13 @@ $$
 - Cue 1 after trial 1: 0
 - Cue 1 after 8 trials: 1
 
-With learning rate 1 and trace 0, cue 1 first gains value on trial 6. Without a full trace, value creeps back about one cue per trial.
+With learning rate 1 and trace 0, cue 1 first gains value on trial 6. With no trace, value creeps back about one cue per trial.
 
-**Calculation:** Each cue is updated from the cue after it, using the values held at the start of the trial: error = reward + value of the next cue - value of this cue. Cue 6 gets reward 1 and no next cue. Trial 1 gives cue 6 value 1 and cue 1 value 0; trace 0 passes on the later errors scaled by 0 per cue.
+**Calculation:** Each cue is updated from the cue after it, using the values held at the start of the trial: error = reward + value of the next cue - value of this cue. Cue 6 gets reward 1 and no next cue. Trial 1 gives cue 6 value 1 and cue 1 value 0; trace 0 passes on the later errors scaled by 0 per cue. The trace parameter is the companion's addition; the chapter states only the plain method and a trace through all six cues.
 
 **Takeaway:** Bootstrapping passes value back one cue per trial; a trace lets one reward credit the whole chain at once.
 
-**What happens:** At Trace length (lambda) = 1.0, Learning rate (alpha) = 1.0: A trace that lasts through all six cues gives every cue its value on trial 1. Return the trace to 0 to see the plain method: only cue 6 gains on trial 1, and cue 1 waits until trial 6.
+**What happens:** At Trace length (lambda; companion's addition, 0.5 is constructed) = 1.0, Learning rate (alpha) = 1.0: A trace that lasts through all six cues gives every cue its value on trial 1. Return the trace to 0 to see the plain method: only cue 6 gains on trial 1, and cue 1 waits until trial 6.
 
 **Why it matters:** The earliest event that reliably predicts a reward is the one worth reacting to. A learner finds it by correcting each forecast with the next, without waiting to see the final reward in every case.
 
@@ -112,15 +112,15 @@ $$
 
 After 8 noise-alone trials the noise holds strength 0.832, leaving a gap of 0.168 for the light to learn from. After 8 pairings the light has strength 0.0825, against 0.492 when light and noise were learned together.
 
-**Calculation:** Each cue present gains rate x (1 - combined strength) = 0.2 x gap per trial. Noise alone: strength = 1 - (1 - 0.2)^8 = 0.832. First pairing gap = 0.168. Light after 8 pairings = gap x (1 - (1 - 2 x 0.2)^8) / 2 = 0.0825.
+**Calculation:** Each cue present gains rate x (1 - combined strength) = 0.2 x gap per trial. Noise alone: strength = 1 - (1 - 0.2)^8 = 0.832. First pairing gap = 0.168. Light after 8 pairings = gap x (1 - (1 - 2 x 0.2)^8) / 2 = 0.0825. The rate 0.2 is a made-up constant, not fitted to the rats.
 
 **Takeaway:** When the outcome is already predicted, the gap that drives learning is nearly zero, so a new cue is learned poorly.
 
-**What happens:** At Noise-alone trials before the light = 16, Learning-rate constant (c) = 0.2: After 16 noise-alone trials at rate 0.2 the noise holds strength 0.972, the gap left is 0.028, and the light gains only about 0.014 in 8 pairings, against about 0.49 when light and noise are learned together. Kamin's rats showed the same direction (a ratio of .45 near no effect, against .05).
+**What happens:** At Noise-alone trials before the light = 16, Learning-rate constant (c, made up) = 0.2: After 16 noise-alone trials at rate 0.2 the noise holds strength 0.972, the gap left is 0.028, and the light gains only about 0.014 in 8 pairings, against about 0.49 when light and noise are learned together. Kamin's rats showed the same direction (a ratio of .45 near no effect, against .05).
 
-**Why it matters:** A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. This also explains why redundant signals can be ignored.
+**Why it matters:** A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. In this model, a redundant signal would be learned about only a little; the chapter does not claim animals follow the rule.
 
-**In brains and behavior:** In 2013 rats were given a laser pulse at reward time to switch on dopamine cells during the pairing of sound plus light; they then responded more to the light. This supports sufficiency in that task, not necessity, and the cells' firing was not measured.
+**In brains and behavior:** In 2013 rats were given a laser pulse at reward time to switch on dopamine cells during the pairing of sound plus light; they then responded more to the light on the first test trial (across all three test trials the difference was a trend). This supports sufficiency in that task, not necessity, and the cells' firing was not measured.
 
 **In machines:** The rule is the same error-driven update as in the previous cards, applied to several cues at once. It is a specification for a learner, and a model of behavior for animals.
 
@@ -238,7 +238,7 @@ The 2015 network's Frostbite score of 328.3 is a gain of 263.1 over random play,
 
 **Takeaway:** Counted over random play, the network's Frostbite gain is 6.2 percent of the human gain, though it reached 75 percent on 29 of 49 games.
 
-**What happens:** At Frostbite score (328.3 is the network's) = 3267.55: A score of 3267.55 is exactly 75 percent of the human gain on Frostbite: 65.2 + 0.75 x 4269.8. The network's 328.3 is far below that, at 6.2 percent.
+**What happens:** At Frostbite score (65.2, 328.3 and 4,335 are reported; others hypothetical) = 3267.55: A score of 3267.55 is exactly 75 percent of the human gain on Frostbite: 65.2 + 0.75 x 4269.8. The network's 328.3 is far below that, at 6.2 percent.
 
 **Why it matters:** An average over games hides weak ones. Subtracting random play keeps a lucky guesser from looking skilled.
 
@@ -250,7 +250,7 @@ The 2015 network's Frostbite score of 328.3 is a gain of 263.1 over random play,
 
 **Answer:** The gain is 2200 - 65.2 = 2134.8, and 2134.8 / 4269.8 is about 0.5, or 50 percent.
 
-**Source:** Atari: 75 percent of a human tester's gain on 29 of 49 games, 0.0 percent on Montezuma's Revenge; anchor `atari-75-percent-of-a-human-testers-gain-on-29-of-49-games-00-percent-on-montezumas-revenge`. Reported result from Mnih and colleagues (2015), as quoted in the chapter: Frostbite scores of 65.2, 328.3 and 4,335, and that the networks reached at least 75 percent of the tester's gain on 29 of 49 games. The companion's arithmetic gives the gains and shares. Scores other than 328.3 on the slider are hypothetical, to show what each share would take.
+**Source:** Atari: 75 percent of a human tester's gain on 29 of 49 games, 0.0 percent on Montezuma's Revenge; anchor `atari-75-percent-of-a-human-testers-gain-on-29-of-49-games-00-percent-on-montezumas-revenge`. Reported result from Mnih and colleagues (2015), as quoted in the chapter: Frostbite scores of 65.2, 328.3 and 4,335, and that the networks reached at least 75 percent of the tester's gain on 29 of 49 games. The companion's arithmetic gives the gains and shares. The slider's 65.2 (random play), 328.3 (the network) and 4,335 (the human tester) are the paper's scores; the other slider values are hypothetical, to show what each share would take.
 
 ## C14-D07: Why would many forecasting channels have different reversal points?
 
@@ -274,9 +274,9 @@ $$
 
 A channel that weighs good news 0.5 and bad news 0.5 settles where rewards above its forecast and below it balance, at 4. Rewards larger than 4 give it a positive error and smaller ones a negative error, so its reversal point sits between sizes 4 and 5.
 
-**Calculation:** The forecast stops moving when 0.5 x E[(r - v) above zero] = 0.5 x E[(v - r) above zero]. Solving gives v = 4. The seeded run averaged 3.94 over its last 500 trials. At optimism 0.5 the point is the average reward, 4.
+**Calculation:** The forecast stops moving when 0.5 x E[(r - v) above zero] = 0.5 x E[(v - r) above zero]. Solving gives v = 4. The seeded run averaged 3.94 over its last 500 trials. At optimism 0.5 the point is the average reward, 4. The reward sizes, their chances and the step 0.02 are constructed here, not the mice's data.
 
-**Takeaway:** Channels that weigh good and bad news differently settle at different forecasts, so each flips sign at a different reward size.
+**Takeaway:** Channels that weigh good and bad news differently settle at different forecasts, so, in this model, each flips sign at a different reward size.
 
 **What happens:** At Optimism of the channel (tau) = 0.9, Chances of the seven reward sizes (constructed) = equal chances: With equal chances, an optimistic channel (0.9) settles at about 5.7, between sizes 5 and 6, while a pessimistic one (0.1) settles at about 2.3, between sizes 2 and 3. A channel at 0.5 settles at the average reward, 4.
 

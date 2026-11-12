@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-06.md",
   "source_sha256": "fa74b65cae85176ab9fec85fc73f630f4d1bd319b4a44d594c28db3b0930a151",
-  "calculation_sha256": "aeaa77827e2de61fb55ee65a1c21a979fc2908db4188b0a8afc6aa2f6b6c699f",
+  "calculation_sha256": "64dde18a0ad2765e61ae529c567012117047f58168ba21cfc8f8deb994ba894b",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -226,7 +226,7 @@
         "state": {
           "wrong_units": 10
         },
-        "text": "Around 10 wrong units out of 30 is where recall of the exact target stops being usual. Wrong answers are stable too: runs end on other stored patterns, opposites, or states with no stored meaning."
+        "text": "By 10 wrong units out of 30 only about 30 percent of runs end at the exact target (about 55 percent at 8), so recall of the exact target has stopped being usual. Wrong answers are stable too: runs end on other stored patterns, opposites, or states with no stored meaning."
       },
       "takeaway": "A close cue is usually finished, a far one is not, and the network gives no warning when it settles on a wrong answer.",
       "why_it_matters": "This is the content-addressable memory Hopfield wished for: a piece of an item leads to the rest. It also shows the cost, since a settled state is not necessarily the intended memory.",
@@ -234,7 +234,7 @@
         "brain": "People seem to recall a whole scene from a few cues, but that is everyday experience, not a measured result. Whether any brain region does this is an open question.",
         "machine": "A classical Hopfield network completes a partial cue by repeated local votes, with no built-in check that the result is the intended item."
       },
-      "explanation": "Start the network on a damaged pattern and let the units update one at a time. When the start is close, it usually settles on the stored pattern. The farther the start, the less often, and some runs end on a different stored pattern, on an opposite, or on a stable state with no stored meaning.",
+      "explanation": "Start the network on a damaged pattern and let the units update one at a time. When the start is close, it usually settles on the stored pattern. The farther the start, the less often, and some runs end on a different stored pattern, on an opposite, or on a stable state with no stored meaning. Not Hopfield's number: his figure was more than 90 percent within 5 places for his 0/1 version and counts the nearest memory, while this plus/minus-one simulation counts the exact target and gives about 74 percent at 5 wrong (about 92 percent even from a start with 0 wrong).",
       "check": "A run from a damaged start ends at a stable state. Does stability show that the network recovered the intended pattern?",
       "answer": "No. Stable only means no unit wants to change. The state can be another stored pattern, an opposite, or a spurious state, and the basic model gives no warning which.",
       "controls": [
@@ -293,18 +293,18 @@
       ],
       "source_anchor": "recall-slid-downhill-and-stopped-but-crowded-memories-blurred",
       "source_section": "Recall slid downhill and stopped, but crowded memories blurred",
-      "provenance": "Book formula and the chapter's own two-unit example (positive link of 1, opposite start). The 30-unit network is a constructed illustration with 5 random patterns (seeds disclosed in the notebook), not Hopfield's runs.",
+      "provenance": "Book formula and the chapter's own two-unit example (positive link of 1, opposite start). The 30-unit network is a constructed illustration with 5 random patterns (seeds disclosed in the notebook), not Hopfield's runs; its seed was picked from a search so that simultaneous updating cycles for some of the six starts.",
       "kind": "formula",
-      "assumptions": "The guarantee needs three conditions: symmetric links, no self-links, and units updated one at a time with every unit chosen repeatedly. With simultaneous updates the guarantee can fail. The 30-unit runs show behavior in one constructed network.",
+      "assumptions": "The guarantee needs three conditions: symmetric links, no self-links, and units updated one at a time with every unit chosen repeatedly. With simultaneous updates the guarantee can fail. The 30-unit runs show behavior in one constructed network: here the simultaneous schedule cycles for starts 3 and 6 and settles for the other four, so it is not that a cycle always happens. In a separate check of 1000 random 30-unit, 5-pattern networks with one random start each, about 1 in 9 (11 percent) ended in a two-state cycle and about 2 percent showed a rise in energy.",
       "prediction": "If every unit updates at the same instant instead of one at a time, predict whether two units with a positive link that start opposite settle, and whether the energy still only falls.",
       "reveal": {
         "state": {
           "schedule": "all at once",
-          "start": 1
+          "start": 3
         },
-        "text": "Updated together, the two units each copy the other, swap places, and swap back forever, and their energy stays at plus 1. Updated one at a time they settle immediately and the energy drops to minus 1."
+        "text": "Updated together, the two units each copy the other, swap places, and swap back forever, and their energy stays at plus 1. Updated one at a time they settle immediately and the energy drops to minus 1. In the 30-unit network, start 3 updated together ends in a back-and-forth cycle of two states, and its energy rises by 14 at one step; other starts happen to settle."
       },
-      "takeaway": "One-at-a-time updates cannot raise the energy, so the network must come to rest; simultaneous updates break that guarantee.",
+      "takeaway": "One-at-a-time updates cannot raise the energy, so the network must come to rest; simultaneous updates remove that guarantee, though some runs still settle.",
       "why_it_matters": "The energy score is the argument that the network stops. It also explains the difference between a design that is guaranteed to settle and one that merely often does.",
       "sides": {
         "brain": "Hopfield used random update moments because there is no evidence for global synchrony among neurons; that is a modeling choice, not a measurement.",
@@ -344,12 +344,12 @@
       "application": "The energy score is the argument that the network stops. It also explains the difference between a design that is guaranteed to settle and one that merely often does.",
       "default_parameters": "Update schedule: one at a time · Random start number (30 units): 1",
       "worked_example": {
-        "Energy at the start": "-61",
-        "Energy at the end": "-447",
+        "Energy at the start": "53",
+        "Energy at the end": "-411",
         "Largest rise in one step": "0",
         "The run ends in": "a stable state"
       },
-      "worked_interpretation": "Updating one unit at a time from random start 1, the energy fell from -61 to -447 and never rose; the largest rise was 0. The two-unit pair on the right settles after one change.",
+      "worked_interpretation": "Updating one unit at a time from random start 1, the energy fell from 53 to -411 and never rose; the largest rise was 0. The two-unit pair on the right settles after one change.",
       "reader_anchor": "C06-D04"
     },
     {
@@ -385,14 +385,14 @@
       "source_section": "Recall slid downhill and stopped, but crowded memories blurred",
       "provenance": "Simulation with disclosed seeds (30 runs per setting) of the plus-or-minus-one network, plus the standard Gaussian crosstalk estimate, which is the companion's own addition and not printed in the chapter. The chapter reports Hopfield's rule of thumb of about 0.15 N for his 0/1 network and his loads of 5 and 15 patterns in 100 units; the counts shown here are this simulation's, not his.",
       "kind": "simulation",
-      "assumptions": "Random patterns, the unnormalized storage rule, runs that start exactly at a stored pattern, and asynchronous updates. How errors are counted and how units are coded change the capacity figure. Beyond capacity recall can fail outright.",
+      "assumptions": "Random patterns, the unnormalized storage rule, runs that start exactly at a stored pattern, and asynchronous updates. How errors are counted and how units are coded change the capacity figure. Beyond capacity recall can fail outright. The 0.15 N lines come from Hopfield's 0/1 setup and are not a failure threshold for this plus/minus-one network.",
       "prediction": "With 100 units, predict how recall from an exactly stored pattern changes as the number of stored patterns grows from 5 to 15 and then to 40.",
       "reveal": {
         "state": {
           "units": 100,
           "stored": 40
         },
-        "text": "At 40 patterns in 100 units, far past the 0.15 N mark at 15, runs from an exactly stored pattern end with many units wrong. With 10 patterns almost every run stays at its start."
+        "text": "At 40 patterns in 100 units, far past 0.15 N (15 patterns), runs from an exactly stored pattern end with many units wrong (24 on average). In this plus/minus-one network recall already degrades from about 20 patterns; with 10 patterns almost every run stays at its start."
       },
       "takeaway": "Every stored pattern adds noise to every vote, and past a point the noise drowns the memory it was meant to protect.",
       "why_it_matters": "A fixed number of units can only keep so many random patterns apart. The limit comes from crosstalk and motivates ways to separate or sharpen memories.",
@@ -401,7 +401,7 @@
         "machine": "Capacity depends on the coding and the error count. The modern attention-style network's capacity grows much faster, so the 0.15 N rule of thumb does not carry over to it."
       },
       "explanation": "Every stored memory pulls a little on every vote. With few memories the pulls are small. With many they add up to a hum that can drown the signal. The crosstalk estimate says how likely a unit's first vote is wrong, and the simulation shows what the settling dynamics make of it.",
-      "check": "For 100 units and 15 stored patterns, the crosstalk estimate of a wrong first vote per unit is about 0.4 percent. Why can a run still end with many units wrong?",
+      "check": "For 100 units and 30 stored patterns, the crosstalk estimate of a wrong first vote per unit is about 3.2 percent. Why can a run still end with many units wrong?",
       "answer": "A few wrong units change the votes that other units hear, and those errors can feed on each other. The estimate describes only the first pass, not the settling that follows.",
       "controls": [
         {
@@ -441,7 +441,7 @@
         "Runs that stayed exactly at the start": "29 of 30",
         "Share of units wrong after one simultaneous pass (estimate)": "0.046 percent"
       },
-      "worked_interpretation": "With 100 units and 10 random patterns, 30 seeded runs started at a stored pattern and ended with 0.3 units wrong on average; 29 of 30 had fewer than 5 wrong. The dotted verticals mark 0.15 N, Hopfield's rule of thumb quoted in the chapter.",
+      "worked_interpretation": "With 100 units and 10 random patterns, 30 seeded runs ended with 0.3 units wrong on average; 29 of 30 had fewer than 5 wrong. The dotted verticals mark 0.15 N, the chapter's rule of thumb for Hopfield's 0/1 network; this plus/minus-one version at 100 units has 26 of 30 runs under 5 wrong at 15 patterns and 19 at 20.",
       "reader_anchor": "C06-D05"
     },
     {
@@ -583,7 +583,7 @@
       },
       "explanation": "The old network lets every stored memory pull on every vote. The new update gives the best match most of the say. The new state is a weighted average of the stored patterns, with weights from a softmax of the match scores. Read as attention, the cue is the query, the stored patterns are keys and values, and the shares say how much of each value comes back.",
       "check": "If two stored patterns match the cue equally well, what does the update return at any beta?",
-      "answer": "An equal blend of the two patterns, because their shares are equal. Entries where the two patterns agree are recovered; entries where they differ average to zero.",
+      "answer": "An equal share for each of the two, so the update lands near their average (other stored patterns still add a small amount at a small beta). Entries where the two agree are recovered; entries where they differ average to zero.",
       "controls": [
         {
           "key": "beta",
@@ -655,9 +655,9 @@
           "fragment": 44.6,
           "baseline": 66.4
         },
-        "text": "The knockout mice keep about 47 percent of their above-chance preference (44.6 against 66.4). The controls keep about 83 percent (58.8 against 65.9). The authors read the knockouts' result as degradation rather than the complete loss of recall."
+        "text": "The knockout mice keep about 47 percent of their above-chance preference (44.6 against 66.4). The controls keep about 83 percent (58.8 against 65.9). The authors read the knockouts' result as degradation rather than the complete loss of recall. The control group's drop was not statistically significant, so the 83 percent should not be read as a measured loss."
       },
-      "takeaway": "Measured against the 25 percent equal-occupancy level, the knockouts kept roughly half of their preference and the controls most of it.",
+      "takeaway": "Measured against the 25 percent equal-occupancy level, the knockouts kept roughly half of their preference and the controls most of it. The control group's drop was not statistically significant, so the 83 percent should not be read as a measured loss.",
       "why_it_matters": "A reported percentage means more when it is read against what chance would give. This is the evidence side of the chapter, and it does not show that a brain follows Hopfield's update rule.",
       "sides": {
         "brain": "The study bred mice with impaired NMDA-dependent plasticity in CA3 and tested search with partial cues. It is one behavioral result in one species and says nothing clinical."

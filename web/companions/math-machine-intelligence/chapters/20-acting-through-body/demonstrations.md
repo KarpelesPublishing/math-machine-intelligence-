@@ -36,7 +36,7 @@ A first jump of 10 units with 0.19 of its signal lost makes the planned second j
 
 **Why it matters:** A controller that plans one move from the last has to know how far the last move went. The subtraction makes the dependence visible, and the shift measures how much of the estimate is being used.
 
-**In brains and behavior:** In two monkeys, a drug in a thalamic relay shifted second jumps, not single ones, in the direction that losing the signal predicts. The subtraction is the book's model of what the signal does, not a recorded calculation.
+**In brains and behavior:** In two monkeys, a drug in a thalamic relay shifted second jumps in the direction that losing the signal predicts, while single jumps to a lone target were barely affected. The subtraction is the book's model of what the signal does, not a recorded calculation.
 
 **In machines:** A saccade planner or robot arm can compute the subtraction exactly from its own motor command, a specification and not a model of a monkey.
 
@@ -110,13 +110,13 @@ $$
 - Smith loop: settles
 - Smith overshoot (percent): 0
 
-At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the Smith predictor with its delay model 0 ms off settles. The plain loop's limit for this plant is gain pi/(2 x 0.2) = 7.85.
+At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the Smith loop with its delay model 0 ms off settles. The plain loop's limit is gain pi/(2 x 0.2) = 7.85.
 
-**Calculation:** Plant x' = u, report x(t - 0.2). Plain: u = gain x (1 - x(t - 0.2)), which settles only when gain x delay is below pi/2, so gain below 7.85. Smith with the right delay model: the loop sees x(t) itself, so x(t) = 1 - exp(-gain x t), settling for every gain. Euler steps of 0.005 s; a loop settles if the last 2 s stay within 0.01 of the target.
+**Calculation:** Plant x' = u, report x(t - 0.2). Plain: u = gain x (1 - x(t - 0.2)), which settles only when gain x delay is below pi/2, so gain below 7.85. Smith with the right delay model: the loop sees x(t) itself, so x(t) = 1 - exp(-gain x t), settling for every gain. Euler steps of 0.005 s; a loop settles if the last 2 s of a 12 s run stay within 0.01 of the target. That test is stricter than the exact bound: a swing that decays slowly, as the plain loop's does for gains near 7, is not settled by 12 s, so the figure's plain curve crosses the 0.01 line near gain 7 and not at 7.85; such a loop is labeled 'settles slowly' if a 60 s run settles. In this plant a delay model 100 ms too long settles up to about gain 15, and one 100 ms too short settles over the whole slider range, unlike the 1993 simulation as the chapter reports it, which became unstable with a model 100 ms wrong.
 
-**Takeaway:** A model of the delay allows strong correction in this constructed plant, but only while the delay model is close to right.
+**Takeaway:** A model of the delay allows strong correction in this constructed plant and tolerates a modest delay-model error here, but a large enough gain still fails when the delay model is 100 ms too long. The chapter's source simulation was less forgiving: a delay model wrong by 100 ms made it unstable.
 
-**What happens:** At Correction strength (gain per second) = 10, Error in the delay model (ms) = 0: At gain 10 the plain loop swings out of range, while the loop that models the delay correctly rises to the target without overshoot. Now move the delay-model error to plus 100 ms and the gain to 20: the delay-modelling loop fails too.
+**What happens:** At Correction strength (gain per second) = 10, Error in the delay model (ms) = 0: At gain 10 the plain loop swings out of range, while the loop that models the delay correctly rises to the target without overshoot. Now move the delay-model error to plus 100 ms: at gain 14 the swing is slow to die away, and at gain 20 the delay-modelling loop fails too (the limit with this error is roughly 15 per second). The chapter says a delay model wrong by 100 ms made the 1993 simulation unstable; this constructed plant tolerates that error at lower gains, so it does not reproduce that result.
 
 **Why it matters:** Strong correction from old data is the cause of the swing. A controller that holds a prediction of the present can act on it and use the late report as a check, which is what the cerebellum proposal says might happen.
 
@@ -124,13 +124,13 @@ At gain 10 per second with a 0.2 s delay, the plain loop does not settle and the
 
 **In machines:** A Smith predictor is an engineering controller for processes with long delays. It is a specification, not a model of any brain.
 
-**Assumptions and limits:** A pure integrator plant, no noise, an exact plant model, and a delay model that is exactly right or off by 100 ms. The plain loop settles only when gain times delay is below pi/2. Real delays and plants differ.
+**Assumptions and limits:** A pure integrator plant, no noise, an exact plant model, and a delay model that is exactly right or off by 100 ms. The plain loop settles only when gain times delay is below pi/2. Real delays and plants differ. In this plant a delay model that is 100 ms too long still settles at gains up to about 15 per second, and one 100 ms too short settles over the whole slider range. The 1993 simulation, as the chapter reports it, became unstable with a delay model 100 ms wrong; this constructed integrator is more forgiving, so its tolerance is not a result about that paper or about any brain.
 
 **Check:** The report is 0.2 s late. What is the plain loop's largest gain that still settles?
 
 **Answer:** Gain times delay must be below pi/2, so the gain must be below pi/(2 x 0.2) = 7.85 per second.
 
-**Source:** Where a prediction could come from: a relay and the cerebellum; anchor `where-a-prediction-could-come-from-a-relay-and-the-cerebellum`. The shower story and the Smith predictor idea are the chapter's. The plant, the 0.2 s delay (the low end of the chapter's 200 to 250 ms upper estimate for sight-guided reaches), the gains and the simulation are constructed here and are not the 1993 paper's simulation. Euler steps of 5 ms.
+**Source:** Where a prediction could come from: a relay and the cerebellum; anchor `where-a-prediction-could-come-from-a-relay-and-the-cerebellum`. The shower story and the Smith predictor idea are the chapter's. The plant, the 0.2 s delay (the low end of the chapter's 200 to 250 ms upper estimate for sight-guided reaches), the gains and the simulation are constructed here and are not the 1993 paper's simulation, and they give a different answer for a 100 ms delay-model error: the chapter reports that error made the 1993 simulation unstable, while here it is tolerated up to about gain 15 (model too long) or at every slider gain (model too short). Euler steps of 5 ms.
 
 ## C20-D04: Why does a skilled hand correct some errors and let others go?
 
@@ -154,11 +154,11 @@ $$
 
 A direction weighted 0.1 gets gain 0.27 and spread 2.14, against gain 0.618 and spread 1.17 for the direction that matters. The ratio is 1.83; at equal weights it is 1. The model is constructed, not fitted to the study.
 
-**Calculation:** P = (q + sqrt(q^2 + 4 q r))/2 and gain K = P/(P + r). For q = 1, r = 1: K = 0.618. For q = 0.1: K = 0.27. Spread = 1/(K(2 - K)) = 1.17 and 2.14.
+**Calculation:** P = (q + sqrt(q^2 + 4 q r))/2 and gain K = P/(P + r). For q = 1, r = 1: K = 0.618. For q = 0.1: K = 0.27. Spread = 1/(K(2 - K)) = 1.17 and 2.14. At some settings the ratio lands near the chapter's 0.26/0.14 = 1.86 only by coincidence; the weights are made up and nothing is fitted.
 
 **Takeaway:** A controller that charges for effort corrects the direction that matters hard and the other loosely; at equal weights the two are equal.
 
-**What happens:** At Weight on the direction that matters little = 0.1, Effort cost r = 1.0: At weight 0.1 against 1, the spread in the direction that matters little is about 1.83 times the other, near the reported 1.86 for five targets. That is a coincidence of a tidy number, not a fit. Set the weight to 1 and the two spreads are equal, the analogue of the 21-target condition where every point on the path was a target.
+**What happens:** At Weight on the direction that matters little = 0.1, Effort cost r = 1.0: At weight 0.1 against 1, the spread in the direction that matters little is about 1.83 times the other, near 1.86, the ratio of the chapter's two five-target variances, 0.26 over 0.14. The nearness of 1.83 to 1.86 is a coincidence of a tidy number, not a fit: the weights are made up and the study's spreads are not what this model computes. Set the weight to 1 and the two spreads are equal, the analogue of the 21-target condition where every point on the path was a target.
 
 **Why it matters:** Perfect correction everywhere is costly. A controller that corrects only what interferes with the task spends effort where it pays, so a looser hand between targets is a prediction, not a defect.
 
@@ -166,13 +166,13 @@ A direction weighted 0.1 gets gain 0.27 and spread 2.14, against gain 0.618 and 
 
 **In machines:** An optimal feedback controller is a specification: choose the cost, and the gain follows. A robot arm can be built to correct only what the task needs.
 
-**Assumptions and limits:** A one-number state, a push of fixed size each step, a quadratic cost and a controller that knows the state. Real reaches have many joints, delayed noisy senses and no single weight. In the study, the 21-target comparison no longer detected a significant difference.
+**Assumptions and limits:** A one-number state, a push of fixed size each step, a quadratic cost and a controller that knows the state. Real reaches have many joints, delayed noisy senses and no single weight. In the study, the 21-target comparison no longer detected a significant difference. The study's spreads are of hand position at points along a reach, while the model's ratio compares two long-run directions of a one-number state, so the two ratios are different kinds of quantity.
 
 **Check:** At effort cost 1 and weight 1, K = 0.618. What long-run variance does that give?
 
 **Answer:** Var = 1/(0.618 x (2 - 0.618)) = 1/(0.618 x 1.382) = 1.17.
 
-**Source:** Which errors to fix, and how a body model is repaired; anchor `which-errors-to-fix-and-how-a-body-model-is-repaired`. The principle (correct deviations only when they interfere with the task) and the spreads 0.14 and 0.26 square centimeters with five targets, and 0.18 and 0.18 with 21, are quoted from the chapter's account of Todorov and Jordan (2002). The scalar model, its weights and its noise are constructed here; nothing is fitted to the study, and the study's ratio of 1.86 is drawn only as a reference line.
+**Source:** Which errors to fix, and how a body model is repaired; anchor `which-errors-to-fix-and-how-a-body-model-is-repaired`. The principle (correct deviations only when they interfere with the task) and the spreads 0.14 and 0.26 square centimeters with five targets, and 0.18 and 0.18 with 21, are quoted from the chapter's account of Todorov and Jordan (2002). The scalar model, its weights and its noise are constructed here; nothing is fitted to the study, and the ratio 0.26/0.14 = 1.86 of the chapter's two five-target variances is drawn only as a reference line.
 
 ## C20-D05: Why do reaches bend the other way when a force is switched off?
 
@@ -202,7 +202,7 @@ With learning rate 0.1 and 40 practice reaches, the model's field estimate reach
 
 **What happens:** At Learning rate = 0.1, Practice reaches with the field on = 40: After 40 reaches at learning rate 0.1 the estimate has reached 98.5 percent of the push, so the first reach with the field off misses by almost exactly the size of the first miss, on the opposite side. With 5 reaches the mirror is only 41 percent.
 
-**Why it matters:** A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore evidence of the model, read from behavior.
+**Why it matters:** A controller that adapts has built a model, and a model keeps predicting a push that is gone. The aftereffect is therefore read as a sign of the model, inferred from behavior.
 
 **In brains and behavior:** The authors read the aftereffect as a sign that the controller gradually built a model of the field. That is an inference from behavior, not a recorded model.
 
@@ -246,7 +246,7 @@ $$
 
 **Why it matters:** A system that is evaluated on a handful of real trials cannot be told apart from many nearby rates. The honest report is the count and its range, not the share alone.
 
-**In brains and behavior:** The chapter's brain-side counts are also small: seven patients, eight men, two monkeys. The same caution applies to their shares.
+**In brains and behavior:** The chapter's brain-side counts are also small: one participant in the walking study, eight men in the unseen-hand test, two monkeys in the eye-jump study, and eight people in the reaching-variance test. The same caution applies to any share computed from them.
 
 **In machines:** A robot test on 10 trials is a measurement with this much uncertainty. The 2019 preprint's hand-tuned simulation settings are a separate matter.
 

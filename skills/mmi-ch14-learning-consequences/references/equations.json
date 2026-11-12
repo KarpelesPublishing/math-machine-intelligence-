@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-14.md",
   "source_sha256": "fdb5f241dd602f47bd44a751bc4742e68f24478fca55c0f0ea67bfc8db5e9c67",
-  "calculation_sha256": "99896aeab9fb8132bab0e7c99cb9e1d21517d24c5c9f50a63217c496d1c33c6a",
+  "calculation_sha256": "f11cc4c0d2eee898d97c154a5793b20ea36dd7d5450e60d54b2f9c973c9a43f0",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -158,7 +158,7 @@
       "controls": [
         {
           "key": "lam",
-          "label": "Trace length (lambda)",
+          "label": "Trace length (lambda; companion's addition, 0.5 is constructed)",
           "values": [
             0.0,
             0.5,
@@ -181,14 +181,14 @@
       "alt": "A grid of cue values over eight trials for six cues, and lines of cue 1's value over trials for three trace lengths.",
       "symbols": "delta_k: the error at cue k, from values held at the start of the trial; lambda: how far a trace carries later errors back to earlier cues (0 is the plain method, 1 lasts through all six); alpha: learning rate; V: the value of a cue",
       "application": "The earliest event that reliably predicts a reward is the one worth reacting to. A learner finds it by correcting each forecast with the next, without waiting to see the final reward in every case.",
-      "default_parameters": "Trace length (lambda): 0.0 · Learning rate (alpha): 1.0",
+      "default_parameters": "Trace length (lambda; companion's addition, 0.5 is constructed): 0.0 · Learning rate (alpha): 1.0",
       "worked_example": {
         "Cue 1 first gains value": "trial 6",
         "Cue 6 after trial 1": "1",
         "Cue 1 after trial 1": "0",
         "Cue 1 after 8 trials": "1"
       },
-      "worked_interpretation": "With learning rate 1 and trace 0, cue 1 first gains value on trial 6. Without a full trace, value creeps back about one cue per trial.",
+      "worked_interpretation": "With learning rate 1 and trace 0, cue 1 first gains value on trial 6. With no trace, value creeps back about one cue per trial.",
       "reader_anchor": "C14-D02"
     },
     {
@@ -230,9 +230,9 @@
         "text": "After 16 noise-alone trials at rate 0.2 the noise holds strength 0.972, the gap left is 0.028, and the light gains only about 0.014 in 8 pairings, against about 0.49 when light and noise are learned together. Kamin's rats showed the same direction (a ratio of .45 near no effect, against .05)."
       },
       "takeaway": "When the outcome is already predicted, the gap that drives learning is nearly zero, so a new cue is learned poorly.",
-      "why_it_matters": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. This also explains why redundant signals can be ignored.",
+      "why_it_matters": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. In this model, a redundant signal would be learned about only a little; the chapter does not claim animals follow the rule.",
       "sides": {
-        "brain": "In 2013 rats were given a laser pulse at reward time to switch on dopamine cells during the pairing of sound plus light; they then responded more to the light. This supports sufficiency in that task, not necessity, and the cells' firing was not measured.",
+        "brain": "In 2013 rats were given a laser pulse at reward time to switch on dopamine cells during the pairing of sound plus light; they then responded more to the light on the first test trial (across all three test trials the difference was a trend). This supports sufficiency in that task, not necessity, and the cells' firing was not measured.",
         "machine": "The rule is the same error-driven update as in the previous cards, applied to several cues at once. It is a specification for a learner, and a model of behavior for animals."
       },
       "explanation": "Each cue present learns a share of the gap between the outcome and the combined strength of all cues present. After enough noise-alone trials the noise already accounts for the outcome, so the gap at the first pairing is small and the light gains almost nothing. With no earlier trials the gap is large, and the two cues share it.",
@@ -254,7 +254,7 @@
         },
         {
           "key": "rate",
-          "label": "Learning-rate constant (c)",
+          "label": "Learning-rate constant (c, made up)",
           "values": [
             0.1,
             0.2,
@@ -266,8 +266,8 @@
       "function": "blocking_picture",
       "alt": "Strength of noise and light over trials for a chosen number of noise-alone trials, and light strength after 8 pairings against that number.",
       "symbols": "V_X: associative strength of cue X (noise or light); lambda_out: the strength the outcome can support; 1 here; c: a learning-rate constant, a disclosed made-up value in this illustration; sum: the combined strength of all cues present on the trial",
-      "application": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. This also explains why redundant signals can be ignored.",
-      "default_parameters": "Noise-alone trials before the light: 8 · Learning-rate constant (c): 0.2",
+      "application": "A learner driven by error learns about a cue only to the extent that the cue is needed to explain a surprise. In this model, a redundant signal would be learned about only a little; the chapter does not claim animals follow the rule.",
+      "default_parameters": "Noise-alone trials before the light: 8 · Learning-rate constant (c, made up): 0.2",
       "worked_example": {
         "Light strength after 8 pairings": "0.0825",
         "Same, light and noise learned together": "0.492",
@@ -486,7 +486,7 @@
       ],
       "source_anchor": "atari-75-percent-of-a-human-testers-gain-on-29-of-49-games-00-percent-on-montezumas-revenge",
       "source_section": "Atari: 75 percent of a human tester's gain on 29 of 49 games, 0.0 percent on Montezuma's Revenge",
-      "provenance": "Reported result from Mnih and colleagues (2015), as quoted in the chapter: Frostbite scores of 65.2, 328.3 and 4,335, and that the networks reached at least 75 percent of the tester's gain on 29 of 49 games. The companion's arithmetic gives the gains and shares. Scores other than 328.3 on the slider are hypothetical, to show what each share would take.",
+      "provenance": "Reported result from Mnih and colleagues (2015), as quoted in the chapter: Frostbite scores of 65.2, 328.3 and 4,335, and that the networks reached at least 75 percent of the tester's gain on 29 of 49 games. The companion's arithmetic gives the gains and shares. The slider's 65.2 (random play), 328.3 (the network) and 4,335 (the human tester) are the paper's scores; the other slider values are hypothetical, to show what each share would take.",
       "kind": "reported result",
       "assumptions": "Gains are counted over random play so that only what was learned beyond guessing counts. A different network was trained on each game, so this is 49 trained networks, not one network that learned 49 games. Rewards were clipped to plus 1, minus 1 or zero, which hid differences in size. The study did not show that the score stands for what a person wants.",
       "prediction": "Predict, before moving the slider, whether 328.3 is above or below a quarter of the human gain on Frostbite, then find the score needed for 75 percent.",
@@ -507,7 +507,7 @@
       "controls": [
         {
           "key": "score",
-          "label": "Frostbite score (328.3 is the network's)",
+          "label": "Frostbite score (65.2, 328.3 and 4,335 are reported; others hypothetical)",
           "values": [
             65.2,
             328.3,
@@ -524,7 +524,7 @@
       "alt": "Bars of Frostbite scores for random play, a chosen score and a human tester, and a line of share of the human gain against score.",
       "symbols": "score: the learner's game score; random: the score of random play, 65.2 on Frostbite; human: the professional tester's score, 4,335 on Frostbite",
       "application": "An average over games hides weak ones. Subtracting random play keeps a lucky guesser from looking skilled.",
-      "default_parameters": "Frostbite score (328.3 is the network's): 328.3",
+      "default_parameters": "Frostbite score (65.2, 328.3 and 4,335 are reported; others hypothetical): 328.3",
       "worked_example": {
         "Gain over random play": "263.1",
         "Human gain over random play": "4269.8",
@@ -572,7 +572,7 @@
         },
         "text": "With equal chances, an optimistic channel (0.9) settles at about 5.7, between sizes 5 and 6, while a pessimistic one (0.1) settles at about 2.3, between sizes 2 and 3. A channel at 0.5 settles at the average reward, 4."
       },
-      "takeaway": "Channels that weigh good and bad news differently settle at different forecasts, so each flips sign at a different reward size.",
+      "takeaway": "Channels that weigh good and bad news differently settle at different forecasts, so, in this model, each flips sign at a different reward size.",
       "why_it_matters": "Together the channels trace out the spread of possible rewards, not only the average. That is the prediction machine learning made first, which the 2020 study then tested.",
       "sides": {
         "brain": "In the 2020 reanalysis, 40 cells from a handful of mice had substantially different reversal points, and the pattern held when the trials were split in half at random. The evidence is observational and model-dependent, and the mathematics of a brain is a model.",

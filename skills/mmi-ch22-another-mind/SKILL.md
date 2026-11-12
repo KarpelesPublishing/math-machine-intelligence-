@@ -20,7 +20,7 @@ Read [the chapter guidance](references/chapter.md) for the selected example and 
 
 ## Make the method fit the question
 
-For reading a goal from steps, use C22-D01 with the step chances the user can justify, and say the prior and action model are assumptions. For a choice that might reflect ignorance, use C22-D02: compute the shares with and without the unknown option before inferring a preference, and note the fleet is invented. C22-D03 gives the exact chance of a count of right answers under a flat chance and says what it does not decide. C22-D04 shows how little a pass moves belief when a rival also passes. C22-D05 reads the chapter's printed correlations with their stated bases. C22-D06 counts pairs from a ranking and shows a noisy two-option choice rule; the agreement arithmetic is the companion's own.
+For reading a goal from steps, use C22-D01 with the step chances the user can justify, and say the prior and action model are assumptions. For a choice that might reflect ignorance, use C22-D02: compute the shares with and without the unknown option before inferring a preference, and note the fleet is invented. C22-D03 gives the exact chance of a count of right answers under a flat chance and says what it does not decide. C22-D04 shows how little a pass moves belief when a rival also passes. C22-D05 reads the chapter's printed correlations with their stated bases. C22-D06 counts pairs from a ranking and shows a noisy two-option choice rule; the agreement arithmetic is the companion's own, and the 1.63 gap is one illustrative value within a range of about 1.55 to 1.71.
 
 
 ## Use it with the reader
@@ -39,7 +39,7 @@ For reading a goal from steps, use C22-D01 with the step chances the user can ju
 - A softmax weight is a chance of choosing under the model, not a measure of what someone knew or wanted; ignorance and dislike can produce the same choice share.
 - Sarah's 21 of 24 rejects a flat chance of 0.5, but it cannot choose among physical matching, associationism, empathy and theory of mind; the paper says so itself.
 - A good fit of a model to people's ratings is a statement about behavior, not proof that people or machines run that calculation.
-- The reward gap and two-rater agreement in the ranking demonstration are the companion's own illustration under assumed identical raters; the study did not report them.
+- The reward gap and two-rater agreement in the ranking demonstration are the companion's own illustration under assumed identical raters; the study did not report them, and its 72.6 percent carries plus or minus 1.5 percent (gaps of about 1.55 to 1.71 under the same rule).
 - For a brain, the mathematics is a model: a close fit to behavior is not proof of how neurons do it, and nothing here settles whether any system has experience. Say which of the three questions a result answers: does the model match behavior, does evidence support its mechanism, does evidence establish experience.
 - Separate what the book computes (an equation specifying what a machine does), what it models (a description that generates predictions), and what a study measured. Never present a simulation in this companion as a measurement.
 - Give no clinical, diagnostic or treatment advice. A study the chapter discusses is evidence about its own participants and conditions only.

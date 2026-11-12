@@ -152,7 +152,7 @@ $$
 - Missing after generation 30: 0.938
 - Mean share after generation 30: 0.00921
 
-With samples of 100 and 0 of each sample taken from the original, the rare answer is missing from 93.8 percent of 2000 seeded chains by generation 30. A chain that hits zero stays there unless the original is drawn on.
+With samples of 100 and a share of 0 of each sample taken from the original, the rare answer is missing from 93.8 percent of 2000 seeded chains by generation 30. A chain that hits zero stays there unless the original is drawn on.
 
 **Calculation:** Each generation: count ~ Binomial(100, r p0 + (1 - r) x), x = last share, r = 0, p0 = 0.01; next share = count / 100. Generation 1 check: (1 - 0.01)^100 = 0.366.
 
@@ -170,7 +170,7 @@ With samples of 100 and 0 of each sample taken from the original, the rare answe
 
 **Answer:** The largest sample, 500: about 72 percent of chains are still without it at generation 30, against 94 percent at 100, so bigger samples slow the loss without stopping it. The mean stays near 0.01 because at zero original share the expected next share equals the current one: chains that fall to zero are balanced by chains that climb.
 
-**Source:** What keeps a story alive, and what keeps a model whole; anchor `what-keeps-a-story-alive-and-what-keeps-a-model-whole`. Seeded simulation built from the chapter's 1 in 100 example: 400 chains of 30 generations per setting, seed 2024. It is this companion's construction, not the model-collapse study (which used OPT-125m and did not count rare answers) and not a measurement. The chapter reports only the one-step miss chance and that a run with some original data degraded less.
+**Source:** What keeps a story alive, and what keeps a model whole; anchor `what-keeps-a-story-alive-and-what-keeps-a-model-whole`. Seeded simulation built from the chapter's 1 in 100 example: 2,000 chains of 30 generations per setting, seed 2024. It is this companion's construction, not the model-collapse study (which used OPT-125m and did not count rare answers) and not a measurement. The chapter reports only the one-step miss chance and that a run with some original data degraded less.
 
 ## C24-D05: What did a model do to its own text, and how bad was the score?
 
@@ -199,7 +199,7 @@ After 9 generations, no original examples kept: perplexity about 52, 1.53 times 
 
 **What happens:** At Which score = gen9_10pct: With 10 percent of the original data kept, the score ends near 37, against about 52 without it and 34 at the start. The authors report only minor degradation for this run, but it also trained for ten epochs, so the 10 percent alone is not isolated.
 
-**Why it matters:** This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate.
+**Why it matters:** This is the machine chain in the chapter. The printed prompt shows the drift in one case, church towers to jackrabbits, which the chapter says is a sample of the drift and not a rate. The chapter does not say which run the printed example comes from.
 
 **In machines:** A model trained on a teacher's text can lose rare content and drift toward typical output, which the authors call model collapse. The scores are the evidence here, plus theory.
 
@@ -237,7 +237,7 @@ Twenty-eight of 32 chains ended on a rising line, but eight began on one. If 8 o
 
 **Takeaway:** At least 20 of the 24 chains that began elsewhere ended on a rising line, which is what makes the count more than a restatement of the starting data.
 
-**What happens:** At Rising-start chains that ended rising (unreported) = 8: If all eight rising-start chains ended rising, 20 of the 24 chains that began elsewhere did as well, which is the smallest it can be. If some rising-start chains moved away, more of the others ended rising. Either way the pull toward a rising line is real in the counts, though the study did not fit a model.
+**What happens:** At Rising-start chains that ended rising (unreported) = 8: If all eight rising-start chains ended rising, 20 of the 24 chains that began elsewhere did as well, which is the smallest it can be. If some rising-start chains moved away, more of the others ended rising. Either way the counts are consistent with a pull toward a rising line, though the study did not fit a model and says more data would be needed to confirm convergence.
 
 **Why it matters:** A headline count can hide how much of it was already there at the start. Subtracting the chains that began on the answer shows what is left, and the chapter does exactly that.
 

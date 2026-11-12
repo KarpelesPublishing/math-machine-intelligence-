@@ -68,11 +68,11 @@ $$
 
 With sharpness 2.12 and the cutoff 1.3 spreads above the no-flash centre, the hit rate is 79.4 percent and the false-alarm rate 9.68 percent. Move the cutoff and both rates move together; only a different sharpness changes the curve itself.
 
-**Calculation:** Hit = Phi(d' - c) = Phi(2.12 - 1.3) = 0.794. False alarm = Phi(-c) = Phi(-1.3) = 0.0968. At a prior of 0.01 the real share of alarms is 0.794 x 0.01 / (0.794 x 0.01 + 0.0968 x 0.99) = 0.0765.
+**Calculation:** Hit = Phi(d' - c) = Phi(2.12 - 1.3) = 0.794. False alarm = Phi(-c) = Phi(-1.3) = 0.0968. At a prior of 0.01 the real share of alarms is 0.794 x 0.01 / (0.794 x 0.01 + 0.0968 x 0.99) = 0.0765. Sharpness 2.12 is the companion's reading of Eddy's two rates under equal-width normal heaps; the other sharpness values are constructed.
 
 **Takeaway:** A looser cutoff adds hits and false alarms together. Sharpness, the clarity of the evidence, stays put.
 
-**What happens:** At Sharpness of the evidence (d-prime) = 2.12, Cutoff (spreads above the no-flash centre) = 1.3: Sharpness 2.12 with the cutoff at 1.3 spreads gives a hit rate near 79.4 percent and a false-alarm rate near 9.7 percent, close to Eddy's 79.2 and 9.6. Slide the cutoff and the ringed point travels along the curve; only a different sharpness moves the curve.
+**What happens:** At Sharpness of the evidence (d-prime) = 2.12, Cutoff (spreads above the no-flash centre) = 1.3: Sharpness 2.12 with the cutoff at 1.3 spreads gives a hit rate near 79.4 percent and a false-alarm rate near 9.7 percent, matching Eddy's 79.2 and 9.6 by construction: the sharpness was chosen from those two rates, so this is a reading of them, not a test. Slide the cutoff and the ringed point travels along the curve; only a different sharpness moves the curve.
 
 **Why it matters:** A stricter cutoff can cut false alarms but misses more cases, and no cutoff rescues evidence that is poor. Asking for the hit rate alone, or the false-alarm rate alone, hides the trade.
 
@@ -154,7 +154,7 @@ With drift 2, noise 4 and bound 10, the noise-free climb takes 5 s. The six draw
 
 **Calculation:** Noise-free time = a/v = 10/2 = 5 s. Mean time with noise = (a/v) tanh(a v / sigma^2) = 5 x tanh(10 x 2 / 4^2) = 4.24 s. Chance of the wrong edge = 1/(1 + exp(2 a v / sigma^2)) = 0.0759.
 
-**Takeaway:** Drift sets the average climb; noise scatters single trials, and enough noise buys speed at the price of wrong answers.
+**Takeaway:** In this model, drift sets the average climb, noise scatters single trials, and with the bound fixed, more noise gives faster answers and more wrong ones.
 
 **What happens:** At Drift (evidence points per second) = 2, Noise (size of the random nudges) = 0, Bound = 10: With no noise the total climbs straight to the bound in 5 seconds, as in the chapter. Now raise the noise: the mean time barely moves at noise 2, falls to about 4.2 s at noise 4 and about 1.5 s at noise 8, but the chance of ending at the wrong edge rises to about 35 percent.
 
@@ -258,7 +258,7 @@ With a 2 s delay between trials and a 0 s time-out after errors, careful earns 0
 
 ## C15-D07: When does a sampler stop, and does a settled tally mean it is right?
 
-A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does it stop on the wrong answer?
+A language model is asked one question again and again. How many samples does a settle-and-stop rule draw, and how often does the final answer end up wrong?
 
 After each sample the rule asks how settled the two leading counts look. Four agreeing samples in a row are enough at 0.95, since 31/32 is above 0.95 and 15/16 is not. When the likelier answer shows up only a little more often than the other, the counts wander and the estimate rarely passes the threshold, so the sampler runs to the cap or sometimes settles on the wrong leader.
 
@@ -272,17 +272,17 @@ $$
 
 **Worked example:**
 - Average samples drawn: 8.72
-- Chance it stops on the runner-up: 0.186 percent
+- Chance it stops on the runner-up before the cap: 0.186 percent
 - Chance it hits the cap: 0.249 percent
-- Earliest possible stop: 4 samples
+- Chance of a wrong final answer, cap included: 0.187 percent
 
-When 80 percent of samples give the likelier answer and the sampler stops above 0.95, it draws 8.72 samples on average against a fixed 40. It stops on the runner-up 0.186 percent of the time. Settled means stable, not true.
+When 80 percent of samples give the likelier answer and the sampler stops above 0.95, it draws 8.72 samples on average against a fixed 40. It stops on the runner-up 0.186 percent of the time, and the final answer is wrong 0.187 percent of the time if capped runs return their leader. Settled means stable, not true.
 
-**Calculation:** Estimate = P(Bin(a + b + 1, 1/2) <= a) for the leader's count a. Four unbroken matches give P(Bin(5, 1/2) <= 4) = 31/32 = 0.969. At threshold 0.95 the earliest stop is after 4 samples. The exact tally is a sum over all (a, b) counts, not a simulation.
+**Calculation:** Estimate = P(Bin(a + b + 1, 1/2) <= a) for the leader's count a. Four unbroken matches give P(Bin(5, 1/2) <= 4) = 31/32 = 0.969. At threshold 0.95 the earliest stop is after 4 samples. The exact tally is a sum over all (a, b) counts, not a simulation. The estimate is the companion's reading of the chapter's description. Wrong if a capped run returns its leader = stops on the runner-up 0.186 percent + capped with the runner-up ahead 0.000367 percent = 0.187 percent; 0.00127 percent of runs reach the cap tied and have no leader. That cap rule is the companion's assumption; the chapter suggests handing an unsettled case to a person.
 
 **Takeaway:** A close race costs many samples, and a tally that settles is stable, not necessarily true.
 
-**What happens:** At Chance a sample gives the likelier answer (s) = 0.6, Stopping threshold = 0.95: At s = 0.6 the sampler draws 24.2 samples on average, about 38 percent of runs hit the cap of 40 without settling, and about 5 percent stop on the runner-up. At s = 0.8 it needs 8.7 samples on average.
+**What happens:** At Chance a sample gives the likelier answer (s) = 0.6, Stopping threshold = 0.95: At s = 0.6 the sampler draws 24.2 samples on average, about 38 percent of runs hit the cap of 40 without settling, and about 5 percent stop on the runner-up. If a capped run returned its current leader (the companion's assumption, not the chapter's), about 10 percent of final answers would be wrong once those capped runs are counted. At s = 0.8 it needs 8.7 samples on average.
 
 **Why it matters:** Where a tally never settles before the cap, a system could hand the question to a person. And ten answers based on the same mistaken source repeat the mistake rather than add independent evidence.
 

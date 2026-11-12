@@ -1,7 +1,7 @@
 [
   {
     "prompt": "A rater gives every right answer 90 percent and every wrong one 80 percent; 6 of 10 are right. Evaluate it.",
-    "expected_behavior": "Sorting score 1 (perfect), but average stated confidence 86 percent against a 60 percent hit rate, so badly calibrated; Brier score 0.262, worse than the 0.24 of always saying 60 percent, which sorts nothing."
+    "expected_behavior": "Sorting score 1 (perfect), but average stated confidence 86 percent against a 60 percent hit rate, so badly calibrated (by group the miss is 0.38 in the companion's own measure); Brier score 0.262, worse than the 0.24 of always saying 60 percent, which sorts nothing."
   },
   {
     "prompt": "A forecaster believes rain has chance 0.7. Should she report 0.9 to sound decisive?",

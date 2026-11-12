@@ -10,7 +10,7 @@ Practical question: My system draws several answers and keeps the one most like 
 
 A 16-position text can be built one position at a time, by filling every position in several passes, or level by level. How many passes and position-updates does each take?
 
-One at a time, each pass picks one token using everything before it, so a text takes as many passes in a row as it has tokens. Filling everything repeats a pass over all positions. Levels start with a rough version of the whole text with very few positions and each later level adds detail, so the number of passes grows with the number of levels, not with the length.
+One at a time, each pass picks one token using everything before it, so a text takes as many passes in a row as it has tokens. Filling everything repeats a pass over all positions. Levels start with a rough version of the whole text with very few positions and each later level adds detail, so the number of passes equals the number of levels: log2 of the length plus 1 in this doubling toy, and a fixed 12 in the paper.
 
 $$
 \text{passes}_{\text{levels}}=\lceil\log_2 L\rceil+1,\qquad \text{updates}_{\text{levels}}=1+2+4+\cdots+L=2L-1
@@ -68,13 +68,13 @@ $$
 - Last correction: 0.03
 - Overshoot that later levels cannot undo: no
 
-With lists of nonnegative corrections only, 3 levels bring the total to 0.73 for a target of 0.7316, leaving 0.0016. Each level removes most of what the last one missed.
+With the chapter's lists (nonnegative corrections only), 3 levels bring the total to 0.73 for a target of 0.7316, leaving 0.0016. Each level shrinks what the last one left over.
 
 **Calculation:** s_k = s_(k-1) + c_k and r_k = x - s_k. level 1: c = 0.5, s = 0.5, r = 0.2316; level 2: c = 0.2, s = 0.7, r = 0.0316; level 3: c = 0.03, s = 0.73, r = 0.0016.
 
-**Takeaway:** Stacked lists close in on a target when each level can correct what the last one missed, and an early overshoot is permanent when later levels can only add.
+**Takeaway:** Stacked lists close in on a target when each level can correct what the last one missed, and an early overshoot is permanent when later levels can only add (the chapter's lists; allowing negative corrections is the companion's variation).
 
-**What happens:** At Levels used = 3, Target = 0.7316, Lists allow negative corrections = 0: For 0.7316 the totals are 0.5, 0.7 and 0.73, and the leftover falls from 0.2316 to 0.0316 to 0.0016. Now switch to the target 0.4216: level 1 picks 0.5, overshooting, and since later lists only add, the total stays at 0.5 with leftover -0.0784. Allow negative corrections and the same target ends at 0.42.
+**What happens:** At Levels used = 3, Target = 0.7316, Lists allow negative corrections = 0: For 0.7316 the totals are 0.5, 0.7 and 0.73, and the leftover falls from 0.2316 to 0.0316 to 0.0016. Now switch to the target 0.4216: level 1 picks 0.5, overshooting, and since later lists only add, the total stays at 0.5 with leftover -0.0784. Allow negative corrections (the companion's own variation, not in the chapter) and the same target ends at 0.42.
 
 **Why it matters:** A rough-first method has to commit to something at each level. Whether later levels may overturn an earlier one decides whether early mistakes can be repaired, which is the question the Sudoku result bears on.
 
@@ -130,7 +130,7 @@ Candidate 3 agrees with the others by 0.512 on average. MBR keeps candidate 3 (0
 
 **Source:** Drawing several and keeping the most typical; anchor `drawing-several-and-keeping-the-most-typical`. The chapter's two constructed sets of five one-line summaries of a bridge vote, with its word-overlap similarity. In set A candidate 4 is wrong; in set B candidates 1, 2 and 3 share the mistake 'close the old bridge'. The chapter's scores are reproduced: 0.512 for candidate 3 in set A, 0.436 for candidate 4, and 0.462 for candidate 1 in set B. The paper's own similarity measure for this step is not stated.
 
-## C18-D04: How did the reported Sudoku results compare, and why is one wrong square so costly?
+## C18-D04: How did the reported Sudoku results compare, and what would they imply per square?
 
 The preprint reports the share of boards solved by three kinds of model. How much per-square accuracy would those shares imply if squares were independent?
 
@@ -148,15 +148,15 @@ $$
 - NCM solved (percent): 86.1
 - Implied per-square accuracy, NCM: 0.9971
 - Implied per-square accuracy, one at a time: 0.9137
-- Boards of 81 squares with empty squares: 51
+- Empty squares assumed: 51
 
-Reported results on hard boards: NCM 86.1 percent, the best fill-everything rival about 81 and a one-at-a-time model about 1. If squares were independent, getting 51 right at NCM's rate needs about 99.7 percent per square; Sudoku squares constrain one another, so this is a scale and not a measurement.
+Reported on hard boards: NCM 86.1 percent, the best fill-everything rival 81.3, one at a time about 1. If squares were independent, NCM's rate needs about 99.71 percent per square. 51 empty squares is the chapter's invented hard board.
 
-**Calculation:** Whole board = p^n, so p = (solved share)^(1/n). NCM: 0.861^(1/51) = 0.9971. One at a time: 0.01^(1/51) = 0.9137.
+**Calculation:** Whole board = p^n, so p = (solved share)^(1/n). NCM: 0.861^(1/51) = 0.9971. Fill everything (FMLM+): 0.813^(1/51) = 0.9959. One at a time: 0.01^(1/51) = 0.9137. Squares constrain one another in real Sudoku, so these are a scale and not a measurement.
 
-**Takeaway:** Whole-board success compounds over many squares, so a method that can fix earlier mistakes can look far better than one that commits as it goes, even when their per-square accuracies differ by little.
+**Takeaway:** Whole-board success compounds over many squares. On an independent-squares scale, a per-square gap of about 0.1 point (0.9971 against 0.9959, NCM against FMLM+) turns 86.1 into 81.3 percent, and a gap of several points (0.9971 against 0.9137) separates 86.1 from about 1 percent.
 
-**What happens:** At Board difficulty = 3, Empty squares on a board = 51: On hard boards NCM solved 86.1 percent, which would need about 99.7 percent per square across 51 squares, if squares were independent. The left-to-right model's about 1 percent would need only about 91.4 percent per square. Small per-square differences compound into large board differences.
+**What happens:** At Board difficulty = 3, Empty squares on a board = 51: On hard boards NCM solved 86.1 percent, which would need about 99.7 percent per square across 51 squares, if squares were independent. The left-to-right model's about 1 percent would need only about 91.4 percent per square. On this scale, a per-square gap of about 0.1 point already separates NCM (0.9971) from FMLM+ (0.9959, from 81.3 percent) by about 5 points of boards.
 
 **Why it matters:** A rough-first method that lets later levels correct earlier partial solutions is the authors' explanation for the Sudoku gap. The chapter says that explanation is a guess and that the paper reports no test isolating the cause.
 
@@ -164,13 +164,13 @@ Reported results on hard boards: NCM 86.1 percent, the best fill-everything riva
 
 **In machines:** A left-to-right model commits to each square as it goes. The preprint's model keeps a rough picture of the whole board and sharpens it. The paper reports its Sudoku results and does not test the cause.
 
-**Assumptions and limits:** A board counts as solved only if all 81 squares are right. The independence assumption is false for Sudoku, where a digit in one place limits digits in many others, so the implied accuracies are a scale and not a measurement. The preprint reports one training seed and no error bars, and an outside reproduction reported 86.3 percent on 2,000 hard boards without retraining the model or reproducing the baselines.
+**Assumptions and limits:** A board counts as solved only if all 81 squares are right. The independence assumption is false for Sudoku, where a digit in one place limits digits in many others, so the implied accuracies are a scale and not a measurement. The 51 empty squares are the chapter's invented hard board (30 given digits). The chapter says easier boards give more digits and does not say how many digits the preprint's boards give, so for easy and medium boards, and for 41 or 61 squares, the empty-square setting is only a scale. The preprint reports one training seed and no error bars, and an outside reproduction reported 86.3 percent on 2,000 hard boards without retraining the model or reproducing the baselines.
 
 **Check:** If squares were independent and 51 were empty, what per-square accuracy gives 86.1 percent of boards?
 
-**Answer:** 0.861 raised to the power 1/51 is about 0.99705, so about 99.7 percent per square.
+**Answer:** 0.861 raised to the power 1/51 is about 0.99707, so about 99.7 percent per square.
 
-**Source:** On Sudoku, later levels corrected earlier ones; anchor `on-sudoku-later-levels-corrected-earlier-ones`. Reported results, from the chapter: Next-Concept Modeling (NCM) solved 99.5, 96.5 and 86.1 percent of easy, medium and hard boards in 12 passes. The best fill-everything rival (FMLM+) solved about 98, 93 and 81 percent, and a left-to-right model about 14, 5 and 1. The rival numbers were copied from another group's paper. The independent-squares arithmetic is this companion's, not the paper's; the paper does not say how many boards were tested.
+**Source:** On Sudoku, later levels corrected earlier ones; anchor `on-sudoku-later-levels-corrected-earlier-ones`. Reported results, from the chapter: Next-Concept Modeling (NCM) solved 99.5, 96.5 and 86.1 percent of easy, medium and hard boards in 12 passes. The best fill-everything rival (FMLM+) solved about 98 and 93 percent on easy and medium boards and 81.3 on hard (the chapter's opening gives the exact figure), and a left-to-right model about 14, 5 and 1. The rival numbers were copied from another group's paper. The independent-squares arithmetic is this companion's, not the paper's; the paper does not say how many boards were tested.
 
 ## C18-D05: What can a vote among drafts never repair?
 
@@ -195,9 +195,9 @@ Each candidate is right with chance 0.7 when the errors are independent; with ch
 
 **Calculation:** P(majority right) = (1 - 0.1) x sum from k = 3 to 5 of C(5, k) x 0.7^k x 0.3^(5 - k) = 0.753.
 
-**Takeaway:** More voters wash out independent errors but cannot remove a mistake all of them repeat, so a settled tally is stable and not necessarily true.
+**Takeaway:** In this constructed model, more voters wash out independent errors but cannot remove a mistake all of them repeat, so a settled tally is stable and not necessarily true.
 
-**What happens:** At Candidates voting = 31, Chance all candidates repeat one mistake = 0.1: With 31 voters the independent part is almost surely right, but the majority can be right only when there is no shared mistake, so it cannot pass 0.9. At shared-mistake chance 0.3 the ceiling is 0.7. More drafts help with scatter and cannot help with a repeated mistake.
+**What happens:** At Candidates voting = 31, Chance all candidates repeat one mistake = 0.1: With 31 voters the independent part is almost surely right, but the majority can be right only when there is no shared mistake, so it cannot pass 0.9. At shared-mistake chance 0.3 the ceiling is 0.7. These numbers come from the companion's constructed model (a = 0.7, c made up), not from the paper. More drafts help with scatter and cannot help with a repeated mistake.
 
 **Why it matters:** A system that draws many answers from one model tends to treat agreement as evidence. How related the errors are decides whether the vote can improve on a single answer.
 
@@ -213,11 +213,11 @@ Each candidate is right with chance 0.7 when the errors are independent; with ch
 
 **Source:** Drawing several and keeping the most typical; anchor `drawing-several-and-keeping-the-most-typical`. The chapter states that majority voting over final answers is MBR with similarity 1 for the same answer and 0 for a different one, that a settled tally is stable and not necessarily true, and that several answers from one model are less independent than they look (Chapter 23's sunny-window thermometers). The two-answer model with a shared-mistake chance is this companion's construction, with made-up numbers (a = 0.7, c from 0 to 0.3); it is not from the paper or from the cited work on self-consistency.
 
-## C18-D06: How large was the global-precedence gap in Navon's timings?
+## C18-D06: How large was the slowest-condition gap in Navon's timings?
 
 People named either the big letter or the small letters of a figure. In which task did the other level slow them down?
 
-Each task has three conditions, and the chapter gives their mean times. The gap compares the slowest with the mean of the other two. Naming small letters had a large gap and naming the big letter had a small one, which is the asymmetry Navon read as the big shape coming first.
+Each task has three conditions, and the chapter gives their mean times. The gap compares the slowest with the mean of the other two. Naming small letters had a large gap and naming the big letter had a small one, the asymmetry Navon read as the big shape coming first. The sources do not label the conditions for the big-letter task, so its 10.5 ms is a spread, not a shown effect.
 
 $$
 \text{gap}=t_{\text{slowest}}-\tfrac{1}{2}\left(t_{\text{other 1}}+t_{\text{other 2}}\right)
@@ -232,13 +232,13 @@ $$
 - Mean of the other two (ms): 577
 - Gap (ms): 87
 
-When people named the small letters, one condition took 664 ms and the other two 573 and 581, a gap of about 87 ms. In the chapter, the slow one is when the big letter was a different letter. Navon noted the big letter is also simply larger, which could explain the result.
+Naming the small letters took 664 ms in one condition and 573 and 581 ms in the other two, a gap of about 87 ms. The chapter ties the slow one to a big letter that differed from the small ones, but does not say which of 573 and 581 is which. Navon noted the big letter is also simply larger.
 
 **Calculation:** Gap = slowest - mean of the other two = 664 - (581 + 573)/2 = 87 ms.
 
-**Takeaway:** In these timings the big figure interfered with naming the small letters and the small letters did not reliably interfere with naming the big one.
+**Takeaway:** In these timings a different big letter slowed naming the small letters, and the small letters did not reliably slow naming the big one (the chapter's reading; Navon noted the big letter is also larger).
 
-**What happens:** At Task = 1: Naming the small letters, the slowest condition took 664 ms against about 577 for the others, a gap of 87 ms. Naming the big letter, the three conditions ranged from 462 to 477 ms and the chapter reports no reliable slowing. Navon read that asymmetry as the big shape coming first, with the caveat that the big letter is also larger.
+**What happens:** At Task = 1: Naming the small letters, the slowest condition took 664 ms against about 577 for the others (the chapter says about 575), a gap of about 87 ms. Naming the big letter, the three conditions ranged from 462 to 477 ms and the chapter reports no reliable slowing. Navon read that asymmetry as the big shape coming first, with the caveat that the big letter is also larger.
 
 **Why it matters:** The studies in this chapter concern the order in which information becomes usable. The chapter says none tests a whole level of positions produced at once and then a finer level, so the link to the machine method is an analogy this book draws.
 

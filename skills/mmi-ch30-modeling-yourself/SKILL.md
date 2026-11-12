@@ -12,7 +12,7 @@ Use Chapter 30 of *The Mathematics of Machine Intelligence* to answer the reader
 Read [the chapter guidance](references/chapter.md) for the selected example and [equation cards](references/equations.json) for exact formulas, assumptions, domains, and book anchors. Load only the material needed for the request.
 
 - **How much motion does a wrong prediction gain invent? (C30-D01):** A camera turns while nothing outside moves. If its prediction of the turn is scaled wrong, how much phantom motion is left over?
-- **Can the leftover tell a collision from a bad prediction? (C30-D02):** A robot arm flags contact when the leftover passes a threshold. What else produces the same leftover?
+- **Can the leftover tell a collision from a bad prediction? (C30-D02):** A system that flags contact when its leftover passes a threshold (here a camera, in degrees; a real arm compares torques) can be fooled. What else produces the same leftover?
 - **Why would a late touch feel more ticklish? (C30-D03):** If a self-made touch is turned down in proportion to how well it matches a prediction, how should ticklishness change as the touch is delayed?
 - **How should a forecast and the senses share a hand's position? (C30-D04):** A forecast from commands puts the hand at 10 cm and the senses put it at 20 cm. Where does the blend land?
 - **What would a shift in felt location mean as a weighting? (C30-D05):** After synchronous stroking, 14 people drifted about 24 cm toward a body seen 2 metres ahead. What weight on the seen body would a blend need?

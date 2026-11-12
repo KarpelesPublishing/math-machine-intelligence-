@@ -26,13 +26,13 @@ $$
 - Gap in mean rating, 447 minus 3: 2.1
 - Said no to rating for odd number: 100 percent
 
-The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group said grading makes no sense.
+The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group of 21 students said grading makes no sense.
 
 **Calculation:** 3 = 2 x 1 + 1 and 447 = 2 x 223 + 1, so both are odd. Mean ratings: 1.6 for 3 and 3.7 for 447, so 447 minus 3 = 2.1 rating points. Percent saying no for odd number: 100.
 
 **Takeaway:** A membership rule asks whether something qualifies; a typicality rating asks how representative it seems. They can give different answers for the same item.
 
-**What happens:** At Group of students = experiment 3, Kind shown on the right = odd number: All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. The grading did not depend on believing the kind was graded.
+**What happens:** At Group of students = experiment 3, Kind shown on the right = odd number: All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. Saying rating made no sense did not stop the grading. The authors suspected some students read 'odd' as peculiar, so this does not show why 3 came out ahead.
 
 **Why it matters:** A system that applies an exact test and a system that ranks by typicality answer different questions. Treating a good rating as proof of membership, or a flat rule as proof that no ranking exists, mixes them up.
 
@@ -40,7 +40,7 @@ The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's studen
 
 **In machines:** An exact test such as the remainder gives 3 and 447 the same answer. Any graded score a machine reports for them must come from some other computation, such as a summary of cases.
 
-**Assumptions and limits:** The ratings are means of students' judgments of how well a number fits their idea or image of odd. The study measured behavior; it did not test why 3 came out ahead or what a mind stores, and it compared no storage models.
+**Assumptions and limits:** The ratings are means of students' judgments of how well a number fits their idea or image of odd. The study measured behavior; it did not test why 3 came out ahead or what a mind stores, and it compared no storage models. The authors suspected some students read 'odd' as peculiar, so the grading may partly reflect that reading.
 
 **Check:** In the chapter's first experiment, how large is the gap in mean rating between 447 and 3, and which of the six odd numbers was rated best after 3?
 
@@ -101,7 +101,7 @@ $$
 
 **Symbols:** d_w^2(x,z): the weighted squared distance between cases x and z; k: a feature; here size and angle; w_k: the weight on feature k, nonnegative, all weights add to one; x_k, z_k: the two cases' values on feature k
 
-**Predict:** P is 2 steps off in size only. Q is 1 step off in size and 2 in angle. Predict whether the weight on size must be above or below one half for P to be nearer.
+**Predict:** P is 2 steps off in size only. Q is 1 step off in size and 2 in angle. Predict the weight on size at which they are equally near.
 
 **Worked example:**
 - Squared distance to P: 2
@@ -115,7 +115,7 @@ With weights 0.5 on size and 0.5 on angle, the squared distances are 2 to P and 
 
 **Takeaway:** What counts as alike depends on how much each feature is weighted, so the nearest stored case can change when the weights change.
 
-**What happens:** At Weight on size = 0.8: At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571.
+**What happens:** At Weight on size = 0.8: At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571, not at one half: P is nearer for every size weight below that and Q for every weight above it.
 
 **Why it matters:** A distance with fixed weights bakes in a view of which features matter. Changing the purpose can change the weights and with them the answer.
 

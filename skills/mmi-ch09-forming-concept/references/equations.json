@@ -4,7 +4,7 @@
   "display_policy_sha256": "554dd741b3359bdaf592ce8be7688ac5e1feafe9b28482114cf312e014c264f4",
   "source_file": "chapter-09.md",
   "source_sha256": "578e67ae8f98ef21c164889f53d9ad36a8b138f57d3667cc392f754ef4142257",
-  "calculation_sha256": "e902748967fe0aceec79b1e77059aef6904ed567d768b669781d00ba0be52716",
+  "calculation_sha256": "da6a50ed55d1def862589d0eb624a57d16e1941a2006c64da9add812eb2c1d5d",
   "edition": "review copy, brain-computer partnership revision of 1 November 2026",
   "demonstrations": [
     {
@@ -28,14 +28,14 @@
       "source_section": "Chapter 9: Forming a Concept",
       "provenance": "Reported results quoted from the chapter's account of Armstrong, Gleitman and Gleitman (1983): the 31 students' mean ratings of six odd numbers, the 21 students' percentages saying rating by degree makes no sense, and the two Table 6 means for odd number (3 at 1.0, 447 at 1.9). Only those two Table 6 means are given in the chapter.",
       "kind": "reported result",
-      "assumptions": "The ratings are means of students' judgments of how well a number fits their idea or image of odd. The study measured behavior; it did not test why 3 came out ahead or what a mind stores, and it compared no storage models.",
+      "assumptions": "The ratings are means of students' judgments of how well a number fits their idea or image of odd. The study measured behavior; it did not test why 3 came out ahead or what a mind stores, and it compared no storage models. The authors suspected some students read 'odd' as peculiar, so the grading may partly reflect that reading.",
       "prediction": "The rule gives every odd number the same answer. Before opening the second group, predict whether students who said rating makes no sense still graded 3 and 447 differently.",
       "reveal": {
         "state": {
           "rating_set": "experiment 3",
           "kind": "odd number"
         },
-        "text": "All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. The grading did not depend on believing the kind was graded."
+        "text": "All 21 students said it makes no sense to rate odd numbers, yet their means still ran from 1.0 for 3 to 1.9 for 447. Saying rating made no sense did not stop the grading. The authors suspected some students read 'odd' as peculiar, so this does not show why 3 came out ahead."
       },
       "takeaway": "A membership rule asks whether something qualifies; a typicality rating asks how representative it seems. They can give different answers for the same item.",
       "why_it_matters": "A system that applies an exact test and a system that ranks by typicality answer different questions. Treating a good rating as proof of membership, or a flat rule as proof that no ranking exists, mixes them up.",
@@ -83,7 +83,7 @@
         "Gap in mean rating, 447 minus 3": "2.1",
         "Said no to rating for odd number": "100 percent"
       },
-      "worked_interpretation": "The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group said grading makes no sense.",
+      "worked_interpretation": "The rule gives 3 and 447 the same answer, remainder 1. Yet experiment 1's students rated 3 at 1.6 and 447 at 3.7, a gap of 2.1 points on a 7-point scale. For odd number, 100 percent of a separate group of 21 students said grading makes no sense.",
       "reader_anchor": "C09-D01"
     },
     {
@@ -192,12 +192,12 @@
       "provenance": "The chapter's weighted-distance equation. The positions (new case at 2, 2; P at 4, 2; Q at 3, 4 on a four-by-four grid like the 16 semicircles) are constructed by the companion; they are not Nosofsky's stimuli or data.",
       "kind": "constructed example",
       "assumptions": "Two features, weights adding to one. The cases are made up. The weights in Nosofsky's study were estimated from choices; attention was never manipulated, so they describe a pattern without showing a cause.",
-      "prediction": "P is 2 steps off in size only. Q is 1 step off in size and 2 in angle. Predict whether the weight on size must be above or below one half for P to be nearer.",
+      "prediction": "P is 2 steps off in size only. Q is 1 step off in size and 2 in angle. Predict the weight on size at which they are equally near.",
       "reveal": {
         "state": {
           "size_weight": 0.8
         },
-        "text": "At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571."
+        "text": "At weights 0.8 and 0.2 a size gap counts four times an equal angle gap, as in the chapter. P then scores 3.2 and Q only 1.6, so Q is nearer. The swap is at a size weight of 4/7, about 0.571, not at one half: P is nearer for every size weight below that and Q for every weight above it."
       },
       "takeaway": "What counts as alike depends on how much each feature is weighted, so the nearest stored case can change when the weights change.",
       "why_it_matters": "A distance with fixed weights bakes in a view of which features matter. Changing the purpose can change the weights and with them the answer.",
